@@ -1,7 +1,8 @@
 //Cambio de Nicole
- function visual(){
-    console.log('hola mundo');
- }
+function visual() {
+  console.log("hola mundo");
+}
 
- visual();
- 
+console.log("soy ulises");
+
+visual();
