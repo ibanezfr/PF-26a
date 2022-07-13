@@ -4,5 +4,5 @@ function visual() {
 }
 
 console.log("soy ulises");
-
+console.log("soy ulises");
 visual();
