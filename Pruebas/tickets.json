@@ -1,0 +1,15 @@
+[{
+    "teamOne":"name",
+    "teamTwo":"name",
+    "date":"date",
+    "leagues":"leagues",
+    "imageOne":"image",
+    "imageTwo":"image",
+    "hour":"hour",
+    "stadium":"stadium",
+    "address":"address",
+    "stock":"stock",
+    "status":"status",
+    "price":"price",
+    "chair":"chair"
+}]
