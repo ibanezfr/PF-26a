@@ -1,0 +1,29 @@
+[
+    {
+        "home": "Peñarol",
+        "guest": "Ferro Carril Oeste",
+        "date": "01/12/21",
+        "winner": "Ferro Carril Oeste",
+        "statistics":{
+            "home": {
+                "score": 80,
+                "%2P": 43,
+                "%3P": 40,
+                "%TL": 75,
+                "RT" : 33,
+                "losts": 10,
+                "recovery": 5
+            },
+            "guest": {
+                "score": 89,
+                "%2P": 57,
+                "%3P": 33,
+                "%TL": 72,
+                "RT" : 43,
+                "losts": 11,
+                "recovery": 9
+            }
+        }
+    }
+]
+
