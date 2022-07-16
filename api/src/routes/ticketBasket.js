@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
       const allTickets = await Tickets.findAll({
         
       });
-      res.status(200).send("Estos son los tickets");
+      res.status(200).send("Estos son los tickets de basket");
     } catch (err) {
       res.status(400).send({ msg: err.message });
     }
