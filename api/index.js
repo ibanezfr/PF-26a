@@ -1,10 +1,18 @@
-//Cambio de Nicole
- function visual(){
-    console.log('hola mundo');
- }
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const { getTickets } = require("./src/middlewares/middlewares");
 
- visual();
- 
+
+conn.sync({ force:true }).then(() => {
+   server.listen(3001, async () => {
+     await getTickets();     
+     console.log("%s listening at 3001"); 
+   });
+ });
+
+
+//Cambio de Nicole
+
 
 /*
 {
