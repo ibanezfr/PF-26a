@@ -1,0 +1,188 @@
+[    
+    {
+        "id":1,
+        "name":"hot dog",
+        "price":1.5,
+        "stock":0
+    },
+    {
+        "id":2,
+        "name":"veggie hot dog",
+        "price":1.5,
+        "stock":0
+    },
+    {
+        "id":3,
+        "name":"hot dog with fries",
+        "price":2.5,
+        "stock":0
+    },
+    {
+        "id":4,
+        "name":"fries",
+        "price":1,
+        "stock":0
+    },
+    {
+        "id":5,
+        "name":"fries with cheddar",
+        "price":1.5,
+        "stock":0
+    },
+    {
+        "id":6,
+        "name":"burger",
+        "price":2,
+        "stock":0
+    },
+    {
+        "id":7,
+        "name":"burger with cheese",
+        "price":2.5,
+        "stock":0
+    },
+    {
+        "id":8,
+        "name":"complete burger",
+        "price":3.5,
+        "stock":0
+    },
+    {
+        "id":9,
+        "name":"burger with fries",
+        "price":4,
+        "stock":0
+    },
+    {
+        "id":10,
+        "name":"complete burger with fries",
+        "price":4.5,
+        "stock":0
+    },
+    {
+        "id":11,
+        "name":"water",
+        "price":0.5,
+        "stock":0
+    },
+    {
+        "id":12,
+        "name":"flavored water",
+        "price":0.5,
+        "stock":0
+    },
+    {
+        "id":13,
+        "name":"soda",
+        "price":1,
+        "stock":0
+    },
+    {
+        "id":14,
+        "name":"milanese sandwich",
+        "price":2.5,
+        "stock":0
+    },
+    {
+        "id":15,
+        "name":"complete milanese sandwich",
+        "price":3.5,
+        "stock":0
+    },
+    {
+        "id":16,
+        "name":"milanese sandwich with fries",
+        "price":3,
+        "stock":0
+    },
+    {
+        "id":17,
+        "name":"complete milanese sandwich with fries",
+        "price":4,
+        "stock":0
+    },
+    {
+        "id":18,
+        "name":"pizza",
+        "price":2,
+        "stock":0
+    },
+    {
+        "id":19,
+        "name":"pizza with ham",
+        "price":3,
+        "stock":0
+    },
+    {
+        "id":20,
+        "name":"neapolitan pizza",
+        "price":3.5,
+        "stock":0
+    },
+    {
+        "id":21,
+        "name":"fuguezzeta",
+        "price":3,
+        "stock":0
+    },
+    {
+        "id":22,
+        "name":"coffee",
+        "price":1,
+        "stock":0
+    },
+    {
+        "id":23,
+        "name":"double coffe",
+        "price":1.5,
+        "stock":0
+    },
+    {
+        "id":24,
+        "name":"cappuccino",
+        "price":2,
+        "stock":0
+    },
+    {
+        "id":25,
+        "name":"croissant",
+        "price":0.5,
+        "stock":0
+    },
+    {
+        "id":26,
+        "name":"coffe with three coissants",
+        "price":2,
+        "stock":0
+    },    
+    {
+        "id":27,
+        "name":"coffe with milk",
+        "price":1.5,
+        "stock":0
+    },
+    {
+        "id":28,
+        "name":"meat patty",
+        "price":0.5,
+        "stock":0
+    },
+    {
+        "id":29,
+        "name":"dozen meat patty",
+        "price":5,
+        "stock":0
+    },
+    {
+        "id":30,
+        "name":"chicken patty",
+        "price":0.5,
+        "stock":0
+    },
+    {
+        "id":31,
+        "name":"ham and cheese patty",
+        "price":0.5,
+        "stock":0
+    }
+]
