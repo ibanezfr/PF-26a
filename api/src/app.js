@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-console.log("hola")
-=======
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -41,4 +38,3 @@ server.use(async (err, req, res, next) => {
 });
 
 module.exports = server;
->>>>>>> 7121511637e6256cd60788b09e8ee5f307b07202
