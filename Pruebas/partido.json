@@ -1,10 +1,13 @@
 [
     {
+        "id": 1,
         "home": "Peñarol",
         "image-home": "https://img.wh.sportingpulseinternational.com/c76a728031c1fd88f8bb6255f1f83d31T1.jpg",
         "image-guest0": "https://img.wh.sportingpulseinternational.com/0b413854bb4051e807b8e82b82bea143T1.jpg",
         "date": "01/12/21",
         "winner": "Ferro Carril Oeste",
+        "league": "Liga Nacional",
+        "phase": "Regular",
         "statistics":{
             "home": {
                 "score": 80,
