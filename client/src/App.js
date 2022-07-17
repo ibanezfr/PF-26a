@@ -5,6 +5,7 @@ import { useDispatch, } from "react-redux"
 import { fetchTickets } from './redux/actions/index'
 import TicketsCards from './components/TicketsCards/TicketsCards.jsx';
 import Nav from './components/Nav/Nav';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
   return (<div className="App">
     <BrowserRouter>
       <Switch>
-      <Route path="/" exact>
-          <Nav />
+        <Route path="/" exact>
+          <LandingPage />
         </Route>
         <Route path="/home" exact>
           <Nav />
