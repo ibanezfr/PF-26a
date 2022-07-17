@@ -1,36 +1,64 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
 module.exports = (sequelize) => {
-    sequelize.define('tickets', {
+    sequelize.define('ticket', {
         id: {
             type: DataTypes.UUID,
-            allowNull: false,
             defaultValue: UUIDV4,
             unique: true,
             primaryKey: true
         },
-        name: {
+        teamOne: {
             type: DataTypes.STRING,
             allowNull: false
         },
+        date: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        teamTwo: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        leagues: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        imageOne: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        imageTwo: {
+            type: DataTypes.STRING,           
+            allowNull: false
+        },
+        hour: {
+            type: DataTypes.STRING,           
+            allowNull: false
+        },
+        stadium: {
+            type: DataTypes.STRING,           
+            allowNull: false
+        },
         price: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.FLOAT
+        },
+        address: {
+            type: DataTypes.STRING,           
             allowNull: false
         },
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: false
+        chair: { 
+            type: DataTypes.STRING,       
+            allowNull: false         
         },
-        image: { 
-            type: DataTypes.STRING,          
-            allowNull: false
-        },
-        status: {
+       status: {
             type: DataTypes.ENUM("active", "inactive"),
-            defaultValue: "active"
-        },
+            defaultValue: "active",
+            allowNull: false
+        } ,
         stock: {
             type: DataTypes.INTEGER,
             allowNull: false
+
         },
         created: { 
             type: DataTypes.BOOLEAN,

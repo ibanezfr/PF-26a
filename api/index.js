@@ -1,11 +1,14 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, async () => {
-   
-    console.log('%s listening at 3001'); 
-  });
-});
+const { getTickets } = require("./src/middlewares/middlewares");
+
+
+conn.sync({ force:true }).then(() => {
+   server.listen(3001, async () => {
+     await getTickets();     
+     console.log("%s listening at 3001"); 
+   });
+ });
 
 
 //Cambio de Nicole
