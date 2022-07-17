@@ -31,7 +31,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Ticket, Fase } = sequelize.models;
 Ticket.belongsToMany(Fase, { through: 'Tickets_Fase' });
-Fase.belongsToMany(Ticket, { through: 'Tickets_Fase' }); 
+Fase.belongsToMany(Ticket, { through: 'Tickets_Fase' });
 
 
 module.exports = {
