@@ -2,32 +2,371 @@
     {
         "id": 1,
         "home": "Peñarol",
-        "image-home": "https://img.wh.sportingpulseinternational.com/c76a728031c1fd88f8bb6255f1f83d31T1.jpg",
-        "image-guest0": "https://img.wh.sportingpulseinternational.com/0b413854bb4051e807b8e82b82bea143T1.jpg",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/penarol_gs.svg",
+        "guest": "Ferro Carril Oeste",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/ferro3.svg",
         "date": "01/12/21",
         "winner": "Ferro Carril Oeste",
         "league": "Liga Nacional",
         "phase": "Regular",
-        "statistics":{
-            "home": {
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 1,
+                "team": "home",
                 "score": 80,
-                "%2P": 43,
-                "%3P": 40,
-                "%TL": 75,
+                "2P": 19,
+                "3P": 9,
+                "TL": 15,
                 "RT" : 33,
                 "losts": 10,
                 "recovery": 5
             },
-            "guest": {
+            {
+                "id": 2,
+                "team": "guest",
                 "score": 89,
-                "%2P": 57,
-                "%3P": 33,
-                "%TL": 72,
+                "2P": 26,
+                "3P": 8,
+                "TL": 13,
                 "RT" : 43,
                 "losts": 11,
                 "recovery": 9
             }
-        }
+        ]
+    },
+
+    {
+        "id": 2,
+        "home": "Riachuelo",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/riachuelo.svg",
+        "guest" : "San Lorenzo",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/sanlorenzo.svg",
+        "date": "02/11/21",
+        "winner": "San Lorenzo",
+        "league": "Liga Nacional",
+        "phase": "Regular",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 3,
+                "team": "home",
+                "score": 78,
+                "2P": 24,
+                "3P": 5,
+                "TL": 15,
+                "RT" : 42,
+                "losts": 7,
+                "recovery": 5
+            },
+            {
+                "id": 4,
+                "team": "guest",
+                "score": 86,
+                "2P": 16,
+                "3P": 11,
+                "TL": 21,
+                "RT" : 43,
+                "losts": 10,
+                "recovery": 2
+            }
+        ]
+    },
+
+    {
+        "id": 3,
+        "home": "Obras",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/obras.svg",
+        "guest" : "Regatas",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/regatas_2.svg",
+        "date": "02/11/21",
+        "winner": "Regatas",
+        "league": "Liga Nacional",
+        "phase": "Regular",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 5,
+                "team": "home",
+                "score": 76,
+                "2P": 26,
+                "3P": 6,
+                "TL": 6,
+                "RT" : 35,
+                "losts": 16,
+                "recovery": 9
+            },
+            {
+                "id": 6,
+                "team": "guest",
+                "score": 81,
+                "2P": 21,
+                "3P": 9,
+                "TL": 12,
+                "RT" : 40,
+                "losts": 15,
+                "recovery": 7
+            }
+        ]
+    },
+
+    {
+        "id": 4,
+        "home": "Quimsa",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/quimsa.svg",
+        "guest" : "Instituto",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/instituto_0t.svg",
+        "date": "02/11/21",
+        "winner": "Instituto",
+        "league": "Liga Nacional",
+        "phase": "Final",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 7,
+                "team": "home",
+                "score": 84,
+                "2P": 18,
+                "3P": 6,
+                "TL": 19,
+                "RT" : 35,
+                "losts": 14,
+                "recovery": 4
+            },
+            {
+                "id": 8,
+                "team": "guest",
+                "score": 85,
+                "2P": 18,
+                "3P":10,
+                "TL": 19,
+                "RT" : 40,
+                "losts": 15,
+                "recovery": 7
+            }
+        ]
+    },
+
+    {
+        "id": 5,
+        "home": "San Martín",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/sanmartin_kz.svg",
+        "guest" : "Instituto",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/instituto_0t.svg",
+        "date": "02/11/21",
+        "winner": "San Martín",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 9,
+                "team": "home",
+                "score": 74,
+                "2P": 17,
+                "3P": 7,
+                "TL": 19,
+                "RT" : 39,
+                "losts": 8,
+                "recovery": 5
+            },
+            {
+                "id": 10,
+                "team": "guest",
+                "score": 73,
+                "2P": 23,
+                "3P": 6,
+                "TL": 9,
+                "RT" : 36,
+                "losts": 12,
+                "recovery": 4
+            }
+        ]
+    },
+
+    {
+        "id": 6,
+        "home": "Boca Juniors",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/bocanuevo.svg",
+        "guest" : "Instituto",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/instituto_0t.svg",
+        "date": "02/11/21",
+        "winner": "Boca Juniors",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 11,
+                "team": "home",
+                "score": 79,
+                "2P": 19,
+                "3P": 8,
+                "TL": 17,
+                "RT" : 41,
+                "losts": 11,
+                "recovery": 3
+            },
+            {
+                "id": 12,
+                "team": "guest",
+                "score": 77,
+                "2P": 19,
+                "3P": 8,
+                "TL": 15,
+                "RT" : 37,
+                "losts": 9,
+                "recovery": 9
+            }
+        ]
+    },
+
+    {
+        "id": 7,
+        "home": "Boca Juniors",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/bocanuevo.svg",
+        "guest" : "Peñarol",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/penarol_gs.svg",
+        "date": "07/5/22",
+        "winner": "Boca Juniors",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 13,
+                "team": "home",
+                "score": 86,
+                "2P": 21,
+                "3P": 6,
+                "TL": 26,
+                "RT" :38,
+                "losts": 12,
+                "recovery": 8
+            },
+            {
+                "id": 14,
+                "team": "guest",
+                "score": 77,
+                "2P": 17,
+                "3P": 9,
+                "TL": 16,
+                "RT" : 29,
+                "losts": 15,
+                "recovery": 7
+            }
+        ]
+    },
+
+    {
+        "id": 8,
+        "home": "Boca Juniors",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/bocanuevo.svg",
+        "guest" : "Peñarol",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/penarol_gs.svg",
+        "date": "07/5/22",
+        "winner": "Peñarol",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 15,
+                "team": "home",
+                "score": 68,
+                "2P": 19,
+                "3P": 6,
+                "TL": 12,
+                "RT": 41,
+                "losts": 14,
+                "recovery": 6
+            },
+            {
+                "id": 16,
+                "team": "guest",
+                "score": 75,
+                "2P": 15,
+                "3P": 8,
+                "TL": 21,
+                "RT" : 38,
+                "losts": 10,
+                "recovery": 7
+            }
+        ]
+    },
+
+    {
+        "id": 9,
+        "home": "Peñarol",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/bocanuevo.svg",
+        "guest" : "Boca Juniors",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/penarol_gs.svg",
+        "date": "01/5/22",
+        "winner": "Boca Juniors",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 17,
+                "team": "home",
+                "score": 80,
+                "2P": 22,
+                "3P": 7,
+                "TL": 15,
+                "RT": 24,
+                "losts": 15,
+                "recovery": 8
+            },
+            {
+                "id": 18,
+                "team": "guest",
+                "score": 81,
+                "2P": 20,
+                "3P": 9,
+                "TL": 14,
+                "RT" : 37,
+                "losts": 19,
+                "recovery": 5
+            }
+        ]
+    },
+
+    {
+        "id": 10,
+        "home": "Quimsa",
+        "image-home": "https://laliganacional.com.ar/uploadsfotos/clubes/quimsa.svg",
+        "guest" : "Obrerá",
+        "image-guest": "https://laliganacional.com.ar/uploadsfotos/clubes/obera-01.svg",
+        "date": "01/5/22",
+        "winner": "Quimsa",
+        "league": "Liga Nacional",
+        "phase": "PlayOffs",
+        "state": "finished",
+        "statistics":[
+            {
+                "id": 19,
+                "team": "home",
+                "score": 101,
+                "2P": 24,
+                "3P": 12,
+                "TL": 17,
+                "RT": 37,
+                "losts": 3,
+                "recovery": 2
+            },
+            {
+                "id": 20,
+                "team": "guest",
+                "score": 83,
+                "2P": 23,
+                "3P": 8,
+                "TL": 13,
+                "RT" : 36,
+                "losts": 5,
+                "recovery": 2
+            }
+        ]
     }
 ]
 
