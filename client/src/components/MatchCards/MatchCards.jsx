@@ -1,10 +1,18 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MatchCard from "../MatchCard/MatchChard";
+import { fetchMatches } from "../../redux/actions";
 
 
 export default function MatchCards(){
-    let allMatches = useSelector((state)=> state.partido)
-    console.log(allMatches)
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(fetchMatches())
+    }, [dispatch])
+
+    let allMatches = useSelector((state)=> state.matches)
+    // console.log(allMatches)
 
     return(
         <div>
