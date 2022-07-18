@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+// const Match = require('./models/Match');
 
 const {
     DB_USER, DB_PASSWORD, DB_HOST,
@@ -29,9 +30,13 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Ticket, Fase } = sequelize.models;
+const { Ticket, Fase, Statistics, Match } = sequelize.models;
 Ticket.belongsToMany(Fase, { through: 'Tickets_Fase' });
 Fase.belongsToMany(Ticket, { through: 'Tickets_Fase' }); 
+
+Match.belongsToMany(Statistics, { through: 'Match_Statistics' });
+Statistics.belongsToMany(Match, { through: 'Match_Statistics' }); 
+
 
 
 module.exports = {

@@ -1,9 +1,10 @@
 import {
-    FETCH_TICKETS
+    FETCH_TICKETS,
+    FETCH_MATCHES
 } from "../actions/index";
 const initialState ={
-  tickets:[]
-  
+  tickets:[],
+  matches: []
 }
 
 
@@ -14,6 +15,11 @@ function rootReducer(state= initialState, action){
             return {
                 ...state,
               tickets: action.payload
+            }
+        case FETCH_MATCHES:
+            return{
+                ...state,
+                matches: action.payload
             }
 
 

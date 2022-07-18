@@ -6,6 +6,7 @@ import { fetchTickets } from './redux/actions/index'
 import TicketsCards from './components/TicketsCards/TicketsCards.jsx';
 import Nav from './components/Nav/Nav';
 import LandingPage from './components/LandingPage/LandingPage';
+import MatchCards from './components/MatchCards/MatchCards';
 
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
         <Route path="/tickets">
           <Nav />
           <TicketsCards />
+        </Route>
+        <Route path="/matches">
+        <MatchCards/>
         </Route>
       </Switch>
     </BrowserRouter>
