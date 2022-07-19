@@ -1,12 +1,15 @@
 import axios from "axios"
-export const FETCH_TICKETS= 'FETCH_TICKETS'
-export function fetchTickets() {
+export const FETCH_PRODUCTS= 'FETCH_PRODUCTS'
+export function fetchProducts() {
+
     return function (dispatch) {
-        axios.get('http://localhost:3001/tickets')
-            .then((ticket) => {
+        axios.get('http://localhost:3001/products')
+            .then((product) => {
+                console.log(product)
                 dispatch({
-                    type: FETCH_TICKETS,
-                    payload: ticket.data
+                    type: FETCH_PRODUCTS,
+                    payload: product.data
+                   
                 })
             })
             .catch((error) => {
