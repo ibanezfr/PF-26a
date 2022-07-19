@@ -9,7 +9,7 @@ import "./ProductsCards.scss"
 export default function ProductsCards() {
   
   let allProducts = useSelector((state) => state.products)
-console.log(allProducts)
+console.log("Todos los productos:", allProducts)
   return (
     <div className="Homepage">
       <div className="cardsContainer ">
@@ -17,7 +17,9 @@ console.log(allProducts)
           return <Products
             key={product.id}
             name={product.name}
-            image={product.image}
+            // image={product.image}
+            image = {product.image}
+            
             price={product.price}
             description={product.description}
           />

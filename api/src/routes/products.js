@@ -1,4 +1,4 @@
-const { Product,Category,Review ,Qa} = require("../db");
+const { Product,Category,Review ,Qa, Image} = require("../db");
 const { Router } = require("express");
 
 
@@ -22,6 +22,11 @@ router.get("/", async (req, res) => {
           attributes: ["rating", "title", "description"],
           through: { attributes: [] },
         },
+        // {
+        //   model: Image,
+        //   attributes: ["src"],
+        //   through: { attributes: [] },
+        // },
       ],
     });
     res.status(200).send(allProducts);

@@ -33,6 +33,15 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,         
             allowNull: false 
         },
+        image2: { 
+            type: DataTypes.STRING
+        },
+        image3: { 
+            type: DataTypes.STRING
+        },
+        image4: { 
+            type: DataTypes.STRING
+        },
         status: {
             type: DataTypes.ENUM("active", "inactive"),
             defaultValue: "active"
@@ -45,7 +54,7 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        sizes: {
+        size: {
             type: DataTypes.STRING
         }
     

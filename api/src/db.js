@@ -30,21 +30,11 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-<<<<<<< HEAD
-const { Ticket, Fase, Statistics, Match } = sequelize.models;
-Ticket.belongsToMany(Fase, { through: 'Tickets_Fase' });
-Fase.belongsToMany(Ticket, { through: 'Tickets_Fase' }); 
-
-Match.belongsToMany(Statistics, { through: 'Match_Statistics' });
-Statistics.belongsToMany(Match, { through: 'Match_Statistics' }); 
-
-
-=======
 const { Product, Category, Qa ,User,Review } = sequelize.models;
 
 Category.belongsToMany(Product, { through: 'product-categories' }); 
 Product.belongsToMany(Category, { through: 'product-categories' }); 
->>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
+
 
 Product.belongsToMany(Qa, { through: 'product-QA' }); 
 Qa.belongsToMany(Product, { through: 'product-QA' });
