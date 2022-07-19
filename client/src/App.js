@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useEffect } from "react"
+import { useDispatch, } from "react-redux"
+import { fetchProducts } from './redux/actions/index'
+import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
+import Nav from './components/Nav/Nav';
+import LandingPage from './components/LandingPage/LandingPage';
+console.log(fetchProducts)
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  let dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [dispatch])
+
+  return (<div className="App">
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact>
+          <LandingPage />
+        </Route>
+        <Route path="/home" exact>
+          <Nav />
+        </Route>
+        <Route path="/products">
+          <Nav />
+          <ProductsCards />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  </div>
   );
 }
 
 export default App;
+
