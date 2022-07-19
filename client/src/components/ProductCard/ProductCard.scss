@@ -1,14 +1,16 @@
 .card {
     width: 200px;
     border-color: black;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    // border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(167, 165, 165, 0.2);
     transition: transform 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
   
     &:hover {
       transform: scale(1.05);
+      border-style: ridge;
+      border-width: 0.5px;
     }
 
   
@@ -23,31 +25,32 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px;
+    // border-radius: 10px;
   }
 
   .textContainer{
     h2{
       font-family: 'Raleway', sans-serif;
       margin: 1%;
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       margin-top: 10px;
+      text-align: left;
     }
     h3{
       font-family: 'Montserrat', sans-serif;
       font-size: 0.5rem;
       margin: 1%;
+      text-align: left;
     }
     h6{
       text-align: left;
-      margin-left: 3%;
+      margin-left: 10px;
       margin-bottom: 4%;
       margin-top: 0%;
     }
     .headerContainer{
       display: flex;
       flex-direction: column;
-      justify-content: right;
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 2%;

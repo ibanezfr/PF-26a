@@ -11,8 +11,9 @@ export default function ProductsCards() {
   let allProducts = useSelector((state) => state.products)
 console.log("Todos los productos:", allProducts)
   return (
-    <div className="Homepage">
-      <div className="cardsContainer ">
+    <div className="Homepage container">
+      <div className="row">
+      <div className="cardsContainer col-4">
         {allProducts?.map((product) => {
           return <Products
             key={product.id}
@@ -23,7 +24,7 @@ console.log("Todos los productos:", allProducts)
             categories= {product.categories.map(c=>c.name)}
           />
         })}
-
+      </div>
       </div>
 
 
