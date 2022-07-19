@@ -1,12 +1,20 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+<<<<<<< HEAD
 const { getTickets, getMatches } = require("./src/middlewares/middlewares");
+=======
+const { getProducts } = require("./src/middlewares/middlewares");
+>>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
 
 
 conn.sync({ force:true }).then(() => {
    server.listen(3001, async () => {
+<<<<<<< HEAD
      await getTickets(); 
      await getMatches();    
+=======
+     await getProducts();     
+>>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
      console.log("%s listening at 3001"); 
    });
  });

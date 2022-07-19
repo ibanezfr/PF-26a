@@ -1,14 +1,19 @@
 
-const tickets = require("../../../Pruebas/tickets.json");
+const products = require("../../../Pruebas/products.json");
 const { Op } = require("sequelize");
+<<<<<<< HEAD
 const { Ticket, Fase, Match, Statistics } = require("../db");
 const matches = require("../../../Pruebas/matches.json")
+=======
+const { Product, Category, Review } = require("../db");
+>>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
 
 
-async function getTickets() {
-  const findCreated = await Ticket.findAll({ where: { created: true } });
-  let count = await Ticket.count();
+async function getProducts() {
+  const findCreated = await Product.findAll({ where: { created: true } });
+  let count = await Product.count();
   if (findCreated.length === count) {
+<<<<<<< HEAD
     for (let i = 0; i < tickets.length; i++) {
       const newTicket = await Ticket.create({
         teamOne: tickets[i].teamOne,
@@ -24,22 +29,38 @@ async function getTickets() {
         status: tickets[i].status,
         price: tickets[i].price,
         chair: tickets[i].chair,
+=======
+    for (let i = 0; i < products.length; i++) {
+      const newProduct = await Product.create({
+        name: products[i].name,
+        price: products[i].price,
+        description: products[i].description,
+        rating: products[i].rating,
+        image: products[i].image,
+        stock: products[i].stock,
+        status: products[i].status,
+        size: products[i].size,
+        color: products[i].color,
+>>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
         db: true,
       });
 
-      for (let j = 0; j < tickets[i].fase.length; j++) {
-        let cat = await Fase.findOne({
-          where: { name: { [Op.iLike]: `%${tickets[i].fase[j]}%` } },
+    
+
+      for (let j = 0; j < products[i].categories.length; j++) {
+        let cat = await Category.findOne({
+          where: { name: { [Op.iLike]: `%${products[i].categories[j]}%` } },
         });
 
         if (cat) {
-          await newTicket.addFase(cat);
+          await newProduct.addCategory(cat);
         } else {
-          let created = await Fase.create({
-            name: tickets[i].fase[j],
+          let created = await Category.create({
+            name: products[i].categories[j],
           });
-          await newTicket.addFase(created);
+          await newProduct.addCategory(created);
         }
+
       }
     }
   } else return { msg: "Failed" };
@@ -102,7 +123,11 @@ async function getMatches() {
 }
 
 module.exports = {
+<<<<<<< HEAD
   getTickets,
   getMatches
+=======
+  getProducts
+>>>>>>> c4cb56703732b3ddc2d784dd5c7de8775ac0f757
 
 }
