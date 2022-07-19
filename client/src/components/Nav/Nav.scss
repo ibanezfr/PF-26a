@@ -1,0 +1,25 @@
+.text-nav {    
+    font-size: 1.22rem;   
+    list-style:none;    
+  }
+
+  .nav {
+    background-color: rgb(60, 60, 60);
+    height: 10vh;
+    align-items: center;
+    display: flex;
+    font-weight: 500;
+}
+
+  .navbar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+.link-nav{   
+    outline: none;
+    text-decoration: none;
+    color:white;    
+}
+  
