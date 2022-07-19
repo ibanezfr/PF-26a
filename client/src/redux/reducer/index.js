@@ -1,9 +1,10 @@
-import {FETCH_PRODUCTS} from "../actions/index";
+import {FETCH_PRODUCTS, FETCH_CATEGORIES,ADD_FILTER} from "../actions/index";
 
 const initialState ={
     products:[],
     displayedProducts:[],
-    filters:[]
+    filters:[],
+    categories:[]
 }
 
 function rootReducer(state= initialState, action){
@@ -11,9 +12,21 @@ function rootReducer(state= initialState, action){
         case FETCH_PRODUCTS:
             return {
                 ...state,
-                products: action.payload
+                products: action.payload,
+                displayedProducts: action.payload
             }
-
+        case FETCH_CATEGORIES:
+            console.log(action.payload)
+            return {
+                ...state,
+                categories: action.payload
+            }
+        case ADD_FILTER:
+            return {
+                ...state,
+                //filters : [...filters, action.payload.filter],
+                //displayedProducts: action.payload.displayedProducts
+            }
 
             
     
