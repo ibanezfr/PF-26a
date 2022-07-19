@@ -11,20 +11,20 @@ export default function ProductsCards() {
   let allProducts = useSelector((state) => state.products)
 console.log("Todos los productos:", allProducts)
   return (
-    <div className="Homepage">
-      <div className="cardsContainer ">
+    <div className="Homepage container">
+      <div className="row">
+      <div className="cardsContainer col-4">
         {allProducts?.map((product) => {
           return <Products
             key={product.id}
             name={product.name}
-            // image={product.image}
             image = {product.image}
-            
             price={product.price}
             description={product.description}
+            categories= {product.categories.map(c=>c.name)}
           />
         })}
-
+      </div>
       </div>
 
 

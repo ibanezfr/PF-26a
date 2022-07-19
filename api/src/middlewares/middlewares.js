@@ -25,7 +25,6 @@ async function getProducts() {
         db: true,
       });
     
-
       for (let j = 0; j < products[i].categories.length; j++) {
         let cat = await Category.findOne({
           where: { name: { [Op.iLike]: `%${products[i].categories[j].name}%` } },
