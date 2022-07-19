@@ -1,6 +1,6 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
 module.exports = (sequelize) => {
-    sequelize.define('fase', {
+    sequelize.define('category', {
         id: {
             type: DataTypes.UUID,
             allowNull: false,

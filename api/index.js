@@ -1,11 +1,11 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const { getTickets } = require("./src/middlewares/middlewares");
+const { getProducts } = require("./src/middlewares/middlewares");
 
 
 conn.sync({ force:true }).then(() => {
    server.listen(3001, async () => {
-     await getTickets();     
+     await getProducts();     
      console.log("%s listening at 3001"); 
    });
  });

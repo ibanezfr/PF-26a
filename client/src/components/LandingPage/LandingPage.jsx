@@ -8,7 +8,7 @@ export default function LandingPage() {
     return (
         <div id="generalContainer">
             <div className="heading">
-                <h1>Basketball</h1>
+                <h1>Products</h1>
             </div>
             <div id="buttonsContainer">
                 <Link>

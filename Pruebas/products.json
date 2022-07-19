@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Calza Larga Leopardo",
+    "description": "Encontrá estas clazas hermosas en nuestro local o compralas por nuestra tienda virtual.",
+    "price": 3000,
+    "stock": 1,
+    "rating": 5,
+    "size": "m",
+    "color": "Rosa",
+    "image": "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esPE/Images/running-ss22-ultraboost-running-refresh-catlp-teaser-carousel-02-d_tcm202-798295.jpg"  , 
+    "categories": [
+      "men's clothing",
+      "jackets"
+    ]
+},
+{
+  "name": "Calza Biker",
+  "description": "Encontrá estas calzas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
+  "price": 3000,
+  "stock": 4,
+  
+    "image": "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esPE/Images/running-ss22-ultraboost-running-refresh-catlp-teaser-carousel-02-d_tcm202-798295.jpg"  , 
+    
+  "rating": 5,
+  "size": "xl, xxl, s, m",
+  "color": "Celeste, Negra, Rosa",
+  "categories": [
+      "Indumentaria de mujer",
+       "Calzas"
+     
+  ]
+}
+     
+]
