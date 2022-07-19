@@ -1,0 +1,14 @@
+.container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titleContainer img {
+    width: 100px;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+}
