@@ -6,9 +6,10 @@ export default function ProductCard({ name, price, description, image, image2, i
         <div className="card">
 
         <img src={image} alt="not found"/>
-        {
-          image2 !== "null" ? <img src={image2}
-        }
+        <img src={image2} alt="not found"/>
+        <img src={image3} alt="not found"/>
+        <img src={image4} alt="not found"/>
+        
   {/* <img className="imagenOne" src={`${image}`} alt={`${name}`} width={"200px"} height={"250px"} /> */}
   {/* <img src={loadImage("image")} alt="img" /> */}
          <div>
