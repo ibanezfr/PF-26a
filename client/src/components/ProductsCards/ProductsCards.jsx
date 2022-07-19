@@ -17,11 +17,10 @@ console.log("Todos los productos:", allProducts)
           return <Products
             key={product.id}
             name={product.name}
-            // image={product.image}
             image = {product.image}
-            
             price={product.price}
             description={product.description}
+            categories= {product.categories.map(c=>c.name)}
           />
         })}
 
