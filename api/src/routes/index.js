@@ -1,10 +1,8 @@
 const router = require("express").Router();
-const ticketBasket = require("./ticketBasket");
-const matches = require("./matches")
+const products = require("./products.js");
 
 
-router.use("/tickets", ticketBasket);
-router.use("/matches", matches);
+router.use("/products", products);
 
 
 module.exports = router;

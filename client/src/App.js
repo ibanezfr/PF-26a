@@ -2,18 +2,17 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react"
 import { useDispatch, } from "react-redux"
-import { fetchTickets } from './redux/actions/index'
-import TicketsCards from './components/TicketsCards/TicketsCards.jsx';
+import { fetchProducts } from './redux/actions/index'
+import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
 import Nav from './components/Nav/Nav';
 import LandingPage from './components/LandingPage/LandingPage';
-import MatchCards from './components/MatchCards/MatchCards';
-
+console.log(fetchProducts)
 
 function App() {
   let dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchTickets())
+    dispatch(fetchProducts())
   }, [dispatch])
 
   return (<div className="App">
@@ -25,12 +24,9 @@ function App() {
         <Route path="/home" exact>
           <Nav />
         </Route>
-        <Route path="/tickets">
+        <Route path="/products">
           <Nav />
-          <TicketsCards />
-        </Route>
-        <Route path="/matches">
-        <MatchCards/>
+          <ProductsCards />
         </Route>
       </Switch>
     </BrowserRouter>

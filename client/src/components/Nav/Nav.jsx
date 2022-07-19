@@ -13,20 +13,11 @@ export default function Nav() {
                             <Link to="" className="link-nav">
                                 <div className="line">Inicio</div>
                             </Link>
-                        </li>
+                        </li>                      
+                       
                         <li className="text-nav">
-                            <Link className="link-nav">
-                                <div>Equipos</div>
-                            </Link>
-                        </li>
-                        <li className="text-nav">
-                            <Link className="link-nav">
-                                <div>Estadisticas</div>
-                            </Link>
-                        </li>
-                        <li className="text-nav">
-                            <Link to="/tickets" className="link-nav">
-                                <div>Entradas</div>
+                            <Link to="/products" className="link-nav">
+                                <div>Productos</div>
                             </Link>
                         </li>
                         <li className="text-nav">

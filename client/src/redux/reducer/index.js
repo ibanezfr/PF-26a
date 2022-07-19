@@ -1,25 +1,17 @@
 import {
-    FETCH_TICKETS,
-    FETCH_MATCHES
+    FETCH_PRODUCTS
 } from "../actions/index";
 const initialState ={
-  tickets:[],
-  matches: []
+    products:[]
+  
 }
-
-
 
 function rootReducer(state= initialState, action){
     switch (action.type) {
-        case FETCH_TICKETS:
+        case FETCH_PRODUCTS:
             return {
                 ...state,
-              tickets: action.payload
-            }
-        case FETCH_MATCHES:
-            return{
-                ...state,
-                matches: action.payload
+                products: action.payload
             }
 
 
