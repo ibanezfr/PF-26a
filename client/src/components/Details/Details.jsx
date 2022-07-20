@@ -36,27 +36,13 @@ export default function Details(){
     let mappedCategories = actualProduct.map(p=>p.categories.name)
     let mappedPrice = actualProduct.map(p=>p.price)
     let mappedSize = actualProduct.map(p=>p.size)
-
-    console.log("mappedName: ", mappedName)
-
-    console.log("image: ", mapedProduct.image)
+    let image = mappedImage[0]
 
     return(
         <div className="container">
 
-            {
-                actualProduct?.map(p=>{
-                    console.log("image Map: ", p.image)
-                    return(
-                        <div>
-                        <h1>{p.name}</h1>
-                        <img src={p.image} alt="not found"/>
-                        </div>
-                    )
-                })
-            }
-            {/* <div className="container1">
-                <img src={mapedProduct.image} alt="not found"/>
+            <div className="container1">
+                <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
                 <select>
                     <option>renderizado</option>
@@ -70,7 +56,7 @@ export default function Details(){
                 <p>{mappedDescription}</p>
                 <button>Agregar al carrito</button>
 
-            </div> */}
+            </div>
         </div>
     )
 }

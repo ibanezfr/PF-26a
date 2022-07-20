@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 router.get('/:id', async(req, res, next)=>{
   try{
       const {id} = req.params;
@@ -67,7 +66,6 @@ router.get('/:id', async(req, res, next)=>{
       next(error);
   }
 });
-=======
 router.get("/search", async (req, res) => {
   const { name } = req.query;
   try {
@@ -191,5 +189,4 @@ router.put("/update/:id", async (req, res) => {
   }
 })
 
->>>>>>> b8cabc29d8a9cf93a427d14bbcb69e6ea0bf70f6
 module.exports = router;

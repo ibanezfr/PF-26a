@@ -7,6 +7,7 @@ import "./ProductCard.scss"
 
 export default function ProductCard({
   name,
+  id,
   price,
   description,
   image,
