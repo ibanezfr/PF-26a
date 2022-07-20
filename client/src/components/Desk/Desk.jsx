@@ -18,9 +18,6 @@ function Desk() {
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
 
-    // setPosts(products);
-
-
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
@@ -29,7 +26,6 @@ function Desk() {
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-    console.log(currentPosts);
 
     return (
         <div>
