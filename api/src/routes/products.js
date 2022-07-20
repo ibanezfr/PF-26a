@@ -1,4 +1,4 @@
-const { Product,Category,Review ,Qa, Image} = require("../db");
+const { Product,Category,Review ,Qa} = require("../db");
 const { Router } = require("express");
 
 

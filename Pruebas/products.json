@@ -7,7 +7,7 @@
         "rating": 5,
         "size": "Único",
         "color": "rosa",
-        "image": "images/bochas.PNG",
+        "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
         "categories": [
             {
                 "name": "Equipamento deportivo"
@@ -23,9 +23,9 @@
         "rating": 5,
         "size": "xl, xxl, s, m",
         "color": "Celeste, Negra, Rosa",
-        "image": "images/bikerRosa.PNG",
+        "image": "https://i.pinimg.com/originals/03/3a/9a/033a9a0dc82cdbfc8fe6c44c370affd4.jpg",
         "image2": "images/bikerNegra.PNG",
-        "image3": "images/bikerCeleste.PNG",
+        "image3": "https://i.pinimg.com/originals/03/3a/9a/033a9a0dc82cdbfc8fe6c44c370affd4.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"

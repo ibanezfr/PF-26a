@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cleanProduct, getProductsById } from "../../redux/actions";
+// import '../../../../Pruebas/products.json'
+
+import Products from "../ProductCard/ProductCard.jsx"
+
 
 export default function Details(){
     
@@ -16,6 +20,15 @@ export default function Details(){
     
     let actualProduct = useSelector(state => state.detail)
     console.log("actualProduct: ", actualProduct)
+    console.log("actualProduct[0]: ", actualProduct[0])
+
+    let mapedProduct = actualProduct.map(p=>{
+        return{
+            name : p.name,
+            image: p.image
+
+        }
+    })
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
@@ -24,12 +37,26 @@ export default function Details(){
     let mappedPrice = actualProduct.map(p=>p.price)
     let mappedSize = actualProduct.map(p=>p.size)
 
-    console.log("image: ", mappedImage[0])
+    console.log("mappedName: ", mappedName)
+
+    console.log("image: ", mapedProduct.image)
 
     return(
         <div className="container">
-            <div className="container1">
-                <img src={mappedImage[0]} alt="not found"/>
+
+            {
+                actualProduct?.map(p=>{
+                    console.log("image Map: ", p.image)
+                    return(
+                        <div>
+                        <h1>{p.name}</h1>
+                        <img src={p.image} alt="not found"/>
+                        </div>
+                    )
+                })
+            }
+            {/* <div className="container1">
+                <img src={mapedProduct.image} alt="not found"/>
                 <span>Selecciona un talle</span>
                 <select>
                     <option>renderizado</option>
@@ -37,19 +64,13 @@ export default function Details(){
             </div>
             <div className="container2">
                 <h5>{mappedCategories}</h5>
-                {/* {
-                    mappedCategories?.map(c=>{
-                        return(
-                            <h5>{c.name}</h5>
-                        )
-                    })
-                } */}
+
                 <h2>{mappedName}</h2>
                 <h2>{mappedPrice}</h2>
                 <p>{mappedDescription}</p>
                 <button>Agregar al carrito</button>
 
-            </div>
+            </div> */}
         </div>
     )
 }

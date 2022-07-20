@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import Products from "../ProductCard/ProductCard.jsx"
 import "./ProductsCards.scss"
 
-
-
-
 export default function ProductsCards() {
   
   let allProducts = useSelector((state) => state.products)
-console.log("Todos los productos:", allProducts[0].image)
+// console.log("Todos los productos:", allProducts.image)
   return (
     <div className="Homepage container">
       <div className="row">

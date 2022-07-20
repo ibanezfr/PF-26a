@@ -10,7 +10,6 @@ conn.sync({ force:true }).then(() => {
    });
  });
 
-
 //Cambio de Nicole
 
 
