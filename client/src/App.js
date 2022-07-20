@@ -15,7 +15,7 @@ import Login from "./components/LogIn/Login";
 import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-console.log(fetchProducts);
+// console.log(fetchProducts);
 
 function App() {
   let dispatch = useDispatch();
