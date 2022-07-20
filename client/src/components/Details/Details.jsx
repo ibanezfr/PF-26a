@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cleanProduct, getProductsById } from "../../redux/actions";
-// import '../../../../Pruebas/products.json'
-
-import Products from "../ProductCard/ProductCard.jsx"
-
+import { bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import './Detail.css'
 
 export default function Details(){
     
@@ -15,28 +12,19 @@ export default function Details(){
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
+        dispatch(bringSize(params.id))
     }, [dispatch, params.id]);
 
     
     let actualProduct = useSelector(state => state.detail)
-    console.log("actualProduct: ", actualProduct)
-    console.log("actualProduct[0]: ", actualProduct[0])
-
-    let mapedProduct = actualProduct.map(p=>{
-        return{
-            name : p.name,
-            image: p.image
-
-        }
-    })
+    let size = useSelector(state => state.size)
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
     let mappedDescription = actualProduct.map(p=>p.description)
-    let mappedCategories = actualProduct.map(p=>p.categories.name)
     let mappedPrice = actualProduct.map(p=>p.price)
-    let mappedSize = actualProduct.map(p=>p.size)
     let image = mappedImage[0]
+    console.log("talles: ", size)
 
     return(
         <div className="container">
@@ -45,11 +33,24 @@ export default function Details(){
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
                 <select>
-                    <option>renderizado</option>
+                    {
+                        size[0]? <option>{size[0]}</option> : null
+                    }
+                    {
+                        size[1]? <option>{size[1]}</option> : null
+                    }
+                    {
+                        size[2]? <option>{size[2]}</option> : null
+                    }
+                    {
+                        size[3]? <option>{size[3]}</option> : null
+                    }
+                    {
+                        size[4]? <option>{size[4]}</option> : null
+                    }
                 </select>
             </div>
             <div className="container2">
-                <h5>{mappedCategories}</h5>
 
                 <h2>{mappedName}</h2>
                 <h2>{mappedPrice}</h2>

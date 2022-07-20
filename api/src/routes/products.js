@@ -59,6 +59,7 @@ router.get('/:id', async(req, res, next)=>{
       });
       if (id) {
           const filtered = await allProducts.filter((e) => e.id == id);
+          console.log(filtered)
           res.json(filtered);
         }
   }
@@ -66,6 +67,44 @@ router.get('/:id', async(req, res, next)=>{
       next(error);
   }
 });
+
+router.get('/size/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          const maped = filtered.map(f=>f.size)
+          const maped2 = maped[0]
+          const split = maped2.split(/\s*,\s*/)
+        
+          res.json(split);
+        }
+  }
+  catch(error){
+      next(error);
+  }
+});
+
+
 router.get("/search", async (req, res) => {
   const { name } = req.query;
   try {
