@@ -2,6 +2,7 @@ import "./ProductCard.scss"
 
 
 export default function ProductCard({ name, price, description, image, categories}) {
+
     return (
         <div className="card">
            <img className="imagenOne" src={image} alt="not found"/>
