@@ -11,7 +11,7 @@ return (
     <div className="searched-container">
 
       <div className="section-products">
-      {searchProducts &&
+      {searchProducts && 
           React.Children.toArray(
             searchProducts.map((product) => {
               if (product.status === "active") {
@@ -30,7 +30,6 @@ return (
               }
             })
             )}
-
 
       </div>
     </div>
