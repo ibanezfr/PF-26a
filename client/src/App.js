@@ -1,19 +1,24 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useEffect } from "react"
+import { useEffect, useState, useSelector } from "react"
 import { useDispatch, } from "react-redux"
 import { fetchProducts } from './redux/actions/index'
-import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
+import Desk from './components/Desk/Desk.jsx';
+// import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
 import Nav from './components/Nav/Nav';
+// import Pagination from './components/Pagination/Pagination.jsx'
 import LandingPage from './components/LandingPage/LandingPage';
+import SearchProducts from "./Pages/SearchProducts/SearchProducts.jsx"
 console.log(fetchProducts)
 
 function App() {
-  let dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
+
+
 
   return (<div className="App">
     <BrowserRouter>
@@ -24,10 +29,14 @@ function App() {
         <Route path="/home" exact>
           <Nav />
         </Route>
-        <Route path="/products">
+        <Route path="/search" exact>         
           <Nav />
-          <ProductsCards />
+          <SearchProducts />         
+        </Route>       
+        <Route path="/products">
+          <Desk />
         </Route>
+        
       </Switch>
     </BrowserRouter>
   </div>

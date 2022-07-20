@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import "./Nav.scss"
+import Search from "../Search/Search.jsx"
 
 export default function Nav() {
     return (
@@ -14,7 +15,7 @@ export default function Nav() {
                                 <div className="line">Inicio</div>
                             </Link>
                         </li>                      
-                       
+                        <Search />
                         <li className="text-nav">
                             <Link to="/products" className="link-nav">
                                 <div>Productos</div>
@@ -26,8 +27,10 @@ export default function Nav() {
                             </Link>
                         </li>
                     </ul>
-                </div>
 
+                   
+                </div>
+                 
             </nav>
         </div>
     )
