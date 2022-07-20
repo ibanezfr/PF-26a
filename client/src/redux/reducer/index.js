@@ -4,9 +4,13 @@ import {
 } from "../actions/index";
 const initialState ={
     products:[],
-    searchProducts:[]
-  
+    searchProducts:[]/* ,
+    displayedProducts:[],
+    filters:[] */
 }
+
+
+
 
 function rootReducer(state= initialState, action){
     switch (action.type) {
@@ -22,6 +26,7 @@ function rootReducer(state= initialState, action){
             }
 
             
+             
     
         default:
             return state;

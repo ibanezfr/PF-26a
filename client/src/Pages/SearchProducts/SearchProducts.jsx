@@ -3,6 +3,7 @@ import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
 
 
+
 export default function SearchProducts() {
     let searchProducts = useSelector((state) => state.searchProducts)
 
