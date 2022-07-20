@@ -1,19 +1,23 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useEffect } from "react"
+import { useEffect, useState, useSelector } from "react"
 import { useDispatch, } from "react-redux"
 import { fetchProducts } from './redux/actions/index'
-import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
+import Desk from './components/Desk/Desk.jsx';
+// import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
 import Nav from './components/Nav/Nav';
+// import Pagination from './components/Pagination/Pagination.jsx'
 import LandingPage from './components/LandingPage/LandingPage';
-console.log(fetchProducts)
+// console.log(fetchProducts)
 
 function App() {
-  let dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch])
+
+
 
   return (<div className="App">
     <BrowserRouter>
@@ -25,8 +29,7 @@ function App() {
           <Nav />
         </Route>
         <Route path="/products">
-          <Nav />
-          <ProductsCards />
+          <Desk />
         </Route>
       </Switch>
     </BrowserRouter>

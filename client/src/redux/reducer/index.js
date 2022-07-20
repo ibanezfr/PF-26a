@@ -12,10 +12,7 @@ function rootReducer(state= initialState, action){
             return {
                 ...state,
                 products: action.payload
-            }
-
-
-            
+            }   
     
         default:
             return state;

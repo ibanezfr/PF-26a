@@ -8,7 +8,7 @@ export function fetchProducts() {
     return function (dispatch) {
         axios.get(URL_FOR_FETCH_PRODUCTS)
             .then((product) => {
-                console.log(product)
+                // console.log(product)
                 dispatch({
                     type: FETCH_PRODUCTS,
                     payload: product.data
