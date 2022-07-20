@@ -1,12 +1,18 @@
 import {
     FETCH_PRODUCTS,
     GET_BY_ID,
-    CLEAN_PRODUCT
+    CLEAN_PRODUCT,
+    FETCH_BY_NAME
 } from "../actions/index";
 const initialState ={
     products:[],
-    detail: []
+    detail: [], 
+    products:[],
+    searchProducts:[]
 }
+
+
+
 
 function rootReducer(state= initialState, action){
     switch (action.type) {
@@ -26,8 +32,14 @@ function rootReducer(state= initialState, action){
                 detail: []
             };
 
+        case FETCH_BY_NAME:
+            return {
+                ...state,
+                searchProducts: action.payload
+            }
 
             
+             
     
         default:
             return state;
