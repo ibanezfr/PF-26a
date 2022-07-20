@@ -153,4 +153,35 @@ router.put("/update/:id", async (req, res) => {
   }
 })
 
+router.get('/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          res.json(filtered);
+        }
+  }
+  catch(error){
+      next(error);
+  }
+});
 module.exports = router;

@@ -9,6 +9,7 @@ import Nav from './components/Nav/Nav';
 // import Pagination from './components/Pagination/Pagination.jsx'
 import LandingPage from './components/LandingPage/LandingPage';
 import SearchProducts from "./Pages/SearchProducts/SearchProducts.jsx"
+import Details from './components/Details/Details';
 console.log(fetchProducts)
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
         <Route path="/products">
           <Desk />
         </Route>
-        
+        <Route path='/details/:id' component={Details}/>
       </Switch>
     </BrowserRouter>
   </div>

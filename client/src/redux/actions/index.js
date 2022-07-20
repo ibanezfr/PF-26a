@@ -3,6 +3,8 @@ export const FETCH_PRODUCTS= 'FETCH_PRODUCTS'
 export const FETCH_BY_NAME="FETCH_BY_NAME"
 const URL_FOR_FETCH_PRODUCTS='http://localhost:3001/products'
 
+export const GET_BY_ID = 'GET_BY_ID';
+export const CLEAN_PRODUCT = 'CLEAN_PRODUCT';
 
 export function fetchProducts() {
 
@@ -37,3 +39,18 @@ export function fetchProducts() {
       }
     };
   };
+export const getProductsById = (id)=>{
+    return async (dispatch) =>{
+        let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
+        dispatch({
+            type: GET_BY_ID,
+            payload: pedidoApiId.data
+        })
+    }
+}
+
+export function cleanProduct(){
+    return{
+        type: CLEAN_PRODUCT
+    }
+  }
