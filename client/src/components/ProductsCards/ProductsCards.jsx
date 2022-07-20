@@ -4,8 +4,6 @@ import Products from "../ProductCard/ProductCard.jsx"
 import "./ProductsCards.scss"
 
 
-
-
 export default function ProductsCards({ allProducts }) {
 
   //   let allProducts = useSelector((state) => state.products)

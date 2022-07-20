@@ -10,7 +10,7 @@ async function getProducts() {
   if (findCreated.length === count) {
     for (let i = 0; i < products.length; i++) {
       const newProduct = await Product.create({
-        name: products[i].name,
+        name: products[i].name.toUpperCase(),
         price: products[i].price,
         description: products[i].description,
         rating: products[i].rating,

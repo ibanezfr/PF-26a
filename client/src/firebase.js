@@ -7,6 +7,8 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 
+// PONER EN .ENV
+
 const firebaseConfig = {
   apiKey: "AIzaSyCreLpt5DXmEjy342aRiD85B-JAqigh1m4",
 

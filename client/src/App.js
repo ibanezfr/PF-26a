@@ -7,7 +7,7 @@ import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
 import Nav from "./components/Nav/Nav";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Desk from "./components/Desk/Desk.jsx";
-
+import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
 
 import { AuthProvider } from "./context/AuthContext";
@@ -38,6 +38,10 @@ function App() {
             <Register />
           </Route>
 
+          <Route path="/search" exact>
+            <Nav />
+            <SearchProducts />
+          </Route>
           <Route path="/profile" exact>
             <ProtectedRoutes>
               <Profile />
