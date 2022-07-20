@@ -14,6 +14,7 @@ export default function ProductsCards({ allProducts }) {
         <div className="cardsContainer col-4">
           {allProducts?.map((product) => {
             return <Products
+              id={product.id}
               key={product.id}
               name={product.name}
               image={product.image}
