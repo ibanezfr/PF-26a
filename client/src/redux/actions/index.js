@@ -27,13 +27,13 @@ export function fetchProducts() {
     return async (dispatch) => {
       try {
         const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
-      
+      console.log("HOLA",productsByName.data)
         return dispatch({
           type: FETCH_BY_NAME,
           payload: productsByName.data,
         });
       } catch (error) {
-        console.log(error, '||Error||');
+       return alert(error);
       }
     };
   };

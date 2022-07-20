@@ -18,10 +18,14 @@ export default function SearchBar() {
     }
 
     function submitHandler(event) {
-        event.preventDefault();       
-        dispatch(getProductsByName(name));        
-        setRedirect(true);
-        setName("")
+        event.preventDefault();
+        if (!name) {
+            alert("Por favor ingrese un nombre")
+        } else {
+            dispatch(getProductsByName(name));    
+            setRedirect(true);
+            setName("")
+        }
     }
 
 
