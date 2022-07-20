@@ -1,9 +1,9 @@
-import {
-    FETCH_PRODUCTS
-} from "../actions/index";
+import {FETCH_PRODUCTS} from "../actions/index";
+
 const initialState ={
-    products:[]
-  
+    products:[],
+    displayedProducts:[],
+    filters:[]
 }
 
 function rootReducer(state= initialState, action){
@@ -12,10 +12,7 @@ function rootReducer(state= initialState, action){
             return {
                 ...state,
                 products: action.payload
-            }
-
-
-            
+            }   
     
         default:
             return state;

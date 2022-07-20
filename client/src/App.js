@@ -6,6 +6,7 @@ import { fetchProducts } from "./redux/actions/index";
 import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
 import Nav from "./components/Nav/Nav";
 import LandingPage from "./components/LandingPage/LandingPage";
+import Desk from "./components/Desk/Desk.jsx";
 
 // Auth
 
@@ -44,8 +45,7 @@ function App() {
           </Route>
 
           <Route path="/products">
-            <Nav />
-            <ProductsCards />
+            <Desk />
           </Route>
         </Switch>
       </BrowserRouter>
