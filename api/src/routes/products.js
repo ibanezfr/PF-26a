@@ -63,15 +63,10 @@ router.get("/search", async (req, res) => {
         },
       },
     });
-    if (!searchProducts) {
-      throw new Error({message: "Producto no encontrado"});
-      // return res.status(400).send({message: "Producto no encontrado"});
-    } else {
-      res.status(200).send(searchProducts);
-    }
+   
+    res.status(200).send(searchProducts);
   } catch (err) {
-    console.log("ERROR",err)
-    // res.status(400).send({ msg: err.message });
+     res.status(400).send({ msg: err.message });
   }
 });
 

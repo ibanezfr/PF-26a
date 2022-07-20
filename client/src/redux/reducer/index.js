@@ -20,6 +20,7 @@ function rootReducer(state= initialState, action){
                 products: action.payload
             }
         case FETCH_BY_NAME:
+            if (!action.payload[0]) return alert ('Producto no encontrado');
             return {
                 ...state,
                 searchProducts: action.payload
