@@ -6,6 +6,7 @@ import { fetchProducts } from './redux/actions/index'
 import ProductsCards from './components/ProductsCards/ProductsCards.jsx';
 import Nav from './components/Nav/Nav';
 import LandingPage from './components/LandingPage/LandingPage';
+import Details from './components/Details/Details';
 console.log(fetchProducts)
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Nav />
           <ProductsCards />
         </Route>
+        <Route path='/details/:id' component={Details}/>
       </Switch>
     </BrowserRouter>
   </div>
