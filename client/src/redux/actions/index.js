@@ -41,7 +41,7 @@ export function addFilter(filter){
     return function(dispatch){
         dispatch({
             type:ADD_FILTER,
-            payload:''
+            payload:filter
         })
     }
 }

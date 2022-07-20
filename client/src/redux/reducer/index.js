@@ -16,7 +16,6 @@ function rootReducer(state= initialState, action){
                 displayedProducts: action.payload
             }
         case FETCH_CATEGORIES:
-            console.log(action.payload)
             return {
                 ...state,
                 categories: action.payload
@@ -24,8 +23,7 @@ function rootReducer(state= initialState, action){
         case ADD_FILTER:
             return {
                 ...state,
-                //filters : [...filters, action.payload.filter],
-                //displayedProducts: action.payload.displayedProducts
+                filters: [...state.filters, action.payload]
             }
 
             
