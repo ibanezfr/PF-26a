@@ -11,7 +11,7 @@ import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
 
 import { AuthProvider } from "./context/AuthContext";
-import Login from "./components/Login/Login";
+import Login from "./components/LogIn/Login";
 import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
@@ -37,7 +37,9 @@ function App() {
           <Route path="/register" exact>
             <Register />
           </Route>
-
+          <Route path="/home">
+            <Nav/>
+          </Route>
           <Route path="/search" exact>
             <Nav />
             <SearchProducts />

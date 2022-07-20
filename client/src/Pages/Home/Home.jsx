@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useAuth } from "../../context/AuthContext";
-import { useHistory } from "react-router-dom";
+// import { useAuth } from "../../context/AuthContext";
+// import { useHistory } from "react-router-dom";
 
 const Home = () => {
   return (

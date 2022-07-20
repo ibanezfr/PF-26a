@@ -1,4 +1,4 @@
-// import "./ProductCard.scss"
+import "./ProductCard.scss"
 
 // export default function ProductCard({ name, price, description, image, image2, image3, image4 }) {
 //     return (
