@@ -6,13 +6,14 @@ export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
 export const ADD_FILTER='ADD_FILTER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
+export const FETCH_BY_NAME = "FETCH_BY_NAME";
+
 
 export function fetchProducts() {
 
     return function (dispatch) {
         axios.get(URL_FOR_FETCH_PRODUCTS)
             .then((product) => {
-                //console.log(product)
                 dispatch({
                     type: FETCH_PRODUCTS,
                     payload: product.data
@@ -27,10 +28,10 @@ export function fetchCategories(){
     return function(dispatch){
         axios.get(URL_FOR_FETCH_CATEGORIES)
         .then((categories)=>{
-            console.log('soy action fetchcate',categories)
+            let formattedCategories = categories.data.map(cat=>cat.name)
             dispatch({
                 type: FETCH_CATEGORIES,
-                payload: categories.data
+                payload: formattedCategories
             })
         })
         .catch((error) => {
@@ -66,3 +67,19 @@ export function setProductsToDisplay(products){
     }
 }
 
+export const getProductsByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const productsByName = await axios.get(
+        `http://localhost:3001/products/search?name=${name}`
+      );
+      console.log("HOLA", productsByName.data);
+      return dispatch({
+        type: FETCH_BY_NAME,
+        payload: productsByName.data,
+      });
+    } catch (error) {
+      return alert(error);
+    }
+  };
+};

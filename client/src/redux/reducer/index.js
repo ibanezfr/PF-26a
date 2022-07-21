@@ -1,8 +1,9 @@
 import {FETCH_PRODUCTS, FETCH_CATEGORIES,
-    ADD_FILTER, REMOVE_FILTER, SET_PRODUCTS_TO_DISPLAY} from "../actions/index";
+    ADD_FILTER, REMOVE_FILTER, SET_PRODUCTS_TO_DISPLAY, FETCH_BY_NAME} from "../actions/index";
 
 const initialState ={
     products:[],
+    searchProducts:[],
     displayedProducts:[],
     filters:[],
     categories:[]
@@ -36,7 +37,14 @@ function rootReducer(state= initialState, action){
                 ...state,
                 displayedProducts: action.payload
             }
+        case FETCH_BY_NAME:
+            return {
+                ...state,
+                searchProducts: action.payload
+            }
+
             
+             
     
         default:
             return state;
