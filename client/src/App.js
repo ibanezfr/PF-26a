@@ -11,7 +11,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 // console.log(fetchProducts)
 import SearchProducts from './Pages/SearchProducts/SearchProducts'
 import Details from './components/Details/Details';
-
+import NavBar from './components/NavBar/NavBar';
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
@@ -28,9 +28,16 @@ function App() {
 
   return (<div className="App">
     <BrowserRouter>
+    <NavBar/>
     <Switch>
           <Route path="/" exact>
             <LandingPage />
+          </Route>
+          {/* <Route path="/">
+            <NavBar/>
+          </Route> */}
+          <Route path="/products">
+            <Desk />
           </Route>
           <Route path="/login" exact>
             <Login />
@@ -38,11 +45,8 @@ function App() {
           <Route path="/register" exact>
             <Register />
           </Route>
-          <Route path="/home">
-            <Nav/>
-          </Route>
           <Route path="/search" exact>
-            <Nav />
+            {/* <Nav /> */}
             <SearchProducts />
           </Route>
           <Route path="/profile" exact>
@@ -51,9 +55,6 @@ function App() {
             </ProtectedRoutes>
           </Route>
           <Route path='/details/:id' component={Details}/>
-          <Route path="/products">
-            <Desk />
-          </Route>
         </Switch>
     </BrowserRouter>
   </div>

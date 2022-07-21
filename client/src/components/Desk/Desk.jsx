@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../../redux/actions';
-import Nav from '../Nav/Nav.jsx';
+// import Nav from '../Nav/Nav.jsx';
 import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 
@@ -33,7 +33,7 @@ function Desk() {
 
     return (
         <div>
-            <Nav />
+            {/* <Nav /> */}
             <Pagination pages={howManyPages} setCurrentPage={pagination} />
             <ProductsCards allProducts={currentPosts} />
         </div>
