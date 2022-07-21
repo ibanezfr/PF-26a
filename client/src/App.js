@@ -33,26 +33,11 @@ function App() {
     <BrowserRouter>
     <NavBar/>
     <Switch>
-          <Route path="/" exact>
-            <LandingPage />
-          </Route>
-          {/* <Route path="/">
-            <NavBar/>
-          </Route> */}
-          <Route path="/products">
-            <Desk />
-          </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-          <Route path="/register" exact>
-            <Register />
-          </Route>
-          <Route path="/search" exact>
-            {/* <Nav /> */}
+          <Route exact path="/" component={Desk}/>
+          <Route path="/cart" component={Cart}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/search">
             <SearchProducts />
           </Route>
           <Route path="/profile" exact>

@@ -17,6 +17,7 @@ return (
               if (product.status === "active") {
                 return (
                     <Products
+                    id={product.id}
                     key={product.id}
                     name={product.name}
                     image = {product.image}

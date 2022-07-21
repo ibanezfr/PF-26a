@@ -24,7 +24,7 @@ export default function Details(){
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    console.log("talles: ", size)
+    // console.log("talles: ", size)
 
     return(
         <div className="container">

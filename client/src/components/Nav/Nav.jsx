@@ -18,7 +18,7 @@ export default function Nav() {
             <Search />
             <li className="text-nav">
               <Link to="/products" className="link-nav">
-                <div>Productos</div>
+                <div>ALGO</div>
               </Link>
             </li>
             <li className="text-nav">

@@ -20,13 +20,10 @@ export default function ProductsCards({ allProducts }) {
               price={product.price}
               description={product.description}
               categories={product.categories.map(c => c.name)}
-              id={product.id}
             />
           })}
         </div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};
