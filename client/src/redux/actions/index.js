@@ -75,10 +75,21 @@ export function cleanProduct(){
   export function bringSize(id){
     return async (dispatch) =>{
       let size = await axios.get("http://localhost:3001/products/size/" + id);
-      console.log("en la action: ", size.data)
+      // console.log("en la action: ", size.data)
       dispatch({
           type: GET_SIZE,
           payload: size.data
+      })
+  }
+  }
+
+  export function bringCart(id){
+    return async (dispatch) =>{
+      let cart = await axios.get("http://localhost:3001/products/cart/" + id);
+      console.log("en la action: ", cart.data)
+      dispatch({
+          type: ADD_TO_CART,
+          payload: cart.data
       })
   }
   }
