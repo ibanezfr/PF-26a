@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 import Search from "../Search/Search.jsx";
+import carrito from '../../images/carrito.png';
 
 export default function Nav() {
   return (
@@ -26,6 +27,7 @@ export default function Nav() {
               </Link>
             </li>
           </ul>
+          <img src={carrito} alt="not found" className="imageCar"/>
         </div>
       </nav>
     </div>

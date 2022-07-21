@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./ProductCard.scss"
 
 // export default function ProductCard({ name, price, description, image, image2, image3, image4 }) {
@@ -6,6 +7,7 @@ import "./ProductCard.scss"
 
 export default function ProductCard({
   name,
+  id,
   price,
   description,
   image,
@@ -22,6 +24,7 @@ export default function ProductCard({
         <h6>
           {categories[0]} <br /> {categories[1]}
         </h6>
+        <Link to={'details/' + id } className='linkBtn'><button className='btnInfo'>Más información</button></Link>
       </div>
     </div>
   );

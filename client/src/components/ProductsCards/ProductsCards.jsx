@@ -3,7 +3,6 @@
 import Products from "../ProductCard/ProductCard.jsx"
 import "./ProductsCards.scss"
 
-
 export default function ProductsCards({ allProducts }) {
 
   //   let allProducts = useSelector((state) => state.products)
@@ -14,12 +13,14 @@ export default function ProductsCards({ allProducts }) {
         <div className="cardsContainer col-4">
           {allProducts?.map((product) => {
             return <Products
+              id={product.id}
               key={product.id}
               name={product.name}
               image={product.image}
               price={product.price}
               description={product.description}
               categories={product.categories.map(c => c.name)}
+              id={product.id}
             />
           })}
         </div>
