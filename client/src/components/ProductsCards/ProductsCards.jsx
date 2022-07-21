@@ -1,14 +1,14 @@
 // import { useState } from "react"
 // import { useDispatch, useSelector } from "react-redux"
 import Products from "../ProductCard/ProductCard.jsx"
+
 import "./ProductsCards.scss"
 
 export default function ProductsCards({ allProducts }) {
 
-  //   let allProducts = useSelector((state) => state.products)
-  // console.log("Todos los productos:", allProducts)
   return (
     <div className="Homepage container">
+      
       <div className="row">
         <div className="cardsContainer col-4">
           {allProducts?.map((product) => {
@@ -20,13 +20,10 @@ export default function ProductsCards({ allProducts }) {
               price={product.price}
               description={product.description}
               categories={product.categories.map(c => c.name)}
-              // id={product.id}
             />
           })}
         </div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};

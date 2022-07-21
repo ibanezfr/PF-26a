@@ -2,10 +2,10 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchProducts } from "./redux/actions/index";
+import { fetchProducts, fetchCategories } from "./redux/actions/index";
 // import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
 // import LandingPage from "./components/LandingPage/LandingPage";
-import Desk from "./components/Desk/Desk.jsx";
+import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
 
@@ -17,46 +17,35 @@ import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from './components/Cart/Cart';
-import HomePage from './Pages/HomePage/HomePage';
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchProducts());
+    dispatch(fetchCategories())
   }, [dispatch])
 
 
 
   return (<div className="App">
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/products">
-          <Desk />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Route path="/register" exact>
-          <Register />
-        </Route>
-        <Route path="/search" exact>
-          <SearchProducts />
-        </Route>
-        <Route path="/profile" exact>
-          <ProtectedRoutes>
-            <Profile />
-          </ProtectedRoutes>
-        </Route>
-        <Route path='/details/:id' component={Details} />
-      </Switch>
+    <NavBar/>
+    <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/cart" component={Cart}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/search">
+            <SearchProducts />
+          </Route>
+          <Route path="/profile" exact>
+            <ProtectedRoutes>
+              <Profile />
+            </ProtectedRoutes>
+          </Route>
+          <Route path='/details/:id' component={Details}/>
+        </Switch>
     </BrowserRouter>
   </div>
   );
