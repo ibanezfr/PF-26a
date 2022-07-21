@@ -1,9 +1,5 @@
 import {
     FETCH_PRODUCTS,
-<<<<<<< HEAD
-=======
-    FETCH_BY_NAME,
->>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
     GET_BY_ID,
     CLEAN_PRODUCT,
     FETCH_BY_NAME,
@@ -14,7 +10,6 @@ import {
 
 const initialState ={
     products:[],
-<<<<<<< HEAD
     detail: [], 
     products:[],
     searchProducts:[],
@@ -22,14 +17,6 @@ const initialState ={
     cartProduct:[]
 }
 
-=======
-    searchProducts:[],
-    detail: []/* ,
-    displayedProducts:[],
-    filters:[] */
-    
-} 
->>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
 
 
 
@@ -40,15 +27,6 @@ function rootReducer(state= initialState, action){
                 ...state,
                 products: action.payload
             }
-<<<<<<< HEAD
-=======
-        case FETCH_BY_NAME:
-            if (!action.payload[0]) return alert ('Producto no encontrado');
-            return {
-                ...state,
-                searchProducts: action.payload
-            }
->>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
         case GET_BY_ID:
             return{
                 ...state,
@@ -60,7 +38,6 @@ function rootReducer(state= initialState, action){
                 detail: []
             };
 
-<<<<<<< HEAD
         case FETCH_BY_NAME:
             return {
                 ...state,
@@ -76,8 +53,6 @@ function rootReducer(state= initialState, action){
                 ...state,
                 cartProduct: action.payload
             }
-=======
->>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
 
             
              

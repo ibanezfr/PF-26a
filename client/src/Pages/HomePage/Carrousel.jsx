@@ -1,15 +1,19 @@
 import React from "react";
-
 import Carousel from 'react-bootstrap/Carousel';
+import '../../Bootstrap/custom.scss';
+import banner from '../../images/banner.png'
 
 function Carrousel() {
   return (
-    <Carousel>
+    <Carousel >
       <Carousel.Item>
         <img
-          className="d-block w-100"
-          src="https://sonaesierracms-v2.cdnpservers.net/wp-content/uploads/sites/28/2020/04/ropa-deportiva-casa.jpg"
+          className="carrouselImage d-block w-100"
+          src={banner}
           alt="First slide"
+          width='80%'
+          height='7%'
+          object-fit='cover'
         />
         <Carousel.Caption>
           <h3>Los mejores conjuntos</h3>
@@ -19,8 +23,11 @@ function Carrousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://www.comunicarseweb.com/sites/default/files/styles/galeria_noticias/public/pages/m-18-first-mile3.jpg?itok=6zCj7C3_"
+          src={banner}
           alt="Second slide"
+          width='80%'
+          height='7%'
+          object-fit='cover'
         />
 
         <Carousel.Caption>
@@ -31,8 +38,11 @@ function Carrousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://prochampions.vteximg.com.br/arquivos/Sale-jun-m.jpg?v=637911595806570000"
+          src={banner}
           alt="Third slide"
+          width='80%'
+          height='7%'
+          object-fit='cover'
         />
 
         <Carousel.Caption>
