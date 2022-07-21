@@ -4,6 +4,8 @@ const URL_FOR_FETCH_CATEGORIES='http://localhost:3001/categories'
 export const FETCH_PRODUCTS= 'FETCH_PRODUCTS';
 export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
 export const ADD_FILTER='ADD_FILTER';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
 
 export function fetchProducts() {
 
@@ -45,3 +47,22 @@ export function addFilter(filter){
         })
     }
 }
+
+export function removeFilter(filter){
+    return function (dispatch){
+        dispatch({
+            type:REMOVE_FILTER,
+            payload:filter
+        })
+    }
+}
+
+export function setProductsToDisplay(products){
+    return function(dispatch){
+        dispatch({
+            type:SET_PRODUCTS_TO_DISPLAY,
+            payload: products
+        })
+    }
+}
+

@@ -1,4 +1,5 @@
-import {FETCH_PRODUCTS, FETCH_CATEGORIES,ADD_FILTER} from "../actions/index";
+import {FETCH_PRODUCTS, FETCH_CATEGORIES,
+    ADD_FILTER, REMOVE_FILTER, SET_PRODUCTS_TO_DISPLAY} from "../actions/index";
 
 const initialState ={
     products:[],
@@ -25,7 +26,16 @@ function rootReducer(state= initialState, action){
                 ...state,
                 filters: [...state.filters, action.payload]
             }
-
+        case REMOVE_FILTER:
+            return{
+                ...state,
+                filters: state.filters.filter(fil => fil !== action.payload)
+            }
+        case SET_PRODUCTS_TO_DISPLAY:
+            return{
+                ...state,
+                displayedProducts: action.payload
+            }
             
     
         default:
