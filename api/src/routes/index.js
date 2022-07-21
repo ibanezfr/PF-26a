@@ -8,5 +8,4 @@ router.use("/products", products);
 router.use("/categories", categories);
 router.use("/function", functionalities);
 
-
 module.exports = router;

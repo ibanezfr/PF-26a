@@ -6,11 +6,13 @@ import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 
 function Desk() {
     const dispatch = useDispatch()
-    const products = useSelector((state) => state.products);
+    const products = useSelector((state) => state.displayedProducts);//poner displayed
+    console.log('desk', products);
 
-    useEffect(() => {
+/*     useEffect(() => {
+             dispatch(fetchProducts())
         dispatch(fetchProducts())
-    }, [dispatch])
+    }, [dispatch]) */
 
     // const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +22,7 @@ function Desk() {
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(products.length / postPerPage)
-
+    console.log('current post',currentPosts)
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -28,7 +30,7 @@ function Desk() {
     return (
         <div>
             <Pagination pages={howManyPages} setCurrentPage={pagination} />
-            <ProductsCards allProducts={currentPosts} />
+            <ProductsCards allProducts={currentPosts}  />
         </div>
     )
 }
