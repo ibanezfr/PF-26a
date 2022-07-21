@@ -48,7 +48,6 @@ function App() {
           <Register />
         </Route>
         <Route path="/search" exact>
-          {/* <Nav /> */}
           <SearchProducts />
         </Route>
         <Route path="/profile" exact>

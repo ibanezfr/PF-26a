@@ -14,14 +14,14 @@ export const CLEAR_CART = 'CLEAR_CART';
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 
 //carrito de compras FUNCIONES
-const addToCart = (name)=>{
-  return async (dispatch) =>{
+export default function addToCart(name) {
+  return async (dispatch) => {
     let productName = await axios.get(`http://localhost:3001/function?name=${name}`);
     dispatch({
-        type: ADD_TO_CART,
-        payload: productName.data
+      type: ADD_TO_CART,
+      payload: productName.data
     })
-}
+  }
 }
 
 export function fetchProducts() {
@@ -42,46 +42,46 @@ export function fetchProducts() {
 }
 
 
-  export const getProductsByName = (name) => {
-    return async (dispatch) => {
-      try {
-        const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
-      
-        return dispatch({
-          type: FETCH_BY_NAME,
-          payload: productsByName.data,
-        });
-      } catch (error) {
-        console.log(error, '||Error||');
-      }
-    };
-  };
-export const getProductsById = (id)=>{
-    return async (dispatch) =>{
-        let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
-        dispatch({
-            type: GET_BY_ID,
-            payload: pedidoApiId.data
-        })
+export const getProductsByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
+
+      return dispatch({
+        type: FETCH_BY_NAME,
+        payload: productsByName.data,
+      });
+    } catch (error) {
+      console.log(error, '||Error||');
     }
+  };
+};
+export const getProductsById = (id) => {
+  return async (dispatch) => {
+    let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
+    dispatch({
+      type: GET_BY_ID,
+      payload: pedidoApiId.data
+    })
+  }
 }
 
-export function cleanProduct(){
-    return{
-        type: CLEAN_PRODUCT
-    }
+export function cleanProduct() {
+  return {
+    type: CLEAN_PRODUCT
   }
+}
 
-  export function bringSize(id){
-    return async (dispatch) =>{
-      let size = await axios.get("http://localhost:3001/products/size/" + id);
-      console.log("en la action: ", size.data)
-      dispatch({
-          type: GET_SIZE,
-          payload: size.data
-      })
+export function bringSize(id) {
+  return async (dispatch) => {
+    let size = await axios.get("http://localhost:3001/products/size/" + id);
+    console.log("en la action: ", size.data)
+    dispatch({
+      type: GET_SIZE,
+      payload: size.data
+    })
   }
-  }
+}
 
 // export const getProductsByName = (name) => {
 //   return async (dispatch) => {

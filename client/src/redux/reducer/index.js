@@ -11,7 +11,7 @@ import {
 const initialState ={
     products:[],
     detail: [], 
-    products:[],
+    // products:[],
     searchProducts:[],
     size:[],
     cartProduct:[]

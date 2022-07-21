@@ -8,7 +8,6 @@ import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 function Desk() {
     const dispatch = useDispatch()
     const products = useSelector((state) => state.products);
-    // console.log(products);
 
     useEffect(() => {
              dispatch(fetchProducts())
@@ -30,7 +29,6 @@ function Desk() {
 
     return (
         <div>
-            {/* <Nav /> */}
             <Pagination pages={howManyPages} setCurrentPage={pagination} />
             <ProductsCards allProducts={currentPosts}  />
         </div>
