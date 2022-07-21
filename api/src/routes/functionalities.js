@@ -61,5 +61,4 @@ router.get('/categories/:id', async(req, res, next)=>{
     }
   })
 
-
 module.exports = router;

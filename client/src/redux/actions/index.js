@@ -4,6 +4,12 @@ export const CLEAN_PRODUCT = 'CLEAN_PRODUCT';
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 export const FETCH_BY_NAME = "FETCH_BY_NAME";
 export const GET_SIZE = 'GET_SIZE';
+
+//carrito de compras
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 
 export function fetchProducts() {

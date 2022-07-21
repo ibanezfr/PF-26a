@@ -34,9 +34,6 @@ function App() {
           <Route path="/" exact>
             <LandingPage />
           </Route>
-          {/* <Route path="/">
-            <NavBar/>
-          </Route> */}
           <Route path="/products">
             <Desk />
           </Route>
