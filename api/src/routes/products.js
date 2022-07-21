@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get('/size/:id', async(req, res, next)=>{
   try{
       const {id} = req.params;
@@ -71,7 +70,6 @@ router.get('/size/:id', async(req, res, next)=>{
       next(error);
   }
 });
-
 
 router.get("/search", async (req, res) => {
   const name = req.query.name;
