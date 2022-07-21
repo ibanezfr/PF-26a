@@ -3,9 +3,12 @@ import { useAuth } from "../../context/AuthContext";
 
 import { Card, Button, Form, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPass } = useAuth();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -18,7 +21,16 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await login(user.email, user.password);
+      const credentials = await login(user.email, user.password);
+      dispatch(
+        loginUser({
+          id: credentials.user.uid,
+          fullName: credentials.user.displayName,
+          email: credentials.user.email,
+          image: credentials.user.photoURL,
+        })
+      );
+
       history.push("/profile");
     } catch (error) {
       if (
@@ -32,7 +44,16 @@ const Login = () => {
 
   const handleGoogle = async () => {
     try {
-      await loginWithGoogle();
+      const credentials = await loginWithGoogle();
+      dispatch(
+        loginUser({
+          id: credentials.user.uid,
+          fullName: credentials.user.displayName,
+          email: credentials.user.email,
+          image: credentials.user.photoURL,
+        })
+      );
+
       history.push("/profile");
     } catch (error) {
       setError(error.message);

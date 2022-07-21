@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-
+import { useDispatch } from "react-redux";
 import { Card, Button, Form, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { register } from "../../redux/actions";
 
 const Register = () => {
-  const { signup } = useAuth();
-
-  const [user, setUser] = useState({
+  const { signup, user } = useAuth();
+  const dispatch = useDispatch();
+  const [newUser, setNewUser] = useState({
+    fullName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [error, setError] = useState("");
@@ -18,9 +22,20 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    if (newUser.confirmPassword !== newUser.password) {
+      return setError("Passwords do not match, please try again.");
+    }
     try {
-      await signup(user.email, user.password);
-      history.push("/profile");
+      const credentials = await signup(newUser.email, newUser.password);
+      dispatch(
+        register({
+          id: credentials.user.uid,
+          fullName: newUser.fullName,
+          email: newUser.email,
+        })
+      );
+
+      history.push("/login");
     } catch (error) {
       if (
         error.code === "auth/invalid-email" ||
@@ -28,7 +43,6 @@ const Register = () => {
       ) {
         setError("Invalid credentials");
       }
-      // setError(error.message);
     }
   }; //auth/invalid-email auth/weak-password
 
@@ -44,13 +58,27 @@ const Register = () => {
             {error && <span className="text-danger">{error}</span>}
 
             <Form onSubmit={handleSubmit}>
+              <Form.Group id="fullName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Full Name"
+                  name="fullName"
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, fullName: e.target.value })
+                  }
+                />
+              </Form.Group>
+
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Email"
                   name="email"
-                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, email: e.target.value })
+                  }
                 />
               </Form.Group>
               <Form.Group id="password">
@@ -60,12 +88,23 @@ const Register = () => {
                   placeholder="********"
                   id="password"
                   onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
+                    setNewUser({ ...newUser, password: e.target.value })
+                  }
+                />
+              </Form.Group>
+              <Form.Group id="confirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="********"
+                  id="confirmPassword"
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, confirmPassword: e.target.value })
                   }
                 />
               </Form.Group>
 
-              <Button className="w-100" type="submit">
+              <Button className="w-100 mt-4" type="submit">
                 Sign Up
               </Button>
             </Form>

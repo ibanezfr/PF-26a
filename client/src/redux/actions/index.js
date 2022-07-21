@@ -36,3 +36,55 @@ export const getProductsByName = (name) => {
     }
   };
 };
+
+export const register = (user) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/auth/register`,
+        user
+      );
+      return dispatch({
+        type: "AUTH",
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const loginUser = (user) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/auth/login`,
+        user
+      );
+      return dispatch({
+        type: "AUTH",
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const loginCheck = (dispatch) => {
+  let isLogged = false;
+
+  let loggedUser = JSON.parse(localStorage.getItem("usuario"));
+  if (loggedUser) {
+    isLogged = true;
+    dispatch({
+      type: "SESSION",
+      payload: { data: loggedUser, session: isLogged },
+    });
+  } else {
+    dispatch({
+      type: "SESSION",
+      payload: { session: isLogged },
+    });
+  }
+};
