@@ -1,4 +1,4 @@
-const { Product,Category,Review ,Qa, Image} = require("../db");
+const { Product,Category,Review ,Qa} = require("../db");
 const { Router } = require("express");
 const { Op } = require("sequelize");
 
@@ -35,6 +35,42 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get('/size/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          const maped = filtered.map(f=>f.size)
+          const maped2 = maped[0]
+          const split = maped2.split(/\s*,\s*/)
+        
+          res.json(split);
+        }
+  }
+  catch(error){
+      next(error);
+  }
+});
+
 router.get("/search", async (req, res) => {
   const { name } = req.query;
   try {
@@ -63,15 +99,10 @@ router.get("/search", async (req, res) => {
         },
       },
     });
-    if (!searchProducts) {
-      throw new Error({message: "Producto no encontrado"});
-      // return res.status(400).send({message: "Producto no encontrado"});
-    } else {
-      res.status(200).send(searchProducts);
-    }
+   
+    res.status(200).send(searchProducts);
   } catch (err) {
-    console.log("ERROR",err)
-    // res.status(400).send({ msg: err.message });
+     res.status(400).send({ msg: err.message });
   }
 });
 
@@ -106,6 +137,38 @@ router.post("/create", async (req, res) => {
     return res.status(201).send({msg:"Producto Creado", producto: newProduct});
   } catch (error) {
     return res.status(400).send({msg: error.message});
+  }
+});
+
+router.get('/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          res.json(filtered);
+        }
+  }
+  catch(error){
+      next(error);
   }
 });
 
