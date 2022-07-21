@@ -20,6 +20,7 @@ export default function SearchProducts() {
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = searchProducts.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(searchProducts.length / postPerPage)
+   
 
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
