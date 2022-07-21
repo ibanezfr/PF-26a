@@ -101,6 +101,7 @@ router.get("/search", async (req, res) => {
         },
       },
     });
+<<<<<<< HEAD
     console.log("producto: ", searchProducts)
     if (!searchProducts) {
       throw new Error({message: "Producto no encontrado"});
@@ -108,9 +109,12 @@ router.get("/search", async (req, res) => {
     } else {
       res.status(200).send(searchProducts);
     }
+=======
+   
+    res.status(200).send(searchProducts);
+>>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
   } catch (err) {
-    console.log("ERROR",err)
-    // res.status(400).send({ msg: err.message });
+     res.status(400).send({ msg: err.message });
   }
 });
 
@@ -230,4 +234,38 @@ router.put("/update/:id", async (req, res) => {
   }
 })
 
+<<<<<<< HEAD
+=======
+router.get('/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          res.json(filtered);
+        }
+  }
+  catch(error){
+      next(error);
+  }
+});
+>>>>>>> 5cfd2bd8960ab1e346f208ac514d1b1d2b655842
 module.exports = router;

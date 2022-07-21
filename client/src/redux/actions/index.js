@@ -41,6 +41,21 @@ export function fetchProducts() {
   };
 }
 
+
+  export const getProductsByName = (name) => {
+    return async (dispatch) => {
+      try {
+        const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
+      
+        return dispatch({
+          type: FETCH_BY_NAME,
+          payload: productsByName.data,
+        });
+      } catch (error) {
+        console.log(error, '||Error||');
+      }
+    };
+  };
 export const getProductsById = (id)=>{
     return async (dispatch) =>{
         let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
@@ -68,19 +83,19 @@ export function cleanProduct(){
   }
   }
 
-export const getProductsByName = (name) => {
-  return async (dispatch) => {
-    try {
-      const productsByName = await axios.get(
-        `http://localhost:3001/products/search?name=${name}`
-      );
-      console.log("HOLA", productsByName.data);
-      return dispatch({
-        type: FETCH_BY_NAME,
-        payload: productsByName.data,
-      });
-    } catch (error) {
-      return alert(error);
-    }
-  };
-};
+// export const getProductsByName = (name) => {
+//   return async (dispatch) => {
+//     try {
+//       const productsByName = await axios.get(
+//         `http://localhost:3001/products/search?name=${name}`
+//       );
+//       console.log("HOLA", productsByName.data);
+//       return dispatch({
+//         type: FETCH_BY_NAME,
+//         payload: productsByName.data,
+//       });
+//     } catch (error) {
+//       return alert(error);
+//     }
+//   };
+// };
