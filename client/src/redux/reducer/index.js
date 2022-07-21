@@ -1,19 +1,20 @@
 import {
     FETCH_PRODUCTS,
-    FETCH_BY_NAME,
     GET_BY_ID,
-    CLEAN_PRODUCT
+    CLEAN_PRODUCT,
+    FETCH_BY_NAME,
+    GET_SIZE
 } from "../actions/index";
 
 
 const initialState ={
     products:[],
+    detail: [], 
+    products:[],
     searchProducts:[],
-    detail: []/* ,
-    displayedProducts:[],
-    filters:[] */
-    
-} 
+    size:[]
+}
+
 
 
 
@@ -40,7 +41,11 @@ function rootReducer(state= initialState, action){
                 ...state,
                 detail: []
             };
-
+        case GET_SIZE:
+            return{
+                ...state,
+                size: action.payload
+            }
 
             
              

@@ -3,11 +3,11 @@
         "name": "Bochas",
         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
         "price": 500,
-        "stock": 3,
+        "stock": 73,
         "rating": 5,
         "size": "Único",
         "color": "rosa",
-        "image": "images/bochas.PNG",
+        "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
         "categories": [
             {
                 "name": "Equipamento deportivo"
@@ -19,13 +19,13 @@
         "name": "Calza Biker",
         "description": "Encontrá estas calzas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
         "price": 3000,
-        "stock": 4,
+        "stock": 44,
         "rating": 5,
         "size": "xl, xxl, s, m",
         "color": "Celeste, Negra, Rosa",
-        "image": "images/bikerRosa.PNG",
-        "image2": "images/bikerNegra.PNG",
-        "image3": "images/bikerCeleste.PNG",
+        "image": "https://i.pinimg.com/originals/03/3a/9a/033a9a0dc82cdbfc8fe6c44c370affd4.jpg",
+        "image2": "https://i.pinimg.com/originals/b2/48/26/b248262b4fdcbfa3110a4dd1f8cf74dc.jpg",
+        "image3": "https://i.pinimg.com/236x/d3/e3/5c/d3e35ca608a25f586fca03593274687e.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -40,11 +40,11 @@
         "name": "Protectores Bucales",
         "description": "Encontrá estos protectores Bucales en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
         "price": 600,
-        "stock": 6,
+        "stock": 86,
         "rating": 4,
         "size": "Senior",
         "color": "Rosa, Blanco, Negro, Transparente",
-        "image":"images/bucal.PNG",
+        "image":"https://i.pinimg.com/originals/e2/64/37/e2643789133191fc456ead069d86e051.jpg",
         "categories": [
             {
                 "name": "Equipamento deportivo"
@@ -56,11 +56,11 @@
         "name": "Bufandas Lacoste",
         "description": "Encontrá estas bufandas en nuestro local o compralas por nuestra tienda virtual. ¡NO VUELVEN A INGRESAR!",
         "price": 1500,
-        "stock": 2,
+        "stock": 62,
         "rating": 4,
         "size": "Único",
         "color": "Blanco, Negro",
-        "image":"images/bufandasLacoste.PNG",
+        "image":"https://i.pinimg.com/originals/f0/4e/6d/f04e6d02025bdaa8baf809c65a763c5a.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -75,11 +75,11 @@
         "name": "Buzos Adidas Sin Capucha",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4000,
-        "stock": 2,
+        "stock": 92,
         "rating": 4,
         "size": "l, xl",
         "color": "Azul, Rojo",
-        "image":"images/buzoAdidas.PNG",
+        "image":"https://i.pinimg.com/originals/cd/81/0c/cd810ca0e32f2b58e11d029a94d22b0a.jpg",
         "categories": [
             {
                 "name": "Indumentaria sin género"
@@ -94,11 +94,11 @@
         "name": "Buzos Adidas con Capucha",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4500,
-        "stock": 3,
+        "stock": 63,
         "rating": 5,
         "size": "l, xl, s",
         "color": "Azul",
-        "image": "images/buzoAdidasAzul.PNG",
+        "image": "https://i.pinimg.com/originals/03/d9/31/03d931b10917e8f998f9bd78b0aa8bca.jpg",
         "categories": [
             {
                 "name": "Indumentaria sin género"
@@ -113,11 +113,11 @@
         "name": "Buzo Urbano",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4500,
-        "stock": 1,
+        "stock": 100,
         "rating": 4,
         "size": "l",
         "color": "Blanco",
-        "image": "images/buzoBlanco.PNG",
+        "image": "https://i.pinimg.com/originals/27/d9/e2/27d9e2b628cf599a59c3a4ac3cbd5829.jpg",
         "categories": [
             {
                 "name": "Indumentaria sin género"
@@ -132,11 +132,11 @@
         "name": "Buzo Mountain Urbano",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4000,
-        "stock": 2,
+        "stock": 200,
         "rating": 5,
         "size": "s, m",
         "color": "Azul",
-        "image": "images/buzoCelesteMountain.PNG",
+        "image": "https://i.pinimg.com/originals/14/6f/7e/146f7e3e35a559000082a293945b778d.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -154,10 +154,10 @@
         "stock": 40,
         "rating": 5,
         "size": "s, m, xl",
-        "color": "Rosa, Violeta, Gris",
-        "image": "images/buzoGapGris.PNG",
-        "image2": "images/buzoGapRosa.PNG",
-        "image3": "images/buzoGapVioleta.PNG",
+        "color": "https://i.pinimg.com/originals/ac/d0/34/acd0344039b3969519bd7d22663f27b3.jpg",
+        "image": "https://i.pinimg.com/originals/73/af/4f/73af4f7a24fd59d6a44a7c80c88dc36a.jpg",
+        "image2": "https://i.pinimg.com/originals/83/66/58/836658b7ff69f6917f6b6c04ace40e72.jpg",
+        "image3": "https://i.pinimg.com/originals/d3/4d/bd/d34dbdc26d298793170d34e1fbd2a470.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -172,12 +172,12 @@
         "name": "Buzo Urbano BTK",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4000,
-        "stock": 2,
+        "stock": 70,
         "rating": 5,
         "size": "s, m",
         "color": "Blanco, Negro",
-        "image": "images/buzosBTK.PNG",
-        "image2": "images/buzosBTK2.PNG",
+        "image": "https://i.pinimg.com/originals/de/3f/ba/de3fba345d7f58357eb59ded9657b980.jpg",
+        "image2": "https://i.pinimg.com/originals/2b/fc/f9/2bfcf90486c3263d43fb21a473910e4e.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -192,11 +192,11 @@
         "name": "Buzo Térmico",
         "description": "Encontrá estos buzos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 6000,
-        "stock": 1,
+        "stock": 81,
         "rating": 5,
         "size": "l",
         "color": "Verde",
-        "image": "images/buzoTermico.PNG",
+        "image": "https://i.pinimg.com/originals/ae/2e/48/ae2e481dba7372082e1b4933e27ac1d2.jpg",
         "categories": [
             {
                 "name": "Indumentaria de hombre"
@@ -211,11 +211,11 @@
         "name": "Calza Larga Rosa",
         "description": "Encontrá estas clazas hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3000,
-        "stock": 1,
+        "stock": 61,
         "rating": 5,
         "size": "m",
         "color": "Rosa",
-        "image": "images/calzaLargaRosa.PNG",
+        "image": "https://i.pinimg.com/originals/d6/50/e1/d650e144cb8f5ca2ee64fee1d2d002bf.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -230,11 +230,11 @@
         "name": "Calza Larga Leopardo",
         "description": "Encontrá estas clazas hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3000,
-        "stock": 1,
+        "stock": 81,
         "rating": 5,
         "size": "m",
         "color": "Rosa",
-        "image": "images/calzaLeopardo.PNG",
+        "image": "https://i.pinimg.com/originals/7a/54/8c/7a548c1bb3e1bd6e212e4e08d489de07.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -249,12 +249,12 @@
         "name": "Calzas Dual Power",
         "description": "Encontrá estas clazas hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3000,
-        "stock": 6,
+        "stock": 60,
         "rating": 4,
         "size": "m, s, l",
         "color": "Rosa, Celeste, Negro",
-        "image": "images/calzasDual.PNG",
-        "image2": "images/calzasDual2.PNG",
+        "image": "https://i.pinimg.com/originals/4b/67/8a/4b678aaee1dee060670fd70ec1feb405.jpg",
+        "image2": "https://i.pinimg.com/originals/9d/e4/da/9de4daec90590244b03d1c1d5c296dad.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -269,14 +269,14 @@
         "name": "Campera de Abrigo",
         "description": "Encontrá estas camperas super abrigadas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 20000,
-        "stock": 4,
+        "stock": 54,
         "rating": 5,
         "size": "Único",
         "color": "Fuccia, Rosa Viejo, Gris, Marrón",
-        "image": "images/camperaAbrigoFuccia.PNG",
-        "image2":"images/camperaAbrigoGris.PNG",
-        "image3": "images/camperaAbrigoMarron.PNG",
-        "image4": "images/camperaAbrigoRosa.PNG",
+        "image": "https://i.pinimg.com/originals/a4/bd/64/a4bd64e379ac84375cf476f9b5dbd62c.jpg",
+        "image2":"https://i.pinimg.com/originals/58/bb/39/58bb39ccb4d6de19e8a22c159c06382c.jpg",
+        "image3": "https://i.pinimg.com/originals/a4/c3/d3/a4c3d36892f99eccdbd51aed99d72a9c.jpg",
+        "image4": "https://i.pinimg.com/originals/74/eb/f4/74ebf45fd27011b2b2588d5227fd074b.jpg",
         "categories": [
             {
                 "name": "Indumentaria sin género"
@@ -291,12 +291,12 @@
         "name": "Chalecos",
         "description": "Encontrá estos chalecos super abrigados en nuestro local o compralas por nuestra tienda virtual.",
         "price": 15000,
-        "stock": 3,
+        "stock": 53,
         "rating": 2,
         "size": "m, s, l",
         "color": "Rosa, Gris, Verde",
-        "image": "images/chalecos.PNG",
-        "image2": "images/chalecoRosa.PNG",
+        "image": "https://i.pinimg.com/originals/5c/3c/ef/5c3cef8b3edb262d00af9839d5a11b8d.jpg",
+        "image2": "https://i.pinimg.com/originals/75/18/15/751815f1d48457f35d49dc794e9032fc.jpg",
         "categories": [
             {
                 "name": "Indumentaria sin género"
@@ -311,11 +311,11 @@
         "name": "Conjunto Largo Celeste",
         "description": "Encontrá estos conjuntos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 8000,
-        "stock": 1,
+        "stock": 91,
         "rating": 3,
         "size": "m",
         "color": "Celeste",
-        "image": "images/conjuntoCeleste.PNG",
+        "image": "https://i.pinimg.com/originals/db/6f/b7/db6fb77aae76f291b3db6a12cf19378d.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -330,11 +330,11 @@
         "name": "Buzo Celeste",
         "description": "Encontrá este buzo hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 4500,
-        "stock": 1,
+        "stock": 100,
         "rating": 3,
         "size": "m",
         "color": "Celeste",
-        "image": "images/conjuntoCeleste.PNG",
+        "image": "https://i.pinimg.com/originals/db/6f/b7/db6fb77aae76f291b3db6a12cf19378d.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -349,11 +349,11 @@
         "name": "Jogging Celeste",
         "description": "Encontrá este jogging hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3500,
-        "stock": 1,
+        "stock": 71,
         "rating": 3,
         "size": "m",
         "color": "Celeste",
-        "image": "images/conjuntoCeleste.PNG",
+        "image": "https://i.pinimg.com/originals/db/6f/b7/db6fb77aae76f291b3db6a12cf19378d.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -368,11 +368,11 @@
         "name": "Conjunto Rosa Viejo",
         "description": "Encontrá este conjunto hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 8000,
-        "stock": 1,
+        "stock": 61,
         "rating": 5,
         "size": "s",
         "color": "Rosa Viejo",
-        "image": "images/conjuntoRosa.PNG",
+        "image": "https://i.pinimg.com/originals/d9/2d/4b/d92d4b8ab6579d8e8e4cc551e64757fc.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -387,11 +387,11 @@
         "name": "Campera Rosa Viejo",
         "description": "Encontrá esta campera hermosa en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3500,
-        "stock": 1,
+        "stock": 81,
         "rating": 5,
         "size": "s",
         "color": "Rosa Viejo",
-        "image": "images/conjuntoRosa.PNG",
+        "image": "https://i.pinimg.com/originals/d9/2d/4b/d92d4b8ab6579d8e8e4cc551e64757fc.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -406,11 +406,11 @@
         "name": "Jogging Rosa",
         "description": "Encontrá este jogging hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3500,
-        "stock": 1,
+        "stock": 81,
         "rating": 3,
         "size": "s",
         "color": "Rosa Viejo",
-        "image": "images/conjuntoRosa.PNG",
+        "image": "https://i.pinimg.com/originals/d9/2d/4b/d92d4b8ab6579d8e8e4cc551e64757fc.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -425,11 +425,11 @@
         "name": "Conjunto corto",
         "description": "Encontrá este conjunto hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 6000,
-        "stock": 2,
+        "stock": 80,
         "rating": 5,
         "size": "s",
         "color": "Floreado",
-        "image": "images/conjuntoCortoFlores.PNG",
+        "image": "https://i.pinimg.com/564x/03/6b/48/036b48a5d6ec96ff351799dfbad8eff6.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -444,12 +444,12 @@
         "name": "Conjunto largo",
         "description": "Encontrá este conjunto hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 6000,
-        "stock": 1,
+        "stock": 100,
         "rating": 3,
         "size": "s",
         "color": "Animal Print, Combinado",
-        "image": "images/conjuntoLeopardo.PNG",
-        "image2": "images/conjuntoTopCalza.PNG",
+        "image": "https://i.pinimg.com/originals/82/7d/6f/827d6f43b1aa86dad2154276c2265dde.jpg",
+        "image2": "https://i.pinimg.com/originals/df/8a/0a/df8a0a801133a21e1c586144dbac6dd6.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -464,13 +464,13 @@
         "name": "Top deportivo",
         "description": "Encontrá este top deportivo hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3000,
-        "stock": 3,
+        "stock": 344,
         "rating": 3,
         "size": "s",
         "color": "Floreado, Animal Print, Negro",
-        "image": "images/conjuntoCortoFlores.PNG",
-        "image2": "images/conjuntoLeopardo.PNG",
-        "image3": "images/conjuntoTopCalza.PNG",
+        "image": "https://i.pinimg.com/564x/03/6b/48/036b48a5d6ec96ff351799dfbad8eff6.jpg",
+        "image2": "https://i.pinimg.com/originals/82/7d/6f/827d6f43b1aa86dad2154276c2265dde.jpg",
+        "image3": "https://i.pinimg.com/originals/82/7d/6f/827d6f43b1aa86dad2154276c2265dde.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -485,11 +485,11 @@
         "name": "Calza Biker",
         "description": "Encontrá este conjunto hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 6000,
-        "stock": 1,
+        "stock": 91,
         "rating": 3,
         "size": "s",
         "color": "Floreado",
-        "image": "images/conjuntoCortoFlores.PNG",
+        "image": "https://i.pinimg.com/564x/03/6b/48/036b48a5d6ec96ff351799dfbad8eff6.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -505,11 +505,11 @@
         "name": "Conjunto Corto Rústico",
         "description": "Encontrá este conjunto hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 7000,
-        "stock": 1,
+        "stock": 61,
         "rating": 3,
         "size": "m",
         "color": "Verde Militar",
-        "image": "images/conjuntoVerdeCorto.PNG",
+        "image": "https://i.pinimg.com/originals/e1/b5/fb/e1b5fbde9197553e866cd449ace50773.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -528,7 +528,7 @@
         "rating": 3,
         "size": "m",
         "color": "Verde Militar",
-        "image": "images/conjuntoVerdeCorto.PNG",
+        "image": "https://i.pinimg.com/originals/e1/b5/fb/e1b5fbde9197553e866cd449ace50773.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -547,7 +547,7 @@
         "rating": 3,
         "size": "m",
         "color": "Verde Militar",
-        "image": "images/conjuntoVerdeCorto.PNG",
+        "image": "https://i.pinimg.com/originals/e1/b5/fb/e1b5fbde9197553e866cd449ace50773.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -562,13 +562,13 @@
         "name": "Cuellitos térmicos",
         "description": "Encontrá este cuellito hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 900,
-        "stock": 6,
+        "stock": 66,
         "rating": 3,
         "size": "s",
         "color": "Argentina, Militar, Multicolor",
-        "image": "images/cuellito.PNG",
-        "image2": "images/cuellito1.PNG",
-        "image3":"images/cuellito2.PNG",
+        "image": "https://i.pinimg.com/originals/37/bb/b1/37bbb1d0a783c599d2167503daad1c8c.jpg",
+        "image2": "https://i.pinimg.com/originals/e7/89/34/e78934bedcb437c47b1c47cf3faa70e5.jpg",
+        "image3":"https://i.pinimg.com/originals/0e/c7/70/0ec77071f6facfdfe8c1172a04561cbd.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -580,11 +580,11 @@
         "name": "Escalerita",
         "description": "Encontrá esta escalerita en nuestro local o compralas por nuestra tienda virtual.",
         "price": 900,
-        "stock": 3,
+        "stock": 53,
         "rating": 5,
         "size": "Único",
         "color": "Naranja",
-        "image": "images/escalerita.PNG",
+        "image": "https://i.pinimg.com/originals/0a/9f/b1/0a9fb183ad1732450eef8fc657c4eb17.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -596,11 +596,11 @@
         "name": "Flejes",
         "description": "Encontrá estos flejes en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1000,
-        "stock": 6,
+        "stock": 66,
         "rating": 4,
         "size": "Único",
         "color": "Naranja",
-        "image": "images/flejes.PNG",
+        "image": "https://i.pinimg.com/originals/88/1c/bf/881cbf5518782e809250de30e4e3cc09.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -612,11 +612,11 @@
         "name": "Funda para palo de hockey",
         "description": "Encontrá estas fundas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1200,
-        "stock": 2,
+        "stock": 42,
         "rating": 3,
         "size": "Único",
         "color": "Rosa, Negro",
-        "image": "images/fundaPalo.PNG",
+        "image": "https://i.pinimg.com/originals/b8/2b/1a/b82b1a1a774e06551b7aafd8e5df206b.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -628,11 +628,11 @@
         "name": "Gorra",
         "description": "Encontrá esta gorra hermosa en nuestro local o compralas por nuestra tienda virtual.",
         "price": 2000,
-        "stock": 6,
+        "stock": 67,
         "rating": 5,
         "size": "Único",
         "color": "Marrón, Rosa, Violeta, Celeste",
-        "image": "images/gorra.PNG",
+        "image": "https://i.pinimg.com/originals/01/f9/9a/01f99a31edec1e19f2907f959b118acc.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -647,14 +647,14 @@
         "name": "Gorro de invierno",
         "description": "Encontrá este gorrito hermoso en nuestro local o compralas por nuestra tienda virtual.",
         "price": 800,
-        "stock": 8,
+        "stock": 89,
         "rating": 5,
         "size": "Único",
         "color": "Bordó, Rosa, Blanco, Gris, Azul, Rosa Claro, Turquesa",
-        "image": "images/gorritos.PNG",
-        "image2":"images/gorritos2.PNG",
-        "image3": "images/gorritos3.PNG",
-        "image4": "images/gorritos4.PNG",
+        "image": "https://i.pinimg.com/564x/0d/a4/9d/0da49d4b632fafe802294fc136fb76c0.jpg",
+        "image2":"https://i.pinimg.com/564x/b2/3f/58/b23f58de9b59433ebf56fb8d1a97bfd7.jpg",
+        "image3": "https://i.pinimg.com/564x/8c/65/fd/8c65fd570b05c3d3ebdac6f435b90b5f.jpg",
+        "image4": "https://i.pinimg.com/564x/43/8d/50/438d50b2099f54c0793819e476b3d5bc.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -669,11 +669,11 @@
         "name": "Gorro de natación de Goma",
         "description": "Encontrá este gorro en nuestro local o compralas por nuestra tienda virtual.",
         "price": 600,
-        "stock": 4,
+        "stock": 48,
         "rating": 5,
         "size": "Único",
         "color": "Tiurón, Amarillo, Celeste, Azul",
-        "image": "images/gorroNatacionGoma.PNG",
+        "image": "https://i.pinimg.com/564x/50/26/28/50262808d9629392c6f2fc5ae6ea7d77.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -688,11 +688,11 @@
         "name": "Gorro de natación de Tela",
         "description": "Encontrá este gorro en nuestro local o compralas por nuestra tienda virtual.",
         "price": 400,
-        "stock": 5,
+        "stock": 59,
         "rating": 3,
         "size": "Único",
         "color": "Verde, Rosa, Azul, Celeste, Negro",
-        "image": "images/gorroNatacionTela.PNG",
+        "image": "https://i.pinimg.com/564x/b4/48/7b/b4487b7f1c7833cd7c670a8795fad09d.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -707,13 +707,13 @@
         "name": "Jogging Urbano",
         "description": "Encontrá estos joggings urbanos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3500,
-        "stock": 7,
+        "stock": 77,
         "rating": 5,
         "size": "s, m, l",
         "color": "Marrón, Rojo, Verde, Violeta, Gris",
-        "image": "images/jogging.PNG",
-        "image2": "images/jogging2.PNG",
-        "image3": "images/joggings.PNG",
+        "image": "https://i.pinimg.com/564x/43/8d/50/438d50b2099f54c0793819e476b3d5bc.jpg",
+        "image2": "https://i.pinimg.com/564x/24/64/59/2464592a030de855f3c09c1430992b92.jpg",
+        "image3": "https://i.pinimg.com/564x/c7/0a/e0/c70ae0f85734fa03d5eb2f067cbf754b.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
@@ -728,11 +728,11 @@
         "name": "Conjunto Hockey",
         "description": "Este conjunto consta de una pollera, una bocha, protector bucal y canilleras. Encontrá estos conjuntos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 8000,
-        "stock": 7,
+        "stock": 79,
         "rating": 5,
         "size": "s, m, l",
         "color": "Marrón, Rojo, Verde, Violeta, Gris",
-        "image": "images/kitHockey.PNG",
+        "image": "https://i.pinimg.com/564x/50/67/7e/50677e3fc310526b7c3656d53425cccc.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -747,11 +747,11 @@
         "name": "Conjunto Natación",
         "description": "Este conjunto consta de unas antiparras con un gorro de goma. Encontrá estos conjuntos hermosos en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1500,
-        "stock": 2,
+        "stock": 82,
         "rating": 3,
         "size": "Único",
         "color": "Único",
-        "image": "images/kitNatacion.PNG",
+        "image": "https://i.pinimg.com/564x/59/9d/e6/599de6fe583ca1c156fee72938e7bbe8.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -766,12 +766,12 @@
         "name": "Medias",
         "description": "Encontrá estas medias hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1000,
-        "stock": 7,
+        "stock": 75,
         "rating": 5,
         "size": "37, 38, 39, 40",
         "color": "Blanco, Rojo, Azul, Negro, Celeste",
-        "image": "images/mediasBlancas.PNG",
-        "image2": "images/mediaFutbol.PNG",
+        "image": "https://i.pinimg.com/564x/70/58/e4/7058e4ffc7971f0e8e013b3292582df3.jpg",
+        "image2": "https://i.pinimg.com/564x/69/88/e1/6988e1268ab4b80c0a90bc38c8ae175a.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -786,11 +786,11 @@
         "name": "Medias de Hockey",
         "description": "Encontrá estas medias hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1500,
-        "stock": 3,
+        "stock": 63,
         "rating": 5,
         "size": "37, 38, 39, 40",
         "color": "Rosa, Verde, Celeste",
-        "image": "images/mediasHocey.PNG",
+        "image": "https://i.pinimg.com/564x/7b/8b/95/7b8b953200b65c7f40693c9207e5d78a.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -805,11 +805,11 @@
         "name": "Pelotas de goma",
         "description": "Encontrá estas pelotas de goma en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1000,
-        "stock": 3,
+        "stock": 73,
         "rating": 5,
         "size": "Voley, Handball",
         "color": "Amarillo, Blanco, Naranja",
-        "image": "images/pelotasGoma.PNG",
+        "image": "https://i.pinimg.com/564x/b4/33/31/b433316da8a91ba8b2a1690f1a28c6d3.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -821,11 +821,11 @@
         "name": "Rolo masajeador",
         "description": "Encontrá estos rolos masajeadores en nuestro local o compralas por nuestra tienda virtual.",
         "price": 2000,
-        "stock": 2,
+        "stock": 62,
         "rating": 5,
         "size": "Único",
         "color": "Celeste, Naranja",
-        "image":"images/rolo.PNG",
+        "image":"https://i.pinimg.com/564x/b6/fd/e5/b6fde5e8fa6738ab35d9672c8024108a.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -837,11 +837,11 @@
         "name": "Tarjetas de árbitros",
         "description": "Encontrá estas pelotas de goma en nuestro local o compralas por nuestra tienda virtual.",
         "price": 500,
-        "stock": 2,
+        "stock": 72,
         "rating": 4,
         "size": "Hockey, Futbol",
         "color": "Único",
-        "image": "images/tarjetasArbitro.PNG",
+        "image": "https://i.pinimg.com/564x/0f/59/31/0f593158085e1a0040b24cefa437789a.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -853,11 +853,11 @@
         "name": "Pesas rusas",
         "description": "Encontrá estas pesas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 3000,
-        "stock": 3,
+        "stock": 83,
         "rating": 5,
         "size": "3g, 4kg, 5g",
         "color": "Aleatorio",
-        "image": "images/pesasRusas.PNG",
+        "image": "https://i.pinimg.com/originals/90/f8/35/90f8358aa8f86ec0c4653eee76e7f94b.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -869,11 +869,11 @@
         "name": "Remeras Levis",
         "description": "Encontrá estas remeras hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 2500,
-        "stock": 2,
+        "stock": 72,
         "rating": 5,
         "size": "l, xxl",
         "color": "Gris, Blanco",
-        "image": "images/remeraLevis.PNG",
+        "image": "https://i.pinimg.com/564x/24/92/27/249227305c7ad2100d6035f4fdb2d43b.jpg",
         "categories": [
             {
                 "name": "Indumentaria de hombre"
@@ -888,11 +888,11 @@
         "name": "Vinchas",
         "description": "Encontrá estas vinchas para deporte en nuestro local o compralas por nuestra tienda virtual.",
         "price": 1500,
-        "stock": 10,
+        "stock": 180,
         "rating": 4,
         "size": "Único",
         "color": "Violeta, Rosa, Negro, Celeste",
-        "image": "images/vinchas.PNG",
+        "image": "https://i.pinimg.com/564x/66/10/dd/6610dd1e944693d0dbb03c41e092f67b.jpg",
         "categories": [
             {
                 "name": "Accesorios"
@@ -904,11 +904,11 @@
         "name": "Sudadera Adidas",
         "description": "Encontrá estas sudaderas hermosas en nuestro local o compralas por nuestra tienda virtual.",
         "price": 2000,
-        "stock": 4,
+        "stock": 64,
         "rating": 5,
         "size": "m, l, xl",
         "color": "Amarillo, Rosa",
-        "image": "images/sudaderaAdidas.PNG",
+        "image": "https://i.pinimg.com/564x/f2/14/0e/f2140e597cfd4b4bfce2edffc939d862.jpg",
         "categories": [
             {
                 "name": "Indumentaria de mujer"
