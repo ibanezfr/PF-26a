@@ -62,4 +62,35 @@ router.get('/categories/:id', async(req, res, next)=>{
   })
 
 
+  //carrito de compras
+  router.get('/cart', async(req, res, next)=>{
+    try{
+        const {id} = req.query;
+        const filtered = await Product.findByPk(id,{
+          include: [
+            {
+              model: Category,
+              attributes: ["name"],
+              through: { attributes: [] },
+            },
+            {
+              model: Qa,
+              attributes: ["title","description", "answer", "resolved"],
+              through: { attributes: [] },
+            },
+            {
+              model: Review,
+              attributes: ["rating", "title", "description"],
+              through: { attributes: [] },
+            },
+          ],
+        });
+            res.json(filtered);
+    }
+    catch(error){
+        next(error);
+    }
+  });
+  
+
 module.exports = router;

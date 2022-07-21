@@ -7,7 +7,8 @@ import {
     FETCH_CATEGORIES,
     ADD_FILTER,
     REMOVE_FILTER,
-    SET_PRODUCTS_TO_DISPLAY
+    SET_PRODUCTS_TO_DISPLAY,
+    ADD_TO_CART
 } from "../actions/index";
 
 
@@ -69,6 +70,11 @@ function rootReducer(state= initialState, action){
             return{
                 ...state,
                 size: action.payload
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cartProduct: action.payload
             }
 
             

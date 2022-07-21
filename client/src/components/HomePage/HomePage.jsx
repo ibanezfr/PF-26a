@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
-
 import { addFilter, removeFilter, setProductsToDisplay } from "../../redux/actions/index";
 
 function Desk() {
@@ -13,10 +12,7 @@ function Desk() {
     let filters = useSelector(state=>state.filters)
     console.log('desk', products);
 
-/*     useEffect(() => {
-             dispatch(fetchProducts())
-        dispatch(fetchProducts())
-    }, [dispatch]) */
+
     if(filters.length){
         products=products
         .filter(product=>product.categories
@@ -61,7 +57,7 @@ function Desk() {
                 }
                 <ul>{categories.map(cat=>{
                     return(
-                    <li id={cat} onClick={(e)=>onClickFilter(e)}>{cat}</li>
+                    <li key={cat} id={cat} onClick={(e)=>onClickFilter(e)}>{cat}</li>
                     )
                 })}</ul>
             </div>

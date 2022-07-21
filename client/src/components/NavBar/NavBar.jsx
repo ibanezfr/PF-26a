@@ -6,10 +6,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import carrito from '../../images/carrito.png'
+import Carrousel from '../Carousel/Carrousel';
 import SearchBar from '../Search/Search';
 
 function NavBar() {
   return (
+    <>
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#"><Link to='/cart'><img src={carrito} alt='not found' width='50px'/></Link></Navbar.Brand>
@@ -21,7 +23,6 @@ function NavBar() {
             navbarScroll
           >
             <Nav.Link href="#action1"><Link to=''>Inicio</Link></Nav.Link>
-            <Nav.Link href="#action2"><Link to='/products'>Productos</Link></Nav.Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3"><Link to='/login'>Login</Link></NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -31,18 +32,11 @@ function NavBar() {
             </NavDropdown>
           </Nav>
           <SearchBar />
-          {/* <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Carrousel/>
+    </>
   );
 }
 

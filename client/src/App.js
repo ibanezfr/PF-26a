@@ -2,16 +2,14 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchProducts, fetchCategories} from "./redux/actions/index";
-import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
-import LandingPage from "./components/LandingPage/LandingPage";
-import Desk from "./components/Desk/Desk.jsx";
+import { fetchProducts, fetchCategories } from "./redux/actions/index";
+// import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
+// import LandingPage from "./components/LandingPage/LandingPage";
+import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
 
-import { AuthProvider } from "./context/AuthContext";
-import Nav from './components/Nav/Nav';
-// import Pagination from './components/Pagination/Pagination.jsx'
+// import { AuthProvider } from "./context/AuthContext";
 import Details from './components/Details/Details';
 import NavBar from './components/NavBar/NavBar';
 import Login from "./components/Login/Login";
@@ -34,7 +32,7 @@ function App() {
     <BrowserRouter>
     <NavBar/>
     <Switch>
-          <Route exact path="/" component={Desk}/>
+          <Route exact path="/" component={HomePage}/>
           <Route path="/cart" component={Cart}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>

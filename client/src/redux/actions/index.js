@@ -1,9 +1,16 @@
 import axios from "axios"
-export const FETCH_PRODUCTS= 'FETCH_PRODUCTS'
-export const FETCH_BY_NAME="FETCH_BY_NAME"
 export const GET_BY_ID = 'GET_BY_ID';
 export const CLEAN_PRODUCT = 'CLEAN_PRODUCT';
+export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const FETCH_BY_NAME = "FETCH_BY_NAME";
 export const GET_SIZE = 'GET_SIZE';
+
+//carrito de compras
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_ONE_FROM_CART = 'REMOVE_ONE_FROM_CART';
+export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART';
+export const CLEAR_CART = 'CLEAR_CART';
+
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES='http://localhost:3001/categories'
 export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
@@ -11,6 +18,17 @@ export const ADD_FILTER='ADD_FILTER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
 
+
+//carrito de compras FUNCIONES
+export default function addToCart(name) {
+  return async (dispatch) => {
+    let productName = await axios.get(`http://localhost:3001/function?name=${name}`);
+    dispatch({
+      type: ADD_TO_CART,
+      payload: productName.data
+    })
+  }
+}
 
 export function fetchProducts() {
 
@@ -100,15 +118,14 @@ export function cleanProduct(){
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
-      const productsByName = await axios.get(
-        `http://localhost:3001/products/search?name=${name}`
-      );
+      const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
+
       return dispatch({
         type: FETCH_BY_NAME,
         payload: productsByName.data,
       });
     } catch (error) {
-      return alert(error);
+      console.log(error, '||Error||');
     }
   };
 };
