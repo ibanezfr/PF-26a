@@ -65,8 +65,8 @@ router.get('/categories/:id', async(req, res, next)=>{
   //carrito de compras
   router.get('/cart', async(req, res, next)=>{
     try{
-        const {name} = req.query;
-        const allProducts = await Product.findAll({
+        const {id} = req.query;
+        const filtered = await Product.findByPk(id,{
           include: [
             {
               model: Category,
@@ -85,11 +85,7 @@ router.get('/categories/:id', async(req, res, next)=>{
             },
           ],
         });
-        if (name) {
-            const filtered = await allProducts.filter((e) => e.name == name);
-            console.log(filtered)
             res.json(filtered);
-          }
     }
     catch(error){
         next(error);
