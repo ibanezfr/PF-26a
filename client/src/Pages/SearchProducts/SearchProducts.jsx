@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
 import Pagination from '../../components/Pagination/Pagination.jsx';
-import { getProductsByName,fetchProducts} from '../../redux/actions';
+// import { getProductsByName,fetchProducts} from '../../redux/actions';
 import "./SearchProducts.scss"
 
 
@@ -38,6 +38,7 @@ return (
               if (product.status === "active") {
                 return (
                     <Products
+                    id={product.id}
                     key={product.id}
                     name={product.name}
                     image = {product.image}
