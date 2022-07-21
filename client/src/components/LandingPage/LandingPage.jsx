@@ -15,7 +15,7 @@ export default function LandingPage() {
         <Link to="register">
           <button className="button">Registrarse</button>
         </Link>
-        <Link to="/home">
+        <Link to="/products">
           <button className="button">Invitado</button>
         </Link>
       </div>

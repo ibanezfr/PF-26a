@@ -35,38 +35,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get('/:id', async(req, res, next)=>{
-  try{
-      const {id} = req.params;
-      const allProducts = await Product.findAll({
-        include: [
-          {
-            model: Category,
-            attributes: ["name"],
-            through: { attributes: [] },
-          },
-          {
-            model: Qa,
-            attributes: ["title","description", "answer", "resolved"],
-            through: { attributes: [] },
-          },
-          {
-            model: Review,
-            attributes: ["rating", "title", "description"],
-            through: { attributes: [] },
-          },
-        ],
-      });
-      if (id) {
-          const filtered = await allProducts.filter((e) => e.id == id);
-          console.log(filtered)
-          res.json(filtered);
-        }
-  }
-  catch(error){
-      next(error);
-  }
-});
 
 router.get('/size/:id', async(req, res, next)=>{
   try{
@@ -106,7 +74,7 @@ router.get('/size/:id', async(req, res, next)=>{
 
 
 router.get("/search", async (req, res) => {
-  const { name } = req.query;
+  const name = req.query.name;
   try {
     const searchProducts = await Product.findAll({
       include: [
@@ -133,6 +101,7 @@ router.get("/search", async (req, res) => {
         },
       },
     });
+    console.log("producto: ", searchProducts)
     if (!searchProducts) {
       throw new Error({message: "Producto no encontrado"});
       // return res.status(400).send({message: "Producto no encontrado"});
@@ -176,6 +145,39 @@ router.post("/create", async (req, res) => {
     return res.status(201).send({msg:"Producto Creado", producto: newProduct});
   } catch (error) {
     return res.status(400).send({msg: error.message});
+  }
+});
+
+router.get('/:id', async(req, res, next)=>{
+  try{
+      const {id} = req.params;
+      const allProducts = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+          {
+            model: Qa,
+            attributes: ["title","description", "answer", "resolved"],
+            through: { attributes: [] },
+          },
+          {
+            model: Review,
+            attributes: ["rating", "title", "description"],
+            through: { attributes: [] },
+          },
+        ],
+      });
+      if (id) {
+          const filtered = await allProducts.filter((e) => e.id == id);
+          console.log(filtered)
+          res.json(filtered);
+        }
+  }
+  catch(error){
+      next(error);
   }
 });
 

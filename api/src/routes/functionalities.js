@@ -61,4 +61,40 @@ router.get('/categories/:id', async(req, res, next)=>{
     }
   })
 
+
+  //carrito de compras
+  router.get('/cart', async(req, res, next)=>{
+    try{
+        const {name} = req.query;
+        const allProducts = await Product.findAll({
+          include: [
+            {
+              model: Category,
+              attributes: ["name"],
+              through: { attributes: [] },
+            },
+            {
+              model: Qa,
+              attributes: ["title","description", "answer", "resolved"],
+              through: { attributes: [] },
+            },
+            {
+              model: Review,
+              attributes: ["rating", "title", "description"],
+              through: { attributes: [] },
+            },
+          ],
+        });
+        if (name) {
+            const filtered = await allProducts.filter((e) => e.name == name);
+            console.log(filtered)
+            res.json(filtered);
+          }
+    }
+    catch(error){
+        next(error);
+    }
+  });
+  
+
 module.exports = router;

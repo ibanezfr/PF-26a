@@ -1,11 +1,14 @@
 import React from "react";
-
-export default function productItem(){
+import {Card} from 'react-bootstrap'
+export default function productItem({price, size, name, image}){
     return(
-        <div>
-            <div>
-                <h2>Dejo el componente armado</h2>
-            </div>
-        </div>
+        <Card bg="primary" text="white"> 
+        <Card.Img variant="top" src={image} />  
+           <Card.Body>  
+              <Card.Title>{name}</Card.Title> 
+              <Card.Text>{price}</Card.Text>  
+              <Card.Text>{size}</Card.Text>  
+           </Card.Body>
+        </Card> 
     )
 }

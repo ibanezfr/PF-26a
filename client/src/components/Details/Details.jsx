@@ -9,11 +9,14 @@ export default function Details(){
     const params = useParams();
     const dispatch = useDispatch();
 
+    const [nameProduct, setNameProduct] = useState('');
+
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-    }, [dispatch, params.id]);
+        // dispatch(addToCart(params.name))
+    }, [dispatch, params.id, params.name]);
 
     
     let actualProduct = useSelector(state => state.detail)
@@ -25,6 +28,10 @@ export default function Details(){
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
     console.log("talles: ", size)
+
+    const handleSubmit = (name) =>{
+
+    }
 
     return(
         <div className="container">
@@ -55,7 +62,7 @@ export default function Details(){
                 <h2>{mappedName}</h2>
                 <h2>{mappedPrice}</h2>
                 <p>{mappedDescription}</p>
-                <button>Agregar al carrito</button>
+                <button onClick={e => handleSubmit(e)}>Agregar al carrito</button>
 
             </div>
         </div>

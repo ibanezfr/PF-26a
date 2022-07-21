@@ -14,14 +14,18 @@ export default function SearchBar() {
     function inputChangeHandler(event) {
         event.preventDefault();
         setName(event.target.value);
+        
+        console.log("en el change: ", event.target.value)
        
     }
 
     function submitHandler(event) {
         event.preventDefault();
+        console.log("en el handler: ", name)
         if (!name) {
             alert("Por favor ingrese un nombre")
         } else {
+            console.log("productbyname", getProductsByName(name));
             dispatch(getProductsByName(name));    
             setRedirect(true);
             setName("")
