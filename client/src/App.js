@@ -16,6 +16,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import Cart from './components/Cart/Cart';
 
 function App() {
   const dispatch = useDispatch()
@@ -38,6 +39,9 @@ function App() {
           </Route> */}
           <Route path="/products">
             <Desk />
+          </Route>
+          <Route path="/cart">
+            <Cart />
           </Route>
           <Route path="/login" exact>
             <Login />

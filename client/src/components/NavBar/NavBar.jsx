@@ -12,7 +12,7 @@ function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#"><img src={carrito} alt='not found' width='50px'/></Navbar.Brand>
+        <Navbar.Brand href="#"><Link to='/cart'><img src={carrito} alt='not found' width='50px'/></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
