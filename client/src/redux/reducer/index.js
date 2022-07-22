@@ -23,7 +23,11 @@ const initialState ={
     displayedProducts:[],
     filters:[],
     categories:[],
-    cart:[]
+    cart:[
+        ...(JSON.parse(localStorage.getItem('cart')) === null
+          ? []
+          : JSON.parse(localStorage.getItem('cart'))),
+      ]
 }
 
 function rootReducer(state= initialState, action){
@@ -81,7 +85,7 @@ function rootReducer(state= initialState, action){
             return itemInCart 
                 ? {
                     ...state,
-                    cart:state.cart.map((item) => 
+                    cart: state.cart.map((item) => 
                         item.id === newItem.id 
                             ? {...item, quantity:item.quantity +1} 
                             : item
