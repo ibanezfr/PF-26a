@@ -3,8 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
-// import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
-// import LandingPage from "./components/LandingPage/LandingPage";
 import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
