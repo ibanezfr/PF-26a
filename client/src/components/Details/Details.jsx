@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
 import './Detail.css'
 
 export default function Details(){
@@ -15,7 +15,6 @@ export default function Details(){
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-        // dispatch(addToCart(params.name))
     }, [dispatch, params.id, params.name]);
 
     
@@ -62,7 +61,7 @@ export default function Details(){
                 <h2>{mappedName}</h2>
                 <h2>{mappedPrice}</h2>
                 <p>{mappedDescription}</p>
-                <button onClick={e => handleSubmit(e)}>Agregar al carrito</button>
+                <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
 
             </div>
         </div>
