@@ -3,23 +3,40 @@ import { useSelector, useDispatch } from 'react-redux';
 import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setProductsToDisplay } from "../../redux/actions/index";
+import './HomePage.css'
 
 function Desk() {
     const dispatch = useDispatch()
-    let products = useSelector((state) => state.displayedProducts);
-    let displayedProducts = useSelector(state=>state.products)
+    //let displayedProducts = useSelector((state) => state.displayedProducts);
+    let products = useSelector(state=>state.products)
     let categories = useSelector(state=>state.categories)
     let filters = useSelector(state=>state.filters)
-    console.log('desk', products);
-
-
+    const [displayedProducts, setDisplayedProducts] = useState([])
+    
     if(filters.length){
-        products=products
-        .filter(product=>product.categories
-            .filter(cat=>filters.includes(cat.name)).length>0)
-        
+        if(filters.length > 1) {
+            products=displayedProducts
+            products=products
+            .filter(product=>{
+                let productCategories= product.categories.map(cat=>cat.name)
+                return filters.reduce((prevFilter,nextFilter)=>{
+                    return prevFilter&&productCategories.includes(nextFilter)
+            },true)})
+        }/* el primer filtrado, solo filtra si encuentra la categoria,
+        en el segundo se fija que esten todas las categorias seleccionadas
+        hace un map de los nombres de las categorias de cada producto
+        y luego con el reduce devuelve true si todas las categorias del filtro estan
+        en las categorias del producto, sino devuelve false */
+        else{
+            products=products
+            .filter(product=>product.categories
+                .filter(cat=>filters.includes(cat.name)).length>0)
+        }
+
+
+        console.log('filter length',products)
     }
-    // const [posts, setPosts] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
 
@@ -27,7 +44,7 @@ function Desk() {
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(products.length / postPerPage)
-    console.log('current post',currentPosts)
+
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -37,14 +54,15 @@ function Desk() {
     function onClickFilter(e){
         if(!filters.includes(e.target.id)){
             dispatch(addFilter(e.target.id))
-            dispatch(setProductsToDisplay(displayedProducts))
         }
         setCurrentPage(1)
+        setDisplayedProducts(products)
     }
     
     function onClickFieldset(e){
         dispatch(removeFilter(e.target.id))
         setCurrentPage(1)
+        setDisplayedProducts(products)
     }
 
     return (
