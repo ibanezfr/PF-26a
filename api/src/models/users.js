@@ -4,17 +4,19 @@ module.exports = (sequelize) => {
     "user",
     {
       id: {
-        type: DataTypes.STRING,      
+        type: DataTypes.UUID,
+        allowNull: false,
+        defaultValue: UUIDV4,
         unique: true,
-        primaryKey: true,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
-    
+
       },
       lastname: {
         type: DataTypes.STRING,
-      
+
       },
       email: {
         type: DataTypes.STRING,
@@ -23,7 +25,7 @@ module.exports = (sequelize) => {
       },
       country: {
         type: DataTypes.STRING,
-        defaultValue: ""         
+        defaultValue: ""
       },
       province: {
         type: DataTypes.STRING,
@@ -37,7 +39,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         defaultValue: ""
       },
-       banned: {
+      banned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
@@ -45,10 +47,10 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-     created: {
+      created: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-      },
+      }
     },
 
     { timestamps: false }
