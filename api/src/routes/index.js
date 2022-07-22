@@ -6,6 +6,21 @@ const usersHandlers = require('./users.js')
 
 router.use("/products", products);
 router.use("/categories", categories);
+
+// Users controller ->
+const {
+  register,
+  login,
+  getUser,
+  updateUser,
+} = require("../controllers/user.js");
+router.post("/auth/register", register);
+router.post("/auth/login", login);
+router.get("/auth/:id", getUser);
+router.put("/auth/:id", updateUser);
+
+//
+
 router.use("/function", functionalities);
 router.use("/users", usersHandlers);
 

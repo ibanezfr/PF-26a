@@ -10,35 +10,41 @@ module.exports = (sequelize) => {
         unique: true,
         primaryKey: true
       },
-      name: {
-        type: DataTypes.STRING,
 
-      },
-      lastname: {
+      fullname: {
         type: DataTypes.STRING,
-
       },
+
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
+      image: {
+        type: DataTypes.STRING,
+      },
+
       country: {
         type: DataTypes.STRING,
         defaultValue: ""
       },
       province: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
       city: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
       street: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
+      postalCode: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+
       banned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
