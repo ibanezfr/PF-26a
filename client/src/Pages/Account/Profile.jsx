@@ -42,6 +42,8 @@ const Profile = () => {
   if (loading) {
     return <Loading />;
   }
+  console.log(user);
+
   console.log(userDb);
   return (
     <div>
