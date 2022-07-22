@@ -62,14 +62,15 @@ function Desk() {
                 })]
 
                 break;
-            default://sort by rating
+            default://sort by rating? display favoritos si hay?
                 break;
         }
     }
+
     function onSelectChange(e){
-        //setOrdererProducts(e.target.value)
         dispatch(setOrder(e.target.value))
     }
+
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
 
@@ -81,9 +82,8 @@ function Desk() {
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+
     //filter functions
-
-
     function onClickFilter(e){
         if(!filters.includes(e.target.id)){
             dispatch(addFilter(e.target.id))
@@ -97,13 +97,12 @@ function Desk() {
         setCurrentPage(1)
 
     }
-
-
-    console.log(currentPosts)
+    console.log(howManyPages)
     return (
         <div>
-            <Pagination pages={howManyPages} setCurrentPage={pagination} />
-            <ProductsCards allProducts={currentPosts}  />
+            <Pagination pages={howManyPages} setCurrentPage={pagination} />     
+            <ProductsCards allProducts={currentPosts}/>
+                
             <div className="filter-container">
                 {
                     filters.length?<><fieldset>{filters.map(filter=><div id={filter} onClick={onClickFieldset}>{filter} X</div>)}</fieldset></>:<></>

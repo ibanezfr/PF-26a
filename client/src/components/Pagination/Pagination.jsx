@@ -7,7 +7,7 @@ function Pagination({ pages, setCurrentPage }) {
     for (let i = 1; i <= pages; i++) {
         numberOfPages.push(i);
     }
-
+    //setCurrentPage(1)
     const [currentButton, setCurrentButton] = useState(1);
     const [arrOfCurrentButtons, setArrOfCurrentButtons] = useState([]);
 
@@ -48,8 +48,10 @@ function Pagination({ pages, setCurrentPage }) {
 
         setArrOfCurrentButtons(tempNumberOfPages)
         setCurrentPage(currentButton)
-    }, [currentButton])
-
+        //setCurrentButton(setCurrentPage)
+    }, [currentButton]
+    )
+    
     return (
         <div className="pagination-container">
             <a
