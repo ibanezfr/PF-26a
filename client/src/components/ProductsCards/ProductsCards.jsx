@@ -11,7 +11,7 @@ export default function ProductsCards({ allProducts }) {
       
       <div className="row">
         <div className="cardsContainer col-4">
-          {allProducts?.map((product) => {
+          {allProducts.length?<>{allProducts?.map((product) => {
             return <Products
               id={product.id}
               key={product.id}
@@ -21,7 +21,7 @@ export default function ProductsCards({ allProducts }) {
               description={product.description}
               categories={product.categories.map(c => c.name)}
             />
-          })}
+          })}</>:<><span>NOT FOUND</span></>}
         </div>
       </div>
     </div>

@@ -8,7 +8,8 @@ import {
     ADD_FILTER,
     REMOVE_FILTER,
     SET_PRODUCTS_TO_DISPLAY,
-    ADD_TO_CART
+    ADD_TO_CART,
+    SET_ORDER
 } from "../actions/index";
 
 
@@ -19,7 +20,8 @@ const initialState ={
     size:[],
     displayedProducts:[],
     filters:[],
-    categories:[]
+    categories:[],
+    orderBy:''
 }
 
 function rootReducer(state= initialState, action){
@@ -76,7 +78,11 @@ function rootReducer(state= initialState, action){
                 ...state,
                 cartProduct: action.payload
             }
-
+        case SET_ORDER:
+            return{
+                ...state,
+                orderBy:action.payload
+            }
             
              
     
