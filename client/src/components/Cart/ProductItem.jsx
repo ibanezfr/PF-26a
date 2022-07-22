@@ -1,18 +1,5 @@
 import React from "react";
-import {Card} from 'react-bootstrap'
-<<<<<<< HEAD
-
-export default function ProductItem({price, name, id, amount}){
-    return(
-        <Card bg="primary" text="white"> 
-        {/* <Card.Img variant="top" src={image} />   */}
-           <Card.Body>  
-              <Card.Title>{name}</Card.Title> 
-              <Card.Text>{price}</Card.Text>  
-              {/* <Card.Text>{size}</Card.Text>   */}
-           </Card.Body>
-        </Card> 
-=======
+// import {Card} from 'react-bootstrap'
 export default function ProductItem({data, addToCart, deleteOneFromCart, deleteAllFromCart}){
     let { id, name, price, image, quantity } = data;
     return(
@@ -32,6 +19,5 @@ export default function ProductItem({data, addToCart, deleteOneFromCart, deleteA
             <button onClick={()=> deleteOneFromCart(id)}>Restar uno</button>
             <button onClick={()=> deleteAllFromCart(id, true)}>Eliminar todos</button>
         </div>
->>>>>>> ba4b144036daf738019fe672b17dc7c9b3835839
     )
 }

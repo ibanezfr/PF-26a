@@ -30,7 +30,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Product, Category, Qa ,User,Review, Cart, Data } = sequelize.models;
+const { Product, Category, Qa ,User,Review } = sequelize.models;
 
 Category.belongsToMany(Product, { through: 'product-categories' }); 
 Product.belongsToMany(Category, { through: 'product-categories' }); 
@@ -42,17 +42,11 @@ Qa.belongsToMany(Product, { through: 'product-QA' });
 Product.belongsToMany(User, { through: 'favorite-product' }); 
 User.belongsToMany(Product, { through: 'favorite-product' });
 
-// Product.belongsToMany(Cart, { through: 'cart-product' }); 
-// Cart.belongsToMany(Product, { through: 'cart-product' });
-
 User.belongsToMany(Qa, { through: 'user-qa' });
 Qa.belongsToMany(User, { through: 'user-qa' });
 
 Product.belongsToMany(Review, { through: 'product-reviews' }); 
 Review.belongsTo(Product);
-
-Cart.belongsToMany(Data, { through: 'cartData' }); 
-Data.belongsToMany(Cart, { through: 'cartData' }); 
 
 User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);

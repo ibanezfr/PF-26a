@@ -2,12 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-<<<<<<< HEAD
-import { bringCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
-=======
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
->>>>>>> ba4b144036daf738019fe672b17dc7c9b3835839
 import './Detail.css'
+// import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 export default function Details(){
     
@@ -20,11 +19,6 @@ export default function Details(){
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-<<<<<<< HEAD
-        dispatch(bringCart(params.id))
-        // dispatch(addToCart(params.name))
-=======
->>>>>>> ba4b144036daf738019fe672b17dc7c9b3835839
     }, [dispatch, params.id, params.name]);
 
     
@@ -38,11 +32,17 @@ export default function Details(){
     let image = mappedImage[0]
     // console.log("talles: ", size)
 
-    const handleSubmit = async(e) =>{
-        e.preventDefault()
-        await axios.post("http://localhost:3001/products/cart/" + id);
-    }
+    //button de favoritos
+    const [checked, setChecked] = useState(false);
+    const [radioValue, setRadioValue] = useState('1');
+  
+    const radios = [
+      { name: 'Active', value: '1' },
+      { name: 'Radio', value: '2' },
+      { name: 'Radio', value: '3' },
+    ];
 
+    
     return(
         <div className="container">
 
@@ -74,6 +74,17 @@ export default function Details(){
                 <p>{mappedDescription}</p>
                 <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
 
+                <ToggleButton
+                className="mb-2"
+                id="toggle-check"
+                type="checkbox"
+                variant="outline-primary"
+                checked={checked}
+                value="1"
+                onChange={(e) => setChecked(e.currentTarget.checked)}
+                >
+                Favoritos
+                </ToggleButton>
             </div>
         </div>
     )
