@@ -12,11 +12,14 @@ import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // import { AuthProvider } from "./context/AuthContext";
 import Details from "./components/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+
 import Profile from "./Pages/Account/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from "./components/Cart/Cart";
+import Login from "./Pages/Auth/Login/Login";
+import Register from "./Pages/Auth/Register/Register";
+import Footer from "./components/Footer/Footer";
+import ProfileForm from "./components/ProfileForm/ProfileForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,13 +41,16 @@ function App() {
           <Route path="/search">
             <SearchProducts />
           </Route>
-          <Route path="/profile" exact>
-            <ProtectedRoutes>
+          <ProtectedRoutes>
+            <Route path="/profile" exact>
               <Profile />
-            </ProtectedRoutes>
-          </Route>
+            </Route>
+            <Route path="/profile/form" component={ProfileForm} />
+          </ProtectedRoutes>
+
           <Route path="/details/:id" component={Details} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

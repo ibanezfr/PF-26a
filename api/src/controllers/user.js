@@ -1,7 +1,7 @@
 const { User } = require("../db");
 
 const register = async (req, res, next) => {
-  const { id, fullName, email, image } = req.body;
+  const { id, fullName, email } = req.body;
   try {
     const userExist = await User.findOne({ where: { email: email } });
     if (!userExist) {
@@ -9,7 +9,6 @@ const register = async (req, res, next) => {
         id: id,
         email: email,
         fullName: fullName,
-        image: image,
       });
     }
     return res.status(200).send({ msg: "Signed in Successfully" });
@@ -19,7 +18,7 @@ const register = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  const { fullName, email, id, image } = req.body;
+  const { fullName, email, id } = req.body;
 
   try {
     const userExist = await User.findOrCreate({
@@ -28,7 +27,6 @@ const login = async (req, res, next) => {
         email: email,
         fullName: fullName,
         id: id,
-        image: image,
       },
     });
     console.log(userExist);
@@ -57,15 +55,31 @@ const getUser = async (req, res, next) => {
   }
 };
 
-const updateUser = async () => {
+const updateUser = async (req, res, next) => {
   const { id } = req.params;
-  const { fullName, email, image } = req.body;
+  const {
+    fullName,
+    email,
+    image,
+    address,
+    country,
+    province,
+    city,
+    street,
+    postalCode,
+  } = req.body;
   try {
     const updated = await User.update(
       {
         fullName: fullName,
         email: email,
-        image: email,
+        image: image,
+        address: address,
+        country: country,
+        province: province,
+        city: city,
+        street: street,
+        postalCode: postalCode,
       },
       { where: { id: id } }
     );

@@ -86,7 +86,7 @@ function rootReducer(state = initialState, action) {
       );
 
     case "LOGOUT":
-      localStorage.removeItem("usuario");
+      localStorage.clear();
       return { ...state };
 
     case "SESSION":

@@ -20,6 +20,27 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
 
+      country: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+      province: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+      city: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+      street: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+      postalCode: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+
       banned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
