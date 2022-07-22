@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/", async(req, res) => {
     try {
-        const cat = await Category.findAll();  
+        const cat = await Category.findAll(); //{atribute:['name']} y map para quedarme con los names--AGUS
         return res.status(200).send(cat);      
     } catch (error) {
         return res.status(400).send({msg: error.message});      

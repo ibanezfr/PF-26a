@@ -12,50 +12,101 @@ export const REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
+const URL_FOR_FETCH_CATEGORIES='http://localhost:3001/categories'
+export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
+export const ADD_FILTER='ADD_FILTER';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
+
 
 //carrito de compras FUNCIONES
-const addToCart = (name)=>{
-  return async (dispatch) =>{
-    let productName = await axios.get(`http://localhost:3001/function?name=${name}`);
-    dispatch({
-        type: ADD_TO_CART,
-        payload: productName.data
-    })
-}
-}
+export function addToCart(id) {
+  return {
+      type: ADD_TO_CART,
+      payload: id
+    };
+};
+
+export function clearCart() {
+    return {
+        type: CLEAR_CART
+    };
+};
+
+export function deleteFromCart(id, all = false) {
+    if (all) {
+        return {
+            type: REMOVE_ALL_FROM_CART,
+            payload: id
+        };
+    } else {
+        return {
+            type: REMOVE_ONE_FROM_CART,
+            payload: id
+        };
+    };
+};
 
 export function fetchProducts() {
-  return function (dispatch) {
-    axios
-      .get(URL_FOR_FETCH_PRODUCTS)
-      .then((product) => {
-        // console.log(product)
-        dispatch({
-          type: FETCH_PRODUCTS,
-          payload: product.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
+    return function (dispatch) {
+        axios.get(URL_FOR_FETCH_PRODUCTS)
+            .then((product) => {
+                dispatch({
+                    type: FETCH_PRODUCTS,
+                    payload: product.data
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 }
 
+export function fetchCategories(){
+    return function(dispatch){
+        axios.get(URL_FOR_FETCH_CATEGORIES)
+        .then((categories)=>{
+            let formattedCategories = categories.data.map(cat=>cat.name)
+            dispatch({
+                type: FETCH_CATEGORIES,
+                payload: formattedCategories
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}
 
-  export const getProductsByName = (name) => {
-    return async (dispatch) => {
-      try {
-        const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
-      
-        return dispatch({
-          type: FETCH_BY_NAME,
-          payload: productsByName.data,
-        });
-      } catch (error) {
-        console.log(error, '||Error||');
-      }
-    };
-  };
+export function addFilter(filter){
+
+    return function(dispatch){
+        dispatch({
+            type:ADD_FILTER,
+            payload:filter
+        })
+    }
+}
+
+export function removeFilter(filter){
+    return function (dispatch){
+        dispatch({
+            type:REMOVE_FILTER,
+            payload:filter
+        })
+    }
+}
+
+export function setProductsToDisplay(products){
+    return function(dispatch){
+        dispatch({
+            type:SET_PRODUCTS_TO_DISPLAY,
+            payload: products
+        })
+    }
+}
+
 export const getProductsById = (id)=>{
     return async (dispatch) =>{
         let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
@@ -70,15 +121,9 @@ export function cleanProduct(){
     return{
         type: CLEAN_PRODUCT
     }
-  }
+}
 
-  export function addProductToCart(){
-    return{
-        type: ADD_TO_CART
-    }
-  }
-
-  export function bringSize(id){
+export function bringSize(id){
     return async (dispatch) =>{
       let size = await axios.get("http://localhost:3001/products/size/" + id);
       // console.log("en la action: ", size.data)
@@ -86,33 +131,20 @@ export function cleanProduct(){
           type: GET_SIZE,
           payload: size.data
       })
-  }
-  }
+    }
+}
 
-  // export function bringCart(id){
-  //   return async (dispatch) =>{
-  //     let cart = await axios.get("http://localhost:3001/products/cart/" + id);
-  //     console.log("en la action: ", cart.data)
-  //     dispatch({
-  //         type: ADD_TO_CART,
-  //         payload: cart.data
-  //     })
-  // }
-  // }
+export const getProductsByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const productsByName = await axios.get(`http://localhost:3001/products/search?name=${name}`);
 
-// export const getProductsByName = (name) => {
-//   return async (dispatch) => {
-//     try {
-//       const productsByName = await axios.get(
-//         `http://localhost:3001/products/search?name=${name}`
-//       );
-//       console.log("HOLA", productsByName.data);
-//       return dispatch({
-//         type: FETCH_BY_NAME,
-//         payload: productsByName.data,
-//       });
-//     } catch (error) {
-//       return alert(error);
-//     }
-//   };
-// };
+      return dispatch({
+        type: FETCH_BY_NAME,
+        payload: productsByName.data,
+      });
+    } catch (error) {
+      console.log(error, '||Error||');
+    }
+  };
+};

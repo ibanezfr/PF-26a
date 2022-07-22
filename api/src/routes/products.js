@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get('/size/:id', async(req, res, next)=>{
   try{
       const {id} = req.params;
@@ -72,9 +71,8 @@ router.get('/size/:id', async(req, res, next)=>{
   }
 });
 
-
 router.get("/search", async (req, res) => {
-  const name = req.query.name;
+  const { name } = req.query;
   try {
     const searchProducts = await Product.findAll({
       include: [
@@ -101,13 +99,8 @@ router.get("/search", async (req, res) => {
         },
       },
     });
-    console.log("producto: ", searchProducts)
-    if (!searchProducts) {
-      throw new Error({message: "Producto no encontrado"});
-      // return res.status(400).send({message: "Producto no encontrado"});
-    } else {
-      res.status(200).send(searchProducts);
-    }
+   
+    res.status(200).send(searchProducts);
   } catch (err) {
      res.status(400).send({ msg: err.message });
   }
@@ -171,7 +164,6 @@ router.get('/:id', async(req, res, next)=>{
       });
       if (id) {
           const filtered = await allProducts.filter((e) => e.id == id);
-          console.log(filtered)
           res.json(filtered);
         }
   }

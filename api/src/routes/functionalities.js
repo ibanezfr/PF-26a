@@ -34,7 +34,7 @@ router.get('/categories/:id', async(req, res, next)=>{
             const maped = filtered.map(f=>f.categories)
             const maped2 = maped[0].map(m=>m.name)
 
-            console.log("categorias: ", maped2)
+            // console.log("categorias: ", maped2)
           
             res.json(maped2);
           }

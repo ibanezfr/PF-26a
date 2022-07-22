@@ -2,7 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+<<<<<<< HEAD
 import { bringCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+=======
+import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+>>>>>>> ba4b144036daf738019fe672b17dc7c9b3835839
 import './Detail.css'
 
 export default function Details(){
@@ -16,8 +20,11 @@ export default function Details(){
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
+<<<<<<< HEAD
         dispatch(bringCart(params.id))
         // dispatch(addToCart(params.name))
+=======
+>>>>>>> ba4b144036daf738019fe672b17dc7c9b3835839
     }, [dispatch, params.id, params.name]);
 
     
@@ -29,7 +36,7 @@ export default function Details(){
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    console.log("talles: ", size)
+    // console.log("talles: ", size)
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -65,7 +72,7 @@ export default function Details(){
                 <h2>{mappedName}</h2>
                 <h2>{mappedPrice}</h2>
                 <p>{mappedDescription}</p>
-                <button onClick={e => handleSubmit(e)}>Agregar al carrito</button>
+                <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
 
             </div>
         </div>

@@ -10,5 +10,4 @@ router.use("/categories", categories);
 router.use("/function", functionalities);
 router.use("/cart", cart);
 
-
 module.exports = router;
