@@ -1,0 +1,79 @@
+.fatherContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    justify-content: space-around;
+    width: 500px;
+}
+
+.itemImage{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10%;
+    margin: 2%;
+    display: flex;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    margin-right: 3%;
+}
+
+.deleteAllButton{
+    margin: 3%;
+    color: #794983 ;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color: #794983;
+    transition: all 1s ease;
+    border-radius: 100%;
+    font-size: 0.8rem;
+}
+
+.deleteAllButton:hover{
+    background: #9C9AC0;
+    color: #fff ;
+}
+
+.textContainer h4{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    margin-top: 5%;
+}
+
+.actionBtn {
+    margin: 3%;
+    color: #794983 ;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color: #794983;
+    transition: all 1s ease;
+    font-size: 0.8rem;
+    border-radius: 10%;
+}
+
+.actionBtn:hover{
+    background: #9C9AC0;
+    color: #fff ;
+}
+
+.textContainer h5{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    margin: 1%;
+    text-align: left;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 260px;
+    color: #794983;
+}
+

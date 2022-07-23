@@ -148,3 +148,4 @@ export const getProductsByName = (name) => {
     }
   };
 };
+

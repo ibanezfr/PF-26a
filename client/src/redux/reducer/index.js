@@ -87,6 +87,7 @@ function rootReducer(state= initialState, action){
                     ...state,
                     cart: state.cart.map((item) => 
                         item.id === newItem.id 
+                        // && item.stock > newItem.quantity 
                             ? {...item, quantity:item.quantity +1} 
                             : item
                     )

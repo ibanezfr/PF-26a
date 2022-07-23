@@ -46,21 +46,24 @@ router.get('/categories/:id', async(req, res, next)=>{
 
   //Ruta de put para modificar el stock al sumar/eliminar/comprar productos desde el carrito de compras
 
-  router.put("/stock/:id", async(req, res, next)=>{
+  router.put("/stock/:id/:stock", async(req, res, next)=>{
     const { id } = req.params;
-    const { stock } = req.body;
+    const { stock } = req.params;
+    console.log("stock en el back" , stock)
+
+    // const { stock } = req.body;
+    // console.log("stock: ", stock)
 
     try {
         const newProduct = await Product.update({
-          stock
+          stock : stock
         }, {where: {id:id}});
 
-        return res.status(200).send({msg: "Producto actualizado"});
+        return res.status(200).send({msj: "el stock se cambió correctamente"});
     } catch (error) {
       return res.status(400).send({msg: error.message});    
     }
   })
-
 
   //carrito de compras
   router.get('/cart', async(req, res, next)=>{
