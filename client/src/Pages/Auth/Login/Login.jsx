@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { Card, Button, Form, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,9 +15,18 @@ const Login = () => {
     email: "",
     password: "",
   });
-
   const [error, setError] = useState("");
   const history = useHistory();
+
+  const handleRedirect = async () => {
+    const check = await JSON.parse(localStorage.getItem("usuario"));
+    if (check) {
+      history.push("/profile");
+    }
+  };
+  useEffect(() => {
+    handleRedirect();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +46,8 @@ const Login = () => {
     } catch (error) {
       if (
         error.code === "auth/invalid-email" ||
-        error.code === "auth/weak-password"
+        error.code === "auth/weak-password" ||
+        error.code === "auth/user-not-found"
       ) {
         setError("Invalid credentials");
       } else setError(error.message);
@@ -52,7 +62,7 @@ const Login = () => {
           id: credentials.user.uid,
           fullName: credentials.user.displayName,
           email: credentials.user.email,
-          // image: credentials.user.photoURL,
+          image: credentials.user.photoURL,
         })
       );
 
@@ -63,7 +73,7 @@ const Login = () => {
   };
   const handleResetPass = async (e) => {
     e.preventDefault();
-    if (!user.email) return setError("Write an email to reset password");
+    if (!user.email) return setError("Write an email to reset your Password");
     try {
       await resetPass(user.email);
       alert("We sent you an email. Check your inbox");
@@ -75,8 +85,9 @@ const Login = () => {
   return (
     <section id="login-window">
       <h1>LOGIN</h1>
-
-      {error && <span className="error"> {error} </span>}
+      <p className="error" id="username-error">
+        {error && <span className="error"> {error} </span>}
+      </p>
       <form onSubmit={handleSubmit}>
         <input
           className="form-input"
@@ -85,11 +96,6 @@ const Login = () => {
           name="email"
           onChange={(e) => setUser({ ...user, email: e.target.value })}
         />
-        {/* <p className="error" id="username-error">
-          {" "}
-          * Username is required !{" "}
-        </p> */}
-
         <input
           className="form-input"
           type="password"
@@ -104,18 +110,20 @@ const Login = () => {
         </button>
       </form>
 
-      <p>or login with</p>
       <div className="social">
-        {/* <button>
-          <i className="fa fa-facebook-square"></i> Facebook
-        </button> */}
         <button onClick={handleGoogle}>
-          <i className="fa fa-google"></i> Google
+          <i className="fa fa-google">
+            <FcGoogle />
+          </i>{" "}
+          Google
         </button>
       </div>
 
       <p className="form-footer">
-        {" "}
+        <a href="#!" onClick={handleResetPass}>
+          Forgot Password?
+        </a>
+        <br />
         Not a member ? <Link to="/register"> Sign Up</Link>
       </p>
     </section>
