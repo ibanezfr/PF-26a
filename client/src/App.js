@@ -48,6 +48,10 @@ function App() {
             </ProtectedRoutes>
           </Route>
           <Route path='/details/:id' component={Details}/>
+          <Route path="/buys" exact>
+          
+     
+        </Route>
         </Switch>
     </BrowserRouter>
   </div>
