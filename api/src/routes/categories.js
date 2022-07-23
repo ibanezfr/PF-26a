@@ -1,4 +1,4 @@
-const { Category } = require("../db");
+const { Category, Product, Qa, Review } = require("../db");
 const { Router } = require("express");
 const { Op } = require("sequelize");
 
