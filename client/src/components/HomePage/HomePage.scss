@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+
+.totalHomeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.homeContainer{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+
+
+    h2{
+        font-family: $font;
+        font-size: 1rem;
+        margin-top: 4%;
+        color: $primaryColor;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+
+    .activeFilterContainer{
+        color: $primaryColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        img{
+            width: 15px;
+            height: 15px;
+
+        }
+    }
+
+    .filter-container{
+        background-color: $lightestColor;
+        box-shadow: 0 2px 4px $primaryColor;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        ul{
+            list-style: none;
+            text-align: right;
+            padding-right: 8%;
+    
+            li{
+                list-style: none;
+                cursor: pointer;
+                color: $secondaryColor;
+
+                
+            }
+        }
+    }
+}
