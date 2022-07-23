@@ -5,6 +5,9 @@ import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux
 import './Detail.scss'
 import { formatNumber } from "../../Utils";
 import heart from '../../images/heart.png'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 export default function Details(){
     const params = useParams();
     const dispatch = useDispatch();
@@ -29,8 +32,8 @@ export default function Details(){
 
     
     return(
-        <div className="container">
-
+        <div className="father">
+          <div className="container">
             <div className="container1">
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
@@ -63,6 +66,18 @@ export default function Details(){
                 <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>
                 </div>
             </div>
+          </div>
+          <div className="formDiv">
+          <Form className="form">
+            <Form.Group className="mb-3 formGroup" controlId="Question">
+              <Form.Label className="text">Pregunta</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+              <Button className="btn" size="sm">
+                Hacer pregunta
+              </Button>
+            </Form.Group>
+          </Form>
+          </div>
         </div>
     )
 }
