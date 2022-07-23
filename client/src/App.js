@@ -3,13 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
-// import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
-// import LandingPage from "./components/LandingPage/LandingPage";
 import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
-// Auth
-
-// import { AuthProvider } from "./context/AuthContext";
 import Details from "./components/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
 
@@ -20,6 +15,7 @@ import Login from "./Pages/Auth/Login/Login";
 import Register from "./Pages/Auth/Register/Register";
 import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
+import Carrousel from './components/Carousel/Carrousel';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,30 +25,34 @@ function App() {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/search">
-            <SearchProducts />
-          </Route>
-          <ProtectedRoutes>
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
-            <Route path="/profile/form" component={ProfileForm} />
-          </ProtectedRoutes>
 
-          <Route path="/details/:id" component={Details} />
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </div>
+
+  return (<div className="App">
+    <BrowserRouter>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Carrousel />
+          <HomePage />
+        </Route>
+        <Route path="/cart" component={Cart} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/search">
+          <SearchProducts />
+        </Route>
+        <Route path="/details/:id" component={Details} />
+        <ProtectedRoutes>
+          <Route path="/profile" exact>
+            <Profile />
+          </Route>
+          <Route path="/profile/form" component={ProfileForm} />
+        </ProtectedRoutes>
+
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  </div>
   );
 }
 

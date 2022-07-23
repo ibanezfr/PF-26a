@@ -17,18 +17,35 @@ export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
 export const ADD_FILTER='ADD_FILTER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
-
+export const SET_ORDER= 'SET_ORDER'
 
 //carrito de compras FUNCIONES
-export default function addToCart(name) {
-  return async (dispatch) => {
-    let productName = await axios.get(`http://localhost:3001/function?name=${name}`);
-    dispatch({
+export function addToCart(id) {
+  return {
       type: ADD_TO_CART,
-      payload: productName.data
-    })
-  }
-}
+      payload: id
+    };
+};
+
+export function clearCart() {
+    return {
+        type: CLEAR_CART
+    };
+};
+
+export function deleteFromCart(id, all = false) {
+    if (all) {
+        return {
+            type: REMOVE_ALL_FROM_CART,
+            payload: id
+        };
+    } else {
+        return {
+            type: REMOVE_ONE_FROM_CART,
+            payload: id
+        };
+    };
+};
 
 export function fetchProducts() {
 
@@ -45,6 +62,7 @@ export function fetchProducts() {
             })
     }
 }
+
 export function fetchCategories(){
     return function(dispatch){
         axios.get(URL_FOR_FETCH_CATEGORIES)
@@ -60,6 +78,7 @@ export function fetchCategories(){
         })
     }
 }
+
 export function addFilter(filter){
 
     return function(dispatch){
@@ -102,9 +121,9 @@ export function cleanProduct(){
     return{
         type: CLEAN_PRODUCT
     }
-  }
+}
 
-  export function bringSize(id){
+export function bringSize(id){
     return async (dispatch) =>{
       let size = await axios.get("http://localhost:3001/products/size/" + id);
       // console.log("en la action: ", size.data)
@@ -112,8 +131,8 @@ export function cleanProduct(){
           type: GET_SIZE,
           payload: size.data
       })
-  }
-  }
+    }
+}
 
 export const getProductsByName = (name) => {
   return async (dispatch) => {
@@ -181,3 +200,13 @@ export const loginCheck = (dispatch) => {
     });
   }
 };
+
+export function setOrder(order){
+    return function (dispatch){
+        dispatch({
+            type:SET_ORDER,
+            payload:order
+        })
+        
+    }
+}

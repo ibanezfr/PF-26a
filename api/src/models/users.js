@@ -5,12 +5,14 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.STRING,
-        primaryKey: true,
+        allowNull: false,
+        primaryKey: true
       },
 
-      fullName: {
+      fullname: {
         type: DataTypes.STRING,
       },
+
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -22,7 +24,7 @@ module.exports = (sequelize) => {
 
       country: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: ""
       },
       province: {
         type: DataTypes.STRING,
@@ -52,7 +54,7 @@ module.exports = (sequelize) => {
       created: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-      },
+      }
     },
 
     { timestamps: false }

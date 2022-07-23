@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { bringSize, cleanProduct, getProductsById } from "../../redux/actions";
-import './Detail.css'
+import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import './Detail.scss'
+import { formatNumber } from "../../Utils";
+import heart from '../../images/heart.png'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function Details(){
-    
     const params = useParams();
     const dispatch = useDispatch();
-
-    const [nameProduct, setNameProduct] = useState('');
 
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-        // dispatch(addToCart(params.name))
     }, [dispatch, params.id, params.name]);
 
     
@@ -24,18 +24,16 @@ export default function Details(){
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
+    let mappedStock = actualProduct.map(p=>p.stock)
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    // console.log("talles: ", size)
+    // console.log("Stock: ", mappedStock)
 
-    const handleSubmit = (name) =>{
-
-    }
-
+    
     return(
-        <div className="container">
-
+        <div className="father">
+          <div className="container">
             <div className="container1">
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
@@ -60,11 +58,26 @@ export default function Details(){
             <div className="container2">
 
                 <h2>{mappedName}</h2>
-                <h2>{mappedPrice}</h2>
+                <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
-                <button onClick={e => handleSubmit(e)}>Agregar al carrito</button>
-
+                <span>Stock disponible: {mappedStock}</span>
+                <div className="btnContainer">
+                <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
+                <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>
+                </div>
             </div>
+          </div>
+          <div className="formDiv">
+          <Form className="form">
+            <Form.Group className="mb-3 formGroup" controlId="Question">
+              <Form.Label className="text">Pregunta</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+              <Button className="btn" size="sm">
+                Hacer pregunta
+              </Button>
+            </Form.Group>
+          </Form>
+          </div>
         </div>
     )
 }
