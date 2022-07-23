@@ -103,7 +103,7 @@ function Desk() {
 
     console.log(currentPosts)
     return (
-        <div>
+        <div className='totalHomeContainer'>
             <Pagination pages={howManyPages} setCurrentPage={pagination} />
             <ProductsCards allProducts={currentPosts} />
             <div className="filter-container">
