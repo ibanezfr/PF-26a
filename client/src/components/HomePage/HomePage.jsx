@@ -95,12 +95,11 @@ function Desk() {
     function onClickFieldset(e){
         dispatch(removeFilter(e.target.id))
         setCurrentPage(1)
-
     }
-    console.log(howManyPages)
     return (
         <div>
-            <Pagination pages={howManyPages} setCurrentPage={pagination} />     
+            
+            <Pagination pages={howManyPages} setCurrentPage={pagination} currentPage={currentPage}/>     
             <ProductsCards allProducts={currentPosts}/>
                 
             <div className="filter-container">

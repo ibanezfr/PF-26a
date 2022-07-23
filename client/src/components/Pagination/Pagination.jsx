@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Pagination.scss'
 
-function Pagination({ pages, setCurrentPage }) {
-
+function Pagination({ pages, setCurrentPage , currentPage}) {
+    //pasar las props desde el padre directamente
+    console.log('de pagination', pages, currentPage)
     const numberOfPages = [];
     for (let i = 1; i <= pages; i++) {
         numberOfPages.push(i);
@@ -12,6 +13,8 @@ function Pagination({ pages, setCurrentPage }) {
     const [arrOfCurrentButtons, setArrOfCurrentButtons] = useState([]);
 
     useEffect(() => {
+        //setCurrentPage(1)
+        console.log('use effect')
         let tempNumberOfPages = [...arrOfCurrentButtons]
         const dotsInitial = '...'
         const dotsLeft = '...'
@@ -48,8 +51,9 @@ function Pagination({ pages, setCurrentPage }) {
 
         setArrOfCurrentButtons(tempNumberOfPages)
         setCurrentPage(currentButton)
-        //setCurrentButton(setCurrentPage)
+        //setCurrentButton(currentPage)
     }, [currentButton]
+    //[currentPage]
     )
     
     return (
@@ -62,6 +66,7 @@ function Pagination({ pages, setCurrentPage }) {
             </a>
 
             {arrOfCurrentButtons.map((item, index) => {
+                console.log('boton',currentButton, item)
                 return (
                     <a
                         key={index}
