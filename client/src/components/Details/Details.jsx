@@ -7,6 +7,7 @@ import './Detail.css'
 // import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import { formatNumber } from "../../Utils";
 
 export default function Details(){
     
@@ -31,7 +32,7 @@ export default function Details(){
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    console.log("Stock: ", mappedStock)
+    // console.log("Stock: ", mappedStock)
 
     //button de favoritos
     const [checked, setChecked] = useState(false);
@@ -71,9 +72,9 @@ export default function Details(){
             <div className="container2">
 
                 <h2>{mappedName}</h2>
-                <h2>{mappedPrice}</h2>
+                <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
-                <spam>Stock disponible: {mappedStock}</spam>
+                <span>Stock disponible: {mappedStock}</span>
                 <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
 
                 <ToggleButton

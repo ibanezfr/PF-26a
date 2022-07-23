@@ -10,7 +10,7 @@ function Desk() {
     let displayedProducts = useSelector(state=>state.products)
     let categories = useSelector(state=>state.categories)
     let filters = useSelector(state=>state.filters)
-    console.log('desk', products);
+    // console.log('desk', products);
 
 
     if(filters.length){
@@ -27,7 +27,7 @@ function Desk() {
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(products.length / postPerPage)
-    console.log('current post',currentPosts)
+    // console.log('current post',currentPosts)
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
