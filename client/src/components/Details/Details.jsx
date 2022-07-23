@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
 import './Detail.css'
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import { formatNumber } from "../../Utils";
 
 export default function Details(){
-    
     const params = useParams();
     const dispatch = useDispatch();
-
-    const [nameProduct, setNameProduct] = useState('');
 
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-        // dispatch(addToCart(params.name))
     }, [dispatch, params.id, params.name]);
 
     
@@ -24,15 +22,15 @@ export default function Details(){
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
+    let mappedStock = actualProduct.map(p=>p.stock)
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    // console.log("talles: ", size)
+    // console.log("Stock: ", mappedStock)
 
-    const handleSubmit = (name) =>{
-
-    }
-
+    //button de favoritos
+    const [checked, setChecked] = useState(false);
+    
     return(
         <div className="container">
 
@@ -60,10 +58,22 @@ export default function Details(){
             <div className="container2">
 
                 <h2>{mappedName}</h2>
-                <h2>{mappedPrice}</h2>
+                <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
-                <button onClick={e => handleSubmit(e)}>Agregar al carrito</button>
+                <span>Stock disponible: {mappedStock}</span>
+                <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
 
+                <ToggleButton
+                className="mb-2"
+                id="toggle-check"
+                type="checkbox"
+                variant="outline-primary"
+                checked={checked}
+                value="1"
+                onChange={(e) => setChecked(e.currentTarget.checked)}
+                >
+                Favoritos
+                </ToggleButton>
             </div>
         </div>
     )

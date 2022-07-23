@@ -5,12 +5,17 @@ function Pagination({ pages, setCurrentPage , currentPage}) {
     //pasar las props desde el padre directamente
     console.log('de pagination', pages, currentPage)
     const numberOfPages = [];
-    for (let i = 1; i <= pages; i++) {
+    for (let i = 1; i <= pages ; i++) {
         numberOfPages.push(i);
     }
     //setCurrentPage(1)
     const [currentButton, setCurrentButton] = useState(1);
     const [arrOfCurrentButtons, setArrOfCurrentButtons] = useState([]);
+
+    // const numberOfPages = useMemo(() => [], []);
+    // for (let i = 1; i <= pages; i++) {
+    //     numberOfPages.push(i);
+    // }
 
     useEffect(() => {
         //setCurrentPage(1)
@@ -51,41 +56,39 @@ function Pagination({ pages, setCurrentPage , currentPage}) {
 
         setArrOfCurrentButtons(tempNumberOfPages)
         setCurrentPage(currentButton)
-        //setCurrentButton(currentPage)
-    }, [currentButton]
-    //[currentPage]
-    )
-    
+
+    }, [arrOfCurrentButtons, setCurrentButton, currentButton, setCurrentPage])
+
     return (
         <div className="pagination-container">
-            <a
+            <button
                 className={`${currentButton === 1 ? 'disabled' : ''}`}
                 onClick={() => setCurrentButton(prev => prev <= 1 ? prev : prev - 1)}
             >
                 Prev
-            </a>
+            </button>
 
             {arrOfCurrentButtons.map((item, index) => {
                 console.log('boton',currentButton, item)
                 return (
-                    <a
+                    <button
                         key={index}
                         className={`${currentButton === item ? 'active' : ''}`}
                         onClick={() => setCurrentButton(item)}
 
                     >
                         {item}
-                    </a>
+                    </button>
 
                 )
             })}
 
-            <a
+            <button
                 className={`${currentButton === numberOfPages.length ? 'disabled' : ''}`}
                 onClick={() => setCurrentButton(prev => prev >= numberOfPages.length ? prev : prev + 1)}
             >
                 Next
-            </a>
+            </button>
         </div>
     )
 }
