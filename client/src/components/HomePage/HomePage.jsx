@@ -11,7 +11,6 @@ function Desk() {
     let categories = useSelector(state => state.categories)
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
-    console.log("Soy orderBy", orderedBy)
 
     if (filters.length) {
         products = products
@@ -73,7 +72,7 @@ function Desk() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
-
+    // console.log(`Soy currentPage desde HomePage: ${currentPage}`)
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
@@ -98,7 +97,6 @@ function Desk() {
     }
 
 
-    console.log(products)
     return (
         <div>
             <Pagination pages={howManyPages} setCurrentPage={pagination} />
