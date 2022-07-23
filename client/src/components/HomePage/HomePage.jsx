@@ -102,7 +102,9 @@ function Desk() {
     console.log(products)
     return (
         <div className='totalHomeContainer'>
-            <Pagination pages={howManyPages} setCurrentPage={pagination} />
+            <div className='paginationContainer'>
+                <Pagination pages={howManyPages} setCurrentPage={pagination} />
+            </div>
             <div className='homeContainer'>
                <ProductsCards allProducts={currentPosts} />
                <div className="filter-container">
@@ -116,11 +118,11 @@ function Desk() {
                         )
                     })}</ul>
                     <select name='order-by' onChange={onSelectChange}>
-                       <option>Order By...</option>
-                       <option value='Name-Asc'>Name-Asc</option>
-                       <option value='Name-Des'>Name-Des</option>
-                       <option value='Price-Asc'>Price-Asc</option>
-                       <option value='Price-Des'>Price-Des</option>
+                       <option>Ordenar por...</option>
+                       <option value='Name-Asc'>Letras: A-Z</option>
+                       <option value='Name-Des'>Letras: Z-A</option>
+                       <option value='Price-Asc'>Más baratos</option>
+                       <option value='Price-Des'>Más caros</option>
                     </select>
                 </div>
             </div>

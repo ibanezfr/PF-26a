@@ -15,9 +15,13 @@ $lightestColor: #F2F2F2;
     align-content: center;
 }
 
+.paginationContainer{
+    margin: 2%;
+}
+
 .homeContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     margin-right: 20px;
 
 
@@ -50,9 +54,20 @@ $lightestColor: #F2F2F2;
         display: flex;
         flex-direction: column;
         justify-content: right;
+        
+        select{
+            border: 1px solid $secondaryColor;
+            background-color: $secondaryColor;
+            color: $lightestColor;
+            width: 150px;
+            display: flex;
+
+
+        }
+
         ul{
             list-style: none;
-            text-align: right;
+            text-align: left;
             padding-right: 8%;
     
             li{

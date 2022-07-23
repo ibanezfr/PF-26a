@@ -1,17 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
 .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  font-family: $font;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1rem;
+  color: $primaryColor;
 }
 
 .pagination-container button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: $primaryColor;
   height: 40px;
   width: 40px;
   text-decoration: none;
@@ -21,9 +32,9 @@
 }
 
 .pagination-container button.active {
-  background-color: #007bff;
+  background-color: $primaryColor;
   color: white;
-  border: 1px solid #7cbddb;
+  border: 1px solid $secondaryColor;
 }
 
 .pagination-container button.disabled {
@@ -31,5 +42,5 @@
 }
 
 .pagination-container button:hover:not(.active) {
-  background-color: rgb(238, 238, 238);
+  background-color: $lightestColor;
 }
