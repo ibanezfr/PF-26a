@@ -4,7 +4,7 @@ import './Pagination.scss'
 function Pagination({ pages, setCurrentPage }) {
 
     const numberOfPages = [];
-    for (let i = 1; i <= pages; i++) {
+    for (let i = 1; i <= pages ; i++) {
         numberOfPages.push(i);
     }
 
@@ -53,7 +53,8 @@ function Pagination({ pages, setCurrentPage }) {
 
         setArrOfCurrentButtons(tempNumberOfPages)
         setCurrentPage(currentButton)
-    }, [arrOfCurrentButtons, numberOfPages, setCurrentButton, currentButton, setCurrentPage])
+
+    }, [arrOfCurrentButtons, setCurrentButton, currentButton, setCurrentPage])
 
     return (
         <div className="pagination-container">

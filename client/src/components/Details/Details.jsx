@@ -7,7 +7,6 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import { formatNumber } from "../../Utils";
 
 export default function Details(){
-    console.log("Hola desde Details");
     const params = useParams();
     const dispatch = useDispatch();
 
