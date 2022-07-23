@@ -19,6 +19,7 @@ export default function Cart(){
 
     return(
         <div className="maxContainer">
+            <h2 className="shoppingCartText">Tu carrito de compras</h2>
             <div  className='allCardsContainer'>
             {
                 cart[0]?cart.map((product) => 
@@ -32,7 +33,7 @@ export default function Cart(){
                     />
                 </div>
                 ):
-                <div>
+                <div className="emptyChartTextContainer">
                     <h2>Upss...</h2>
                     <h3>Tu carrito está vacío</h3>
                 </div> 
