@@ -2,15 +2,15 @@
 // import { useDispatch, useSelector } from "react-redux"
 import Products from "../ProductCard/ProductCard.jsx"
 
-import "./ProductsCards.scss"
+import "./ProductsCards.css"
 
 export default function ProductsCards({ allProducts }) {
   // console.log(allProducts)
   return (
-    <div className="Homepage container">
+    <div className="homePageContainer">
       
-      <div className="row">
-        <div className="cardsContainer col-4">
+      <div className="divGral">
+        <div className="cardContainer">
           {allProducts.length?<>{allProducts?.map((product) => {
             return <Products
               id={product.id}

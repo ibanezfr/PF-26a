@@ -5,9 +5,6 @@ import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
 import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
-// Auth
-
-// import { AuthProvider } from "./context/AuthContext";
 import Details from "./components/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
 
