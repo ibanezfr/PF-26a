@@ -18,7 +18,7 @@ const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGu
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-
+    console.log(cart)
     JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function Cart() {
                     <div className="container p-4">
                         <div className="row h-100">
                             <div className="col-md-4 offset-md-4 h-100">
-                                <CheckoutForm />
+                                <CheckoutForm total={precioTotal} products={cart}/>
                             </div>
                         </div>
                     </div>
