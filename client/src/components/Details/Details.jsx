@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
-import './Detail.css'
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import './Detail.scss'
 import { formatNumber } from "../../Utils";
-
+import heart from '../../images/heart.png'
 export default function Details(){
     
     const params = useParams();
@@ -29,8 +28,6 @@ export default function Details(){
     let image = mappedImage[0]
     // console.log("Stock: ", mappedStock)
 
-    //button de favoritos
-    const [checked, setChecked] = useState(false);
     
     return(
         <div className="container">
@@ -62,19 +59,10 @@ export default function Details(){
                 <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
                 <span>Stock disponible: {mappedStock}</span>
+                <div className="btnContainer">
                 <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
-
-                <ToggleButton
-                className="mb-2"
-                id="toggle-check"
-                type="checkbox"
-                variant="outline-primary"
-                checked={checked}
-                value="1"
-                onChange={(e) => setChecked(e.currentTarget.checked)}
-                >
-                Favoritos
-                </ToggleButton>
+                <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>
+                </div>
             </div>
         </div>
     )
