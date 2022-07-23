@@ -52,8 +52,14 @@ function App() {
           <Route path="/profile/form" component={ProfileForm} />
         </ProtectedRoutes>
 
-      </Switch>
-      <Footer />
+
+      
+
+          <Route path="/buys" exact>
+          
+        <Footer />
+        </Route>
+        </Switch>
     </BrowserRouter>
   </div>
   );
