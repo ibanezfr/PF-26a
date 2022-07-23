@@ -55,3 +55,24 @@
     .emptyChartTextContainer{
         color: #794983
     }
+
+    .emptyChartTextContainer h2{
+        font-family: 'Francois One', sans-serif;
+        padding-top: 5%;
+    }
+
+    .shoppingCartText{
+        font-size: 2rem;
+        color: #794983;
+        padding-top: 2%;
+        font-family: 'Francois One', sans-serif;
+    }
+
+    @media (max-width: 550px) {
+        .allCardsContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    }
