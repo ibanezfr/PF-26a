@@ -84,7 +84,7 @@ function rootReducer(state = initialState, action) {
         "usuario",
         JSON.stringify({ ...action?.data })
       );
-
+    
     case "LOGOUT":
       localStorage.clear();
       return { ...state };

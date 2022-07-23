@@ -59,9 +59,8 @@ function Desk() {
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+
     //filter functions
-
-
     function onClickFilter(e){
         if(!filters.includes(e.target.id)){
             dispatch(addFilter(e.target.id))
