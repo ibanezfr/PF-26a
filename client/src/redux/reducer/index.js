@@ -22,6 +22,7 @@ const initialState = {
   displayedProducts: [],
   filters: [],
   categories: [],
+  orderBy: '',
   user: [],
   userInfo: [],
   session: false,

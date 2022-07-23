@@ -17,7 +17,7 @@ export const FETCH_CATEGORIES= 'FETCH_CATEGORIES'
 export const ADD_FILTER='ADD_FILTER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const SET_PRODUCTS_TO_DISPLAY= 'SET_PRODUCTS_TO_DISPLAY'
-
+export const SET_ORDER= 'SET_ORDER'
 
 //carrito de compras FUNCIONES
 export function addToCart(id) {
@@ -200,3 +200,13 @@ export const loginCheck = (dispatch) => {
     });
   }
 };
+
+export function setOrder(order){
+    return function (dispatch){
+        dispatch({
+            type:SET_ORDER,
+            payload:order
+        })
+        
+    }
+}
