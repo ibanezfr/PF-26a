@@ -4,12 +4,17 @@ import './Pagination.scss'
 function Pagination({ pages, setCurrentPage }) {
 
     const numberOfPages = [];
-    for (let i = 1; i <= pages; i++) {
+    for (let i = 1; i <= pages ; i++) {
         numberOfPages.push(i);
     }
 
     const [currentButton, setCurrentButton] = useState(1);
     const [arrOfCurrentButtons, setArrOfCurrentButtons] = useState([]);
+
+    // const numberOfPages = useMemo(() => [], []);
+    // for (let i = 1; i <= pages; i++) {
+    //     numberOfPages.push(i);
+    // }
 
     useEffect(() => {
         let tempNumberOfPages = [...arrOfCurrentButtons]
@@ -48,7 +53,8 @@ function Pagination({ pages, setCurrentPage }) {
 
         setArrOfCurrentButtons(tempNumberOfPages)
         setCurrentPage(currentButton)
-    }, )
+
+    }, [arrOfCurrentButtons, setCurrentButton, currentButton, setCurrentPage])
 
     return (
         <div className="pagination-container">

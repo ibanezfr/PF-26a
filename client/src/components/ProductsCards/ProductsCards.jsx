@@ -5,7 +5,7 @@ import Products from "../ProductCard/ProductCard.jsx"
 import "./ProductsCards.css"
 
 export default function ProductsCards({ allProducts }) {
-
+  // console.log(allProducts)
   return (
     <div className="homePageContainer">
       

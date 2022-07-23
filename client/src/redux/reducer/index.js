@@ -11,7 +11,8 @@ import {
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  SET_ORDER
 } from "../actions/index";
 
 const initialState = {
@@ -143,6 +144,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cart: []
+      };
+
+    case SET_ORDER:
+      return {
+        ...state,
+        orderBy: action.payload
       };
 
     default:

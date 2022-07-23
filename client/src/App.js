@@ -29,29 +29,30 @@ function App() {
 
   return (<div className="App">
     <BrowserRouter>
-    <NavBar/>
-    <Switch>
-          <Route exact path="/">  
-          <Carrousel/>
-          <HomePage/>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Carrousel />
+          <HomePage />
+        </Route>
+        <Route path="/cart" component={Cart} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/search">
+          <SearchProducts />
+        </Route>
+        <Route path="/details/:id" component={Details} />
+        <ProtectedRoutes>
+          <Route path="/profile" exact>
+            <Profile />
           </Route>
-          <Route path="/details/:id" component={Details} />
-          <Route  exact path="/cart" component={Cart}/>
-          <Route  exact path="/login" component={Login}/>
-          <Route exact path="/register" component={Register}/>
-          <Route path="/search">
-            <SearchProducts />
-          </Route>
-          <ProtectedRoutes>
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
-            <Route path="/profile/form" component={ProfileForm} />
-          </ProtectedRoutes>
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </div>
+          <Route path="/profile/form" component={ProfileForm} />
+        </ProtectedRoutes>
+
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  </div>
   );
 }
 

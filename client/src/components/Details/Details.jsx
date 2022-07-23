@@ -6,7 +6,6 @@ import './Detail.scss'
 import { formatNumber } from "../../Utils";
 import heart from '../../images/heart.png'
 export default function Details(){
-    
     const params = useParams();
     const dispatch = useDispatch();
 
