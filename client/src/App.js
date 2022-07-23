@@ -3,8 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
-// import ProductsCards from "./components/ProductsCards/ProductsCards.jsx";
-// import LandingPage from "./components/LandingPage/LandingPage";
 import HomePage from "./components/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 // Auth
@@ -17,6 +15,7 @@ import Register from "./components/Register/Register";
 import Profile from "./Pages/Home/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from './components/Cart/Cart';
+import Carrousel from './components/Carousel/Carrousel';
 
 function App() {
   const dispatch = useDispatch()
@@ -32,7 +31,11 @@ function App() {
     <BrowserRouter>
     <NavBar/>
     <Switch>
-          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/">  
+          <Carrousel/>
+          <HomePage/>
+          </Route>
+          {/* <Route exact path="/" component={HomePage}/> */}
           <Route path="/cart" component={Cart}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
