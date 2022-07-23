@@ -72,7 +72,6 @@ const updateUser = async (req, res, next) => {
     const updated = await User.update(
       {
         fullName: fullName,
-        email: email,
         image: image,
         country: country,
         province: province,

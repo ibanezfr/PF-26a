@@ -11,7 +11,7 @@ const {
 router.post("/register", register);
 router.post("/login", login);
 router.get("/:id", getUser);
-router.patch("/:id", updateUser);
+router.put("/:id", updateUser);
 
 //
 

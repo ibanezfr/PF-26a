@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 90%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+  margin: auto;
+  @media only screen and (max-width: 1080px) {
+    height: 100%;
+    width: 100%;
+  }
+  @media only screen and (max-width: 450px) {
+    background: unset;
+  }
+}
+.containerForm {
+  padding-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 850px) {
+    display: unset;
+  }
+}
+.container-input {
+  margin-top: 5%;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.form-input {
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.btn-submit {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 20px 10%;
+  @media only screen and (max-width: 500px) {
+    margin: 20px 0;
+  }
+}
