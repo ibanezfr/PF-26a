@@ -7,6 +7,7 @@ import { formatNumber } from "../../Utils";
 
 export default function ProductCard({ id, name, price, image, categories}) {
   const dispatch = useDispatch();
+  // console.log(id)
     return (
         <div className="card">
            <img className="imagenOne" src={image} alt="not found"/>

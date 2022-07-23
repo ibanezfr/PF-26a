@@ -2,7 +2,7 @@ import React, {  useState  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
-import { addFilter, removeFilter, setOrder, setProductsToDisplay } from "../../redux/actions/index";
+import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import './HomePage.css'
 
 function Desk() {
@@ -83,8 +83,6 @@ function Desk() {
         setCurrentPage(pageNumber)
     }
 
-
-
     //filter functions
     function onClickFilter(e) {
         if (!filters.includes(e.target.id)) {
@@ -101,7 +99,7 @@ function Desk() {
     }
 
 
-    console.log(currentPosts)
+    // console.log(currentPosts)
     return (
         <div>
             <Pagination pages={howManyPages} setCurrentPage={pagination} />

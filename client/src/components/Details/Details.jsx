@@ -1,20 +1,15 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
 import './Detail.css'
-// import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import { formatNumber } from "../../Utils";
 
 export default function Details(){
-    
+    console.log("Hola desde Details");
     const params = useParams();
     const dispatch = useDispatch();
-
-    const [nameProduct, setNameProduct] = useState('');
 
     useEffect(()=>{
         dispatch(cleanProduct()) 
@@ -36,14 +31,6 @@ export default function Details(){
 
     //button de favoritos
     const [checked, setChecked] = useState(false);
-    const [radioValue, setRadioValue] = useState('1');
-  
-    const radios = [
-      { name: 'Active', value: '1' },
-      { name: 'Radio', value: '2' },
-      { name: 'Radio', value: '3' },
-    ];
-
     
     return(
         <div className="container">
