@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import "./ProductCard.scss"
 import { addToCart } from "../../redux/actions";
+import { formatNumber } from "../../Utils";
 
 
 export default function ProductCard({ id, name, price, image, categories}) {
@@ -12,7 +13,7 @@ export default function ProductCard({ id, name, price, image, categories}) {
             <div className="textContainer">
               <div className="headerContainer">
                  <h2>{name} </h2>
-                 <h3>AR${price} </h3>
+                 <h3>${formatNumber(price)}</h3>
               </div>
               <h6>{categories[0]} <br/> {categories[1]}</h6>
             </div>

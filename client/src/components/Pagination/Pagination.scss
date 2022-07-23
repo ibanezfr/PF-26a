@@ -7,7 +7,7 @@
   font-size: 15px;
 }
 
-.pagination-container a {
+.pagination-container button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,16 +20,16 @@
   cursor: pointer;
 }
 
-.pagination-container a.active {
+.pagination-container button.active {
   background-color: #007bff;
   color: white;
   border: 1px solid #7cbddb;
 }
 
-.pagination-container a.disabled {
+.pagination-container button.disabled {
   opacity: 0.2;
 }
 
-.pagination-container a:hover:not(.active) {
+.pagination-container button:hover:not(.active) {
   background-color: rgb(238, 238, 238);
 }

@@ -1,18 +1,14 @@
-// import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-// import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from 'react-router-dom';
-import carrito from '../../images/carrito.png'
-// import Carrousel from '../Carousel/Carrousel';
-import SearchBar from '../Search/Search';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
+import carrito from "../../images/carrito.png";
+import SearchBar from "../Search/Search";
 import './NavBar.css'
 
 function NavBar() {
   return (
-    <>
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#"><Link to='/cart'><img src={carrito} alt='not found' width='30px'/></Link></Navbar.Brand>
@@ -36,7 +32,6 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    </>
   );
 }
 

@@ -13,7 +13,16 @@ export default function Cart(){
     useEffect(() => {
       localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
-  
+
+    if(cart[0]) {
+        var cantidadPrecio = []
+        cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
+
+        var precioTotal = 0        
+        for (let i = 0; i < cantidadPrecio.length; i+=2) {
+            precioTotal += cantidadPrecio[i] * cantidadPrecio[i+1]
+        }
+    };
 
     return(
         <div className="maxContainer">

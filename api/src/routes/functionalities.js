@@ -49,7 +49,7 @@ router.get('/categories/:id', async(req, res, next)=>{
   router.put("/stock/:id/:stock", async(req, res, next)=>{
     const { id } = req.params;
     const { stock } = req.params;
-    console.log("stock en el back" , stock)
+    // console.log("stock en el back" , stock)
 
     // const { stock } = req.body;
     // console.log("stock: ", stock)
