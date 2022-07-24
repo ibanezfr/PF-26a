@@ -8,24 +8,58 @@ $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
 
-.totalHomeContainer{
+.totalHomeContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
 }
 
-.paginationContainer{
-    margin: 2%;
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: $font;
+    font-weight: 500;
+    font-size: 1rem;
+    color: $primaryColor;
 }
 
-.homeContainer{
+.paginationContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primaryColor;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+    transition: background-color .2s;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.paginationContainer button.active {
+    background-color: $primaryColor;
+    color: white;
+    border: 1px solid $secondaryColor;
+}
+
+.paginationContainer button.disabled {
+    opacity: 0.2;
+}
+
+.paginationContainer button:hover:not(.active) {
+    background-color: $lightestColor;
+}
+
+.homeContainer {
     display: flex;
     flex-direction: row-reverse;
     margin-right: 20px;
 
 
-    h2{
+    h2 {
         font-family: $font;
         font-size: 1rem;
         margin-top: 4%;
@@ -34,28 +68,29 @@ $lightestColor: #F2F2F2;
         margin-right: 4%;
     }
 
-    .activeFilterContainer{
+    .activeFilterContainer {
         color: $primaryColor;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        img{
+
+        img {
             width: 15px;
             height: 15px;
 
         }
     }
 
-    .filter-container{
+    .filter-container {
         background-color: $lightestColor;
         box-shadow: 0 2px 4px $primaryColor;
         display: flex;
         flex-direction: column;
         justify-content: right;
-        
-        select{
+
+        select {
             border: 1px solid $secondaryColor;
             background-color: $secondaryColor;
             color: $lightestColor;
@@ -65,17 +100,17 @@ $lightestColor: #F2F2F2;
 
         }
 
-        ul{
+        ul {
             list-style: none;
             text-align: left;
             padding-right: 8%;
-    
-            li{
+
+            li {
                 list-style: none;
                 cursor: pointer;
                 color: $secondaryColor;
 
-                
+
             }
         }
     }
