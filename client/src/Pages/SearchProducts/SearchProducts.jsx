@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
 import "./SearchProducts.scss"
+import ProductNotFound from "../../components/Errors/ProductNotFound"
 
 
 export default function SearchProducts() {
@@ -13,7 +14,7 @@ export default function SearchProducts() {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(3);
+  const [postPerPage] = useState(6);
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = searchProducts.slice(indexOfFirstPost, indexOfLastPost)
@@ -25,7 +26,7 @@ export default function SearchProducts() {
 
 
   return (
-    <div className="Homepage container">
+    <div className="Homepage containerHome">
       <div className='paginationContainer'>
         <button
           className={`${currentPage === 1 ? 'disabled' : ''}`}
@@ -42,7 +43,7 @@ export default function SearchProducts() {
         </button>
 
       </div>
-      <div className="row">
+      {/* <div className="row"> */}
         <div className="cardsContainer col-4">
 
           {currentPosts &&
@@ -61,13 +62,15 @@ export default function SearchProducts() {
                     />
                   );
                 } else {
-                  return null;
+                  return (
+                    <ProductNotFound/>
+                  );
                 }
               })
             )}
 
         </div>
-      </div>
+      {/* </div> */}
 
 
     </div>
