@@ -12,6 +12,7 @@ import {
   Elements,
  
 } from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
 
 
 
@@ -27,7 +28,7 @@ export default function Cart() {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
-/////////////////////////////////////////////////
+    
     if(cart[0]) {
         var cantidadPrecio = []
         cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
@@ -37,7 +38,7 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
-//////////////////////////////////////////////////
+    
 
     return (
         <div className="maxContainer">
@@ -80,7 +81,7 @@ export default function Cart() {
                             </div>
                         </div>
                     </Elements>
-                    <button className="btnPrincipal">Continuar compra</button>
+                    <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div>
                 {/* <div className="btnContainer">
