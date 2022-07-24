@@ -61,7 +61,7 @@ function HomePage() {
                 })]
 
                 break;
-            default://sort by rating
+            default://sort by rating? display favoritos si hay?
                 break;
         }
     }

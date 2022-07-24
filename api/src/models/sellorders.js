@@ -8,15 +8,15 @@ module.exports = (sequelize) => {
         user:{
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        },//hacerlo con relacion
         product: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        },//hacerlo con relacion
         quantity:{
             type: DataTypes.INTEGER,
             allowNull: false
-        },
+        },//revisar
         review: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
