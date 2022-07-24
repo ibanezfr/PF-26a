@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
-import './Cart.css'
+import './Cart.scss'
 import { formatNumber } from "../../Utils";
 import CheckoutForm from "./CheckoutForm.jsx"
 import { loadStripe } from "@stripe/stripe-js";
@@ -70,7 +70,7 @@ export default function Cart() {
                         cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
                     }
                     <Elements stripe={stripePromise}>
-                        <div className="container p-4">
+                        <div className="containerPayment p-4">
                             <div className="row h-100">
                                 <div className="col-md-4 offset-md-4 h-100">
                                     <CheckoutForm total={precioTotal} products={cart} />
