@@ -1,5 +1,5 @@
 import React from "react";
-import './ProductItem.css'
+import './ProductItem.scss'
 import trash from '../../images/trash.png'
 import axios from "axios";
 import { formatNumber } from "../../Utils";
@@ -7,16 +7,13 @@ import { formatNumber } from "../../Utils";
 export default function ProductItem({data, addToCart, deleteOneFromCart, deleteAllFromCart}){
     let { id, name, price, image, quantity, stock } = data;
 
-    const handleAdd = async(e) =>{
+    // const handleAdd = async(e) =>{
         
-        addToCart(id)
+    //     addToCart(id)
 
-        stock = stock - 1;
-        // console.log("changeStock: ", stock)
-        const put = await axios.put(`http://localhost:3001/function/stock/${id}/${stock}`);
-        // console.log("changed stock", stock)
-        // console.log("axios.put", put)
-    }
+    //     stock = stock - 1;
+    //     const put = await axios.put(`http://localhost:3001/function/stock/${id}/${stock}`);
+    // }
 
     return(
         <div className="fatherContainer">

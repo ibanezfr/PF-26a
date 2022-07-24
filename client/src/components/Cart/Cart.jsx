@@ -10,6 +10,7 @@ import {
     Elements,
 
 } from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
 
 
 
@@ -34,7 +35,7 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
-    //////////////////////////////////////////////////
+    
 
     return (
         <div className="maxContainer">
@@ -68,12 +69,6 @@ export default function Cart() {
                     {
                         cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
                     }
-                    <button className="btnPrincipal">Continuar compra</button>
-                    <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                </div>
-
-
-                <div className="btnContainer">
                     <Elements stripe={stripePromise}>
                         <div className="container p-4">
                             <div className="row h-100">
@@ -83,10 +78,16 @@ export default function Cart() {
                             </div>
                         </div>
                     </Elements>
-                    <button className="btnPrincipal">Continuar compra</button>
+                    <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div>
-                {/* <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button> */}
+                {/* <div className="btnContainer">
+                    {
+                        cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
+                    }
+                    <button className="btnPrincipal">Continuar compra</button>
+                    <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
+                </div> */}
             </div>
         </div>
     )

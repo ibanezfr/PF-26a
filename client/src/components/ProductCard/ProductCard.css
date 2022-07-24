@@ -106,6 +106,8 @@
 .cardFooter{
   padding: 5% 0 1%;
   border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardFooter:after, .cardFooter:before{
