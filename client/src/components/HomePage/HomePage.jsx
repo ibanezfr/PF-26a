@@ -13,6 +13,7 @@ function Desk() {
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
     console.log("Soy orderBy", orderedBy)
+    
 
     if (filters.length) {
         products = products
