@@ -22,10 +22,6 @@ export default function CheckoutForm({total, products}) {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      if(!user) {
-        //console.log('no user')
-        window.alert('Debe loguearse para comprar')
-      }  
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement),
@@ -33,26 +29,28 @@ export default function CheckoutForm({total, products}) {
       setLoading(true);
   
       if (!error) {
-
-
-        const { id } = paymentMethod;
-        try {//console.log('total', total)
-          const { data } = await axios.post(
-            
-            "http://localhost:3001/pay/api/checkout",
-            {
-              id,
-              amount: total,
-              description: products,//array de objetos product
-              user
-            }
-          );
-          console.log(data);
-  
-          elements.getElement(CardElement).clear();
-          window.alert('Pago exitoso')
-        } catch (error) {
-          console.log(error);
+        if(!user) window.alert('Debe loguearse para comprar')
+        else{
+          const { id } = paymentMethod;
+          try {//console.log('total', total)
+            const { data } = await axios.post(
+              
+              "http://localhost:3001/pay/api/checkout",
+              {
+                id,
+                amount: total,
+                description: products,//array de objetos product
+                user
+              }
+            );
+            //console.log(data);
+    
+            elements.getElement(CardElement).clear();
+            if(data.message==='Successful Payment') window.alert('Pago exitoso')
+            else window.alert('Hubo un error en el pago')
+          } catch (error) {
+            console.log(error);
+          }
         }
         setLoading(false);
       }
@@ -72,7 +70,7 @@ export default function CheckoutForm({total, products}) {
         <button disabled={!stripe||!products.length} className="btn btn-success">
           {loading && user? (/* agregue user para que valide el log */
             <div className="spinner-border text-light" role="status">
-              <span className="sr-only"> </span>{/* cambio loadin para que quede solo el spinner */}
+              <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}
             </div>
           ) : (
             "Buy"
