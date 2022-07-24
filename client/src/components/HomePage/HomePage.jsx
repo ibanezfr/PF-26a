@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import './HomePage.scss'
 import trash from '../../images/trash.png'
 
-function Desk() {
+function HomePage() {
     const dispatch = useDispatch()
     let products = useSelector(state => state.products)
     let categories = useSelector(state => state.categories)
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
-    console.log("Soy orderBy", orderedBy)
 
     if (filters.length) {
         products = products
@@ -63,7 +61,7 @@ function Desk() {
                 })]
 
                 break;
-            default://sort by rating
+            default://sort by rating? display favoritos si hay?
                 break;
         }
     }
@@ -74,16 +72,17 @@ function Desk() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
-
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(products.length / postPerPage)
 
 
-    const pagination = (pageNumber) => {
-        setCurrentPage(pageNumber)
+    let numberOfPages = [];
+    for (let i = 1; i <= howManyPages; i++) {
+        numberOfPages.push(i);
     }
+
 
     //filter functions
     function onClickFilter(e) {
@@ -99,16 +98,30 @@ function Desk() {
     }
 
 
-    console.log(products)
     return (
         <div className='totalHomeContainer'>
-            <Pagination pages={howManyPages} setCurrentPage={pagination} />
+            <div className='paginationContainer'>
+                <button
+                    className={`${currentPage === 1 ? 'disabled' : ''}`}
+                    onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
+                >
+                    Prev
+                </button>
+                <button>{currentPage}</button>
+                <button
+                    className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
+                    onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
+                >
+                    Next
+                </button>
+
+            </div>
             <div className='homeContainer'>
-               <ProductsCards allProducts={currentPosts} />
-               <div className="filter-container">
+                <ProductsCards allProducts={currentPosts} />
+                <div className="filter-container">
                     <h2>Encontrá lo que buscas...</h2>
                     {
-                        filters.length ? <><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X'/></div>)}</fieldset></> : <></>
+                        filters.length ? <><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X' /></div>)}</fieldset></> : <></>
                     }
                     <ul className='ulElement'>{categories.map(cat => {
                         return (
@@ -116,11 +129,11 @@ function Desk() {
                         )
                     })}</ul>
                     <select name='order-by' onChange={onSelectChange}>
-                       <option>Order By...</option>
-                       <option value='Name-Asc'>Name-Asc</option>
-                       <option value='Name-Des'>Name-Des</option>
-                       <option value='Price-Asc'>Price-Asc</option>
-                       <option value='Price-Des'>Price-Des</option>
+                        <option>Ordenar por...</option>
+                        <option value='Name-Asc'>Letras: A-Z</option>
+                        <option value='Name-Des'>Letras: Z-A</option>
+                        <option value='Price-Asc'>Más baratos</option>
+                        <option value='Price-Des'>Más caros</option>
                     </select>
                 </div>
             </div>
@@ -128,4 +141,4 @@ function Desk() {
     )
 }
 
-export default Desk;
+export default HomePage;

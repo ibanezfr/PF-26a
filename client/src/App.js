@@ -48,10 +48,10 @@ function App() {
           </Route>
           <Route path="/profile/form" component={ProfileForm} />
         </ProtectedRoutes>
-
-      </Switch>
-      <Footer />
+        </Switch>
+    <Footer />        
     </BrowserRouter>
+
   </div>
   );
 }

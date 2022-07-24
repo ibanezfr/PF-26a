@@ -11,7 +11,7 @@ function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#"><Link to='/cart'><img src={carrito} alt='not found' width='30px'/></Link></Navbar.Brand>
+        <Navbar.Brand ><Link to='/cart'><img src={carrito} alt='not found' width='30px' /></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,12 +19,10 @@ function NavBar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1"><Link className='navText' to=''>Inicio</Link></Nav.Link>
+            <Link className='navText' to=''>Inicio</Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3"><Link className='navText' to='/login'>Login</Link></NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                <Link to='/profile' className='navText'>Perfil</Link>
-              </NavDropdown.Item>
+              <Link className='navText' to='/login'>Login</Link>
+              <Link to='/profile' className='navText'>Perfil</Link>
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>

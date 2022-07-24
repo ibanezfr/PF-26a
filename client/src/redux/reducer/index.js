@@ -63,7 +63,7 @@ function rootReducer(state = initialState, action) {
         displayedProducts: action.payload,
       };
     case FETCH_BY_NAME:
-      if (!action.payload[0]) return alert("Producto no encontrado");
+      if (!action.payload[0]) alert("Producto no encontrado");
       return {
         ...state,
         searchProducts: action.payload,
@@ -104,6 +104,10 @@ function rootReducer(state = initialState, action) {
     case ADD_TO_CART:
       let newItem = state.products.find((p) => p.id === action.payload);
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
+      if (itemInCart !== undefined && itemInCart.quantity === itemInCart.stock) {
+        alert("Limite de producto alcanzado")
+        return state
+      }
       return (itemInCart
         ? {
           ...state,

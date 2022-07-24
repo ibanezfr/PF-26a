@@ -5,7 +5,6 @@ const { Op } = require("sequelize");
 const router = Router();
 
 
-
 router.get('/favorites/:id', (req, res, next) => {
     try {
         const id = req.params.id;
