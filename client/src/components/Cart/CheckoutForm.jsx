@@ -22,7 +22,10 @@ export default function CheckoutForm({total, products}) {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-  
+      if(!user) {
+        console.log('no user')
+        window.alert('Debe loguearse para comprar')
+      }  
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement),
@@ -30,9 +33,10 @@ export default function CheckoutForm({total, products}) {
       setLoading(true);
   
       if (!error) {
-        // console.log(paymentMethod)
+
+
         const { id } = paymentMethod;
-        try {console.log('total', total)
+        try {//console.log('total', total)
           const { data } = await axios.post(
             
             "http://localhost:3001/pay/api/checkout",
@@ -43,7 +47,7 @@ export default function CheckoutForm({total, products}) {
               user
             }
           );
-          console.log(data);
+          //console.log(data);
   
           elements.getElement(CardElement).clear();
         } catch (error) {
@@ -53,7 +57,7 @@ export default function CheckoutForm({total, products}) {
       }
     };
   
-    console.log(!stripe || loading);
+    //console.log(!stripe || loading);
     //mostrar alerta de compra exitosa o fallida
     return (
       <form className="card card-body" onSubmit={handleSubmit}>
@@ -64,10 +68,10 @@ export default function CheckoutForm({total, products}) {
           <CardElement />
         </div>
   
-        <button disabled={!stripe||!user||!products.length} className="btn btn-success">
-          {loading ? (
+        <button disabled={!stripe||!products.length} className="btn btn-success">
+          {loading && user? (/* agregue user para que valide el log */
             <div className="spinner-border text-light" role="status">
-              <span className="sr-only">Loading...</span>
+              <span className="sr-only"> </span>{/* cambio loadin para que quede solo el spinner */}
             </div>
           ) : (
             "Buy"
