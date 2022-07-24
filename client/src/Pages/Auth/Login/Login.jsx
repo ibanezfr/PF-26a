@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import "./Login.css";
 import { useAuth } from "../../../context/AuthContext";
 import { loginUser } from "../../../redux/actions";
+import axios from "axios";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPass } = useAuth();
@@ -18,30 +19,33 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleRedirect = async () => {
-    const check = await JSON.parse(localStorage.getItem("usuario"));
-    if (check) {
-      history.push("/profile");
-    }
-  };
-  useEffect(() => {
-    handleRedirect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const handleRedirect = async () => {
+  //   const check = await JSON.parse(localStorage.getItem("usuario"));
+  //   if (check) {
+  //     history.push("/profile");
+  //   }
+  // };
+  // useEffect(() => {
+  //   handleRedirect();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       const credentials = await login(user.email, user.password);
-      dispatch(
-        loginUser({
-          id: credentials.user.uid,
-          fullName: credentials.user.displayName,
-          email: credentials.user.email,
-          // image: credentials.user.photoURL,
-        })
-      );
+
+      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+        id: credentials.user.uid,
+        name: credentials.user.displayName,
+        email: credentials.user.email,
+        image: credentials.user.photoURL,
+      });
+      if (userInDb.data[0].banned) return alert("Baneado lince");
+      if (credentials.user.uid) {
+        localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
+      }
 
       history.push("/profile");
     } catch (error) {

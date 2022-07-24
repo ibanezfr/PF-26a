@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -17,16 +18,16 @@ const Register = () => {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleRedirect = async () => {
-    const check = await JSON.parse(localStorage.getItem("usuario"));
-    if (check) {
-      history.push("/profile");
-    }
-  };
-  useEffect(() => {
-    handleRedirect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const handleRedirect = async () => {
+  //   const check = await JSON.parse(localStorage.getItem("usuario"));
+  //   if (check) {
+  //     history.push("/profile");
+  //   }
+  // };
+  // useEffect(() => {
+  //   handleRedirect();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,13 +37,16 @@ const Register = () => {
     }
     try {
       const credentials = await signup(newUser.email, newUser.password);
-      dispatch(
-        register({
-          id: credentials.user.uid,
-          fullName: newUser.fullName,
-          email: newUser.email,
-        })
-      );
+      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+        id: credentials.user.uid,
+        name: credentials.user.displayName,
+        email: credentials.user.email,
+        image: credentials.user.photoURL,
+      });
+      if (userInDb.data[0].banned) return alert("Baneado lince");
+      if (credentials.user.uid) {
+        localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
+      }
 
       history.push("/login");
     } catch (error) {
