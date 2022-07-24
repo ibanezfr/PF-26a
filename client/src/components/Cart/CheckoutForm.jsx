@@ -23,7 +23,7 @@ export default function CheckoutForm({total, products}) {
     const handleSubmit = async (e) => {
       e.preventDefault();
       if(!user) {
-        console.log('no user')
+        //console.log('no user')
         window.alert('Debe loguearse para comprar')
       }  
       const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -47,9 +47,10 @@ export default function CheckoutForm({total, products}) {
               user
             }
           );
-          //console.log(data);
+          console.log(data);
   
           elements.getElement(CardElement).clear();
+          window.alert('Pago exitoso')
         } catch (error) {
           console.log(error);
         }
