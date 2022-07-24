@@ -67,7 +67,7 @@ export default function Cart() {
                 }
                 <div className="btnContainer">
                     {
-                        cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
+                        cart[0] ? <div className="totalText">TOTAL ${formatNumber(precioTotal)}</div> : <></>
                     }
                     <Elements stripe={stripePromise}>
                         <div className="containerPayment p-4">
