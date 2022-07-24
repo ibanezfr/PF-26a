@@ -40,10 +40,6 @@ export default function Cart(){
                           deleteAllFromCart={() => dispatch(deleteFromCart(product.id, true))}
                         />
                     </div>
-                    <div className="btnContainer">
-                       <button className="btnPrincipal">Continuar compra</button>
-                       <button className="secondaryBtn" onClick={()=> dispatch(clearCart())}>Limpiar carrito</button>
-                    </div>
                 </div>
             ):
             <div>
@@ -56,6 +52,10 @@ export default function Cart(){
                 </div>
             </div>
             }
+            <div className="btnContainer">
+                <button className="btnPrincipal">Continuar compra</button>
+                <button className="secondaryBtn" onClick={()=> dispatch(clearCart())}>Limpiar carrito</button>
+            </div>
            </div>
         </div>
     )

@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Pagination from '../Pagination/Pagination.jsx';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
-import './HomePage.css'
+import './HomePage.scss'
+import trash from '../../images/trash.png'
 
 function Desk() {
     const dispatch = useDispatch()
@@ -99,24 +100,29 @@ function Desk() {
 
     return (
         <div className='totalHomeContainer'>
-            <Pagination pages={howManyPages} setCurrentPage={pagination} />
-            <ProductsCards allProducts={currentPosts} />
-            <div className="filter-container">
-                {
-                    filters.length ? <><fieldset>{filters.map(filter => <div id={filter} onClick={onClickFieldset}>{filter} X</div>)}</fieldset></> : <></>
-                }
-                <ul>{categories.map(cat => {
-                    return (
-                        <li key={cat} id={cat} onClick={(e) => onClickFilter(e)}>{cat}</li>
-                    )
-                })}</ul>
-                <select name='order-by' onChange={onSelectChange}>
-                    <option>Order By...</option>
-                    <option value='Name-Asc'>Name-Asc</option>
-                    <option value='Name-Des'>Name-Des</option>
-                    <option value='Price-Asc'>Price-Asc</option>
-                    <option value='Price-Des'>Price-Des</option>
-                </select>
+            <div className='paginationContainer'>
+                <Pagination pages={howManyPages} setCurrentPage={pagination} />
+            </div>
+            <div className='homeContainer'>
+               <ProductsCards allProducts={currentPosts} />
+               <div className="filter-container">
+                    <h2>Encontrá lo que buscas...</h2>
+                    {
+                        filters.length ? <><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X'/></div>)}</fieldset></> : <></>
+                    }
+                    <ul className='ulElement'>{categories.map(cat => {
+                        return (
+                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>{cat}</li>
+                        )
+                    })}</ul>
+                    <select name='order-by' onChange={onSelectChange}>
+                       <option>Ordenar por...</option>
+                       <option value='Name-Asc'>Letras: A-Z</option>
+                       <option value='Name-Des'>Letras: Z-A</option>
+                       <option value='Price-Asc'>Más baratos</option>
+                       <option value='Price-Des'>Más caros</option>
+                    </select>
+                </div>
             </div>
         </div>
     )
