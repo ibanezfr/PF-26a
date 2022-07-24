@@ -18,16 +18,16 @@ const Login = () => {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleRedirect = async () => {
-    const check = await JSON.parse(localStorage.getItem("usuario"));
-    if (check) {
-      history.push("/profile");
-    }
-  };
-  useEffect(() => {
-    handleRedirect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const handleRedirect = async () => {
+  //   const check = await JSON.parse(localStorage.getItem("usuario"));
+  //   if (check) {
+  //     history.push("/profile");
+  //   }
+  // };
+  // useEffect(() => {
+  //   handleRedirect();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
