@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
@@ -97,6 +97,11 @@ function HomePage() {
         setCurrentPage(1)
     }
 
+    JSON.parse(localStorage.getItem('currentPage'));
+
+    useEffect(() => {
+        localStorage.setItem('currentPage', JSON.stringify(currentPage));
+    }, [currentPage]);
 
     return (
         <div className='totalHomeContainer'>
