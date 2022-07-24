@@ -28,7 +28,7 @@ const initialState ={
           ? []
           : JSON.parse(localStorage.getItem('cart'))),
       ]
-}
+};
 
 function rootReducer(state= initialState, action){
     switch (action.type) {
