@@ -84,11 +84,11 @@ function rootReducer(state = initialState, action) {
         size: action.payload,
       };
 
-    case "AUTH":
-      return localStorage.setItem(
-        "usuario",
-        JSON.stringify({ ...action?.data.id })
-      );
+    // case "AUTH":
+    //   return localStorage.setItem(
+    //     "usuario",
+    //     JSON.stringify({ ...action?.data.id })
+    //   );
 
     case "LOGOUT":
       localStorage.clear();

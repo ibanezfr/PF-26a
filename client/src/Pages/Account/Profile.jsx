@@ -12,7 +12,7 @@ import "./Profile.css";
 const Profile = () => {
   const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
-  const { user, logout, loading } = useAuth();
+  const { logout, loading } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -36,21 +36,21 @@ const Profile = () => {
   // };
   useEffect(() => {
     function getUser() {
-      return `http://localhost:3001/auth/${user.uid}`;
+      let localUser = JSON.parse(localStorage.getItem("usuario"));
+      return `http://localhost:3001/auth/${localUser}`;
     }
     async function fetchData() {
       const result = await axios.get(getUser());
       setUserDb(result.data);
     }
     fetchData();
-  }, [user.uid]);
+  }, []);
   console.log(userDb);
 
   if (loading) {
     return <Loading />;
   }
 
-  // console.log(userDb);
   return (
     <div className="wrapper">
       <div className="container">
