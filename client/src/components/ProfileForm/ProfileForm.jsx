@@ -185,7 +185,7 @@ export default function ProfileForm() {
             </button>
           )}
           {error.allFields && (
-            <small className="error">{error.allFields}</small>
+            <small className="errors">{error.allFields}</small>
           )}
         </form>
       </div>

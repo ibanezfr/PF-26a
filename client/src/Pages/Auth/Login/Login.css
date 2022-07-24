@@ -1,3 +1,8 @@
+.login {
+  display: flex;
+  min-height: 40vw;
+}
+
 #login-window {
   position: fixed;
   top: 50%;
