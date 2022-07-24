@@ -23,27 +23,34 @@ const Profile = () => {
     }
   };
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/auth/${user.uid}`
-      );
-      setUserDb(response.data);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:3001/auth/${user.uid}`
+  //     );
+  //     setUserDb(response.data);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   useEffect(() => {
-    getUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    function getUser() {
+      return `http://localhost:3001/auth/${user.uid}`;
+    }
+    async function fetchData() {
+      const result = await axios.get(getUser());
+      setUserDb(result.data);
+    }
+    fetchData();
+  }, [user.uid]);
+  console.log(userDb);
 
   if (loading) {
     return <Loading />;
   }
 
-  console.log(userDb);
+  // console.log(userDb);
   return (
     <div className="wrapper">
       <div className="container">
