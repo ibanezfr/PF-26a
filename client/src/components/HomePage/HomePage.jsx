@@ -12,6 +12,12 @@ function HomePage() {
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
 
+    JSON.parse(localStorage.getItem('filter'));
+
+    useEffect(() => {
+        localStorage.setItem('filter', JSON.stringify(filters));
+    }, [filters]);
+
     if (filters.length) {
         products = products
             .filter(product => {
@@ -26,6 +32,12 @@ function HomePage() {
         y luego con el reduce devuelve true si todas las categorias del filtro estan
         en las categorias del producto, sino devuelve false */
     }
+    
+    var categoriesInProducts = products.map((p) => p.categories.map((c) => c.name))
+    let categoriesDisplayed = []
+    categoriesInProducts.map((e) => categoriesDisplayed = [...new Set([...categoriesDisplayed, ...e])]);
+    // console.log(categoriesDisplayed)
+
     //sort functionsf
     if (orderedBy) {
         switch (orderedBy) {
@@ -124,15 +136,18 @@ function HomePage() {
             <div className='homeContainer'>
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
-                    <h2>Encontrá lo que buscas...</h2>
                     {
-                        filters.length ? <><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X' /></div>)}</fieldset></> : <></>
+                        filters.length ? <><h6>Filtros Activos</h6><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X' /></div>)}</fieldset></> : <></>
                     }
-                    <ul className='ulElement'>{categories.map(cat => {
+                    <div>
+                    <h2>Encontrá lo que buscas...</h2>
+                    <ul className='ulElement'>{categoriesDisplayed.map(cat => {
+                        if(!filters.includes(cat))
                         return (
                             <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>{cat}</li>
                         )
                     })}</ul>
+                    </div>
                     <select name='order-by' onChange={onSelectChange}>
                         <option>Ordenar por...</option>
                         <option value='Name-Asc'>Letras: A-Z</option>

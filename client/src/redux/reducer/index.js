@@ -15,24 +15,29 @@ import {
   SET_ORDER
 } from "../actions/index";
 
+
 const initialState = {
-  products: [],
-  detail: [],
-  searchProducts: [],
-  size: [],
-  displayedProducts: [],
-  filters: [],
-  categories: [],
-  orderBy: '',
-  user: [],
-  userInfo: [],
-  session: false,
-  cart: [
-    ...(JSON.parse(localStorage.getItem('cart')) === null
-      ? []
-      : JSON.parse(localStorage.getItem('cart'))),
-  ]
-};
+    products: [],
+    detail: [],
+    searchProducts: [],
+    size: [],
+    displayedProducts: [],
+    filters: [
+        ...(JSON.parse(localStorage.getItem('filter')) === null
+        ? []
+        : JSON.parse(localStorage.getItem('filter')))
+    ],
+    categories: [],
+    orderBy: '',
+    user: [],
+    userInfo: [],
+    session: false,
+    cart: [
+      ...(JSON.parse(localStorage.getItem('cart')) === null
+        ? []
+        : JSON.parse(localStorage.getItem('cart'))),
+    ]
+}
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
