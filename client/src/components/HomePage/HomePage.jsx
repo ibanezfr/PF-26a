@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
@@ -11,6 +11,12 @@ function HomePage() {
     let categories = useSelector(state => state.categories)
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
+
+    JSON.parse(localStorage.getItem('filter'));
+
+    useEffect(() => {
+        localStorage.setItem('filter', JSON.stringify(filters));
+    }, [filters]);
 
     if (filters.length) {
         products = products

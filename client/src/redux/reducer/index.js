@@ -22,7 +22,11 @@ const initialState = {
     searchProducts: [],
     size: [],
     displayedProducts: [],
-    filters: [],
+    filters: [
+        ...(JSON.parse(localStorage.getItem('filter')) === null
+        ? []
+        : JSON.parse(localStorage.getItem('filter')))
+    ],
     categories: [],
     orderBy: '',
     user: [],
