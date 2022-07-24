@@ -4,11 +4,21 @@ import { addToCart, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
 import './Cart.css'
 import { formatNumber } from "../../Utils";
+import CheckoutForm from "./CheckoutForm.jsx"
+import { loadStripe } from "@stripe/stripe-js";
+import {
+    Elements,
+
+} from "@stripe/react-stripe-js";
+
+
+
+const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGuW5bCepjRqE969YH6eAoS8q7mhBpAkXYPYH9T002QhQfVXDcGd7w00kRYp2bdI");
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-
+    console.log(cart)
     JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
@@ -24,6 +34,7 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
+    //////////////////////////////////////////////////
 
     return (
         <div className="maxContainer">
@@ -60,7 +71,24 @@ export default function Cart() {
                     <button className="btnPrincipal">Continuar compra</button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div>
+
+
+                <div className="btnContainer">
+                    <Elements stripe={stripePromise}>
+                        <div className="container p-4">
+                            <div className="row h-100">
+                                <div className="col-md-4 offset-md-4 h-100">
+                                    <CheckoutForm total={precioTotal} products={cart} />
+                                </div>
+                            </div>
+                        </div>
+                    </Elements>
+                    <button className="btnPrincipal">Continuar compra</button>
+                    <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
+                </div>
+                {/* <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button> */}
             </div>
         </div>
     )
 }
+
