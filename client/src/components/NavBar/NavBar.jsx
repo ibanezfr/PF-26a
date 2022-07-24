@@ -21,10 +21,8 @@ function NavBar() {
           >
             <Link className='navText' to=''>Inicio</Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
-              <NavDropdown.Item ><Link className='navText' to='/login'>Login</Link></NavDropdown.Item>
-              <NavDropdown.Item >
-                <Link to='/profile' className='navText'>Perfil</Link>
-              </NavDropdown.Item>
+              <Link className='navText' to='/login'>Login</Link>
+              <Link to='/profile' className='navText'>Perfil</Link>
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>

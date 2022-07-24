@@ -1,5 +1,10 @@
 .footer-container {
-  color: #794983;
+  /* position: relative; */
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  color: #e0a0ed;
   text-align: center;
   margin-top: 20px;
   padding: 30px 10px;

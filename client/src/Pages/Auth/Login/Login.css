@@ -1,9 +1,15 @@
+.login {
+  display: flex;
+  min-height: 40vw;
+}
+
 #login-window {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%);
-  background: white;
+  background: whitesmoke;
   width: 480px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);

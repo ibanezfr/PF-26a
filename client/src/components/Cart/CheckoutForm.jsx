@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from '../../context/AuthContext'
 
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 import {
-  Elements,
+  // Elements,
   CardElement,//campos de la tarjeta de credito
   useStripe,
   useElements,
@@ -64,7 +64,7 @@ export default function CheckoutForm({ total, products }) {
       <div className="form-group">
         <CardElement />
       </div>
-
+      
       <button disabled={!stripe || !user || !products.length} className="btn btn-success">
         {loading ? (
           <div className="spinner-border text-light" role="status">
