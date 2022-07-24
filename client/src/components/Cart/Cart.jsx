@@ -18,7 +18,7 @@ const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGu
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    console.log(cart)
+    // console.log(cart)
     JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
@@ -41,8 +41,8 @@ export default function Cart() {
             <h2 className="shoppingCartText">Tu carrito de compras</h2>
             <div className='allCardsContainer'>
                 {
-                    cart[0] ? cart.map((product) =>
-                        <div>
+                    cart[0] ? cart.map((product, index) =>
+                        <div key={index}>
                             <div className="productItemContainer">
                                 <ProductItem
                                     key={product.id}
