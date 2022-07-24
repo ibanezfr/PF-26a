@@ -1,20 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
-import './Detail.css'
-// import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import './Detail.scss'
 import { formatNumber } from "../../Utils";
+import heart from '../../images/heart.png'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function Details(){
-    
     const params = useParams();
     const dispatch = useDispatch();
-
-    const [nameProduct, setNameProduct] = useState('');
 
     useEffect(()=>{
         dispatch(cleanProduct()) 
@@ -34,20 +30,10 @@ export default function Details(){
     let image = mappedImage[0]
     // console.log("Stock: ", mappedStock)
 
-    //button de favoritos
-    const [checked, setChecked] = useState(false);
-    const [radioValue, setRadioValue] = useState('1');
-  
-    const radios = [
-      { name: 'Active', value: '1' },
-      { name: 'Radio', value: '2' },
-      { name: 'Radio', value: '3' },
-    ];
-
     
     return(
-        <div className="container">
-
+        <div className="father">
+          <div className="container">
             <div className="container1">
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
@@ -75,20 +61,23 @@ export default function Details(){
                 <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
                 <span>Stock disponible: {mappedStock}</span>
+                <div className="btnContainer">
                 <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
-
-                <ToggleButton
-                className="mb-2"
-                id="toggle-check"
-                type="checkbox"
-                variant="outline-primary"
-                checked={checked}
-                value="1"
-                onChange={(e) => setChecked(e.currentTarget.checked)}
-                >
-                Favoritos
-                </ToggleButton>
+                <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>
+                </div>
             </div>
+          </div>
+          <div className="formDiv">
+          <Form className="form">
+            <Form.Group className="mb-3 formGroup" controlId="Question">
+              <Form.Label className="text">Pregunta</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+              <Button className="btn" size="sm">
+                Hacer pregunta
+              </Button>
+            </Form.Group>
+          </Form>
+          </div>
         </div>
     )
 }

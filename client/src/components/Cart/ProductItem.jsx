@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/esm/Button";
-import Card from 'react-bootstrap/Card';
+import React from "react";
 import './ProductItem.css'
-import {  useDispatch, useSelector } from "react-redux";
+import trash from '../../images/trash.png'
 import axios from "axios";
-import { cleanProduct, getProductsById } from "../../redux/actions";
 import { formatNumber } from "../../Utils";
-
-
+// import {Card} from 'react-bootstrap'
 export default function ProductItem({data, addToCart, deleteOneFromCart, deleteAllFromCart}){
     let { id, name, price, image, quantity, stock } = data;
-   
-    const handleAdd = async(e) =>{     
+
+    const handleAdd = async(e) =>{
+        
+        addToCart(id)
+
         stock = stock - 1;
         // console.log("changeStock: ", stock)
         const put = await axios.put(`http://localhost:3001/function/stock/${id}/${stock}`);
@@ -22,7 +21,7 @@ export default function ProductItem({data, addToCart, deleteOneFromCart, deleteA
     return(
         <div className="fatherContainer">
             <div className="buttonContainer">
-               <button className="deleteAllButton" onClick={()=> deleteAllFromCart(id, true)}>X</button>
+               <button className="deleteAllButton" onClick={()=> deleteAllFromCart(id, true)}><img className="deleteBtnImg" src={trash} alt='X'/></button>
             </div>
             <img className="itemImage" src={image} alt=""/>
             <div className="textContainer">

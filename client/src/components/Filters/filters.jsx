@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFilter, removeFilter, setProductsToDisplay } from "../../redux/actions/index";
+import './filters.scss'
+import trash from '../../images/trash.png'
 
 export default function Filters(){
     let displayedProducts = useSelector(state=>state.products)
@@ -33,13 +35,13 @@ export default function Filters(){
 
     //console.log(filters)
     return(
-        <div>
+        <div className="filterContainer">
             {
-                filters.length?<><fieldset>{filters.map(filter=><div id={filter} onClick={onClickFieldset}>{filter} X</div>)}</fieldset></>:<></>
+                filters.length?<><fieldset>{filters.map(filter=><div className="activeFilterContainer" id={filter} onClick={onClickFieldset}>{filter} <img className="trash" src={trash} alt='X'/></div>)}</fieldset></>:<></>
             }
-            <ul>{categories.map(cat=>{
+            <ul className="ulElement">{categories.map(cat=>{
                 return(
-                <li id={cat} onClick={(e)=>onClickFilter(e)}>{cat}</li>
+                <li className="liElement" id={cat} onClick={(e)=>onClickFilter(e)}>{cat}</li>
                 )
             })}</ul>
         </div>

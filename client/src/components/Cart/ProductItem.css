@@ -4,6 +4,12 @@
     flex-wrap: nowrap !important;
     justify-content: space-around;
     width: 500px;
+    border-top: 0.5px solid #794983;
+    border-bottom: 0.5px solid  #794983;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .itemImage{
@@ -23,18 +29,18 @@
 
 .deleteAllButton{
     margin: 3%;
-    color: #794983 ;
     background: rgba(0,0,0,0);
-    border: 2px solid;
-    border-color: #794983;
     transition: all 1s ease;
     border-radius: 100%;
+    border-color: transparent;
     font-size: 0.8rem;
 }
 
-.deleteAllButton:hover{
-    background: #9C9AC0;
-    color: #fff ;
+
+.deleteBtnImg{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
 }
 
 .textContainer h4{
@@ -48,15 +54,16 @@
     margin: 3%;
     color: #794983 ;
     background: rgba(0,0,0,0);
-    border: 2px solid;
+    border: 1px solid;
     border-color: #794983;
     transition: all 1s ease;
     font-size: 0.8rem;
-    border-radius: 10%;
+    /* border-radius: 10%; */
 }
 
 .actionBtn:hover{
     background: #9C9AC0;
+    border-color: #9C9AC0;
     color: #fff ;
 }
 
@@ -77,3 +84,40 @@
     color: #794983;
 }
 
+@media (max-width: 550px) {
+    .fatherContainer{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 200px;
+        border-top: 0.5px solid #794983;
+        border-bottom: 0.5px solid  #794983;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        position: relative;
+    }
+
+    .deleteAllButton{
+        position: absolute;
+        top: 5px;
+        right: 16px;
+    }
+
+    .textContainer{
+        text-align: center;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    .deleteBtnImg{
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+    }
+}
