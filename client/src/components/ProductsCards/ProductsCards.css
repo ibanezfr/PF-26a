@@ -11,11 +11,15 @@
 
   .homePageContainer{
     display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
   }
 
   .divGral{
     display: flex;
     justify-content: center;
+    width: 100%;
   }
 
   .cardContainer{
@@ -24,4 +28,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100%;
   }

@@ -6,12 +6,23 @@ import { Link } from "react-router-dom";
 import carrito from "../../images/carrito.png";
 import SearchBar from "../Search/Search";
 import './NavBar.css'
+import { useAuth } from "../../context/AuthContext"
 
 function NavBar() {
+  const { user, logout } = useAuth();
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#"><Link to='/cart'><img src={carrito} alt='not found' width='30px'/></Link></Navbar.Brand>
+        <Navbar.Brand ><Link to='/cart'><img src={carrito} alt='not found' width='20px' /></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,12 +30,16 @@ function NavBar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1"><Link className='navText' to=''>Inicio</Link></Nav.Link>
+            <Nav.Link className='navText' href='/'>Inicio</Nav.Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3"><Link className='navText' to='/login'>Login</Link></NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                <Link to='/profile' className='navText'>Perfil</Link>
-              </NavDropdown.Item>
+              {user ? (
+                <button onClick={handleLogout}>Logout</button>
+              ) : (
+                <Nav.Link className="navText" href="/login">
+                  Login
+                </Nav.Link>
+              )}
+              <Nav.Link href='/profile' className='navText'>Perfil</Nav.Link>
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>

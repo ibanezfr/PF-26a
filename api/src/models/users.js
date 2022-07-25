@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
       },
 
-      fullname: {
+      fullName: {
         type: DataTypes.STRING,
       },
 
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
 
       country: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
       province: {
         type: DataTypes.STRING,
@@ -54,7 +54,7 @@ module.exports = (sequelize) => {
       created: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-      }
+      },
     },
 
     { timestamps: false }

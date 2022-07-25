@@ -22,7 +22,7 @@ const login = async (req, res, next) => {
 
   try {
     const userExist = await User.findOrCreate({
-      where: { id: id },
+      where: { id: id },//uuid de firebase
       defaults: {
         email: email,
         fullName: fullName,
@@ -72,9 +72,7 @@ const updateUser = async (req, res, next) => {
     const updated = await User.update(
       {
         fullName: fullName,
-        email: email,
         image: image,
-        address: address,
         country: country,
         province: province,
         city: city,

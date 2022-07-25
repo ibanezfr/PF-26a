@@ -3,23 +3,16 @@ const products = require("./products.js");
 const categories = require("./categories");
 const functionalities = require('./functionalities');
 const usersHandlers = require('./users.js')
+const pay= require("./pay")
+
 
 router.use("/products", products);
 router.use("/categories", categories);
+router.use("/pay", pay)
 
-// Users controller ->
-const {
-  register,
-  login,
-  getUser,
-  updateUser,
-} = require("../controllers/user.js");
-router.post("/auth/register", register);
-router.post("/auth/login", login);
-router.get("/auth/:id", getUser);
-router.put("/auth/:id", updateUser);
-
-//
+// Usuarios ->
+const user = require("./user.js");
+router.use("/auth", user);
 
 router.use("/function", functionalities);
 router.use("/users", usersHandlers);

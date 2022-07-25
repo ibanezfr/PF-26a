@@ -12,7 +12,7 @@ import {
   REMOVE_ONE_FROM_CART,
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
-  SET_ORDER
+  SET_ORDER,
 } from "../actions/index";
 
 
@@ -89,11 +89,11 @@ function rootReducer(state = initialState, action) {
         size: action.payload,
       };
 
-    case "AUTH":
-      return localStorage.setItem(
-        "usuario",
-        JSON.stringify({ ...action?.data })
-      );
+    // case "AUTH":
+    //   return localStorage.setItem(
+    //     "usuario",
+    //     JSON.stringify({ ...action?.data.id })
+    //   );
 
     case "LOGOUT":
       localStorage.clear();
@@ -109,56 +109,59 @@ function rootReducer(state = initialState, action) {
     case ADD_TO_CART:
       let newItem = state.products.find((p) => p.id === action.payload);
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      if (itemInCart !== undefined && itemInCart.quantity === itemInCart.stock) {
-        alert("Limite de producto alcanzado")
-        return state
+      if (
+        itemInCart !== undefined &&
+        itemInCart.quantity === itemInCart.stock
+      ) {
+        alert("Limite de producto alcanzado");
+        return state;
       }
-      return (itemInCart
+      return itemInCart
         ? {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === newItem.id
-              // && item.stock > newItem.quantity 
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        }
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === newItem.id
+                ? // && item.stock > newItem.quantity
+                  { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          }
         : {
-          ...state,
-          cart: [...state.cart, { ...newItem, quantity: 1 }]
-        });
+            ...state,
+            cart: [...state.cart, { ...newItem, quantity: 1 }],
+          };
 
     case REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
       return itemToDelete.quantity > 1
         ? {
-          ...state,
-          cart: state.cart.map((item) =>
-            item.id === action.payload
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          )
-        }
+            ...state,
+            cart: state.cart.map((item) =>
+              item.id === action.payload
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }
         : {
-          ...state,
-          cart: state.cart.filter((item) => item.id !== action.payload)
-        };
+            ...state,
+            cart: state.cart.filter((item) => item.id !== action.payload),
+          };
 
     case REMOVE_ALL_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload)
+        cart: state.cart.filter((item) => item.id !== action.payload),
       };
     case CLEAR_CART:
       return {
         ...state,
-        cart: []
+        cart: [],
       };
 
     case SET_ORDER:
       return {
         ...state,
-        orderBy: action.payload
+        orderBy: action.payload,
       };
 
     default:

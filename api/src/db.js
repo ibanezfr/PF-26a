@@ -50,6 +50,8 @@ Review.belongsTo(Product);
 
 User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);
+
+
 module.exports = {
     ...sequelize.models, 
     conn: sequelize,    

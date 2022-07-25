@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+//Payment
+.containerPayment{
+    margin-right: 10%;
+}
+
+//Todo el resto
+.maxContainer{
+    background-color: #DFCED5;
+}
+.btnContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .totalText{
+        font-family: $font;
+        color: $primaryColor;
+        margin-right: 5%;
+        font-size: 2rem;
+    }
+}
+
+.totalText{
+    font-size: 2rem;
+    color: #794983;
+}
+
+.btnPrincipal {
+    /* margin: 10%; */
+    margin: 3%;
+    margin-bottom: 0%;
+    color: white;
+    font-size: 1rem;
+    font-weight: 300;
+    /* padding: 0.5em 1.2em; */
+    background: #794983;
+    border: 2px solid;
+    border-color: #794983;
+  }
+  .btnPrincipal:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 16px #794983;
+    transition: all 0.2s ease;
+  }
+
+
+  .secondaryBtn {
+      margin: 3%;
+      margin-top: 1%;
+      color: #794983 ;
+      font-size: 1rem;
+      font-weight: 300;
+      /* padding: 0.5em 1.2em; */
+      background: transparent;
+      border: 2px solid;
+      border-color: #794983;
+      /* position: relative; */
+    }
+    .secondaryBtn:hover {
+      color: #794983 ;
+      box-shadow: 0 4px 16px #794983;
+      transition: all 0.2s ease;
+    }
+
+    .emptyChartTextContainer{
+        color: #794983
+    }
+
+    .emptyChartTextContainer h2{
+        font-family: 'Francois One', sans-serif;
+        padding-top: 5%;
+    }
+
+    .shoppingCartText{
+        font-size: 2rem;
+        color: #794983;
+        padding-top: 2%;
+        font-family: 'Francois One', sans-serif;
+    }
+
+    @media (max-width: 550px) {
+        .allCardsContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    }

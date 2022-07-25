@@ -2,13 +2,24 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
-import './Cart.css'
+import './Cart.scss'
 import { formatNumber } from "../../Utils";
+import CheckoutForm from "./CheckoutForm.jsx"
+import { loadStripe } from "@stripe/stripe-js";
+import {
+    Elements,
+
+} from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
+
+
+
+const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGuW5bCepjRqE969YH6eAoS8q7mhBpAkXYPYH9T002QhQfVXDcGd7w00kRYp2bdI");
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-
+    // console.log(cart)
     JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
@@ -24,14 +35,15 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
+    
 
     return (
         <div className="maxContainer">
             <h2 className="shoppingCartText">Tu carrito de compras</h2>
             <div className='allCardsContainer'>
                 {
-                    cart[0] ? cart.map((product) =>
-                        <div>
+                    cart[0] ? cart.map((product, index) =>
+                        <div key={index}>
                             <div className="productItemContainer">
                                 <ProductItem
                                     key={product.id}
@@ -55,12 +67,29 @@ export default function Cart() {
                 }
                 <div className="btnContainer">
                     {
+                        cart[0] ? <div className="totalText">TOTAL ${formatNumber(precioTotal)}</div> : <></>
+                    }
+                    <Elements stripe={stripePromise}>
+                        <div className="containerPayment p-4">
+                            <div className="row h-100">
+                                <div className="col-md-4 offset-md-4 h-100">
+                                    <CheckoutForm total={precioTotal} products={cart} />
+                                </div>
+                            </div>
+                        </div>
+                    </Elements>
+                    <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
+                    <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
+                </div>
+                {/* <div className="btnContainer">
+                    {
                         cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
                     }
                     <button className="btnPrincipal">Continuar compra</button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
 }
+

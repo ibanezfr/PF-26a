@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+.fatherContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    justify-content: space-around;
+    width: 500px;
+    border-top: 0.5px solid #794983;
+    border-bottom: 0.5px solid  #794983;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: $lightestColor;
+}
+
+.itemImage{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10%;
+    margin: 2%;
+    display: flex;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    margin-right: 3%;
+}
+
+.deleteAllButton{
+    margin: 3%;
+    background: rgba(0,0,0,0);
+    transition: all 1s ease;
+    border-radius: 100%;
+    border-color: transparent;
+    font-size: 0.8rem;
+}
+
+
+.deleteBtnImg{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.textContainer h4{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    margin-top: 5%;
+}
+
+.actionBtn {
+    margin: 3%;
+    color: #794983 ;
+    background: rgba(0,0,0,0);
+    border: 1px solid;
+    border-color: #794983;
+    transition: all 1s ease;
+    font-size: 0.8rem;
+    /* border-radius: 10%; */
+}
+
+.actionBtn:hover{
+    background: #9C9AC0;
+    border-color: #9C9AC0;
+    color: #fff ;
+}
+
+.textContainer h5{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    margin: 1%;
+    text-align: left;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 260px;
+    color: #794983;
+}
+
+@media (max-width: 550px) {
+    .fatherContainer{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 200px;
+        border-top: 0.5px solid #794983;
+        border-bottom: 0.5px solid  #794983;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        position: relative;
+    }
+
+    .deleteAllButton{
+        position: absolute;
+        top: 5px;
+        right: 16px;
+    }
+
+    .textContainer{
+        text-align: center;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    .deleteBtnImg{
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+    }
+}

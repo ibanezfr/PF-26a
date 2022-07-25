@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { getProductsByName } from '../../redux/actions/index.js';
+import './Search.scss';
 
 
 
@@ -34,10 +35,11 @@ export default function SearchBar() {
 
     }, [name]);
     return (
-        <div className="">
+        <div className="searchContainer">
             {redirect ? <Redirect push to="/search" /> : null}
             <form onSubmit={(element) => submitHandler(element)}>
                 <input
+                    className="inputSearch"
                     type="text"
                     onChange={inputChangeHandler}
                     onSubmit={submitHandler}

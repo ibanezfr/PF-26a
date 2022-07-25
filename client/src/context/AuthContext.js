@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
-  sendEmailVerification,
+  // sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../firebase";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
@@ -33,7 +33,7 @@ export default function Details(){
     
     return(
         <div className="father">
-          <div className="container">
+          <div className="containerDetail">
             <div className="container1">
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
