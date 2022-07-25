@@ -92,6 +92,7 @@ const Profile = () => {
             </div>
           </div>
         </div>{" "}
+        <p>Hola mUNdooo</p>
       </div>
       <Link to="/profile/form">
         <button>Edit Profile</button>
