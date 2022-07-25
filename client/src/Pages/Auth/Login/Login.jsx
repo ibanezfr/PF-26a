@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import "./Login.css";
 import { useAuth } from "../../../context/AuthContext";
-// import { loginUser } from "../../../redux/actions";
+
 import axios from "axios";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPass } = useAuth();
-  const dispatch = useDispatch();
+
   const [user, setUser] = useState({
     email: "",
     password: "",

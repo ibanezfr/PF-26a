@@ -4,7 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 // import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+
 import { useAuth } from "../../context/AuthContext";
 
 import "./Profile.css";
@@ -12,7 +12,7 @@ import "./Profile.css";
 const Profile = () => {
   // const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
-  const { logout, loading, user } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -23,7 +23,6 @@ const Profile = () => {
       console.log(error);
     }
   };
-
   // const getUser = async () => {
   //   try {
   //     const response = await axios.get(
@@ -47,53 +46,50 @@ const Profile = () => {
     fetchData();
   }, []);
   console.log(userDb);
-
-  if (loading) {
-    return <Loading />;
-  }
+  // console.log(user);
 
   return (
     <div className="wrapper">
       <div className="container">
         <div className="user-info">
-          <p className="title">{userDb.email}</p>
+          <p className="title">{userDb?.email}</p>
           {userDb.image ? (
             <img src={userDb?.image} alt="" className="profile" />
           ) : (
             <FaUserCircle className="profile" />
           )}
-          <p className="title">{userDb.fullName}</p>
+
+          <p className="title">{userDb?.fullName}</p>
 
           <div className="div-details">
             <div className="container-details">
               <p className="details">
                 <span className="span-details">Country:</span>
-                <br /> {userDb.country}
+                <br /> {userDb?.country}
               </p>
               <p className="details">
                 <span className="span-details">Province:</span>
                 <br />
-                {userDb.province}
+                {userDb?.province}
               </p>
               <p className="details">
                 <span className="span-details">City:</span>
                 <br />
-                {userDb.city}
+                {userDb?.city}
               </p>
               <p className="details">
                 <span className="span-details">Street:</span>
                 <br />
-                {userDb.street}
+                {userDb?.street}
               </p>
               <p className="details">
                 <span className="span-details">Postal code:</span>
                 <br />
-                {userDb.postalCode}
+                {userDb?.postalCode}
               </p>
             </div>
           </div>
         </div>{" "}
-        <p>Hola mUNdooo</p>
       </div>
       <Link to="/profile/form">
         <button>Edit Profile</button>
