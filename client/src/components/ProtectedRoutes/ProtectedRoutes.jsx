@@ -8,7 +8,7 @@ const ProtectedRoutes = ({ children }) => {
 
   if (loading) return <Loading />;
 
-  if (!user) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/login" />;
 
   return <>{children}</>;
 };
