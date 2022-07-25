@@ -36,7 +36,7 @@ function HomePage() {
     var categoriesInProducts = products.map((p) => p.categories.map((c) => c.name))
     let categoriesDisplayed = []
     categoriesInProducts.map((e) => categoriesDisplayed = [...new Set([...categoriesDisplayed, ...e])]);
-    console.log(categoriesDisplayed.sort())
+    // console.log(categoriesDisplayed.sort())
 
     //sort functionsf
     if (orderedBy) {
@@ -95,6 +95,13 @@ function HomePage() {
         numberOfPages.push(i);
     }
 
+    useEffect(() => {
+        localStorage.setItem('currentPage', JSON.stringify(currentPage));
+        if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
+            setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
+        };
+    }, [currentPage]);
+
 
     //filter functions
     function onClickFilter(e) {
@@ -109,11 +116,7 @@ function HomePage() {
         setCurrentPage(1)
     }
 
-    JSON.parse(localStorage.getItem('currentPage'));
 
-    useEffect(() => {
-        localStorage.setItem('currentPage', JSON.stringify(currentPage));
-    }, [currentPage]);
 
     return (
         <div className='totalHomeContainer'>
