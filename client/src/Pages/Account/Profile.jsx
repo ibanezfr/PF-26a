@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { useAuth } from "../../context/AuthContext";
 
-import "./Profile.css";
+import "./Profile.scss";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -94,9 +94,9 @@ const Profile = () => {
         </div>{" "}
       </div>
       <Link to="/profile/form">
-        <button>Edit Profile</button>
+        <button className="btnProfile">Edit Profile</button>
       </Link>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="btnProfile" onClick={handleLogout}>Logout</button>
     </div>
 
     // <div>
