@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { useAuth } from "../../context/AuthContext";
@@ -10,14 +10,15 @@ import { useAuth } from "../../context/AuthContext";
 import "./Profile.css";
 
 const Profile = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
   const { logout, loading, user } = useAuth();
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
+    e.preventDefault();
     try {
-      dispatch({ type: "LOGOUT" });
       await logout();
+      localStorage.removeItem("usuario");
     } catch (error) {
       console.log(error);
     }
