@@ -36,7 +36,7 @@ function HomePage() {
     var categoriesInProducts = products.map((p) => p.categories.map((c) => c.name))
     let categoriesDisplayed = []
     categoriesInProducts.map((e) => categoriesDisplayed = [...new Set([...categoriesDisplayed, ...e])]);
-    // console.log(categoriesDisplayed)
+    console.log(categoriesDisplayed.sort())
 
     //sort functionsf
     if (orderedBy) {
@@ -136,10 +136,10 @@ function HomePage() {
                     }
                     <div>
                     <h2>Encontrá lo que buscas...</h2>
-                    <ul className='ulElement'>{categoriesDisplayed.map(cat => {
+                    <ul className='ulElement'>{categoriesDisplayed.sort().map(cat => {
                         if(!filters.includes(cat))
                         return (
-                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>{cat}</li>
+                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
                         )
                     })}</ul>
                     </div>
