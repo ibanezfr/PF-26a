@@ -95,12 +95,12 @@ function HomePage() {
         numberOfPages.push(i);
     }
 
-    useEffect(() => {
-        localStorage.setItem('currentPage', JSON.stringify(currentPage));
-        if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
-            setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
-        };
-    }, [currentPage]);
+    // useEffect(() => {
+    //     localStorage.setItem('currentPage', JSON.stringify(currentPage));
+    //     if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
+    //         setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
+    //     };
+    // }, [localStorage]);
 
 
     //filter functions
@@ -145,10 +145,11 @@ function HomePage() {
                     <div>
                     <h2>Encontrá lo que buscas...</h2>
                     <ul className='ulElement'>{categoriesDisplayed.sort().map(cat => {
-                        if(!filters.includes(cat))
-                        return (
-                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
-                        )
+                        if(!filters.includes(cat)) {
+                            return (
+                                <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
+                            )
+                        } else return <></>
                     })}</ul>
                     </div>
                     <select name='order-by' onChange={onSelectChange}>
