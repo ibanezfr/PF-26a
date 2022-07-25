@@ -95,12 +95,12 @@ function HomePage() {
         numberOfPages.push(i);
     }
 
-    useEffect(() => {
-        localStorage.setItem('currentPage', JSON.stringify(currentPage));
-        if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
-            setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
-        };
-    }, [currentPage]);
+    // useEffect(() => {
+    //     localStorage.setItem('currentPage', JSON.stringify(currentPage));
+    //     // if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
+    //     //     setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
+    //     // };
+    // }, [currentPage]);
 
 
     //filter functions
