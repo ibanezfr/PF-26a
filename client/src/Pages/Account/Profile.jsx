@@ -18,7 +18,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       await logout();
-      localStorage.removeItem("usuario");
+      localStorage.clear();
     } catch (error) {
       console.log(error);
     }
