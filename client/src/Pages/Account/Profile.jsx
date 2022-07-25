@@ -12,7 +12,7 @@ import "./Profile.css";
 const Profile = () => {
   const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
-  const { logout, loading } = useAuth();
+  const { logout, loading, user } = useAuth();
 
   const handleLogout = async () => {
     try {
