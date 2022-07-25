@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import { register } from "../../../redux/actions";
+// import { register } from "../../../redux/actions";
 
 const Register = () => {
   const { signup } = useAuth();
-  const dispatch = useDispatch();
+
   const [newUser, setNewUser] = useState({
     fullName: "",
     email: "",
@@ -17,17 +17,6 @@ const Register = () => {
 
   const [error, setError] = useState("");
   const history = useHistory();
-
-  // const handleRedirect = async () => {
-  //   const check = await JSON.parse(localStorage.getItem("usuario"));
-  //   if (check) {
-  //     history.push("/profile");
-  //   }
-  // };
-  // useEffect(() => {
-  //   handleRedirect();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

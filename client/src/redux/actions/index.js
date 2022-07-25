@@ -151,39 +151,39 @@ export const getProductsByName = (name) => {
   };
 };
 
-export const register = (user) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.post(
-        `http://localhost:3001/auth/register`,
-        user
-      );
-      return dispatch({
-        type: "AUTH",
-        data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const register = (user) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.post(
+//         `http://localhost:3001/auth/register`,
+//         user
+//       );
+//       return dispatch({
+//         type: "AUTH",
+//         data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
-export const loginUser = (user) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.post(
-        `http://localhost:3001/auth/login`,
-        user
-      );
-      return dispatch({
-        type: "AUTH",
-        data: data.id,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const loginUser = (user) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.post(
+//         `http://localhost:3001/auth/login`,
+//         user
+//       );
+//       return dispatch({
+//         type: "AUTH",
+//         data: data.id,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 export const loginCheck = (dispatch) => {
   let isLogged = false;

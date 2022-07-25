@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import "./Login.css";
 import { useAuth } from "../../../context/AuthContext";
-import { loginUser } from "../../../redux/actions";
+// import { loginUser } from "../../../redux/actions";
 import axios from "axios";
 
 const Login = () => {
@@ -62,14 +62,17 @@ const Login = () => {
   const handleGoogle = async () => {
     try {
       const credentials = await loginWithGoogle();
-      dispatch(
-        loginUser({
-          id: credentials.user.uid,
-          fullName: credentials.user.displayName,
-          email: credentials.user.email,
-          image: credentials.user.photoURL,
-        })
-      );
+
+      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+        id: credentials.user.uid,
+        name: credentials.user.displayName,
+        email: credentials.user.email,
+        image: credentials.user.photoURL,
+      });
+      if (userInDb.data[0].banned) return alert("Baneado lince");
+      if (credentials.user.uid) {
+        localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
+      }
 
       history.push("/profile");
     } catch (error) {
