@@ -1,10 +1,18 @@
-/* .productItemContainer{
-    display: flex;
-    flex-direction: column;
-    margin: 3%;
-    max-width: 100%;
-    justify-content: center;
-} */
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+//Payment
+.containerPayment{
+    margin-right: 10%;
+}
+
+//Todo el resto
 .maxContainer{
     background-color: #DFCED5;
 }
@@ -12,8 +20,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    .totalText{
+        font-family: $font;
+        color: $primaryColor;
+        margin-right: 5%;
+        font-size: 2rem;
+    }
 }
 
+.totalText{
+    font-size: 2rem;
+    color: #794983;
+}
 
 .btnPrincipal {
     /* margin: 10%; */
