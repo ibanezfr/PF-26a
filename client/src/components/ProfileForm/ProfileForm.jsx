@@ -66,7 +66,7 @@ export default function ProfileForm() {
               id="inputFullName"
               value={values.fullName}
               name="fullName"
-              placeholder="name..."
+              placeholder="Name..."
               onChange={onChange}
             />
           </div>
@@ -83,7 +83,7 @@ export default function ProfileForm() {
               type="url"
               id="inputImage"
               name="image"
-              placeholder="image url..."
+              placeholder="Image url..."
               value={values.image}
               onChange={onChange}
             />
