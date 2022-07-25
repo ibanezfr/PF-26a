@@ -6,8 +6,19 @@ import { Link } from "react-router-dom";
 import carrito from "../../images/carrito.png";
 import SearchBar from "../Search/Search";
 import './NavBar.css'
+import { useAuth } from "../../context/AuthContext"
 
 function NavBar() {
+  const { user, logout } = useAuth();
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -21,7 +32,13 @@ function NavBar() {
           >
             <Nav.Link className='navText' href='/'>Inicio</Nav.Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
-              <Nav.Link className='navText' href='/login'>Login</Nav.Link>
+              {user ? (
+                <button onClick={handleLogout}>Logout</button>
+              ) : (
+                <Nav.Link className="navText" href="/login">
+                  Login
+                </Nav.Link>
+              )}
               <Nav.Link href='/profile' className='navText'>Perfil</Nav.Link>
               <NavDropdown.Divider />
             </NavDropdown>
