@@ -11,8 +11,11 @@ $lightestColor: #F2F2F2;
 .totalHomeContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     align-content: center;
+    width: 100%;
+    height: 150vh;
+    
 }
 
 .paginationContainer {
@@ -35,8 +38,10 @@ $lightestColor: #F2F2F2;
     width: 40px;
     text-decoration: none;
     transition: background-color .2s;
-    border: 1px solid #ddd;
+    border: 1px solid $middleColor;
     cursor: pointer;
+    border-radius: 10%;
+    margin: 10px;
 }
 
 .paginationContainer button.active {
@@ -57,7 +62,7 @@ $lightestColor: #F2F2F2;
     display: flex;
     flex-direction: row-reverse;
     margin-right: 20px;
-
+    justify-content: flex-end;
 
     h2 {
         font-family: $font;
@@ -89,6 +94,8 @@ $lightestColor: #F2F2F2;
         display: flex;
         flex-direction: column;
         justify-content: right;
+        position: left;
+        
 
         select {
             border: 1px solid $secondaryColor;

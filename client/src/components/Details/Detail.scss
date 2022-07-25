@@ -7,11 +7,13 @@ $backGroundColor: #DFCED5;
 $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
-.father{
+.father {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    align-items: center;
 }
-.container{
+
+.containerDetail {
     display: flex;
     flex-direction: row;
     background-color: $lightestColor;
@@ -23,7 +25,7 @@ $lightestColor: #F2F2F2;
 
 }
 
-.container1{
+.container1 {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -38,11 +40,11 @@ $lightestColor: #F2F2F2;
         border-radius: 20%;
     }
 
-    span{
+    span {
         font-family: $font;
     }
 
-    select{
+    select {
         color: $primaryColor;
         width: 100px;
         height: 30px;
@@ -51,7 +53,7 @@ $lightestColor: #F2F2F2;
         border-radius: 5%;
         border: 1px solid $primaryColor;
 
-        option{
+        option {
             background-color: $primaryColor;
             color: $lightestColor;
         }
@@ -67,7 +69,7 @@ $lightestColor: #F2F2F2;
     padding-top: 5%;
     align-items: flex-start;
 
-    h2{
+    h2 {
         font-family: $font;
         color: $primaryColor;
     }
@@ -78,17 +80,17 @@ $lightestColor: #F2F2F2;
         color: $primaryColor;
     }
 
-    span{
+    span {
         font-family: $font;
         color: $secondaryColor;
     }
 
-    .btnContainer{
+    .btnContainer {
         display: flex;
         flex-direction: row;
     }
 
-    button{
+    button {
         color: $lightestColor;
         font-weight: 500;
         background-color: $primaryColor;
@@ -103,34 +105,34 @@ $lightestColor: #F2F2F2;
         font-size: 1rem;
     }
 
-    button:hover{
+    button:hover {
         color: rgba(255, 255, 255, 1);
         box-shadow: 0 4px 16px #794983;
         transition: all 0.2s ease;
     }
 
-    .btnFav{
-        color:$secondaryColor;
+    .btnFav {
+        color: $secondaryColor;
         background-color: #794983;
     }
 
-    .btnImage{
+    .btnImage {
         width: 15px;
         height: 15px;
     }
 
 }
 
-.formDiv{
+.formDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
 
-    .form{
+    .form {
         width: 500px;
 
-        .btn{
+        .btn {
             color: $lightestColor;
             font-weight: 500;
             background-color: $primaryColor;
@@ -145,13 +147,13 @@ $lightestColor: #F2F2F2;
             font-size: 1rem;
         }
 
-        .btn:hover{
+        .btn:hover {
             color: rgba(255, 255, 255, 1);
             box-shadow: 0 4px 16px #794983;
             transition: all 0.2s ease;
         }
 
-        .text{
+        .text {
             font-family: $font;
             color: $primaryColor;
         }

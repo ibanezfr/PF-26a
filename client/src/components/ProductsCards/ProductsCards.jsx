@@ -1,5 +1,6 @@
 // import { useState } from "react"
 // import { useDispatch, useSelector } from "react-redux"
+import ProductNotFound from "../Errors/ProductNotFound.jsx"
 import Products from "../ProductCard/ProductCard.jsx"
 
 import "./ProductsCards.css"
@@ -21,7 +22,7 @@ export default function ProductsCards({ allProducts }) {
               description={product.description}
               categories={product.categories.map(c => c.name)}
             />
-          })}</>:<><span>NOT FOUND</span></>}
+          })}</>:<><ProductNotFound/></>}
         </div>
       </div>
     </div>

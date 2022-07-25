@@ -33,7 +33,7 @@ export default function Details(){
     
     return(
         <div className="father">
-          <div className="container">
+          <div className="containerDetail">
             <div className="container1">
                 <img src={image} alt="not found"/>
                 <span>Selecciona un talle</span>
