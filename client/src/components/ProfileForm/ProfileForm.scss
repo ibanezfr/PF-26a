@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -26,6 +35,7 @@
 .errors {
   color: red;
   font-weight: 400;
+  font-family: $font;
 }
 .error .container-input {
   margin-top: 5%;
@@ -34,19 +44,47 @@
 }
 .form-input {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $primaryColor;
 }
 
+// .btn-submit {
+//   width: auto;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   text-transform: uppercase;
+//   margin: 20px 0;
+//   @media only screen and (max-width: 500px) {
+//     margin: 20px 0;
+//   }
+// }
+
 .btn-submit {
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
-  margin: 20px 0;
+  margin: 3%;
+  margin-top: 1%;
+  color: #794983 ;
+  font-size: 1rem;
+  font-weight: 300;
+  /* padding: 0.5em 1.2em; */
+  background: transparent;
+  border: 2px solid;
+  border-color: #794983;
+  /* position: relative; */
   @media only screen and (max-width: 500px) {
     margin: 20px 0;
+  }
+}
+.btn-submit:hover {
+  color: #794983 ;
+  box-shadow: 0 4px 16px #794983;
+  transition: all 0.2s ease;
+}
+
+.container-input{
+  label{
+    font-family: $font;
+    color: $primaryColor;
   }
 }
