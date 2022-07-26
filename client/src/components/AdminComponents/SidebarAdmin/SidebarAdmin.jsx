@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SidebarAdmin.scss";
 import {
   MdDashboardCustomize,
@@ -32,8 +33,10 @@ const SidebarAdmin = () => {
             <span>Users</span>
           </li>
           <li>
-            <SiProducthunt className="icons" />
-            <span>Products</span>
+            <Link to="/admin/creation">
+              <SiProducthunt className="icons" />
+              <span>Products</span>
+            </Link>
           </li>
           <li>
             <FaShoppingCart className="icons" />

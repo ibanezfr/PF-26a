@@ -3,37 +3,37 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-export function validate() {
+// export function validate() {
 
-}
+// }
 
 export default function ProductCreationForm() {
-    const dispatch = useDispatch();
-    const history = useHistory();
-
+    // const dispatch = useDispatch();
+    // const history = useHistory();
+    // const categoriesArray = useSelector((state) => state.categories)
+    // console.log(categoriesArray);
     const [input, setInput] = useState({
         name: "",
         price: 0,
         description: "",
-        color: "|",
+        color: "",
         image: "",
         image2: "",
         image3: "",
         image4: "",
         status: "",
-        created: true,
-        size: "",
+        size: [],
     })
-    const [errors, setErrors] = useState({});
-    const handleInputChange = (e) => {
+    // const [errors, setErrors] = useState({});
+    // const handleInputChange = (e) => {
 
-    }
-    const handleSubmit = (e) => {
+    // }
+    // const handleSubmit = (e) => {
 
-    }
+    // }
 
 
     return (
-        <div></div>
+        <div><h1>Soy el form de creación</h1></div>
     )
 }
