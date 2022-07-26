@@ -47,9 +47,6 @@ export default function SearchBar() {
                     placeholder="🔍 Buscar!"
                 />
             </form>
-
-
-
         </div>
     );
 }

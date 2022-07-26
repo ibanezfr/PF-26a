@@ -1,4 +1,3 @@
-
 const products = require("../../../Pruebas/products.json");
 const { Op } = require("sequelize");
 const { Product, Category, Review } = require("../db");

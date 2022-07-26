@@ -82,6 +82,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         searchProducts: action.payload,
+        displayedProducts:action.payload//edite agus
       };
     case GET_BY_ID:
       return {
