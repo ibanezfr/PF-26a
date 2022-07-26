@@ -14,3 +14,4 @@ export function filterProducts(state, auxs) {
     });
     return res;
 };
+

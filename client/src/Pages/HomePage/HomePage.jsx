@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
-import ProductsCards from '../ProductsCards/ProductsCards.jsx';
-import Filters from '../Filters/filters';
+import ProductsCards from '../../components/ProductsCards/ProductsCards.jsx';
+import Filters from '../../components/Filters/filters';
 import './HomePage.scss'
 
 function HomePage() {
@@ -111,6 +111,7 @@ function HomePage() {
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
                     <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset}/>
+                    <order fn></order>                    
                     <select name='order-by' onChange={onSelectChange}>
                         <option>Ordenar por...</option>
                         <option value='Name-Asc'>Letras: A-Z</option>
