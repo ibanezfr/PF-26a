@@ -19,8 +19,6 @@ const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGu
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    // console.log(cart)
-    JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));

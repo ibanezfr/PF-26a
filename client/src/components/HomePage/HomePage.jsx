@@ -97,17 +97,10 @@ function HomePage() {
 
     // useEffect(() => {
     //     localStorage.setItem('currentPage', JSON.stringify(currentPage));
-<<<<<<< HEAD
-    //     if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
-    //         setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
-    //     };
-    // }, [localStorage]);
-=======
     //     // if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
     //     //     setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
     //     // };
     // }, [currentPage]);
->>>>>>> 529363e47e9e04036d56d51d9ca77e92bb80456d
 
 
     //filter functions
