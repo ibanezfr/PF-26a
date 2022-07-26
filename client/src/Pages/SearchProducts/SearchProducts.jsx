@@ -3,6 +3,8 @@ import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
 import "./SearchProducts.scss"
 import ProductNotFound from "../../components/Errors/ProductNotFound"
+import ProductsCards from "../../components/ProductsCards/ProductsCards.jsx";
+//import ProductsCard from "../../components/ProductsCards/ProductsCards";
 
 
 export default function SearchProducts() {
@@ -53,7 +55,7 @@ export default function SearchProducts() {
               currentPosts.map((product) => {
                 if (product.status === "active") {
                   return (
-                    <Products
+/*                     <Products
                       id={product.id}
                       key={product.id}
                       name={product.name}
@@ -61,7 +63,8 @@ export default function SearchProducts() {
                       price={product.price}
                       description={product.description}
                       categories={product.categories.map(c => c.name)}
-                    />
+                    /> */
+                    <ProductsCards allProducts={searchProducts} />
                   );
                 } else {
                   return (

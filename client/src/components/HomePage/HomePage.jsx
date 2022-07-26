@@ -17,6 +17,7 @@ function HomePage() {
 
     //sort functionsf
     if (orderedBy) {
+        //ordene por disponibles o se podria hacer con un display none
         switch (orderedBy) {
             case 'Name-Asc':
                 products = [...products.sort((p1, p2) => {
