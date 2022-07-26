@@ -15,7 +15,7 @@ const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
 const URL_FOR_GET_PRODUCTS_BY_ID= "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
-const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name"
+const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
