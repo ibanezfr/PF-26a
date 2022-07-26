@@ -13,8 +13,10 @@ import {
   REMOVE_ALL_FROM_CART,
   CLEAR_CART,
   SET_ORDER,
+  SESSION,
 } from "../actions/index";
 import { filterProducts } from "../../Utils";
+import { orderProducts } from "../../Utils";
 
 const initialState = {
   products: [], //siempre tengo todos los productos para filtrar 
@@ -28,7 +30,9 @@ const initialState = {
       : JSON.parse(localStorage.getItem("filter"))),
   ],
   categories: [],
-  orderBy: "",
+  orderBy:  (JSON.parse(localStorage.getItem("order")) === null
+            ? ''
+            : JSON.parse(localStorage.getItem("order"))),
   user: [],
   userInfo: [],
   session: false,
@@ -99,7 +103,7 @@ function rootReducer(state = initialState, action) {
     //   localStorage.clear();
     //   return { ...state };
 
-    case "SESSION":
+    case SESSION:
       return {
         ...state,
         user: action.payload.data,
@@ -159,9 +163,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case SET_ORDER:
+      let prod = orderProducts(state.displayedProducts,action.payload)//quiero ordenar lo que se ve
+
       return {
         ...state,
         orderBy: action.payload,
+        displayedProducts: prod,
       };
 
     default:

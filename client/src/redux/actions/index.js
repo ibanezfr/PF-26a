@@ -13,11 +13,17 @@ export const CLEAR_CART = "CLEAR_CART";
 
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
+const URL_FOR_GET_PRODUCTS_BY_ID= "http://localhost:3001/products/";
+const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
+const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name"
+
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
+
+export const SESSION="SESSION"
 
 //carrito de compras FUNCIONES
 export function addToCart(id) {
@@ -109,7 +115,7 @@ export function setProductsToDisplay(products) {
 
 export const getProductsById = (id) => {
   return async (dispatch) => {
-    let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
+    let pedidoApiId = await axios.get(URL_FOR_GET_PRODUCTS_BY_ID + id);
     dispatch({
       type: GET_BY_ID,
       payload: pedidoApiId.data,
@@ -125,7 +131,7 @@ export function cleanProduct() {
 
 export function bringSize(id) {
   return async (dispatch) => {
-    let size = await axios.get("http://localhost:3001/products/size/" + id);
+    let size = await axios.get(URL_FOR_BRING_SIZE + id);
     // console.log("en la action: ", size.data)
     dispatch({
       type: GET_SIZE,
@@ -138,7 +144,7 @@ export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
       const productsByName = await axios.get(
-        `http://localhost:3001/products/search?name=${name}`
+        URL_FOR_GET_PRODUCTS_BY_NAME + name
       );
 
       return dispatch({
@@ -158,12 +164,12 @@ export const loginCheck = (dispatch) => {
   if (loggedUser) {
     isLogged = true;
     dispatch({
-      type: "SESSION",
+      type: SESSION,
       payload: { data: loggedUser, session: isLogged },
     });
   } else {
     dispatch({
-      type: "SESSION",
+      type: SESSION,
       payload: { session: isLogged },
     });
   }
