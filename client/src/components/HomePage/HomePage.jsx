@@ -145,11 +145,10 @@ function HomePage() {
                     <div>
                     <h2>Encontrá lo que buscas...</h2>
                     <ul className='ulElement'>{categoriesDisplayed.sort().map(cat => {
-                        if(!filters.includes(cat)) {
-                            return (
-                                <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
-                            )
-                        } else return <></>
+                        if(!filters.includes(cat))
+                        return (
+                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
+                        )
                     })}</ul>
                     </div>
                     <select name='order-by' onChange={onSelectChange}>
