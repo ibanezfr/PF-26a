@@ -8,9 +8,11 @@ import ProductNotFound from "../../components/Errors/ProductNotFound"
 export default function SearchProducts() {
   let searchProducts = useSelector((state) => state.searchProducts)
   const dispatch = useDispatch()
+  let cart = useSelector(state => state.cart)
+  
   useEffect(() => {
-
-  }, [dispatch])
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart])
 
 
   const [currentPage, setCurrentPage] = useState(1);

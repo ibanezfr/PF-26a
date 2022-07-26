@@ -11,12 +11,14 @@ import Button from 'react-bootstrap/Button';
 export default function Details(){
     const params = useParams();
     const dispatch = useDispatch();
+    let cart = useSelector(state => state.cart)
 
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
         dispatch(bringSize(params.id))
-    }, [dispatch, params.id, params.name]);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [dispatch, params.id, params.name, cart]);
 
     
     let actualProduct = useSelector(state => state.detail)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
@@ -9,6 +9,11 @@ function HomePage() {
     const dispatch = useDispatch()
     let products = useSelector(state => state.products)
     let orderedBy = useSelector(state => state.orderBy)
+    let cart = useSelector(state => state.cart)
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     //sort functionsf
     if (orderedBy) {
