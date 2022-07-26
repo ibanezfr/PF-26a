@@ -1,0 +1,170 @@
+.card{
+  background:#fff;
+  padding:15px;
+  border-radius:6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  position:relative;
+  margin:20px auto;
+  width: 200px;
+}
+
+.imgContainer {
+  position:absolute;
+  top:5px;
+  left:50%;
+  transform:translate(-50%);
+  -webkit-transform:translate(-50%);
+  -ms-transform:translate(-50%);
+  -moz-transform:translate(-50%);
+  -o-transform:translate(-50%);
+  -khtml-transform:translate(-50%);
+  width: 100%;
+  padding: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.imgContainer img{
+  width:100%;
+  height: 160px;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+  border-radius:6px;
+}
+
+.card:hover .imgContainer {
+  top:-40px;
+}
+
+.card:hover .imgContainer img{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.bodyContainer {
+  padding-top: 100%;
+}
+
+.bodyContainer .category{
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+  padding:5px;
+  margin-bottom:18%;
+  position:relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.bodyContainer .category > * {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  -khtml-transform: translate(-50%,-50%);
+    
+}
+
+.bodyContainer .category > .btnInfo{
+  padding: 12px 30px;
+  border: 1px solid #313131;
+  background:#212121;
+  color:#fff;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius:27px;
+  transition: all 0.05s ease-in-out;
+  
+}
+
+.card:hover .bodyContainer .category > .btnInfo{
+  border-color:#ddd;
+  box-shadow: none;
+  padding: 11px 28px;
+}
+
+.card:hover .bodyContainer .category{
+  margin-top: 0px;
+}
+
+.card .titleProduct{
+  text-align:center;
+}
+
+.titleProduct h2{
+  font-size:1rem;
+  /* font-weight:bold; */
+  color: #794983;
+  font-family: 'Raleway', sans-serif;
+  margin:3%;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  width:100%;
+}
+
+.cardFooter{
+  padding: 5% 0 1%;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardFooter:after, .cardFooter:before{
+  content:'';
+  display:table;
+}
+
+.cardFooter:after{
+  clear:both;
+}
+
+.price{
+  font-size:1rem;
+  font-weight:bold;
+  color: #794983;
+}
+.categoryText{
+  font-size: 0.7rem;
+  font-family: 'Raleway', sans-serif;
+  color: #9C9AC0;
+}
+
+.btnInfo {
+  /* margin: 10%; */
+  height: 40px;
+  margin: 3%;
+  margin-bottom: 0%;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  /* font-weight: 300; */
+  /* padding: 0.5em 1.2em; */
+  background: #794983;
+  border: 2px solid;
+  border-radius: 5%;
+  border-color: #794983;
+}
+.btnInfo:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 16px #794983;
+  transition: all 0.2s ease;
+}
+
+.btnInfo2 {
+  margin: 3%;
+  margin-top: 1%;
+  color: #794983 ;
+  font-size: 1rem;
+  font-weight: 500;
+  /* padding: 0.5em 1.2em; */
+  background: transparent;
+  border: 2px solid;
+  border-color: #794983;
+  /* position: relative; */
+}
+.btnInfo2:hover {
+  color: #794983 ;
+  box-shadow: 0 4px 16px #794983;
+  transition: all 0.2s ease;
+}
