@@ -8,7 +8,7 @@ import trash from '../../images/trash.png'
 function HomePage() {
     const dispatch = useDispatch()
     let products = useSelector(state => state.products)
-    let categories = useSelector(state => state.categories)
+    // let categories = useSelector(state => state.categories)
     let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
 
