@@ -10,12 +10,12 @@ export function validate() {
 export default function ProductCreationForm() {
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [input, setInput] = useState({
         name: "",
         price: 0,
         description: "",
-        color: "",
-        rating: 0,
+        color: "|",
         image: "",
         image2: "",
         image3: "",
@@ -24,6 +24,14 @@ export default function ProductCreationForm() {
         created: true,
         size: "",
     })
+    const [errors, setErrors] = useState({});
+    const handleInputChange = (e) => {
+
+    }
+    const handleSubmit = (e) => {
+
+    }
+
 
     return (
         <div></div>
