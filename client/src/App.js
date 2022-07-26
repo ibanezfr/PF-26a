@@ -16,6 +16,7 @@ import Register from "./Pages/Auth/Register/Register";
 import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
+import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,12 @@ function App() {
             <SearchProducts />
           </Route>
           <Route path="/details/:id" component={Details} />
+
+          {/* Admin ROUTES */}
+          <Route path="/admin/home" component={HomeAdmin} />
+
+          {/* AUTHENTICATION ROUTES usuarios y eso */}
+
           <ProtectedRoutes>
             <Route path="/profile" exact>
               <Profile />
