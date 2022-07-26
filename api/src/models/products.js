@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
             defaultValue: "active"
         },
         stock: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         created: { 
