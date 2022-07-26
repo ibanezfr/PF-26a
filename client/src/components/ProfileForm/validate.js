@@ -19,7 +19,7 @@ export const validate = (input) => {
   const namecheck = /^[A-Za-z0-9\s]+$/;
 
   // verifica que sea una imagen url jpg o png
-  const imgUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+  // const imgUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
 
   const errors = {};
 
@@ -65,8 +65,8 @@ export const validate = (input) => {
       "The Postal code must contain between 3 and 20 characters";
   }
 
-  if (!imgUrl.test(image))
-    errors.image = "Image url valid extensions are jpg, jpeg and png";
+  // if (!imgUrl.test(image))
+  //   errors.image = "Image url valid extensions are jpg, jpeg and png";
 
   return errors;
 };

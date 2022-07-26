@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 // import { register } from "../../../redux/actions";

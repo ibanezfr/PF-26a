@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import Loading from "../Loading/Loading";
+
 import "./ProfileForm.scss";
 import { validate } from "./validate";
+import FileBase from "react-file-base64";
 
 export default function ProfileForm() {
   const history = useHistory();
-  const { user, loading } = useAuth();
+
   const [error, setError] = useState({
     allFields: "All fields are required",
   });
@@ -28,7 +28,8 @@ export default function ProfileForm() {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:3001/auth/${user.uid}`, values);
+      let localUser = JSON.parse(localStorage.getItem("usuario"));
+      await axios.put(`http://localhost:3001/auth/${localUser}`, values);
       history.push("/profile");
     } catch (error) {
       console.log(error);
@@ -46,9 +47,6 @@ export default function ProfileForm() {
     );
   };
 
-  if (loading) {
-    return <Loading />;
-  }
   return (
     <div className="container">
       <div className="containerForm">
@@ -58,6 +56,20 @@ export default function ProfileForm() {
         </div> */}
 
         <form className="form" onSubmit={handleSubmit}>
+          <div className="container-input">
+            {values?.image ? (
+              <div>
+                <img src={values.image} alt="" />
+              </div>
+            ) : (
+              <label htmlFor="inputImage">Image:</label>
+            )}
+            <FileBase
+              type="image"
+              multiple={false}
+              onDone={({ base64 }) => setValues({ ...values, image: base64 })}
+            />
+          </div>
           <div className="container-input">
             <label htmlFor="inputFullName">Name:</label>
             <input
@@ -75,20 +87,6 @@ export default function ProfileForm() {
           {error.name_length && (
             <small className="errors">{error.name_length}</small>
           )}
-
-          <div className="container-input">
-            <label htmlFor="inputImage">Image:</label>
-            <input
-              className="form-input"
-              type="url"
-              id="inputImage"
-              name="image"
-              placeholder="Image url..."
-              value={values.image}
-              onChange={onChange}
-            />
-          </div>
-          {error.image && <small className="errors">{error.image}</small>}
 
           <div className="container-input">
             <label htmlFor="inputCountry">Country:</label>

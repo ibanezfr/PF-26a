@@ -26,34 +26,40 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password) => {
-    const credentials = createUserWithEmailAndPassword(auth, email, password);
+    const credentials = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     // await sendEmailVerification(auth.currentUser);
     return credentials;
   };
 
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const login = async (email, password) => {
+    const credentials = await signInWithEmailAndPassword(auth, email, password);
+    return credentials;
   };
 
-  const logout = () => {
-    signOut(auth);
+  const logout = async () => {
+    await signOut(auth);
   };
 
-  const loginWithGoogle = () => {
+  const loginWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleProvider);
+    return await signInWithPopup(auth, googleProvider);
   };
 
-  const resetPass = (email) => {
-    sendPasswordResetEmail(auth, email);
+  const resetPass = async (email) => {
+    return await sendPasswordResetEmail(auth, email);
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log({ currentUser });
       setUser(currentUser);
       setLoading(false);
     });
-    return () => unsubscribe();
+    return () => unsubuscribe();
   }, []);
 
   return (

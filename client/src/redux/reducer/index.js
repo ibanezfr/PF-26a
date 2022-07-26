@@ -15,29 +15,28 @@ import {
   SET_ORDER,
 } from "../actions/index";
 
-
 const initialState = {
-    products: [],
-    detail: [],
-    searchProducts: [],
-    size: [],
-    displayedProducts: [],
-    filters: [
-        ...(JSON.parse(localStorage.getItem('filter')) === null
-        ? []
-        : JSON.parse(localStorage.getItem('filter')))
-    ],
-    categories: [],
-    orderBy: '',
-    user: [],
-    userInfo: [],
-    session: false,
-    cart: [
-      ...(JSON.parse(localStorage.getItem('cart')) === null
-        ? []
-        : JSON.parse(localStorage.getItem('cart'))),
-    ]
-}
+  products: [],
+  detail: [],
+  searchProducts: [],
+  size: [],
+  displayedProducts: [],
+  filters: [
+    ...(JSON.parse(localStorage.getItem("filter")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("filter"))),
+  ],
+  categories: [],
+  orderBy: "",
+  user: [],
+  userInfo: [],
+  session: false,
+  cart: [
+    ...(JSON.parse(localStorage.getItem("cart")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("cart"))),
+  ],
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -89,15 +88,9 @@ function rootReducer(state = initialState, action) {
         size: action.payload,
       };
 
-    // case "AUTH":
-    //   return localStorage.setItem(
-    //     "usuario",
-    //     JSON.stringify({ ...action?.data.id })
-    //   );
-
-    case "LOGOUT":
-      localStorage.clear();
-      return { ...state };
+    // case "LOGOUT":
+    //   localStorage.clear();
+    //   return { ...state };
 
     case "SESSION":
       return {
