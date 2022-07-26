@@ -10,17 +10,10 @@ function HomePage() {
     const dispatch = useDispatch()
     let products = useSelector(state => state.displayedProducts)
     let cart = useSelector(state => state.cart)
-    let filters = useSelector(state=>state.filter)
-    let order = useSelector(state=>state.order)
-
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
-    //order
-    function onSelectChange(e) {
-        dispatch(setOrder(e.target.value))
-    }
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
@@ -29,12 +22,15 @@ function HomePage() {
     const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
     const howManyPages = Math.ceil(products.length / postPerPage)
 
-
     let numberOfPages = [];
     for (let i = 1; i <= howManyPages; i++) {
         numberOfPages.push(i);
     }
 
+    //order
+    function onSelectChange(e) {
+        dispatch(setOrder(e.target.value))
+    }
 
     // filter functions
    function onClickFilter(e) {
