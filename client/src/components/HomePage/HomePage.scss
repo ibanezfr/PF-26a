@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+
+.totalHomeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: center;
+    width: 100%;
+    height: 150vh;
+    
+}
+
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: $font;
+    font-weight: 500;
+    font-size: 1rem;
+    color: $primaryColor;
+}
+
+.paginationContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primaryColor;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+    transition: background-color .2s;
+    border: 1px solid $middleColor;
+    cursor: pointer;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+.paginationContainer button.active {
+    background-color: $primaryColor;
+    color: white;
+    border: 1px solid $secondaryColor;
+}
+
+.paginationContainer button.disabled {
+    opacity: 0.2;
+}
+
+.paginationContainer button:hover:not(.active) {
+    background-color: $lightestColor;
+}
+
+.homeContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20px;
+    justify-content: flex-end;
+
+    h2 {
+        font-family: $font;
+        font-size: 1rem;
+        margin-top: 4%;
+        color: $primaryColor;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+
+    .activeFilterContainer {
+        color: $primaryColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            width: 15px;
+            height: 15px;
+
+        }
+    }
+
+    .filter-container {
+        background-color: $lightestColor;
+        box-shadow: 0 2px 4px $primaryColor;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        position: left;
+        
+
+        select {
+            border: 1px solid $secondaryColor;
+            background-color: $secondaryColor;
+            color: $lightestColor;
+            width: 150px;
+            display: flex;
+
+
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            padding-right: 8%;
+
+            li {
+                list-style: none;
+                cursor: pointer;
+                color: $secondaryColor;
+
+
+            }
+        }
+    }
+}

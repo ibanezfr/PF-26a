@@ -4,40 +4,46 @@ module.exports = (sequelize) => {
     "user",
     {
       id: {
-        type: DataTypes.STRING,      
-        unique: true,
+        type: DataTypes.STRING,
+        allowNull: false,
         primaryKey: true,
       },
-      name: {
+
+      fullName: {
         type: DataTypes.STRING,
-    
       },
-      lastname: {
-        type: DataTypes.STRING,
-      
-      },
+
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
+      image: {
+        type: DataTypes.TEXT,
+      },
+
       country: {
         type: DataTypes.STRING,
-        defaultValue: ""         
+        defaultValue: "",
       },
       province: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
       city: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
       street: {
         type: DataTypes.STRING,
-        defaultValue: ""
+        defaultValue: "",
       },
-       banned: {
+      postalCode: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+
+      banned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
@@ -45,7 +51,7 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-     created: {
+      created: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },

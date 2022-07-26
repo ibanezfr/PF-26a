@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+
+.carrouselContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .carrousel{
+        width: 80%;
+        height: 80%;
+
+        h3{
+            font-size: 1rem;
+            margin-bottom: 1%;
+            font-size: $font;
+        }
+
+        p{
+            font-size: 0.7rem;
+            margin-bottom: 1%;
+        }
+    }
+}
+    

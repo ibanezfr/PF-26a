@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+.containerHome{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .paginationContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: $font;
+    font-weight: 500;
+    font-size: 1rem;
+    color: $primaryColor;
+  }
+}
+
+// .row{
+//   display: flex;
+//   justify-content: center
+// }
+
+.cardsContainer {
+
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  // height: 100%;
+  
+  
+  }

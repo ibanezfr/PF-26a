@@ -1,0 +1,163 @@
+.login {
+  display: flex;
+  min-height: 40vw;
+}
+
+#login-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  background: whitesmoke;
+  width: 480px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  animation: fadedown 1s;
+}
+
+#login-window h1 {
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+#login {
+  text-align: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  outline: none;
+}
+
+.form-input:focus {
+  border: 2px solid #d43f8d;
+}
+
+.error {
+  display: block;
+  text-align: left;
+  margin: 0.5rem;
+  font-size: 0.9rem;
+  color: red;
+}
+
+#login div {
+  text-align: left;
+  margin: 0.5rem 20px;
+  display: flex;
+  align-items: center;
+}
+
+#login div input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.login-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 0.75rem 0;
+  margin: 2rem 0;
+  background: linear-gradient(45deg, #0250c5, #d43f8d);
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  background: linear-gradient(45deg, #d43f8d, #0250c5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+form + p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.social {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+}
+
+.social button {
+  padding: 0.5rem 2rem;
+  width: 100%;
+  font-size: 1rem;
+  background-color: transparent;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: background 0.5s;
+}
+
+.social i {
+  font-size: 1.5rem;
+}
+
+.social button:first-child {
+  color: royalblue;
+}
+
+.social button:hover:first-child {
+  background: dodgerblue;
+  color: white;
+}
+
+.social button:last-child {
+  color: #fa3838;
+}
+
+.social button:hover:last-child {
+  background: #fa3838;
+  color: white;
+}
+
+.form-footer {
+  text-align: center;
+  color: #444;
+}
+
+.form-footer a {
+  color: orange;
+  text-decoration: none;
+}
+
+@keyframes fadedown {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  #login-window {
+    width: 90vw;
+  }
+  .social button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.7rem;
+  }
+}
