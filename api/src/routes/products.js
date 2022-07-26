@@ -1,4 +1,4 @@
-const { Product, Category, Review, Qa } = require("../db");
+const { Product, Category, Review, Qa, Product_values } = require("../db");
 const { Router } = require("express");
 const { Op } = require("sequelize");
 
@@ -25,6 +25,11 @@ router.get("/", async (req, res) => {
           attributes: ["rating", "title", "description"],
           through: { attributes: [] },
         },
+        {
+          model: Product_values,
+          attributes: ["size", "stock"],
+          through: { attributes: [] },
+        }
       ],
     });
 
@@ -55,6 +60,11 @@ router.get('/size/:id', async (req, res, next) => {
           attributes: ["rating", "title", "description"],
           through: { attributes: [] },
         },
+        {
+          model: Product_values,
+          attributes: ["size", "stock"],
+          through: { attributes: [] },
+        }
       ],
     });
     if (id) {
@@ -91,6 +101,11 @@ router.get("/search", async (req, res) => {
           attributes: ["rating", "title", "description"],
           through: { attributes: [] },
         },
+        {
+          model: Product_values,
+          attributes: ["size", "stock"],
+          through: { attributes: [] },
+        }
 
       ],
       where: {
@@ -117,9 +132,8 @@ router.post("/create", async (req, res) => {
     image2,
     image3,
     image4,
-    stock,
-    size,
-    categories } = req.body;
+    categories,
+    product_values } = req.body;
 
   try {
     const newProduct = await Product.create({
@@ -132,10 +146,32 @@ router.post("/create", async (req, res) => {
       image2,
       image3,
       image4,
-      stock,
-      created: true,
-      size
+      created: true
     });
+
+    const mappedStock = product_values.map(m => m.stock)
+    const mappedSize = product_values.map(m => m.size)
+
+    var obj = [];
+
+    for(i=0; i<mappedStock.length; i++){
+      obj = await Product_values.create({
+        stock: mappedStock[i],
+        size: mappedSize[i]
+      });
+
+      // console.log("obj en el for: ", obj)
+      await newProduct.addProduct_values(obj)
+    }
+
+    // const newStock = await Product_values.create({
+    //   stock,
+    //   size
+    // })
+
+    // if(newStock){
+    //   await newProduct.addProduct_values(newStock)
+    // }
 
     for (let i = 0; i < categories.length; i++) {
       let cat = await Category.findOne({
@@ -146,11 +182,29 @@ router.post("/create", async (req, res) => {
         await newProduct.addCategory(cat);
       }
     }
+
     return res.status(201).send({ msg: "Producto Creado", producto: newProduct });
   } catch (error) {
     return res.status(400).send({ msg: error.message });
   }
 });
+
+router.post("/stock", async(req, res, next)=>{
+  let {size, stock} = req.body;
+
+  try{
+    const newStock = await Product_values.create({
+      stock,
+      size
+    });
+
+    res.status(200).send(newStock)
+
+  } catch (err){
+    console.log(err)
+  }
+});
+
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -172,6 +226,11 @@ router.get('/:id', async (req, res, next) => {
           attributes: ["rating", "title", "description"],
           through: { attributes: [] },
         },
+        {
+          model: Product_values,
+          attributes: ["size", "stock"],
+          through: { attributes: [] },
+        }
       ],
     });
     if (id) {

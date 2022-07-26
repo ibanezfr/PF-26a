@@ -45,16 +45,9 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM("active", "inactive"),
             defaultValue: "active"
         },
-        stock: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         created: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        },
-        size: {
-            type: DataTypes.STRING
         }
 
     },
