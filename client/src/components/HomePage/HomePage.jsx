@@ -1,42 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
+import ProductsCards from '../ProductsCards/ProductsCards.jsx';
+import Filters from '../Filters/filters';
 import './HomePage.scss'
-import trash from '../../images/trash.png'
 
 function HomePage() {
     const dispatch = useDispatch()
     let products = useSelector(state => state.products)
-    // let categories = useSelector(state => state.categories)
-    let filters = useSelector(state => state.filters)
     let orderedBy = useSelector(state => state.orderBy)
-
-    JSON.parse(localStorage.getItem('filter'));
-
-    useEffect(() => {
-        localStorage.setItem('filter', JSON.stringify(filters));
-    }, [filters]);
-
-    if (filters.length) {
-        products = products
-            .filter(product => {
-                let productCategories = product.categories.map(cat => cat.name)
-                return filters.reduce((prevFilter, nextFilter) => {
-                    return prevFilter && productCategories.includes(nextFilter)
-                }, true)
-            })
-        /* el primer filtrado, solo filtra si encuentra la categoria,
-        en el segundo se fija que esten todas las categorias seleccionadas
-        hace un map de los nombres de las categorias de cada producto
-        y luego con el reduce devuelve true si todas las categorias del filtro estan
-        en las categorias del producto, sino devuelve false */
-    }
-    
-    var categoriesInProducts = products.map((p) => p.categories.map((c) => c.name))
-    let categoriesDisplayed = []
-    categoriesInProducts.map((e) => categoriesDisplayed = [...new Set([...categoriesDisplayed, ...e])]);
-    // console.log(categoriesDisplayed.sort())
 
     //sort functionsf
     if (orderedBy) {
@@ -95,20 +67,13 @@ function HomePage() {
         numberOfPages.push(i);
     }
 
-    // useEffect(() => {
-    //     localStorage.setItem('currentPage', JSON.stringify(currentPage));
-    //     // if (JSON.parse(localStorage.getItem('currentPage')) !== 1) {
-    //     //     setCurrentPage(JSON.parse(localStorage.getItem('currentPage')))
-    //     // };
-    // }, [currentPage]);
 
-
-    //filter functions
+    // filter functions
     function onClickFilter(e) {
-        if (!filters.includes(e.target.id)) {
+        // if (!filters.includes(e.target.id)) {
             dispatch(addFilter(e.target.id))
-        }
-        setCurrentPage(1)
+            // }
+            setCurrentPage(1)
     }
 
     function onClickFieldset(e) {
@@ -139,18 +104,7 @@ function HomePage() {
             <div className='homeContainer'>
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
-                    {
-                        filters.length ? <><h6>Filtros Activos</h6><fieldset>{filters.map(filter => <div className='activeFilterContainer' id={filter} onClick={onClickFieldset}>{filter} <img src={trash} alt='X' /></div>)}</fieldset></> : <></>
-                    }
-                    <div>
-                    <h2>Encontrá lo que buscas...</h2>
-                    <ul className='ulElement'>{categoriesDisplayed.sort().map(cat => {
-                        if(!filters.includes(cat))
-                        return (
-                            <li className='liElement' key={cat} id={cat} onClick={(e) => onClickFilter(e)}>►{cat}</li>
-                        )
-                    })}</ul>
-                    </div>
+                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset}/>
                     <select name='order-by' onChange={onSelectChange}>
                         <option>Ordenar por...</option>
                         <option value='Name-Asc'>Letras: A-Z</option>
