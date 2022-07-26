@@ -7,7 +7,7 @@ import './HomePage.scss'
 
 function HomePage() {
     const dispatch = useDispatch()
-    let products = useSelector(state => state.products)
+    let products = useSelector(state => state.displayedProducts)
     let orderedBy = useSelector(state => state.orderBy)
     let cart = useSelector(state => state.cart)
 
