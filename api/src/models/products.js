@@ -20,27 +20,27 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        color: { 
-            type: DataTypes.STRING,         
-          
+        color: {
+            type: DataTypes.STRING,
+
         },
 
         rating: {
             type: DataTypes.FLOAT,
             defaultValue: 1
         },
-       image: { 
-            type: DataTypes.STRING,         
-            allowNull: false 
+        image: {
+            type: DataTypes.TEXT,
+            allowNull: false
         },
-        image2: { 
-            type: DataTypes.STRING
+        image2: {
+            type: DataTypes.TEXT
         },
-        image3: { 
-            type: DataTypes.STRING
+        image3: {
+            type: DataTypes.TEXT
         },
-        image4: { 
-            type: DataTypes.STRING
+        image4: {
+            type: DataTypes.TEXT
         },
         status: {
             type: DataTypes.ENUM("active", "inactive"),
@@ -50,14 +50,14 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        created: { 
+        created: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
         size: {
             type: DataTypes.STRING
         }
-    
+
     },
         { timestamps: false })
 
