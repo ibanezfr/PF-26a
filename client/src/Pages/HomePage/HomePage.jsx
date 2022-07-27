@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
+import { addFilter, removeFilter, setOrder, setSearchStatus } from "../../redux/actions/index";
 import ProductsCards from '../../components/ProductsCards/ProductsCards.jsx';
 import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
 import './HomePage.scss'
+import { filterProducts } from '../../Utils';
 
 function HomePage() {
-    const dispatch = useDispatch()
-    let products = useSelector(state => state.displayedProducts)
-    let cart = useSelector(state => state.cart)
+    const dispatch = useDispatch();
+    let dispProds = useSelector(state => state.displayedProducts);
+    let orderedBy = useSelector(state => state.orderBy);
+    let cart = useSelector(state => state.cart);
+    let filters = useSelector(state => state.filters);
+    let isSearchActive = useSelector(state => state.isSearchActive)
+    let searchProducts = useSelector((state) => state.searchProducts)
+    let products= dispProds
+
+    if(isSearchActive){
+        products = searchProducts
+    }
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+        //products = dispProds
+    }, [cart, isSearchActive]);
+
+    if(filters.length) {
+        products = filterProducts(products, filters);
+    };
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
@@ -64,7 +79,7 @@ function HomePage() {
             <div className='homeContainer'>
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
-                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset}/>
+                <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products}/>
                     <Order onSelectChange={onSelectChange}/>
                 </div>
             </div>

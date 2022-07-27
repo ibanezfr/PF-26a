@@ -39,7 +39,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/search">
-            <SearchProducts />
+            <Carrousel />
+            <HomePage />
           </Route>
           <Route path="/details/:id" component={Details} />
 

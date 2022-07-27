@@ -22,6 +22,8 @@ export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
+export const SET_SEARCH_STATUS= 'SET_SEARCH_STatus';
+export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
 
 export const SESSION="SESSION"
 
@@ -182,4 +184,21 @@ export function setOrder(order) {
       payload: order,
     });
   };
+}
+
+export function setSearchStatus(status){
+  return function(dispatch){
+    dispatch({
+      type: SET_SEARCH_STATUS,
+      payload: status
+    })
+  }
+}
+
+export function resetFilterOrder (){
+  return function(dispatch){
+    dispatch ({
+      type: RESET_FILTER_ORDER,
+    })
+  }
 }

@@ -75,7 +75,7 @@ export default function SearchProducts() {
                     <div className='homeContainer'>
                       <ProductsCards allProducts={currentPosts} />
                       <div className="filter-container">
-                          <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset}/>
+                          <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={searchProducts}/>
                           <Order onSelectChange={onSelectChange}/>
                       </div>
                   </div>

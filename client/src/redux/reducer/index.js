@@ -14,6 +14,8 @@ import {
   CLEAR_CART,
   SET_ORDER,
   SESSION,
+  SET_SEARCH_STATUS,
+  RESET_FILTER_ORDER,
 } from "../actions/index";
 import { filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -41,6 +43,7 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("cart"))),
   ],
+  isSearchActive:false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -164,17 +167,32 @@ function rootReducer(state = initialState, action) {
       };
 
     case SET_ORDER:
-      let prod = orderProducts(state.displayedProducts,action.payload)//quiero ordenar lo que se ve
+      let prod = state.displayedProducts
+      if(state.isSearchActive)
+        {prod = state.searchProducts}
+
+      prod = orderProducts(prod,action.payload)//quiero ordenar lo que se ve
 
       return {
         ...state,
         orderBy: action.payload,
         displayedProducts: prod,
       };
-
+    case SET_SEARCH_STATUS:
+      return{
+        ...state,
+        isSearchActive:action.payload
+      }
+    case RESET_FILTER_ORDER:
+      return {
+        ...state,
+        filters:[],
+        orderBy:''
+      }
     default:
       return state;
   }
 }
+
 
 export default rootReducer;
