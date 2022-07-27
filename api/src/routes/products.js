@@ -40,6 +40,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+//GET SIZE AND STOCK BY ID:
 router.get('/size/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -93,6 +95,57 @@ router.get('/size/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+//PUT SIZE AND STOCK BY ID:
+// router.put('/size/:id', async(req, res, next) =>{
+//   try {
+//     const { id } = req.params;
+//     const allProducts = await Product.findAll({
+//       include: [
+//         {
+//           model: Category,
+//           attributes: ["name"],
+//           through: { attributes: [] },
+//         },
+//         {
+//           model: Qa,
+//           attributes: ["title", "description", "answer", "resolved"],
+//           through: { attributes: [] },
+//         },
+//         {
+//           model: Review,
+//           attributes: ["rating", "title", "description"],
+//           through: { attributes: [] },
+//         },
+//         {
+//           model: Product_values,
+//           attributes: ["size", "stock"],
+//           through: { attributes: [] },
+//         }
+//       ],
+//     });
+//     if (id) {
+//       const filtered = await allProducts.filter((e) => e.id == id);
+
+//       const sizeMaped = filtered[0].product_values.map(m => m.size)
+//       const stockMaped = filtered[0].product_values.map(p=> p.stock)
+
+//       var array = [];
+
+//       for (let i=0; i<sizeMaped.length; i++){
+//         array.push(sizeMaped[i])
+//         array.push(stockMaped[i])
+//       }
+
+//       console.log("array: ", array);
+
+//       res.json(array);
+//     }
+//   }
+//   catch (error) {
+//     next(error);
+//   }
+// })
 
 router.get("/search", async (req, res) => {
   const { name } = req.query;

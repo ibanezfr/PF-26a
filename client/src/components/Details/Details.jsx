@@ -24,17 +24,16 @@ export default function Details(){
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
-    // let mappedStock = actualProduct.map(p=>p.stock)
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
-    // console.log("Stock: ", mappedStock)
     const values = actualProduct.map(p=>p.product_values)
-// 
 
-    // console.log("stock and size: ", stock, size)
-    // console.log("values de stock: ", values[0])
-
+    var position = 0;
+    const handleSize = (e) => {
+        position = e.target.value;
+        console.log("value: ", e.target.value)
+    }
     
     return(
         <div className="father">
@@ -44,13 +43,14 @@ export default function Details(){
                 <span>Selecciona un talle</span>
                 <select>
                     {
-                        size ? size.map((m, index) => {
+                        size[0] === "único" ? <option>Talle único</option> : size.map((m, index) => {
                             return (
-                                (index%2) === 0 ? <option>{m}</option> : <option>No hay info</option>
+                                (index%2) === 0 ? <option onChange={e => handleSize(e)} value={m}>{m}</option> : null
                             )
-                        }) : <option>No hay info</option>
+                        })
                     }
                 </select>
+                <h4>{size[position + 1]}</h4>
             </div>
             <div className="container2">
 
