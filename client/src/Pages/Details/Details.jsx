@@ -16,11 +16,12 @@ export default function Details(){
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
-        // dispatch(bringSize(params.id))
+        dispatch(bringSize(params.id))
     }, [dispatch, params.id, params.name]);
     
     let actualProduct = useSelector(state => state.detail)
-    // let size = useSelector(state => state.size)
+    let size = useSelector(state => state.size)
+    console.log("size: ", size)
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
@@ -30,17 +31,9 @@ export default function Details(){
     let image = mappedImage[0]
     // console.log("Stock: ", mappedStock)
     const values = actualProduct.map(p=>p.product_values)
+// 
 
-    var stock = []
-    var size = []
-    for(let i=0; i<values.length; i++){
-        for(let j=0; j<3; j++){
-            stock.push(actualProduct[i].product_values[j].stock)
-            size.push(actualProduct[i].product_values[j].size)
-        }
-    }
-
-    console.log("stock and size: ", stock, size)
+    // console.log("stock and size: ", stock, size)
     // console.log("values de stock: ", values[0])
 
     
@@ -52,11 +45,11 @@ export default function Details(){
                 <span>Selecciona un talle</span>
                 <select>
                     {
-                        // values ? values.map(t=>{
-                        //     return (
-                        //         <option key={t.id}>{t.size}</option>
-                        //     );
-                        // }) : <option>No hay ningun talle</option>
+                        size ? size.map((m, index) => {
+                            return (
+                                (index%2) === 0 ? <option>{m}</option> : <option>No hay info</option>
+                            )
+                        }) : <option>No hay info</option>
                     }
                 </select>
             </div>
