@@ -16,9 +16,9 @@ function NavBar() {
   const { user, logout } = useAuth();
 
   function resetFilterOrderSearch () {
-    dispatch(setSearchStatus(false))
-    localStorage.setItem('filter', JSON.stringify([]));
-    localStorage.setItem('order', JSON.stringify(''));
+    dispatch(setSearchStatus(false));
+    localStorage.removeItem('filter');//ver que onda aca
+    localStorage.removeItem('order');
   }
 
   const handleLogout = async (e) => {

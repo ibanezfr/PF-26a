@@ -40,13 +40,16 @@ export default function CheckoutForm({ total, products }) {
                 id,
                 amount: total,
                 description: products,//array de objetos product
-                user
+                user: user.uid
               }
             );
             //console.log(data);
     
             elements.getElement(CardElement).clear();
-            if(data.message==='Successful Payment') window.alert('Pago exitoso')
+            if(data.message==='Successful Payment') {
+              localStorage.removeItem('cart')
+              window.alert('Pago exitoso')
+            }
             else window.alert('Hubo un error en el pago')
           } catch (error) {
             console.log(error);
