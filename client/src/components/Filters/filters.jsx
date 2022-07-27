@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import './filters.scss';
 import trash from '../../images/trash.png';
 
-export default function Filters({onClickFilter, onClickFieldset}){
+export default function Filters({onClickFilter, onClickFieldset, products}){
     let filters = useSelector(state => state.filters);
-    let products = useSelector(state => state.displayedProducts);
     
     useEffect(() => {
         localStorage.setItem('filter', JSON.stringify(filters));

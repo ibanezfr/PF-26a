@@ -4,16 +4,22 @@ import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import ProductsCards from '../ProductsCards/ProductsCards.jsx';
 import Filters from '../Filters/filters';
 import './HomePage.scss'
+import { filterProducts } from '../../Utils';
 
 function HomePage() {
-    const dispatch = useDispatch()
-    let products = useSelector(state => state.displayedProducts)
-    let orderedBy = useSelector(state => state.orderBy)
-    let cart = useSelector(state => state.cart)
+    const dispatch = useDispatch();
+    let products = useSelector(state => state.displayedProducts);
+    let orderedBy = useSelector(state => state.orderBy);
+    let cart = useSelector(state => state.cart);
+    let filters = useSelector(state => state.filters);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
+
+    if(filters.length) {
+        products = filterProducts(products, filters);
+    };
 
     //sort functionsf
     if (orderedBy) {
@@ -109,7 +115,7 @@ function HomePage() {
             <div className='homeContainer'>
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
-                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset}/>
+                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products}/>
                     <select name='order-by' onChange={onSelectChange}>
                         <option>Ordenar por...</option>
                         <option value='Name-Asc'>Letras: A-Z</option>
