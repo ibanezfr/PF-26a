@@ -1,7 +1,7 @@
 
 const products = require("../../../Pruebas/products.json");
 const { Op } = require("sequelize");
-const { Product, Category, Review } = require("../db");
+const { Product, Category, Review, Product_values } = require("../db");
 
 
 async function getProducts() {
@@ -18,12 +18,28 @@ async function getProducts() {
         image2: products[i].image2,
         image3: products[i].image3,
         image4: products[i].image4,
-        stock: products[i].stock,
         status: products[i].status,
-        size: products[i].size,
         color: products[i].color,
         db: true,
       });
+
+      // const mappedStock = product_values.map(m => m.stock)
+      // const mappedSize = product_values.map(m => m.size)
+
+      var obj = [];
+
+      for(j=0; j<products[i].product_values.length; j++){
+        // const valueStock= products[i].product_values[j]
+        // const mappedStock = valueStock.map(m => m.stock)
+        // const mappedSize = valueStock.map(m => m.size)
+        obj = await Product_values.create({
+          stock: products[i].product_values[j].stock,
+          size: products[i].product_values[j].size
+        });
+  
+        // console.log("obj en el for: ", obj)
+        await newProduct.addProduct_values(obj)
+      }
       
       for (let j = 0; j < products[i].categories.length; j++) {
         let cat = await Category.findOne({
