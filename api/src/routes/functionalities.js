@@ -56,7 +56,7 @@ router.get('/categories/:id', async(req, res, next)=>{
 
     try {
         const newProduct = await Product.update({
-          stock : stock
+          [product_values.stock] : stock
         }, {where: {id:id}});
 
         return res.status(200).send({msj: "el stock se cambió correctamente"});

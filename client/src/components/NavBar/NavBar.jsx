@@ -31,7 +31,7 @@ function NavBar() {
     }
   };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="NavBar" bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand>
           <Link to="/cart">

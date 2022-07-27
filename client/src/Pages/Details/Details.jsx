@@ -16,21 +16,32 @@ export default function Details(){
     useEffect(()=>{
         dispatch(cleanProduct()) 
         dispatch(getProductsById(params.id))
-        dispatch(bringSize(params.id))
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [dispatch, params.id, params.name, cart]);
-
+        // dispatch(bringSize(params.id))
+    }, [dispatch, params.id, params.name]);
     
     let actualProduct = useSelector(state => state.detail)
-    let size = useSelector(state => state.size)
+    // let size = useSelector(state => state.size)
 
     let mappedName = actualProduct.map(p=>p.name)
     let mappedImage = actualProduct.map(p=>p.image)
-    let mappedStock = actualProduct.map(p=>p.stock)
+    // let mappedStock = actualProduct.map(p=>p.stock)
     let mappedDescription = actualProduct.map(p=>p.description)
     let mappedPrice = actualProduct.map(p=>p.price)
     let image = mappedImage[0]
     // console.log("Stock: ", mappedStock)
+    const values = actualProduct.map(p=>p.product_values)
+
+    var stock = []
+    var size = []
+    for(let i=0; i<values.length; i++){
+        for(let j=0; j<3; j++){
+            stock.push(actualProduct[i].product_values[j].stock)
+            size.push(actualProduct[i].product_values[j].size)
+        }
+    }
+
+    console.log("stock and size: ", stock, size)
+    // console.log("values de stock: ", values[0])
 
     
     return(
@@ -41,19 +52,11 @@ export default function Details(){
                 <span>Selecciona un talle</span>
                 <select>
                     {
-                        size[0]? <option>{size[0]}</option> : null
-                    }
-                    {
-                        size[1]? <option>{size[1]}</option> : null
-                    }
-                    {
-                        size[2]? <option>{size[2]}</option> : null
-                    }
-                    {
-                        size[3]? <option>{size[3]}</option> : null
-                    }
-                    {
-                        size[4]? <option>{size[4]}</option> : null
+                        // values ? values.map(t=>{
+                        //     return (
+                        //         <option key={t.id}>{t.size}</option>
+                        //     );
+                        // }) : <option>No hay ningun talle</option>
                     }
                 </select>
             </div>
@@ -62,7 +65,7 @@ export default function Details(){
                 <h2>{mappedName}</h2>
                 <h2>${formatNumber(mappedPrice)}</h2>
                 <p>{mappedDescription}</p>
-                <span>Stock disponible: {mappedStock}</span>
+                {/* <span>Stock disponible: {mappedStock}</span> */}
                 <div className="btnContainer">
                 <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
                 <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>

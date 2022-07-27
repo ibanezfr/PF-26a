@@ -17,7 +17,7 @@ import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
-
+import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
 function App() {
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ function App() {
 
           {/* Admin ROUTES */}
           <Route path="/admin/home" component={HomeAdmin} />
-
+          <Route path="/admin/creation" component={ProductCreationForm} />
           {/* AUTHENTICATION ROUTES usuarios y eso */}
 
           <ProtectedRoutes>
