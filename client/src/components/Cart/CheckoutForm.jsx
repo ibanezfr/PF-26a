@@ -40,7 +40,7 @@ export default function CheckoutForm({ total, products }) {
                 id,
                 amount: total,
                 description: products,//array de objetos product
-                user: user.uid
+                user: user.uid//le mando el objeto user
               }
             );
             //console.log(data);

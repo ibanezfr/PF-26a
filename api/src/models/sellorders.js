@@ -4,19 +4,19 @@ module.exports = (sequelize) => {
         order: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        },// hacerlo con id autoincremental
         user:{
             type: DataTypes.STRING,
             allowNull: false,
-        },//hacerlo con relacion
+        },// hacerlo con relacion
         product: {
             type: DataTypes.STRING,
             allowNull: false,
-        },//hacerlo con relacion
+        },// hacerlo con relacion
         quantity:{
             type: DataTypes.INTEGER,
             allowNull: false
-        },//revisar
+        },// revisar
         review: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

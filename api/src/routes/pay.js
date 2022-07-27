@@ -12,26 +12,31 @@ router.post("/api/checkout", async (req, res) => {
     const { id, amount , description, user} = req.body;
 
     try {
-      
+      const userComprador = await User.findByPk(user)//trae el user que compro
+
       const payment = await stripe.paymentIntents.create({
         amount:amount*100,
         currency: "USD",
         description: description.map(p=>p.name).join(' '),
         payment_method: id,
         confirm: true, //confirm the payment at the same time
-        receipt_email: 'agustineg@hotmail.com',
+        //receipt_email:
         //costumer: 'asdfasdfsadfasdf'
         //costumer desde stripe para mandarle el id del usuario de la bd
       });
-      const userId = await User.findByPk(user)//funciona
+      
       //REVISAR
-      const userCompra = await Promise.all(description.map(async p=>await Product.findAll({where: {
-        name: {
-          [Op.iLike]: `%${p.name}%`,
-        },
-      }})));
-      const allProducts = await Product.findAll({where:{name:'SUDADERA ADIDAS'}})
-      console.log(allProducts)
+      console.log(description)
+      //['campera',']
+
+      const userCompra = await description//description ya es un array de prods
+        .map(async p=>{
+          let prod = await Product.findByPk(p.id)
+          return prod
+        });
+        
+      console.log(userCompra)
+      //////PRUEBA////////
       //console.log(payment);
   
       return res.status(200).json({ message: "Successful Payment" });
