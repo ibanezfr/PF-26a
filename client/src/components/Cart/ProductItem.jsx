@@ -1,7 +1,6 @@
 import React from "react";
 import './ProductItem.scss'
 import trash from '../../images/trash.png'
-import axios from "axios";
 import { formatNumber } from "../../Utils";
 // import {Card} from 'react-bootstrap'
 export default function ProductItem({data, addToCart, deleteOneFromCart, deleteAllFromCart}){

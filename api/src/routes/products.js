@@ -69,11 +69,15 @@ router.get('/size/:id', async (req, res, next) => {
     });
     if (id) {
       const filtered = await allProducts.filter((e) => e.id == id);
-      const maped = filtered.map(f => f.size)
-      const maped2 = maped[0]
-      const split = maped2.split(/\s*,\s*/)
 
-      res.json(split);
+      const sizeMaped = filtered[0].product_values.map(m => m.size)
+      const stockMaped = filtered[0].product_values.map(p=> p.stock)
+      console.log("Size: ", sizeMaped)
+      console.log("Stock: ", stockMaped)
+      // const maped2 = maped[0]
+      // const split = maped2.split(/\s*,\s*/)
+
+      res.json("mando un mensaje");
     }
   }
   catch (error) {
@@ -188,23 +192,6 @@ router.post("/create", async (req, res) => {
     return res.status(400).send({ msg: error.message });
   }
 });
-
-router.post("/stock", async(req, res, next)=>{
-  let {size, stock} = req.body;
-
-  try{
-    const newStock = await Product_values.create({
-      stock,
-      size
-    });
-
-    res.status(200).send(newStock)
-
-  } catch (err){
-    console.log(err)
-  }
-});
-
 
 router.get('/:id', async (req, res, next) => {
   try {
