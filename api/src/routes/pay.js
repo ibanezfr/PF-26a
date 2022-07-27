@@ -13,17 +13,21 @@ router.post("/api/checkout", async (req, res) => {
 
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro
-
-      const payment = await stripe.paymentIntents.create({
-        amount:amount*100,
-        currency: "USD",
-        description: description.map(p=>p.name + ': ' +p.quantity).join(' '),
-        payment_method: id,
-        confirm: true, //confirm the payment at the same time
-      });
+      if(user){
+        const payment = await stripe.paymentIntents.create({
+          amount:amount*100,
+          currency: "USD",
+          description: description.map(p=>p.name + ': ' +p.quantity).join(' '),
+          payment_method: id,
+          confirm: true, //confirm the payment at the same time
+        });
+        
+          console.log('usuario logueado')
+      }
+      else return res.json({ message: "hubo un error"})
       if(payment.status === 'succeeded'){
         const newSellOrder = sellorders.create({
-          
+
         })
         const userCompra = await Promise.all(description.map(async (p)=>{
           return await Product.findByPk(p.id)

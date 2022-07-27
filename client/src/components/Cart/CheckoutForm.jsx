@@ -43,7 +43,7 @@ export default function CheckoutForm({ total, products }) {
                 user: user.uid//le mando el objeto user
               }
             );
-            //console.log(data);
+            console.log(data);
     
             elements.getElement(CardElement).clear();
             if(data.message==='Successful Payment') {
