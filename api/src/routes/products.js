@@ -72,12 +72,21 @@ router.get('/size/:id', async (req, res, next) => {
 
       const sizeMaped = filtered[0].product_values.map(m => m.size)
       const stockMaped = filtered[0].product_values.map(p=> p.stock)
-      console.log("Size: ", sizeMaped)
-      console.log("Stock: ", stockMaped)
+      // console.log("Size: ", sizeMaped)
+      // console.log("Stock: ", stockMaped)
+
+      var array = [];
+
+      for (let i=0; i<sizeMaped.length; i++){
+        array.push(sizeMaped[i])
+        array.push(stockMaped[i])
+      }
+
+      console.log("array: ", array);
       // const maped2 = maped[0]
       // const split = maped2.split(/\s*,\s*/)
 
-      res.json("mando un mensaje");
+      res.json(array);
     }
   }
   catch (error) {

@@ -101,6 +101,7 @@ function rootReducer(state = initialState, action) {
 
     case ADD_TO_CART:
       let newItem = state.products.find((p) => p.id === action.payload);
+      let size = state.size
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
       if (
         itemInCart !== undefined &&
