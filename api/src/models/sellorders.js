@@ -1,23 +1,25 @@
 const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('sellorder', {
-        order: {
-            type: DataTypes.STRING,
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
             allowNull: false,
-        },// hacerlo con id autoincremental
-        user:{
+        },
+/*         user:{
             type: DataTypes.STRING,
             allowNull: false,
         },// hacerlo con relacion
         product: {
             type: DataTypes.STRING,
             allowNull: false,
-        },// hacerlo con relacion
+        },// hacerlo con relacion 
         quantity:{
             type: DataTypes.INTEGER,
             allowNull: false
         },// revisar
-        review: {
+        */review: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
@@ -44,11 +46,11 @@ module.exports = (sequelize) => {
         street: {
             type: DataTypes.STRING,
             defaultValue: ""
-        },
+        },/* 
         paymentStatus: {
             type: DataTypes.ENUM("pending", "completed", "canceled"),
             defaultValue: "pending"
-        },
+        }, */ //solo se hace el tiquet si se efectuo el pago
         orderStatus: {
             type: DataTypes.ENUM("pending", "accepted", "rejected"),
             defaultValue: "pending"

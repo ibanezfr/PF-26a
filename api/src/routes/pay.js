@@ -17,27 +17,20 @@ router.post("/api/checkout", async (req, res) => {
       const payment = await stripe.paymentIntents.create({
         amount:amount*100,
         currency: "USD",
-        description: description.map(p=>p.name).join(' '),
+        description: description.map(p=>p.name + ': ' +p.quantity).join(' '),
         payment_method: id,
         confirm: true, //confirm the payment at the same time
-        //receipt_email:
-        //costumer: 'asdfasdfsadfasdf'
-        //costumer desde stripe para mandarle el id del usuario de la bd
       });
-      
-      //REVISAR
-      console.log(description)
-      //['campera',']
+      if(payment.status === 'succeeded'){
+        const newSellOrder = sellorders.create({
+          
+        })
+        const userCompra = await Promise.all(description.map(async (p)=>{
+          return await Product.findByPk(p.id)
+        }))
 
-      const userCompra = await description//description ya es un array de prods
-        .map(async p=>{
-          let prod = await Product.findByPk(p.id)
-          return prod
-        });
-        
-      console.log(userCompra)
-      //////PRUEBA////////
-      //console.log(payment);
+      }
+
   
       return res.status(200).json({ message: "Successful Payment" });
     } catch (error) {
