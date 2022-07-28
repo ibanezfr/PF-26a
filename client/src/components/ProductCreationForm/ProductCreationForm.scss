@@ -1,3 +1,18 @@
+.sizeStock {
+  list-style-type: none !important;
+}
+
+.photos {
+  display: flex;
+}
+
+#image1  {
+  position: relative;
+  width: 50px;
+  height: auto;
+}
+
+
 .login {
   display: flex;
   min-height: 40vw;
@@ -85,7 +100,7 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-form + p {
+form+p {
   text-align: center;
   font-size: 1.2rem;
   color: #888;
@@ -146,6 +161,7 @@ form + p {
     top: -100%;
     opacity: 0;
   }
+
   to {
     top: 50%;
     opacity: 1;
@@ -156,6 +172,7 @@ form + p {
   #login-window {
     width: 90vw;
   }
+
   .social button {
     padding: 0.5rem 0.75rem;
     font-size: 0.7rem;
