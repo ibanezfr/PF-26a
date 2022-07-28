@@ -114,6 +114,14 @@
             {
                 "size": "l",
                 "stock": 55
+            },
+            {
+                "size": "s",
+                "stock": 45
+            },
+            {
+                "size": "xs",
+                "stock": 75
             }
         ]
     },

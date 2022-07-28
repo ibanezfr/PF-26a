@@ -60,10 +60,10 @@ export const postProduct = (payload) => {
 }
 
 //carrito de compras FUNCIONES
-export function addToCart(id) {
+export function addToCart(obj) {
   return {
     type: ADD_TO_CART,
-    payload: id,
+    payload: obj,
   };
 }
 
