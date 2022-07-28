@@ -12,25 +12,20 @@ export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();    
 
+  
+  let actualProduct = useSelector(state => state.detail)
+  let size = useSelector(state => state.size)
+  let cart = useSelector(state=>state.cart)
+  // console.log("size: ", size)
+  // console.log("actualProduct ", actualProduct);
+  
   useEffect(() => {
     dispatch(cleanProduct())
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-  }, [dispatch]);
-
-  let actualProduct = useSelector(state => state.detail)
-  let size = useSelector(state => state.size)
-  let cart = useSelector(state=>state.cart)
-  console.log("size: ", size)
-  console.log("actualProduct ", actualProduct);
-
-  // let mappedName = actualProduct.map(p => p.name)
-  // let mappedId = actualProduct.map(p => p.id);
-  // let mappedImage = actualProduct.map(p => p.image)
-  // let mappedDescription = actualProduct.map(p => p.description)
-  // let mappedPrice = actualProduct.map(p => p.price)
-  // let image = mappedImage[0]
-  // const values = actualProduct.map(p => p.product_values)
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [dispatch, cart]);
+ 
   const [position, setPosition] = useState(0);
   const [newCart, setNewCart] = useState({
     id: "",
@@ -41,8 +36,7 @@ export default function Details() {
     stock: size[position + 1],
     quantity: 0
   })
-  // setNewCart({...newCart, id:id})
-  // setNewCart({ ...newCart, size: "algo" })
+ 
 
   const handleSize = (e) => {
     e.preventDefault();
