@@ -15,4 +15,16 @@ router.put("/:id", updateUser);
 
 //
 
+//AGUS
+//rutas para levantar las compras hechas
+//por los usuarios
+/*
+const allOrders = await Sell_order.findAll({include: Product})
+const user_orders= await User.findByPk(user, {include: Sell_order})
+*/
+router.get('/compras/:id'){
+  
+}
+
+router()
 module.exports = router;
