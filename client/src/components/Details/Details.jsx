@@ -10,69 +10,84 @@ import Button from 'react-bootstrap/Button';
 
 export default function Details() {
   const params = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();    
 
   useEffect(() => {
     dispatch(cleanProduct())
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-  }, [dispatch, params.id, params.name]);
+  }, [dispatch]);
 
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
+  let cart = useSelector(state=>state.cart)
   console.log("size: ", size)
+  console.log("actualProduct ", actualProduct);
 
-  let mappedName = actualProduct.map(p => p.name)
-  let mappedId = actualProduct.map(p => p.id);
-  let mappedImage = actualProduct.map(p => p.image)
-  let mappedDescription = actualProduct.map(p => p.description)
-  let mappedPrice = actualProduct.map(p => p.price)
-  let image = mappedImage[0]
-  const values = actualProduct.map(p => p.product_values)
+  // let mappedName = actualProduct.map(p => p.name)
+  // let mappedId = actualProduct.map(p => p.id);
+  // let mappedImage = actualProduct.map(p => p.image)
+  // let mappedDescription = actualProduct.map(p => p.description)
+  // let mappedPrice = actualProduct.map(p => p.price)
+  // let image = mappedImage[0]
+  // const values = actualProduct.map(p => p.product_values)
   const [position, setPosition] = useState(0);
   const [newCart, setNewCart] = useState({
-    id: mappedId,
-    name: mappedName,
-    img: image,
+    id: "",
+    name: "",
+    img: "",
     size: "",
-    price: mappedPrice,
+    price: "",
     stock: size[position + 1],
     quantity: 0
   })
+  // setNewCart({...newCart, id:id})
   // setNewCart({ ...newCart, size: "algo" })
 
   const handleSize = (e) => {
+    e.preventDefault();
     setPosition(parseInt(e.target.value));
     // console.log("value: ", position)
     setNewCart({
-      ...newCart,
-      size: e.target.name
+      id: actualProduct.id,
+      name: actualProduct.name,
+      img: actualProduct.image,
+      size: size[parseInt(e.target.value)],
+      price: actualProduct.price,
+      stock: size[position + 1],
+      quantity: 0
     })
-    console.log("newCart stock: ", newCart)
+    // console.log("newCart stock: ", newCart) 
   }
 
   const handleChange = (e)=>{
-    setNewCart({
+    e.preventDefault();
+    setNewCart({     
       ...newCart,
       quantity: e.target.value
     })
-    console.log("newCart cantidad: ", newCart)
+    // console.log("newCart cantidad: ", newCart)
   }
 
+  const hanldeSubmit = (e)=>{
+    e.preventDefault();
+    dispatch(addToCart(newCart))
+  }
+console.log("newCart: ", newCart)
 
 
   return (
     <div className="father">
       <div className="containerDetail">
         <div className="container1">
-          <img src={image} alt="not found" />
+          <img src={actualProduct.image} alt="not found" />
           <span>Selecciona un talle</span>
           {/* */}
           <form>
             <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
               <option disabled>Seleccioná un talle</option>
               {
-                size[0] === "único" ? <option>Talle único</option> : size.map((m, index) => {
+                size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                   return (
                     (index % 2) === 0 ? <option name={m} value={index} >{m}</option> : null
                   )
@@ -84,7 +99,7 @@ export default function Details() {
             <input type="number" min={1} max={size[position + 1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
             <div className="btnContainer">
               <button 
-              // onClick={() => dispatch(addToCart(params.id))}
+              onClick={(e) => hanldeSubmit(e)}
               >Agregar al carrito</button>
               <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
             </div>
@@ -93,9 +108,9 @@ export default function Details() {
         </div>
         <div className="container2">
 
-          <h2>{mappedName}</h2>
-          <h2>${formatNumber(mappedPrice)}</h2>
-          <p>{mappedDescription}</p>
+          <h2>{actualProduct.name}</h2>
+          {/* <h2>${formatNumber(mappedPrice)}</h2> */}
+          <p>{actualProduct.description}</p>
           {/* <span>Stock disponible: {mappedStock}</span> */}
         </div>
       </div>

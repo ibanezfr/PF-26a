@@ -199,7 +199,7 @@ router.post("/create", async (req, res) => {
     image3,
     image4,
     categories,
-    product_values } = req.body;
+    product_values} = req.body;
 
   try {
     const newProduct = await Product.create({
@@ -258,7 +258,7 @@ router.post("/create", async (req, res) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const allProducts = await Product.findAll({
+    const allProducts = await Product.findByPk(id, {
       include: [
         {
           model: Category,
@@ -282,10 +282,10 @@ router.get('/:id', async (req, res, next) => {
         }
       ],
     });
-    if (id) {
-      const filtered = await allProducts.filter((e) => e.id == id);
-      res.json(filtered);
-    }
+    // if (id) {
+    //   const filtered = await allProducts.filter((e) => e.id == id);
+    // }
+    res.json(allProducts);
   }
   catch (error) {
     next(error);
