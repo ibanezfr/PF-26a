@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Redirect } from "react-router-dom";
-import { getProductsByName } from '../../redux/actions/index.js';
+import { getProductsByName, setSearchStatus } from '../../redux/actions/index.js';
 import './Search.scss';
 
 
@@ -24,7 +24,8 @@ export default function SearchBar() {
             alert("Por favor ingrese un nombre")
         } else {
             dispatch(getProductsByName(name));    
-            setRedirect(true);
+            setRedirect(true);            //original
+            dispatch(setSearchStatus(true)) //agregado-agus
             setName("")
         }
     }
@@ -47,9 +48,6 @@ export default function SearchBar() {
                     placeholder="🔍 Buscar!"
                 />
             </form>
-
-
-
         </div>
     );
 }

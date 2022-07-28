@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
-import HomePage from "./components/HomePage/HomePage.jsx";
+import HomePage from "./Pages/HomePage/HomePage.jsx";
 import SearchProducts from "./Pages/SearchProducts/SearchProducts";
-import Details from "./components/Details/Details";
+import Details from "./Pages/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
 
 import Profile from "./Pages/Account/Profile";
@@ -39,7 +39,8 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/search">
-            <SearchProducts />
+            <Carrousel />
+            <HomePage />
           </Route>
           <Route path="/details/:id" component={Details} />
 
