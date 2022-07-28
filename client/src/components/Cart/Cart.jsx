@@ -26,20 +26,21 @@ export default function Cart() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
+    console.log("carrito: ", cart)
     if (cart[0]) {
-        var cantidadPrecio = []
-        cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
+        // var cantidadPrecio = []
+        // cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
 
-        var precioTotal = 0
-        for (let i = 0; i < cantidadPrecio.length; i += 2) {
-            precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
-        }
+        // var precioTotal = 0
+        // for (let i = 0; i < cantidadPrecio.length; i += 2) {
+        //     precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
+        // }
     };
     
 
     return (
         <div className="maxContainer">
-            <h2 className="shoppingCartText">Tu carrito de compras</h2>
+            {/* <h2 className="shoppingCartText">Tu carrito de compras</h2>
             <div className='allCardsContainer'>
                 {
                     cart[0] ? cart.map((product, index) =>
@@ -80,7 +81,7 @@ export default function Cart() {
                     </Elements>
                     <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                </div>
+                </div> */}
                 {/* <div className="btnContainer">
                     {
                         cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
@@ -88,7 +89,7 @@ export default function Cart() {
                     <button className="btnPrincipal">Continuar compra</button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div> */}
-            </div>
+            {/* </div> */}
         </div>
     )
 }

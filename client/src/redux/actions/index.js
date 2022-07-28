@@ -28,10 +28,10 @@ export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
 export const SESSION="SESSION"
 
 //carrito de compras FUNCIONES
-export function addToCart(id) {
+export function addToCart(obj) {
   return {
     type: ADD_TO_CART,
-    payload: id,
+    payload: obj,
   };
 }
 

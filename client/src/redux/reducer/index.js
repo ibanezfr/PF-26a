@@ -21,8 +21,8 @@ import { filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
 
 const initialState = {
-  products: [], //siempre tengo todos los productos para filtrar 
-  detail: [],
+  products: [],
+  detail: {},
   searchProducts: [],
   size: [],
   displayedProducts: [],//los productos que se van mostrando de acuerdo a los filtros
@@ -95,7 +95,7 @@ function rootReducer(state = initialState, action) {
     case CLEAN_PRODUCT:
       return {
         ...state,
-        detail: [],
+        detail: {},
       };
     case GET_SIZE:
       return {
@@ -114,30 +114,28 @@ function rootReducer(state = initialState, action) {
         session: action.payload.session,
       };
 
-    case ADD_TO_CART:
-      let newItem = state.products.find((p) => p.id === action.payload);
-      let size = state.size
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      if (
-        itemInCart !== undefined &&
-        itemInCart.quantity === itemInCart.stock
-      ) {
-        alert("Limite de producto alcanzado");
-        return state;
-      }
+    case ADD_TO_CART: // {na...}
+      // let newItem = state.products.find((p) => p.id === action.payload.id);
+      let itemInCart = state.cart.find((item) => item.id === action.payload.id);
+      // if (
+      //   itemInCart !== undefined &&
+      //   itemInCart.quantity === itemInCart.stock
+      // ) {
+      //   alert("Limite de producto alcanzado");
+      //   return state;
+      // }
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? // && item.stock > newItem.quantity
-                  { ...item, quantity: item.quantity + 1 }
+              item.id === action.payload.id && item.size === action.payload.size
+                ?  item.quantity = action.payload.quantity
                 : item
             ),
           }
         : {
             ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
+            cart: [...state.cart, { ...action.payload }],
           };
 
     case REMOVE_ONE_FROM_CART:
