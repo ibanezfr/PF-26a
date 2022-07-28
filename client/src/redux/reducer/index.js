@@ -116,22 +116,16 @@ function rootReducer(state = initialState, action) {
 
     case ADD_TO_CART: // {na...}
       // let newItem = state.products.find((p) => p.id === action.payload.id);
-      let itemInCart = state.cart.find((item) => item.id === action.payload.id);
-      // if (
-      //   itemInCart !== undefined &&
-      //   itemInCart.quantity === itemInCart.stock
-      // ) {
-      //   alert("Limite de producto alcanzado");
-      //   return state;
-      // }
+      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
+      
+    
       return itemInCart
-      //itemInCart.id === action.payload.id && itemInCart.size !== action.payload.size
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              (item.id === action.payload.id && item.size === action.payload.size)
+              (item.id === action.payload.id && item.size !== action.payload.size)
                 ?  item.quantity = action.payload.quantity
-                : [...state.cart, action.payload]
+                : item
             ),
           }
         : {
@@ -156,9 +150,12 @@ function rootReducer(state = initialState, action) {
           };
 
     case REMOVE_ALL_FROM_CART:
+      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size)
+      state.cart.splice(indexRemove,1)
+      
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload.id),
+        cart: [...state.cart]
       };
     case CLEAR_CART:
       return {

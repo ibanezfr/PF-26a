@@ -41,18 +41,19 @@ export function clearCart() {
   };
 }
 
-export function deleteFromCart(obj, all = false) {
-  if (all) {
+export function deleteFromCart(data) {
+  // if (all) {
+    console.log(data)
     return {
       type: REMOVE_ALL_FROM_CART,
-      payload: obj,
+      payload: data,
     };
-  } else {
-    return {
-      type: REMOVE_ONE_FROM_CART,
-      payload: obj,
-    };
-  }
+  // } else {
+  //   return {
+  //     type: REMOVE_ONE_FROM_CART,
+  //     payload: obj,
+  //   };
+  //}
 }
 
 export function fetchProducts() {

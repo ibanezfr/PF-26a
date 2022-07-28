@@ -21,7 +21,7 @@ export default function ProductItem({data, addToCart, deleteOneFromCart, deleteA
     return(
         <div className="fatherContainer">
             <div className="buttonContainer">
-               <button className="deleteAllButton" onClick={()=> deleteAllFromCart(id, true)}><img className="deleteBtnImg" src={trash} alt='X'/></button>
+               <button className="deleteAllButton" onClick={(e)=> deleteAllFromCart(e, data)}><img className="deleteBtnImg" src={trash} alt='X'/></button>
             </div>
             <img className="itemImage" src={img} alt=""/>
             <div className="textContainer">

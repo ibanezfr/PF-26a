@@ -35,8 +35,10 @@ export default function Cart() {
 
     }
 
-    const handleDeleteAll = (e) =>{
-        dispatch(deleteFromCart(cart, true))
+    const handleDeleteAll = (e, data) =>{
+        e.preventDefault()
+        console.log("en el handler", data)
+        dispatch(deleteFromCart(data))
 
     }
 
@@ -65,7 +67,7 @@ export default function Cart() {
                                     data={product}
                                     addToCart={(e) => handleAdd(e)}
                                     deleteOneFromCart={(e) => handleDeleteOne(e)}
-                                    deleteAllFromCart={(e) => handleDeleteAll(e)}
+                                    deleteAllFromCart={handleDeleteAll}
                                 />
                             </div>
                         </div>
@@ -94,13 +96,6 @@ export default function Cart() {
                         </div>
                     </Elements>
                     <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
-                    <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                </div>
-                <div className="btnContainer">
-                    {
-                        cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
-                    }
-                    <button className="btnPrincipal">Continuar compra</button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div>
             </div>
