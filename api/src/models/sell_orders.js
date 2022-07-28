@@ -18,10 +18,10 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },// revisar
-        */review: {
+        review: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        },
+        },*/
         amount: {
             type: DataTypes.FLOAT,
             allowNull: true

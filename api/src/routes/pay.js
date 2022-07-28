@@ -9,7 +9,7 @@ const router = Router();
 router.post("/api/checkout", async (req, res) => {
     // you can get more data to find in a database, and so on
     const { id, amount , description, user} = req.body;
-
+    console.log('id \n', id, 'amount \n', amount, 'description \n', description, 'user \n', user)
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro
       if(user){
@@ -20,20 +20,19 @@ router.post("/api/checkout", async (req, res) => {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
-        
-          console.log('usuario logueado')
+      
+        if(payment.status === 'succeeded'){
+          const newSellOrder = await Sell_order.create({
+            amount:amount*100
+          })
+          const userCompra = await Promise.all(description.map(async (p)=>{
+            return await Product.findByPk(p.id)
+          }))
+          newSellOrder.addProducts(userCompra)
+          userComprador.addSell_order(newSellOrder)
+        }
       }
       else return res.json({ message: "hubo un error"})
-      if(payment.status === 'succeeded'){
-        const newSellOrder = await Sell_order.create({
-          
-        })
-        const userCompra = await Promise.all(description.map(async (p)=>{
-          return await Product.findByPk(p.id)
-        }))
-
-      }
-
   
       return res.status(200).json({ message: "Successful Payment" });
     } catch (error) {
