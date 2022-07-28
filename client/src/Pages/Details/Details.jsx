@@ -65,7 +65,11 @@ export default function Details() {
 
   const hanldeSubmit = (e)=>{
     e.preventDefault();
-    dispatch(addToCart(newCart))
+    if(newCart.size === "" || newCart.quantity === 0) {
+      alert("selecciona un talle y una cantidad")
+    } else {
+      dispatch(addToCart(newCart))
+    }
   }
 console.log("newCart: ", newCart)
 
