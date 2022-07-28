@@ -33,16 +33,16 @@ export function clearCart() {
   };
 }
 
-export function deleteFromCart(id, all = false) {
+export function deleteFromCart(obj, all = false) {
   if (all) {
     return {
       type: REMOVE_ALL_FROM_CART,
-      payload: id,
+      payload: obj,
     };
   } else {
     return {
       type: REMOVE_ONE_FROM_CART,
-      payload: id,
+      payload: obj,
     };
   }
 }
