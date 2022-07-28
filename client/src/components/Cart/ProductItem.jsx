@@ -8,8 +8,8 @@ export default function ProductItem({data, addToCart, deleteOneFromCart, deleteA
 
     console.log("product values: ", product_values)
 
-    const mappedStock = product_values.map(p=>p.stock)
-    const mappedSize = product_values.map(p=>p.size)
+    // const mappedStock = product_values.map(p=>p.stock)
+    // const mappedSize = product_values.map(p=>p.size)
     // const handleAdd = async(e) =>{
         
     //     addToCart(id)
