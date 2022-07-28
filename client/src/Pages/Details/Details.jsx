@@ -23,7 +23,7 @@ export default function Details() {
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
     localStorage.setItem('cart', JSON.stringify(cart))
-  }, [dispatch, cart]);
+  }, [dispatch, cart, params.id]);
 
   // let mappedName = actualProduct.map(p => p.name)
   // let mappedId = actualProduct.map(p => p.id);
