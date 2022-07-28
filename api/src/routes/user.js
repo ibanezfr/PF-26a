@@ -27,6 +27,14 @@ promedio
 //rutas para levantar datos de
 //compras desde el front
 
+
+router.get('/compras/all', async (req, res)=>{
+  let allOrders = await Sell_order.findAll({include: User})
+  console.log(allOrders)
+  return res.send(allOrders)
+})
+
+
 router.get('/compras/:id',async (req,res)=>{
   let user = req.params.id;
   user = await User.findByPk(user, {include: Sell_order})
@@ -43,8 +51,6 @@ router.get('/compras/:id',async (req,res)=>{
 
   return res.send(user)
 })
-
-
 
 
 
