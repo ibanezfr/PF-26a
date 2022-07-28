@@ -71,13 +71,13 @@ router.get('/size/:id', async (req, res, next) => {
       const filtered = await allProducts.filter((e) => e.id == id);
 
       const sizeMaped = filtered[0].product_values.map(m => m.size)
-      const stockMaped = filtered[0].product_values.map(p=> p.stock)
+      const stockMaped = filtered[0].product_values.map(p => p.stock)
       // console.log("Size: ", sizeMaped)
       // console.log("Stock: ", stockMaped)
 
       var array = [];
 
-      for (let i=0; i<sizeMaped.length; i++){
+      for (let i = 0; i < sizeMaped.length; i++) {
         array.push(sizeMaped[i])
         array.push(stockMaped[i])
       }
@@ -167,7 +167,7 @@ router.post("/create", async (req, res) => {
 
     var obj = [];
 
-    for(i=0; i<mappedStock.length; i++){
+    for (i = 0; i < mappedStock.length; i++) {
       obj = await Product_values.create({
         stock: mappedStock[i],
         size: mappedSize[i]
@@ -190,7 +190,7 @@ router.post("/create", async (req, res) => {
       let cat = await Category.findOne({
         where: { name: { [Op.iLike]: `%${categories[i].name}%` } },
       });
-
+      console.log(cat);
       if (cat) {
         await newProduct.addCategory(cat);
       }

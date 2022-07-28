@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
+import { postProduct } from "../../redux/actions";
 //   {
 //         "name": "Bochas",
 //         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
@@ -27,12 +28,12 @@ export function validate() {
 }
 
 export default function ProductCreationForm() {
+    const dispatch = useDispatch();
     const history = useHistory();
     const stockArray = [];
     for (let i = 0; i <= 100; i++) { stockArray.push(i) }
     const categoriesArray = useSelector((state) => state.categories);
     const sizesArray = ["xs", "s", "l", "m", "xl", "xxl", "xxxl", "único"]
-    // console.log(categoriesArray);
     const [input, setInput] = useState({
         name: "",
         price: 0,
@@ -42,25 +43,31 @@ export default function ProductCreationForm() {
         image2: "",
         image3: "",
         image4: "",
-        stock: 0,
-        status: "",
+        rating: 0,
         categories: [],
-        products_values: [],
+        product_values: [],
     })
-
+    const [productsValues, setProductsValues] = useState({})
     // const [errors, setErrors] = useState({});
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === "size") {
-            setInput({ ...input, products_values: [...input.products_values, { "size": value }] })
+            setProductsValues({ [name]: value })
         }
         if (name === "stock") {
-            // const stock = { "stock": value }
-            // input.products_values[input.products_values.length - 1].stock = value;
-            setInput({ ...input, products_values: [...input.products_values, input.products_values[input.products_values.length - 1].stock = value] })
+            setProductsValues({ ...productsValues, [name]: value })
+            // console.log(input.product_values);
         }
+
     }
-    // console.log(input.image);
+
+    if (productsValues.hasOwnProperty("stock") && productsValues.hasOwnProperty("size")) {
+        const obj = productsValues;
+        setInput({ ...input, product_values: [...input.product_values, obj] });
+        setProductsValues({});
+    }
+    // console.log(productsValues);
+    console.log(input);
     /*
     0: {size: 'xxl', stock: '77'}
     1: {size: 'xxxl', stock: '98'}
@@ -69,12 +76,25 @@ export default function ProductCreationForm() {
     4: '50'
     */
     const handleSubmit = (e) => {
-
-
+        e.preventDefault();
+        dispatch(postProduct(input))
+        setInput({
+            name: "",
+            price: 0,
+            description: "",
+            color: "",
+            image: "",
+            image2: "",
+            image3: "",
+            image4: "",
+            rating: 0,
+            categories: [],
+            product_values: []
+        })
         history.push("/admin/home")
     }
 
-    // console.log(input.products_values);
+    console.log(input.product_values);
 
 
     return (
@@ -92,6 +112,13 @@ export default function ProductCreationForm() {
                             placeholder="Your product's name..."
                             name="name"
                             onChange={(e) => setInput({ ...input, name: e.target.value })}
+                        ></input>
+                        <input
+                            className="form-input"
+                            type="text"
+                            placeholder="Your description..."
+                            name="description"
+                            onChange={(e) => setInput({ ...input, description: e.target.value })}
                         ></input>
                         <input
                             className="form-input"
@@ -194,7 +221,7 @@ export default function ProductCreationForm() {
                         </select>
                         <ul className="sizeStock">
                             {
-                                input.products_values && input.products_values.map(elm => {
+                                input.product_values && input.product_values.map(elm => {
                                     if (elm.stock === undefined) {
                                         return (<li> size: {elm.size}</li>)
                                     } else {
@@ -205,15 +232,28 @@ export default function ProductCreationForm() {
                                 })
                             }
                         </ul>
+                        <input
+                            disabled={input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0}
+                            type="submit"
+                            value="Submit"
+                        />
                     </form>
                 </section>
             </div >
-            <div className="photos">
-                {input.image && <img src={input.image} alt="algo" className="photo" id="image1" />}
-                {input.image2 && <img src={input.image2} alt="algo" className="photo" id="image2" />}
-                {input.image3 && <img src={input.image3} alt="algo" className="photo" id="image3" />}
-                {input.image4 && <img src={input.image4} alt="algo" className="photo" id="image4" />}
-            </div>
+
         </div>
     )
 }
+/*
+name: "",
+        price: 0,
+        description: "",
+        color: "",
+        image: "",
+        image2: "",
+        image3: "",
+        image4: "",
+        status: "",
+        categories: [],
+        product_values: [],
+*/
