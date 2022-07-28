@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const Stripe = require("stripe");
-//const { default: ProductCard } = require("../../../client/src/components/ProductCard/ProductCard");
-const { User, Product } = require("../db");
+const { User, Product, Sell_order } = require("../db");
 const { Op } = require("sequelize");
 const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRhEOHcLQfx1muclzGM39fTvok1XgfvSbdgHF0t9tpytNGb8DgtorDUsoRtUqArlmUiNwoedu2005lvflXcg");
 const router = Router();
@@ -26,8 +25,8 @@ router.post("/api/checkout", async (req, res) => {
       }
       else return res.json({ message: "hubo un error"})
       if(payment.status === 'succeeded'){
-        const newSellOrder = sellorders.create({
-
+        const newSellOrder = await Sell_order.create({
+          
         })
         const userCompra = await Promise.all(description.map(async (p)=>{
           return await Product.findByPk(p.id)

@@ -30,7 +30,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Product, Category, Qa ,User,Review, Product_values } = sequelize.models;
+const { Product, Category, Qa ,User,Review, Product_values, Sell_order } = sequelize.models;
 
 Product_values.belongsToMany(Product, { through: 'productValue-categories' }); 
 Product.belongsToMany(Product_values, { through: 'productValue-categories' }); 
@@ -53,6 +53,13 @@ Review.belongsTo(Product);
 
 User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);
+
+User.belongsToMany(Sell_order, {through: 'user-orders'});
+Sell_order.belongsTo(User);
+
+Product.belongsToMany(Sell_order, {through: 'product-orders'});
+Sell_order.belongsToMany(Product, {through: 'product-orders'});
+
 
 
 module.exports = {

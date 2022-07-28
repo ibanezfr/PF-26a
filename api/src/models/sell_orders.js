@@ -1,11 +1,10 @@
 const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
-    sequelize.define('sellorder', {
+    sequelize.define('sell_order', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            allowNull: false,
         },
 /*         user:{
             type: DataTypes.STRING,
