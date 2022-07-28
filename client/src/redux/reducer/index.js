@@ -125,12 +125,13 @@ function rootReducer(state = initialState, action) {
       //   return state;
       // }
       return itemInCart
+      //itemInCart.id === action.payload.id && itemInCart.size !== action.payload.size
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
+              (item.id === action.payload.id && item.size === action.payload.size)
                 ?  item.quantity = action.payload.quantity
-                : item
+                : [...state.cart, action.payload]
             ),
           }
         : {
