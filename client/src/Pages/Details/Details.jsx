@@ -10,19 +10,20 @@ import Button from 'react-bootstrap/Button';
 
 export default function Details() {
   const params = useParams();
-  const dispatch = useDispatch();    
+  const dispatch = useDispatch();
 
+
+  let actualProduct = useSelector(state => state.detail)
+  let size = useSelector(state => state.size)
+  let cart = useSelector(state => state.cart)
+  // console.log("size: ", size)
+  // console.log("actualProduct ", actualProduct);
   useEffect(() => {
     dispatch(cleanProduct())
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-  }, [dispatch]);
-
-  let actualProduct = useSelector(state => state.detail)
-  let size = useSelector(state => state.size)
-  let cart = useSelector(state=>state.cart)
-  console.log("size: ", size)
-  console.log("actualProduct ", actualProduct);
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [dispatch, cart]);
 
   // let mappedName = actualProduct.map(p => p.name)
   // let mappedId = actualProduct.map(p => p.id);
@@ -60,20 +61,20 @@ export default function Details() {
     // console.log("newCart stock: ", newCart) 
   }
 
-  const handleChange = (e)=>{
+  const handleChange = (e) => {
     e.preventDefault();
-    setNewCart({     
+    setNewCart({
       ...newCart,
       quantity: e.target.value
     })
     // console.log("newCart cantidad: ", newCart)
   }
 
-  const hanldeSubmit = (e)=>{
+  const hanldeSubmit = (e) => {
     e.preventDefault();
     dispatch(addToCart(newCart))
   }
-console.log("newCart: ", newCart)
+  console.log("newCart: ", newCart)
 
 
   return (
@@ -96,10 +97,10 @@ console.log("newCart: ", newCart)
             </select>
             <h4>Stock: {size[position + 1]}</h4>
             <label>Ingresá la cantidad que buscas</label>
-            <input type="number" min={1} max={size[position + 1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
+            <input type="number" min={1} max={size[position + 1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
             <div className="btnContainer">
-              <button 
-              onClick={(e) => hanldeSubmit(e)}
+              <button
+                onClick={(e) => hanldeSubmit(e)}
               >Agregar al carrito</button>
               <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
             </div>
