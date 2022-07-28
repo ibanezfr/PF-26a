@@ -29,7 +29,7 @@ export default function ProfileForm() {
 
     try {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      await axios.put(`http://localhost:3001/auth/${localUser}`, values);
+      await axios.put(`/auth/${localUser}`, values);
       history.push("/profile");
     } catch (error) {
       console.log(error);

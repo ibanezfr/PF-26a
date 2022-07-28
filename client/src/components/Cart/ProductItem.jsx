@@ -12,7 +12,7 @@ export default function ProductItem({data, addToCart, deleteOneFromCart, deleteA
     //     addToCart(id)
 
     //     stock = stock - 1;
-    //     const put = await axios.put(`http://localhost:3001/function/stock/${id}/${stock}`);
+    //     const put = await axios.put(`/function/stock/${id}/${stock}`);
     // }
 
     return(

@@ -35,7 +35,7 @@ const Login = () => {
     try {
       const credentials = await login(user.email, user.password);
 
-      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+      const userInDb = await axios.post(`/auth/login`, {
         id: credentials.user.uid,
         name: credentials.user.displayName,
         email: credentials.user.email,

@@ -11,8 +11,8 @@ export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
-const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
-const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
+const URL_FOR_FETCH_PRODUCTS = "/products";
+const URL_FOR_FETCH_CATEGORIES = "/categories";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
@@ -109,7 +109,7 @@ export function setProductsToDisplay(products) {
 
 export const getProductsById = (id) => {
   return async (dispatch) => {
-    let pedidoApiId = await axios.get("http://localhost:3001/products/" + id);
+    let pedidoApiId = await axios.get("/products/" + id);
     dispatch({
       type: GET_BY_ID,
       payload: pedidoApiId.data,
@@ -125,7 +125,7 @@ export function cleanProduct() {
 
 export function bringSize(id) {
   return async (dispatch) => {
-    let size = await axios.get("http://localhost:3001/products/size/" + id);
+    let size = await axios.get("/products/size/" + id);
     // console.log("en la action: ", size.data)
     dispatch({
       type: GET_SIZE,
@@ -138,7 +138,7 @@ export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
       const productsByName = await axios.get(
-        `http://localhost:3001/products/search?name=${name}`
+        `/products/search?name=${name}`
       );
 
       return dispatch({

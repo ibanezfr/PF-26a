@@ -26,7 +26,7 @@ const Profile = () => {
   // const getUser = async () => {
   //   try {
   //     const response = await axios.get(
-  //       `http://localhost:3001/auth/${user.uid}`
+  //       `/auth/${user.uid}`
   //     );
   //     setUserDb(response.data);
   //     console.log(response);
@@ -37,7 +37,7 @@ const Profile = () => {
   useEffect(() => {
     function getUser() {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      return `http://localhost:3001/auth/${localUser}`;
+      return `/auth/${localUser}`;
     }
     async function fetchData() {
       const result = await axios.get(getUser());

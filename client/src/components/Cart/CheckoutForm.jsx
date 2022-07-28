@@ -35,7 +35,7 @@ export default function CheckoutForm({ total, products }) {
           try {//console.log('total', total)
             const { data } = await axios.post(
               
-              "http://localhost:3001/pay/api/checkout",
+              "/pay/api/checkout",
               {
                 id,
                 amount: total,

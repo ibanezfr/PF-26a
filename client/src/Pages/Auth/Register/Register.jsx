@@ -26,7 +26,7 @@ const Register = () => {
     }
     try {
       const credentials = await signup(newUser.email, newUser.password);
-      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+      const userInDb = await axios.post(`/auth/login`, {
         id: credentials.user.uid,
         name: credentials.user.displayName,
         email: credentials.user.email,

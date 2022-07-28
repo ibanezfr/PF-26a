@@ -7,8 +7,14 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store/index.js";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/AuthContext";
-
+import dotenv from "dotenv";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
+
 
 ReactDOM.render(
   <React.StrictMode>
