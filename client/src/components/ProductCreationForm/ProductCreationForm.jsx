@@ -1,30 +1,28 @@
 import "./ProductCreationForm";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
-//   {
-//         "name": "Bochas",
-//         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
-//         "price": 500,
-//         "rating": 5,
-//         "color": "rosa",
-//         "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
-//         "categories": [
-//             {
-//                 "name": "Equipamento deportivo"
-//             }
-//         ],
-//         "product_values": [
-//             {
-//                 "size": "único",
-//                 "stock": 40
-//             }
-//         ]
-//     }
-export function validate() {
 
+export function validate(input, name, value) {
+    const validName = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ]+(?:-[a-zA-Z]+)*$/;
+    // const validPrice = /^([1-9][0-9]{0,2}|5000)$/;
+    const validPrice = /^[0-9]*|5000\.[0-9]{2}$/;
+
+    const noName = "1) NAME: A name is required."
+    const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 255 characters."
+    let errors = {};
+
+    switch (name) {
+        case "name":
+            !input[name] ? errors[name] = noName : !validName.test(input[name]) ? errors[name] = invalidName : delete errors[name];
+            break;
+
+        default:
+            break;
+    }
+    return errors;
 }
 
 export default function ProductCreationForm() {
@@ -48,15 +46,18 @@ export default function ProductCreationForm() {
         product_values: [],
     })
     const [productsValues, setProductsValues] = useState({})
-    // const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        if (name === "name" || name === "description" || name === "color" || name === "price") {
+            setErrors(validate({ ...input, [name]: value }, name))
+        }
         if (name === "size") {
             setProductsValues({ [name]: value })
         }
         if (name === "stock") {
             setProductsValues({ ...productsValues, [name]: value })
-            // console.log(input.product_values);
         }
 
     }
@@ -66,15 +67,8 @@ export default function ProductCreationForm() {
         setInput({ ...input, product_values: [...input.product_values, obj] });
         setProductsValues({});
     }
-    // console.log(productsValues);
-    console.log(input);
-    /*
-    0: {size: 'xxl', stock: '77'}
-    1: {size: 'xxxl', stock: '98'}
-    2: {size: 'l', stock: '100'}
-    3: {size: 'm' , stock: '50'}
-    4: '50'
-    */
+    // console.log(input);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postProduct(input))
@@ -94,32 +88,39 @@ export default function ProductCreationForm() {
         history.push("/admin/home")
     }
 
-    console.log(input.product_values);
+    console.log(input.name);
 
 
     return (
         <div>
             <div className="login">
+                <Link to="/admin/home"><button>Back to dashboard</button></Link>
                 <section id="login-window">
                     <h1>Product Creation Form</h1>
                     <p className="error">
                         {/* { && <span className="Error"></span>} */}
                     </p>
+                    <ul className="error">
+
+                        {errors && errors.name ? <li className="error">{errors.name}</li> : <br />}
+
+                    </ul>
                     <form onSubmit={((e) => handleSubmit(e))}>
                         <input
                             className="form-input"
                             type="text"
                             placeholder="Your product's name..."
                             name="name"
-                            onChange={(e) => setInput({ ...input, name: e.target.value })}
+                            onChange={(e) => handleInputChange(e)}
                         ></input>
-                        <input
-                            className="form-input"
-                            type="text"
+                        <textarea
+                            className="textarea-input"
                             placeholder="Your description..."
                             name="description"
+                            rows="4"
+                            cols="50"
                             onChange={(e) => setInput({ ...input, description: e.target.value })}
-                        ></input>
+                        ></textarea>
                         <input
                             className="form-input"
                             type="number"
@@ -257,3 +258,22 @@ name: "",
         categories: [],
         product_values: [],
 */
+//   {
+//         "name": "Bochas",
+//         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
+//         "price": 500,
+//         "rating": 5,
+//         "color": "rosa",
+//         "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
+//         "categories": [
+//             {
+//                 "name": "Equipamento deportivo"
+//             }
+//         ],
+//         "product_values": [
+//             {
+//                 "size": "único",
+//                 "stock": 40
+//             }
+//         ]
+//     }
