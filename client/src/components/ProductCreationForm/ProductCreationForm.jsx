@@ -46,7 +46,8 @@ export default function ProductCreationForm() {
     const history = useHistory();
     const stockArray = [];
     for (let i = 0; i <= 100; i++) { stockArray.push(i) }
-    const categoriesArray = useSelector((state) => state.categories);
+    const categoriesArray1 = useSelector((state) => state.categories);
+    const categoriesArray = categoriesArray1.sort();
     const sizesArray = ["xs", "s", "l", "m", "xl", "xxl", "xxxl", "único"]
     const [input, setInput] = useState({
         name: "",
@@ -274,7 +275,9 @@ export default function ProductCreationForm() {
                                 }
                             </select>
                         </fieldset>
-                        <label htmlFor="categories-list" id="categories-list-label">Chosen categories are:</label>
+                        {
+                            input.categories.length !== 0 && <label htmlFor="categories-list" id="categories-list-label">Chosen categories are:</label>
+                        }
                         <ul className="categories" id="categories-list">
                             {
                                 input.categories && input.categories.map((elm, index) => {

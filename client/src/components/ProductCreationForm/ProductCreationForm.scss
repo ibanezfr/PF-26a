@@ -16,6 +16,7 @@ $font: 'Lato', sans-serif;
 
 .fieldset {
   display: block;
+  border-radius: 8px;
   border: 2px groove #794983;
   min-inline-size: min-content;
   padding: 12px 20px;
@@ -28,6 +29,7 @@ legend {
   background-color: #794983;
   color: #fff;
   padding: 3px 6px;
+  border-radius: 20px;
 }
 
 #title {
@@ -43,6 +45,38 @@ input {
   margin: .4rem;
 }
 
+input[type=text] {
+  border-radius: 8px;
+}
+
+input[type=text]:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+input[type=number] {
+  border-radius: 8px;
+}
+
+input[type=number]:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+textarea {
+  border-radius: 8px;
+}
+
+textarea:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+select {
+  border-radius: 8px;
+}
+
+
 #textarea {
   z-index: 2;
 }
@@ -56,7 +90,7 @@ input {
 
 #submit-button {
   position: absolute;
-  top:0px;
+  top: 0px;
   left: -120px;
   font-family: 'lato';
 }
