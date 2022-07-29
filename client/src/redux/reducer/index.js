@@ -10,19 +10,20 @@ import {
   SET_PRODUCTS_TO_DISPLAY,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART,
   SET_ORDER,
   SESSION,
   SET_SEARCH_STATUS,
   RESET_FILTER_ORDER,
+  ADD_ONE_FROM_CART
 } from "../actions/index";
-import { filterProducts } from "../../Utils";
+import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
 
 const initialState = {
-  products: [], //siempre tengo todos los productos para filtrar 
-  detail: [],
+  products: [],
+  detail: {},
   searchProducts: [],
   size: [],
   displayedProducts: [],//los productos que se van mostrando de acuerdo a los filtros
@@ -45,6 +46,7 @@ const initialState = {
   ],
   isSearchActive:false,
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -69,11 +71,11 @@ function rootReducer(state = initialState, action) {
       };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
-      var producto = filterProducts(state.products, auxs)
+      var producto2 = filterProducts(state.products, auxs)
       return {
         ...state,
         filters: auxs,
-        displayedProducts: producto
+        displayedProducts: producto2
       };
     case SET_PRODUCTS_TO_DISPLAY:
       return {
@@ -81,7 +83,6 @@ function rootReducer(state = initialState, action) {
         // displayedProducts: action.payload,
       };
     case FETCH_BY_NAME:
-      if (!action.payload[0]) alert("Producto no encontrado");
       return {
         ...state,
         searchProducts: action.payload,
@@ -95,7 +96,7 @@ function rootReducer(state = initialState, action) {
     case CLEAN_PRODUCT:
       return {
         ...state,
-        detail: [],
+        detail: {},
       };
     case GET_SIZE:
       return {
@@ -115,50 +116,60 @@ function rootReducer(state = initialState, action) {
       };
 
     case ADD_TO_CART:
-      let newItem = state.products.find((p) => p.id === action.payload);
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      if (
-        itemInCart !== undefined &&
-        itemInCart.quantity === itemInCart.stock
-      ) {
-        alert("Limite de producto alcanzado");
-        return state;
-      }
+      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+      
+    
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? // && item.stock > newItem.quantity
-                  { ...item, quantity: item.quantity + 1 }
+              (item.id === action.payload.id && item.size === action.payload.size)
+                ?  {...item, quantity: action.payload.quantity}
                 : item
-            ),
+            )
           }
         : {
             ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
+            cart: [...state.cart, { ...action.payload }],
           };
 
     case REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       return itemToDelete.quantity > 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === action.payload
+              item.id === action.payload.id && item.size === action.payload.size
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
-            ),
+            )
           }
         : {
             ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
+            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
           };
-
-    case REMOVE_ALL_FROM_CART:
+    case ADD_ONE_FROM_CART:
+      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+      if  (productAdd.quantity === productAdd.stock) {
+        alert("limite alcanzado")
+        return {...state}
+      }
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart.map((item) =>
+        item.id === action.payload.id && item.size === action.payload.size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+      }
+
+    case REMOVE_FROM_CART:
+      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size);
+      state.cart.splice(indexRemove,1);
+      
+      return {
+        ...state,
+        cart: [...state.cart]
       };
     case CLEAR_CART:
       return {

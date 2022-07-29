@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
@@ -8,81 +8,109 @@ import heart from '../../images/heart.png'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-export default function Details(){
-    const params = useParams();
-    const dispatch = useDispatch();
-    let cart = useSelector(state => state.cart)
+export default function Details() {
+  const params = useParams();
+  const dispatch = useDispatch();    
 
-    useEffect(()=>{
-        dispatch(cleanProduct()) 
-        dispatch(getProductsById(params.id))
-        // dispatch(bringSize(params.id))
-    }, [dispatch, params.id, params.name]);
-    
-    let actualProduct = useSelector(state => state.detail)
-    // let size = useSelector(state => state.size)
+  
+  let actualProduct = useSelector(state => state.detail);
+  let size = useSelector(state => state.size);
+  let cart = useSelector(state=>state.cart);
+  
+  useEffect(() => {
+    dispatch(getProductsById(params.id));
+    dispatch(bringSize(params.id));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    // return () => dispatch(cleanProduct());
+  }, [dispatch, cart, params.id]);
+ 
+  const [newCart, setNewCart] = useState({
+    id: "",
+    name: "",
+    img: "",
+    size: "",
+    price: "",
+    stock: size[1],
+    quantity: 0
+  });
 
-    let mappedName = actualProduct.map(p=>p.name)
-    let mappedImage = actualProduct.map(p=>p.image)
-    // let mappedStock = actualProduct.map(p=>p.stock)
-    let mappedDescription = actualProduct.map(p=>p.description)
-    let mappedPrice = actualProduct.map(p=>p.price)
-    let image = mappedImage[0]
-    // console.log("Stock: ", mappedStock)
-    const values = actualProduct.map(p=>p.product_values)
+  const handleSize = (e) => {
+    e.preventDefault();
+    setNewCart({
+      id: actualProduct.id,
+      name: actualProduct.name,
+      img: actualProduct.image,
+      size: size[e.target.value],
+      price: actualProduct.price,
+      stock: size[1],
+      quantity: 0
+    });
+  };
 
-    var stock = []
-    var size = []
-    for(let i=0; i<values.length; i++){
-        for(let j=0; j<3; j++){
-            stock.push(actualProduct[i].product_values[j].stock)
-            size.push(actualProduct[i].product_values[j].size)
-        }
-    }
+  const handleChange = (e)=>{
+    e.preventDefault();
+    setNewCart({     
+      ...newCart,
+      quantity: parseInt(e.target.value)
+    });
+  };
 
-    console.log("stock and size: ", stock, size)
-    // console.log("values de stock: ", values[0])
+  const hanldeSubmit = (e)=>{
+    e.preventDefault();
+    if(newCart.size === "" || newCart.quantity === 0) {
+      alert("selecciona un talle y una cantidad");
+    } else {
+      dispatch(addToCart(newCart));
+    };
+  };
 
-    
-    return(
-        <div className="father">
-          <div className="containerDetail">
-            <div className="container1">
-                <img src={image} alt="not found"/>
-                <span>Selecciona un talle</span>
-                <select>
-                    {
-                        // values ? values.map(t=>{
-                        //     return (
-                        //         <option key={t.id}>{t.size}</option>
-                        //     );
-                        // }) : <option>No hay ningun talle</option>
-                    }
-                </select>
+  return (
+    <div className="father">
+      <div className="containerDetail">
+        <div className="container1">
+          <img src={actualProduct.image} alt="not found" />
+          <span>Selecciona un talle</span>
+          <form>
+            <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+              <option disabled>Seleccioná un talle</option>
+              {
+                size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
+                  return (
+                    (index % 2) === 0 ? <option key ={index} name={m} value={index} >{m}</option> : null
+                  )
+                })
+              }
+            </select>
+            <h4>Stock: {size[1]}</h4>
+            <label>Ingresá la cantidad que buscas</label>
+            <input type="number" min={1} max={size[1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
+            <div className="btnContainer">
+              <button 
+              onClick={(e) => hanldeSubmit(e)}
+              >Agregar al carrito</button>
+              <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
             </div>
-            <div className="container2">
+          </form>
 
-                <h2>{mappedName}</h2>
-                <h2>${formatNumber(mappedPrice)}</h2>
-                <p>{mappedDescription}</p>
-                {/* <span>Stock disponible: {mappedStock}</span> */}
-                <div className="btnContainer">
-                <button onClick={() => dispatch(addToCart(params.id))}>Agregar al carrito</button>
-                <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage"/></button>
-                </div>
-            </div>
-          </div>
-          <div className="formDiv">
-          <Form className="form">
-            <Form.Group className="mb-3 formGroup" controlId="Question">
-              <Form.Label className="text">Pregunta</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-              <Button className="btn" size="sm">
-                Hacer pregunta
-              </Button>
-            </Form.Group>
-          </Form>
-          </div>
         </div>
-    )
-}
+        <div className="container2">
+
+          <h2>{actualProduct.name}</h2>
+          <h2>${formatNumber(actualProduct.price)}</h2>
+          <p>{actualProduct.description}</p>
+        </div>
+      </div>
+      <div className="formDiv">
+        <Form className="form">
+          <Form.Group className="mb-3 formGroup" controlId="Question">
+            <Form.Label className="text">Pregunta</Form.Label>
+            <Form.Control as="textarea" rows={3} />
+            <Button className="btn" size="sm">
+              Hacer pregunta
+            </Button>
+          </Form.Group>
+        </Form>
+      </div>
+    </div>
+  )
+};

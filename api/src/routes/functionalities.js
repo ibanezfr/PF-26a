@@ -46,9 +46,9 @@ router.get('/categories/:id', async(req, res, next)=>{
 
   //Ruta de put para modificar el stock al sumar/eliminar/comprar productos desde el carrito de compras
 
-  router.put("/stock/:id/:stock", async(req, res, next)=>{
+  router.put("/stock/:id", async(req, res, next)=>{
     const { id } = req.params;
-    const { stock } = req.params;
+    const { stock } = req.body;
     // console.log("stock en el back" , stock)
 
     // const { stock } = req.body;

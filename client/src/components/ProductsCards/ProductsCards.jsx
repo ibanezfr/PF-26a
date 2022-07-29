@@ -22,7 +22,7 @@ export default function ProductsCards({ allProducts }) {
               description={product.description}
               categories={product.categories.map(c => c.name)}
             />
-          })}</>:<><ProductNotFound/></>}
+          })}</>:<ProductNotFound/>}
         </div>
       </div>
     </div>

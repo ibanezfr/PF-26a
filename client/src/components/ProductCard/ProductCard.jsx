@@ -22,7 +22,7 @@ export default function ProductCard({ id, name, price, image, categories}) {
               </div>
               <div className="cardFooter">
                 <h3 className="price">${formatNumber(price)}</h3>
-                <h6 className="categoryText">{categories[0]} <br/> {categories[1]}</h6>
+                <h6 className="categoryText">{categories[0]} <br/> {categories[1]} <br/> {categories[2]&& categories[2]}</h6>
                 <button className="btnInfo2" onClick={() => dispatch(addToCart(id)) }>Agregar al carrito</button>
               </div>
             </div>
