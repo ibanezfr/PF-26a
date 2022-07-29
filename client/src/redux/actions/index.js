@@ -8,7 +8,8 @@ export const GET_SIZE = "GET_SIZE";
 //carrito de compras
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
-export const REMOVE_ALL_FROM_CART = "REMOVE_ALL_FROM_CART";
+export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
@@ -41,17 +42,23 @@ export function clearCart() {
   };
 }
 
-export function deleteFromCart(obj, all = false) {
-  if (all) {
+export function deleteFromCart(data) {
     return {
-      type: REMOVE_ALL_FROM_CART,
-      payload: obj,
+      type: REMOVE_FROM_CART,
+      payload: data,
     };
+}
+export function changeQuantity (data, boolean) {
+  if (boolean) {
+    return {
+      type: ADD_ONE_FROM_CART,
+      payload: data
+    }
   } else {
     return {
       type: REMOVE_ONE_FROM_CART,
-      payload: obj,
-    };
+      payload: data
+    }
   }
 }
 

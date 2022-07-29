@@ -76,7 +76,7 @@ export default function CheckoutForm({ total, products }) {
               <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}
             </div>
           ) : (
-            "Buy"
+            "Comprar"
           )}
         </button>
       </form>

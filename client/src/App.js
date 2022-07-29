@@ -4,10 +4,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
 import HomePage from "./Pages/HomePage/HomePage.jsx";
-import SearchProducts from "./Pages/SearchProducts/SearchProducts";
+// import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import Details from "./Pages/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
-
 import Profile from "./Pages/Account/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from "./components/Cart/Cart";
@@ -18,6 +17,7 @@ import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
+import Purchase from "./components/Purchase/Purchase";
 function App() {
   const dispatch = useDispatch();
 
@@ -42,6 +42,7 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
+          <Route path="/purchase" component={Purchase}/>
           <Route path="/details/:id" component={Details} />
 
           {/* Admin ROUTES */}

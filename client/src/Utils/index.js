@@ -5,8 +5,6 @@ export function formatNumber(number) {
     }).format(number)
 };
 
-
-
 export function filterProducts(state, auxs) {
     let res = state.filter(product => {
         let productCategories = product.categories.map(cat => cat.name)
@@ -16,7 +14,6 @@ export function filterProducts(state, auxs) {
     });
     return res;
 };
-
 
 export function orderProducts(state, order){
     //sort functionsf
@@ -59,4 +56,11 @@ export function orderProducts(state, order){
                 break;
         }
     return state;
-}
+};
+
+export function filterCart (item, product) {
+    if (item.id === product.id && item.size === product.size) {
+        return false;
+    }
+    return true;
+};
