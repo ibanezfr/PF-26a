@@ -65,7 +65,7 @@ async function getProducts() {
 }
 
 async function mailPayment(recipient, id,mensaje) {
-  // Tendría que entrarle como parámetro, entre otras cosas, el email.
+ 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
