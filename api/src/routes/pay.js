@@ -12,7 +12,7 @@ router.post("/api/checkout", async (req, res) => {
     //sacarle el ultimo elemento, que son los datos de envio
     console.log(shippingInfo)
     try {
-      const userComprador = await User.findByPk(user)//trae el user que compro
+      const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
       if(user){
         const payment = await stripe.paymentIntents.create({
           amount:amount*100,
@@ -31,12 +31,12 @@ router.post("/api/checkout", async (req, res) => {
             city:shippingInfo.city,
             postalCode:shippingInfo.postalCode
           })
-          console.log('newsellorder',newSellOrder)
+          //console.log('newsellorder',newSellOrder)
           const userCompra = await Promise.all(description.map(async (p)=>{
             return await Product.findByPk(p.id)
           })) 
           newSellOrder.addProducts(userCompra)
-          console.log(userComprador)
+          //console.log(userComprador)
           userComprador.addSell_order(newSellOrder)
         }
       }
