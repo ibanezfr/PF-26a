@@ -1,7 +1,5 @@
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import "./ProductCard.css"
-import { addToCart } from "../../redux/actions";
 import { formatNumber } from "../../Utils";
 import FastPurchase from "../Purchase/FastPurchase";
 import Button from "react-bootstrap/esm/Button";
@@ -9,7 +7,6 @@ import { useState } from "react";
 
 
 export default function ProductCard({ id, name, price, image, categories }) {
-  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   
   // console.log(id)
@@ -34,8 +31,6 @@ export default function ProductCard({ id, name, price, image, categories }) {
           </Button>
         </div>
       </div>
-      {/* <button onClick={() => dispatch(addToCart(id)) }>Agregar al carrito</button> */}
-      {/* <Link to={'details/' + id } className='linkBtn'><button className='btnInfo'>Más información</button></Link> */}
     </div>
   );
 }
