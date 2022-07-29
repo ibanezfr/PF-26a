@@ -8,8 +8,9 @@ const router = Router();
 //
 router.post("/api/checkout", async (req, res) => {
     // you can get more data to find in a database, and so on
-    const { id, amount , description, user} = req.body;
-   
+    const { id, amount , description, user, shippingInfo} = req.body;
+    //sacarle el ultimo elemento, que son los datos de envio
+
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro
       if(user){
@@ -20,11 +21,16 @@ router.post("/api/checkout", async (req, res) => {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
-      
+        console.log(userComprador)
         if(payment.status === 'succeeded'){
           const newSellOrder = await Sell_order.create({
             amount:amount*100,
-            product:description.map(p=>p.name + ': ' +p.quantity).join(',')
+            product:description.map(p=>p.name + ': ' +p.quantity).join(','),
+            country:shippingInfo.country,
+            province:shippingInfo.province,
+            city:shippingInfo.city,
+            street:shippingInfo.street,
+            postalCode:shippingInfo.postalCode
           })
           const userCompra = await Promise.all(description.map(async (p)=>{
             return await Product.findByPk(p.id)
