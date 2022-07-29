@@ -54,7 +54,8 @@ Review.belongsTo(Product);
 User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);
 
-User.belongsToMany(Sell_order, {through: 'user-orders'});
+User.belongsToMany(Sell_order, 
+    {through: 'user-orders'});
 Sell_order.belongsTo(User);
 
 Product.belongsToMany(Sell_order, {through: 'product-orders'});
