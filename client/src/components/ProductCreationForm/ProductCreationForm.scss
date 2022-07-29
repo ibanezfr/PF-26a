@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 $font: 'Lato', sans-serif;
 
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
 .creation_form {
   display: flex;
   align-self: center;
@@ -123,16 +129,53 @@ select {
 
 #back-button {
   position: relative;
-  top: 80px;
+  top: 99px;
   left: -750px;
   font-family: 'lato';
+  background: $backGroundColor;
+  color: $middleColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $secondaryColor;
+  text-shadow: none;
+  height: 50px;
+  width: 100px;
+}
+
+#back-button:hover {
+  background: $primaryColor;
+  color: $lightestColor;
+  border: 1px solid $primaryColor;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px $lightestColor;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 #submit-button {
   position: absolute;
   top: 0px;
   left: -120px;
-  font-family: 'lato';
+  background: $backGroundColor;
+  color: $middleColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $secondaryColor;
+  text-shadow: none;
+  height: 50px;
+  width: 100px;
+}
+
+#submit-button:hover {
+  background: $primaryColor;
+  color: $lightestColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $lightestColor;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 #error_container {

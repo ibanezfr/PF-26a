@@ -114,7 +114,7 @@ export default function ProductCreationForm() {
     }
 
     console.log(input);
-
+    const submitButtonBoolean = input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0 ? true : false
 
     return (
         <div>
@@ -133,18 +133,18 @@ export default function ProductCreationForm() {
                     </div>
                     <form className="creation-form" onSubmit={((e) => handleSubmit(e))}>
                         <fieldset className="fieldset" >
-                            <legend >Enter the name:</legend>
+                            <legend >Enter a title:</legend>
                             <input
                                 className=""
                                 type="text"
-                                placeholder="name..."
+                                placeholder="title..."
                                 name="name"
                                 id="name-input"
                                 onChange={(e) => handleInputChange(e)}
                             ></input>
                         </fieldset>
                         <fieldset className="fieldset">
-                            <legend>Enter the description:</legend>
+                            <legend>Enter a description:</legend>
                             <textarea
                                 id="textarea"
                                 className=""
@@ -169,7 +169,7 @@ export default function ProductCreationForm() {
                             ></input>
                         </fieldset>
                         <fieldset className="fieldset">
-                            <legend>Enter the color:</legend>
+                            <legend>Enter the colors:</legend>
                             <input
                                 id="color-input"
                                 className=""
@@ -301,8 +301,8 @@ export default function ProductCreationForm() {
                             }
                         </ul>
                         <input
+                            disabled={submitButtonBoolean}
                             id="submit-button"
-                            disabled={input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0 ? true : false}
                             type="submit"
                             value="Submit"
                         />
