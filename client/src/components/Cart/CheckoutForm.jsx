@@ -27,7 +27,7 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
         card: elements.getElement(CardElement),
       });
       setLoading(true); 
-  
+      console.log(user)
       if (!error) {
         console.log(elements.getElement(CardElement))
         if(!user) window.alert('Debe loguearse para comprar')

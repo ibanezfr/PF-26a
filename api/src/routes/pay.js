@@ -10,7 +10,7 @@ router.post("/api/checkout", async (req, res) => {
     // you can get more data to find in a database, and so on
     const { id, amount , description, user, shippingInfo} = req.body;
     //sacarle el ultimo elemento, que son los datos de envio
-
+    console.log(shippingInfo)
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro
       if(user){
@@ -21,31 +21,32 @@ router.post("/api/checkout", async (req, res) => {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
-        console.log(userComprador)
+        console.log(description)
         if(payment.status === 'succeeded'){
           const newSellOrder = await Sell_order.create({
             amount:amount*100,
-            product:description.map(p=>p.name + ': ' +p.quantity).join(','),
+            product:description.map(p=>p.name + ': ' + p.quantity).join(','),//armar funcion 
             country:shippingInfo.country,
             province:shippingInfo.province,
             city:shippingInfo.city,
-            street:shippingInfo.street,
             postalCode:shippingInfo.postalCode
           })
+          console.log('newsellorder',newSellOrder)
           const userCompra = await Promise.all(description.map(async (p)=>{
             return await Product.findByPk(p.id)
-          }))
+          })) 
           newSellOrder.addProducts(userCompra)
+          console.log(userComprador)
           userComprador.addSell_order(newSellOrder)
         }
       }
-      else return res.json({ message: "hubo un error"})
+      else return res.json({ message: "hubo un error"}) 
   
       return res.status(200).json({ message: "Successful Payment" });
     } catch (error) {
       console.log(error);
       return res.json({ message: "hubo un error"/* error.raw.message */ });
-    }
-  });
+    } 
+  }); 
 
   module.exports = router;
