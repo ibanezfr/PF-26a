@@ -9,7 +9,7 @@ export function validate(input, name, value) {
     const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
     const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
     const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
-    const validColor = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/
+    const validColor = /^(?=.{3,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/
 
     const noName = "1) NAME: A name is required.";
     const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 70 characters.";
@@ -18,7 +18,7 @@ export function validate(input, name, value) {
     const noPrice = "3) PRICE: A price is required."
     const invalidPrice = "3) PRICE: 4 digits maximum and 2 decimal numbers allowed, dot notation required."
     const noColor = "4) COLOR: A color is required."
-    const invalidColor = "4) COLOR: Only letters, 5 characters minimum 70 maximum, commas and dots allowed."
+    const invalidColor = "4) COLOR: Only letters, 3 characters minimum 70 maximum, commas and dots allowed."
     const noImage = "5) IMAGE: At least 1 image is required."
     let errors = {};
     input.image === "" ? errors[name] = noImage : delete errors.image;
