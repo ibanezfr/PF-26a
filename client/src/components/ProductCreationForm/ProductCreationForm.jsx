@@ -6,19 +6,28 @@ import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
 
 export function validate(input, name, value) {
-    const validName = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ]+(?:-[a-zA-Z]+)*$/;
-    // const validPrice = /^([1-9][0-9]{0,2}|5000)$/;
-    const validPrice = /^[0-9]*|5000\.[0-9]{2}$/;
+    const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
+    const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
+    const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
 
-    const noName = "1) NAME: A name is required."
-    const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 255 characters."
+    const noName = "1) NAME: A name is required.";
+    const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 70 characters.";
+    const noDescription = "2) DESCRIPTION: A description is required.";
+    const invalidDescription = "2) DESCRIPTION: Only letters, commas, dots, length within 5 and 255 characters."
+    const noPrice = "3) PRICE: A price is required."
+    const invalidPrice = "3) PRICE: 4 digits maximum and 2 decimal numbers allowed, dot notation required."
     let errors = {};
 
     switch (name) {
         case "name":
             !input[name] ? errors[name] = noName : !validName.test(input[name]) ? errors[name] = invalidName : delete errors[name];
             break;
-
+        case "description":
+            !input[name] ? errors[name] = noDescription : !validDescription.test(input[name]) ? errors[name] = invalidDescription : delete errors[name];
+            break;
+        case "price":
+            !input[name] ? errors[name] = noPrice : !validPrice.test(input[name]) ? errors[name] = invalidPrice : delete errors[name];
+            break;
         default:
             break;
     }
@@ -88,7 +97,7 @@ export default function ProductCreationForm() {
         history.push("/admin/home")
     }
 
-    console.log(input.name);
+    console.log(errors);
 
 
     return (
@@ -103,7 +112,8 @@ export default function ProductCreationForm() {
                     <ul className="error">
 
                         {errors && errors.name ? <li className="error">{errors.name}</li> : <br />}
-
+                        {errors && errors.description ? <li className="error">{errors.description}</li> : <br />}
+                        {errors && errors.price ? <li className="error">{errors.price}</li> : <br />}
                     </ul>
                     <form onSubmit={((e) => handleSubmit(e))}>
                         <input
@@ -119,7 +129,7 @@ export default function ProductCreationForm() {
                             name="description"
                             rows="4"
                             cols="50"
-                            onChange={(e) => setInput({ ...input, description: e.target.value })}
+                            onChange={(e) => handleInputChange(e)}
                         ></textarea>
                         <input
                             className="form-input"
@@ -128,7 +138,7 @@ export default function ProductCreationForm() {
                             name="price"
                             min="0"
                             max="50000"
-                            onChange={(e) => setInput({ ...input, price: e.target.value })}
+                            onChange={(e) => handleInputChange(e)}
                         ></input>
                         <input
                             className="form-input"
