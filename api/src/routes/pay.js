@@ -4,6 +4,7 @@ const { User, Product, Sell_order } = require("../db");
 const { Op } = require("sequelize");
 const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRhEOHcLQfx1muclzGM39fTvok1XgfvSbdgHF0t9tpytNGb8DgtorDUsoRtUqArlmUiNwoedu2005lvflXcg");
 const router = Router();
+const { mailPayment} = require("../middlewares/middlewares.js");
 
 //
 router.post("/api/checkout", async (req, res) => {
@@ -21,7 +22,7 @@ router.post("/api/checkout", async (req, res) => {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
-        console.log(description)
+        
         if(payment.status === 'succeeded'){
           const newSellOrder = await Sell_order.create({
             amount:amount*100,
@@ -39,9 +40,11 @@ router.post("/api/checkout", async (req, res) => {
           //console.log(userComprador)
           userComprador.addSell_order(newSellOrder)
         }
-      }
-      else return res.json({ message: "hubo un error"}) 
-  
+        //console.log("Hola1",userComprador.dataValues.email)
+        mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
+      }     
+      else return res.json({ message: "hubo un error"})
+      
       return res.status(200).json({ message: "Successful Payment" });
     } catch (error) {
       console.log(error);
