@@ -33,11 +33,13 @@ const SidebarAdmin = () => {
             <span>Users</span>
           </li>
           <li>
-            <Link to="/admin/creation">
-              <SiProducthunt className="icons" />
-              <span>Products</span>
-            </Link>
+            <SiProducthunt className="icons" />
+            <span>Products</span>
           </li>
+          <Link to="/admin/creation">
+            <SiProducthunt className="icons" />
+            <span>Creation form</span>
+          </Link>
           <li>
             <FaShoppingCart className="icons" />
             <span>Orders</span>
