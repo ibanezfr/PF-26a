@@ -1,4 +1,4 @@
-import "./ProductCreationForm";
+import "./ProductCreationForm.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -75,6 +75,11 @@ export default function ProductCreationForm() {
         if (name === "stock") {
             setProductsValues({ ...productsValues, [name]: value })
         }
+        if (name === "categories") {
+            if (input.categories.length < 3) {
+                setInput({ ...input, categories: [...input.categories, { "name": e.target.value }] })
+            }
+        }
 
     }
 
@@ -83,7 +88,7 @@ export default function ProductCreationForm() {
         setInput({ ...input, product_values: [...input.product_values, obj] });
         setProductsValues({});
     }
-    // console.log(input);
+    // console.log(input.categories);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -104,141 +109,167 @@ export default function ProductCreationForm() {
         history.push("/admin/home")
     }
 
-    console.log(errors);
+    // console.log(errors);
 
 
     return (
         <div>
-            <div className="login">
+            <div className="">
                 <Link to="/admin/home"><button>Back to dashboard</button></Link>
-                <section id="login-window">
-                    <h1>Product Creation Form</h1>
-                    <p className="error">
-                        {/* { && <span className="Error"></span>} */}
-                    </p>
-                    <ul className="error">
+                <div className="creation_form">
+                    <h1 id="title">Product Creation Form</h1>
+                    <div id="error_container">
+                        <ul className="error">
 
-                        {errors && errors.name ? <li className="error">{errors.name}</li> : <br />}
-                        {errors && errors.description ? <li className="error">{errors.description}</li> : <br />}
-                        {errors && errors.price ? <li className="error">{errors.price}</li> : <br />}
-                        {errors && errors.color ? <li className="error">{errors.color}</li> : <br />}
-                    </ul>
-                    <form onSubmit={((e) => handleSubmit(e))}>
-                        <input
-                            className="form-input"
-                            type="text"
-                            placeholder="Your product's name..."
-                            name="name"
-                            onChange={(e) => handleInputChange(e)}
-                        ></input>
-                        <textarea
-                            className="textarea-input"
-                            placeholder="Your description..."
-                            name="description"
-                            rows="4"
-                            cols="50"
-                            onChange={(e) => handleInputChange(e)}
-                        ></textarea>
-                        <input
-                            className="form-input"
-                            type="number"
-                            placeholder="Your product's price..."
-                            name="price"
-                            min="0"
-                            max="50000"
-                            onChange={(e) => handleInputChange(e)}
-                        ></input>
-                        <input
-                            className="form-input"
-                            type="text"
-                            placeholder="Your product's color..."
-                            name="color"
-                            onChange={(e) => handleInputChange(e)}
-                        ></input>
-                        <label >Image 1: </label>
-                        <FileBase
-                            // name="image1"
-                            type="image"
-                            multiple={false}
-                            onDone={({ base64 }) => setInput({ ...input, image: base64 })}
-                        />
-                        <label >Image 2: </label>
-                        <FileBase
-                            name="image2"
-                            type="image"
-                            multiple={false}
-                            onDone={({ base64 }) => setInput({ ...input, image2: base64 })}
-                        />
-                        <label >Image 3: </label>
-                        <FileBase
-                            name="image3"
-                            type="image"
-                            multiple={false}
-                            onDone={({ base64 }) => setInput({ ...input, image3: base64 })}
-                        />
-                        <label >Image 4: </label>
-                        <FileBase
-                            name="image4"
-                            type="image"
-                            multiple={false}
-                            onDone={({ base64 }) => setInput({ ...input, image4: base64 })}
-                        />
+                            {errors && errors.name && <li className="error">{errors.name}</li>}
+                            {errors && errors.description && <li className="error">{errors.description}</li>}
+                            {errors && errors.price && <li className="error">{errors.price}</li>}
+                            {errors && errors.color && <li className="error">{errors.color}</li>}
+                        </ul>
+                    </div>
+                    <form className="creation-form" onSubmit={((e) => handleSubmit(e))}>
+                        <fieldset className="fieldset">
+                            <legend>Enter the name:</legend>
+                            <input
+                                className=""
+                                type="text"
+                                placeholder="name..."
+                                name="name"
+                                onChange={(e) => handleInputChange(e)}
+                            ></input>
+                        </fieldset>
+                        <fieldset className="fieldset">
+                            <legend>Enter the description:</legend>
+                            <textarea
+                                className=""
+                                placeholder="Your description..."
+                                name="description"
+                                rows="4"
+                                cols="50"
+                                onChange={(e) => handleInputChange(e)}
+                            ></textarea>
+                        </fieldset>
+                        <fieldset className="fieldset">
+                            <legend>Enter the price:</legend>
+                            <input
+                                className=""
+                                type="number"
+                                placeholder="Your product's price..."
+                                name="price"
+                                min="0"
+                                max="50000"
+                                onChange={(e) => handleInputChange(e)}
+                            ></input>
+                        </fieldset>
+                        <fieldset className="fieldset">
+                            <legend>Enter the color:</legend>
+                            <input
+                                className=""
+                                type="text"
+                                placeholder="Your product's color..."
+                                name="color"
+                                onChange={(e) => handleInputChange(e)}
+                            ></input>
+                        </fieldset>
+                        <fieldset id="image1" className="fieldset">
+                            <legend for="image1">Image 1: </legend>
+                            <FileBase
+                                id="image1"
+                                name="image1"
+                                type="image"
+                                multiple={false}
+                                onDone={({ base64 }) => setInput({ ...input, image: base64 })}
+                            />
+                        </fieldset>
+                        <fieldset id="image2" className="fieldset">
+                            <legend for="image2">Image 2: </legend>
+                            <FileBase
+                                name="image2"
+                                type="image"
+                                multiple={false}
+                                onDone={({ base64 }) => setInput({ ...input, image2: base64 })}
+                            />
+                        </fieldset>
 
-                        <label>Categories:</label>
-                        <select
-                            className="form-input"
-                            name="categories"
-                            onChange={(e) => setInput({ ...input, categories: [...input.categories, { "name": e.target.value }] })}>
-                            <option key={"21a"}>--Choose categories--</option>
-                            {
-                                categoriesArray && categoriesArray?.map((elm, index) => {
-                                    return (
-                                        <option
-                                            value={elm}
-                                            key={index}
-                                        >
-                                            {elm}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <label>Size:</label>
-                        <select
-                            className="form-input"
-                            name="size"
-                            onChange={(e) => handleInputChange(e)}>
-                            <option key={"22a"}>--Choose sizes--</option>
-                            {
-                                sizesArray && sizesArray?.map((elm, index) => {
-                                    return (
-                                        <option
-                                            value={elm}
-                                            key={index}
-                                        >
-                                            {elm}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <label>Stock:</label>
-                        <select
-                            className="form-input"
-                            name="stock"
-                            onChange={(e) => handleInputChange(e)}
-                        >
-                            {
-                                stockArray && stockArray.map((elm, index) => {
-                                    return (
-                                        <option key={index}>
-                                            {elm}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <ul className="sizeStock">
+                        <fieldset id="image3" className="fieldset">
+                            <legend for="image3">Image 3: </legend>
+                            <FileBase
+                                name="image3"
+                                type="image"
+                                multiple={false}
+                                onDone={({ base64 }) => setInput({ ...input, image3: base64 })}
+                            />
+                        </fieldset>
+                        <fieldset id="image4" className="fieldset">
+                            <legend for="image4" >Image 4: </legend >
+                            <FileBase
+                                name="image4"
+                                type="image"
+                                multiple={false}
+                                onDone={({ base64 }) => setInput({ ...input, image4: base64 })}
+                            />
+                        </fieldset>
+                        <fieldset id="categories" className="fieldset">
+                            <legend for="categories">Categories:</legend>
+                            <select
+                                className=""
+                                name="categories"
+                                onChange={(e) => handleInputChange(e)}>
+                                <option key={"21a"}>--Choose categories--</option>
+                                {
+                                    categoriesArray && categoriesArray?.map((elm, index) => {
+                                        return (
+                                            <option
+                                                value={elm}
+                                                key={index}
+                                            >
+                                                {elm}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </fieldset>
+                        {/* <span>In order to add a size-stock pair succesfully, you must first select only one size and then select only one quantity. You'll know you did it well if a phrase appears bellow the stock select.</span> */}
+                        <br />
+                        <fieldset id="size_stock" className="fieldset">
+                            <legend for="size_stock">Size & Stock:</legend>
+                            <select
+                                className=""
+                                name="size"
+                                onChange={(e) => handleInputChange(e)}>
+                                <option key={"22a"}>--Choose a size--</option>
+                                {
+                                    sizesArray && sizesArray?.map((elm, index) => {
+                                        return (
+                                            <option
+                                                value={elm}
+                                                key={index}
+                                            >
+                                                {elm}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <label>Stock:</label>
+                            <select
+                                className=""
+                                name="stock"
+                                onChange={(e) => handleInputChange(e)}
+                            >
+                                {
+                                    stockArray && stockArray.map((elm, index) => {
+                                        return (
+                                            <option key={index}>
+                                                {elm}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </fieldset>
+                        <ul className="">
                             {
                                 input.product_values && input.product_values.map(elm => {
                                     if (elm.stock === undefined) {
@@ -257,10 +288,9 @@ export default function ProductCreationForm() {
                             value="Submit"
                         />
                     </form>
-                </section>
+                </div>
             </div >
-
-        </div>
+        </div >
     )
 }
 /*

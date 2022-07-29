@@ -36,7 +36,7 @@ const SidebarAdmin = () => {
             <SiProducthunt className="icons" />
             <span>Products</span>
           </li>
-          <Link to="/admin/creation">
+          <Link to="/admin/creation" >
             <SiProducthunt className="icons" />
             <span>Creation form</span>
           </Link>
