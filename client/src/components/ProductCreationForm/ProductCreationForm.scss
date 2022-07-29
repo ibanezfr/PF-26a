@@ -41,6 +41,30 @@ legend {
   font-family: 'lato';
 }
 
+#name-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+#price-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+#price-input:focus {
+  width: 100%;
+}
+
+#name-input:focus {
+  width: 100%;
+}
+
+#color-input:focus {
+  width: 100%;
+}
+
 input {
   margin: .4rem;
 }
@@ -63,8 +87,24 @@ input[type=number]:focus {
   border: 3px solid #9C9AC0
 }
 
+
 textarea {
+  resize: none;
   border-radius: 8px;
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+select {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+select:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
 }
 
 textarea:focus {

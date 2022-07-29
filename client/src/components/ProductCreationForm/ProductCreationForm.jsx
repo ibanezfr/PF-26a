@@ -7,7 +7,7 @@ import { postProduct } from "../../redux/actions";
 
 export function validate(input, name, value) {
     const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
-    const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
+    const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.:;!¡¿?]+(?:-[a-zA-Z]+)*$/;
     const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
     const validColor = /^(?=.{3,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/
 
@@ -148,7 +148,7 @@ export default function ProductCreationForm() {
                             <textarea
                                 id="textarea"
                                 className=""
-                                placeholder="Your description..."
+                                placeholder="description..."
                                 name="description"
                                 rows="2"
                                 cols="50"
@@ -158,21 +158,23 @@ export default function ProductCreationForm() {
                         <fieldset className="fieldset">
                             <legend>Enter the price:</legend>
                             <input
-                                className=""
+                                id="price-input"
                                 type="number"
-                                placeholder="Your product's price..."
+                                placeholder="price..."
                                 name="price"
                                 min="0"
-                                max="50000"
+                                max="9999.99"
+                                step=".01"
                                 onChange={(e) => handleInputChange(e)}
                             ></input>
                         </fieldset>
                         <fieldset className="fieldset">
                             <legend>Enter the color:</legend>
                             <input
+                                id="color-input"
                                 className=""
                                 type="text"
-                                placeholder="Your product's color..."
+                                placeholder="color..."
                                 name="color"
                                 onChange={(e) => handleInputChange(e)}
                             ></input>
