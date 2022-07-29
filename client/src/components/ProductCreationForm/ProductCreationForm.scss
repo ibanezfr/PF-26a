@@ -47,6 +47,12 @@ legend {
   font-family: 'lato';
 }
 
+#color-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
 #name-input {
   font-family: 'lato';
   font-weight: 600;
@@ -94,7 +100,7 @@ input[type=number]:focus {
 }
 
 
-textarea {
+#textarea {
   resize: none;
   border-radius: 8px;
   font-family: 'lato';
