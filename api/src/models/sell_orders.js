@@ -6,14 +6,14 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true,
         },
-/*         user:{
+        product: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },// hacerlo con relacion 
+        /* user:{
             type: DataTypes.STRING,
             allowNull: false,
         },// hacerlo con relacion
-        product: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },// hacerlo con relacion 
         quantity:{
             type: DataTypes.INTEGER,
             allowNull: false
