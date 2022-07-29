@@ -67,6 +67,7 @@ export default function Details() {
   return (
     <div className="father">
       <div className="containerDetail">
+        <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
         <div className="container1">
           <img src={actualProduct.image} alt="not found" />
           <span>Selecciona un talle</span>
@@ -85,10 +86,9 @@ export default function Details() {
             <label>Ingresá la cantidad que buscas</label>
             <input type="number" min={1} max={size[1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
             <div className="btnContainer">
-              <button 
-              onClick={(e) => hanldeSubmit(e)}
-              >Agregar al carrito</button>
-              <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
+              <button onClick={(e) => hanldeSubmit(e)}>
+                Agregar al carrito
+              </button>
             </div>
           </form>
 
