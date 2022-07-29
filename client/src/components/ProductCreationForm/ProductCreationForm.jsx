@@ -80,6 +80,9 @@ export default function ProductCreationForm() {
                 setInput({ ...input, categories: [...input.categories, { "name": e.target.value }] })
             }
         }
+        else {
+            setInput({ ...input, [name]: value })
+        }
 
     }
 
@@ -109,7 +112,7 @@ export default function ProductCreationForm() {
         history.push("/admin/home")
     }
 
-    // console.log(errors);
+    console.log(input);
 
 
     return (
@@ -128,13 +131,14 @@ export default function ProductCreationForm() {
                         </ul>
                     </div>
                     <form className="creation-form" onSubmit={((e) => handleSubmit(e))}>
-                        <fieldset className="fieldset">
-                            <legend>Enter the name:</legend>
+                        <fieldset className="fieldset" >
+                            <legend >Enter the name:</legend>
                             <input
                                 className=""
                                 type="text"
                                 placeholder="name..."
                                 name="name"
+                                id="name-input"
                                 onChange={(e) => handleInputChange(e)}
                             ></input>
                         </fieldset>
@@ -173,7 +177,7 @@ export default function ProductCreationForm() {
                             ></input>
                         </fieldset>
                         <fieldset id="image1" className="fieldset">
-                            <legend for="image1">Image 1: </legend>
+                            <legend htmlFor="image1">Image 1: </legend>
                             <FileBase
                                 id="image1"
                                 name="image1"
@@ -183,7 +187,7 @@ export default function ProductCreationForm() {
                             />
                         </fieldset>
                         <fieldset id="image2" className="fieldset">
-                            <legend for="image2">Image 2: </legend>
+                            <legend htmlFor="image2">Image 2: </legend>
                             <FileBase
                                 name="image2"
                                 type="image"
@@ -193,7 +197,7 @@ export default function ProductCreationForm() {
                         </fieldset>
 
                         <fieldset id="image3" className="fieldset">
-                            <legend for="image3">Image 3: </legend>
+                            <legend htmlFor="image3">Image 3: </legend>
                             <FileBase
                                 name="image3"
                                 type="image"
@@ -202,7 +206,7 @@ export default function ProductCreationForm() {
                             />
                         </fieldset>
                         <fieldset id="image4" className="fieldset">
-                            <legend for="image4" >Image 4: </legend >
+                            <legend htmlFor="image4" >Image 4: </legend >
                             <FileBase
                                 name="image4"
                                 type="image"
@@ -211,7 +215,7 @@ export default function ProductCreationForm() {
                             />
                         </fieldset>
                         <fieldset id="categories" className="fieldset">
-                            <legend for="categories">Categories:</legend>
+                            <legend htmlFor="categories">Categories:</legend>
                             <select
                                 className=""
                                 name="categories"
@@ -234,7 +238,7 @@ export default function ProductCreationForm() {
                         {/* <span>In order to add a size-stock pair succesfully, you must first select only one size and then select only one quantity. You'll know you did it well if a phrase appears bellow the stock select.</span> */}
                         <br />
                         <fieldset id="size_stock" className="fieldset">
-                            <legend for="size_stock">Size & Stock:</legend>
+                            <legend htmlFor="size_stock">Size & Stock:</legend>
                             <select
                                 className=""
                                 name="size"
@@ -270,22 +274,30 @@ export default function ProductCreationForm() {
                                 }
                             </select>
                         </fieldset>
-                        <ul className="">
+                        <label htmlFor="categories-list" id="categories-list-label">Chosen categories are:</label>
+                        <ul className="categories" id="categories-list">
                             {
-                                input.product_values && input.product_values.map(elm => {
-                                    if (elm.stock === undefined) {
-                                        return (<li> size: {elm.size}</li>)
-                                    } else {
-                                        return (
-                                            <li>The size {elm.size} has {elm.stock} units. </li>
-                                        )
-                                    }
+                                input.categories && input.categories.map((elm, index) => {
+                                    return (
+                                        <li key={index}>{elm.name}</li>
+                                    )
                                 })
+                            }
+                        </ul>
+                        <ul className="size-stock">
+                            {
+                                input.product_values && input.product_values.map((elm, index) => {
+
+                                    return (
+                                        <li key={index}>There is <mark>{elm.stock}</mark> <mark>{elm.size}</mark> units. </li>
+                                    )
+                                })
+
                             }
                         </ul>
                         <input
                             id="submit-button"
-                            disabled={input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0}
+                            disabled={input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0 ? true : false}
                             type="submit"
                             value="Submit"
                         />

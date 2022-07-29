@@ -49,15 +49,15 @@ input {
 
 #back-button {
   position: relative;
-  top: 27px;
-  left: -150px;
+  top: 80px;
+  left: -750px;
   font-family: 'lato';
 }
 
 #submit-button {
   position: absolute;
-  top: -52px;
-  left:450px;
+  top:0px;
+  left: -120px;
   font-family: 'lato';
 }
 
@@ -65,6 +65,41 @@ input {
   display: flex;
   position: absolute;
   right: 0px;
+}
+
+#categories-list {
+  position: relative;
+  left: 200px;
+}
+
+.size-stock {
+  position: relative;
+  right: 600px;
+  top: 125px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+  list-style: none;
+}
+
+#categories-list-label {
+  position: relative;
+  right: 1220px;
+  top: 110px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+}
+
+#categories-list {
+  position: absolute;
+  left: 50px;
+  bottom: -110px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+  width: 350px;
+  list-style: none;
 }
 
 .error {
