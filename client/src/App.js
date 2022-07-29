@@ -17,6 +17,7 @@ import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
+import Purchase from "./components/Purchase/Purchase";
 function App() {
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
+          <Route path="/purchase" component={Purchase}/>
           <Route path="/details/:id" component={Details} />
 
           {/* Admin ROUTES */}

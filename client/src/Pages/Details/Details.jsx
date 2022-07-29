@@ -12,18 +12,18 @@ export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();    
 
-  
-  let actualProduct = useSelector(state => state.detail);
-  let size = useSelector(state => state.size);
-  let cart = useSelector(state=>state.cart);
-  
+  let actualProduct = useSelector(state => state.detail)
+  let size = useSelector(state => state.size)
+  let cart = useSelector(state=>state.cart)
+
+
   useEffect(() => {
-    dispatch(getProductsById(params.id));
-    dispatch(bringSize(params.id));
+    dispatch(getProductsById(params.id))
+    dispatch(bringSize(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
-    // return () => dispatch(cleanProduct());
-  }, [dispatch, cart, params.id]);
- 
+  }, [dispatch, cart]);
+  
+  
   const [newCart, setNewCart] = useState({
     id: "",
     name: "",
