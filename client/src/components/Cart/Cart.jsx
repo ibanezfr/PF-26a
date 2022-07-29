@@ -36,7 +36,7 @@ export default function Cart() {
         }
     };
     
-
+console.log("Hola",localStorage.setItem('cart', JSON.stringify(cart)))
     return (
         <div className="maxContainer">
             <h2 className="shoppingCartText">Tu carrito de compras</h2>

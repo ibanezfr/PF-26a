@@ -13,7 +13,7 @@ router.post("/api/checkout", async (req, res) => {
     console.log('id \n', id, 'amount \n', amount, 'description \n', description, 'user \n', user)
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro
-      
+      console.log("Hola",userComprador)
       if(user){
         const payment = await stripe.paymentIntents.create({
           amount:amount*100,
@@ -31,10 +31,11 @@ router.post("/api/checkout", async (req, res) => {
           const userCompra = await Promise.all(description.map(async (p)=>{
             return await Product.findByPk(p.id)
           }))
-         /*  newSellOrder.addProducts(userCompra)
-          userComprador.addSell_order(newSellOrder) */
+      newSellOrder.addProducts(userCompra)
+          userComprador.addSell_order(newSellOrder)  
         }
-     mailPayment("tatiana.a.pachon@gmail.com", id, mensaje="Pago exitoso");
+        console.log("Hola1",userComprador.dataValues.email)
+     mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
       }     
       else return res.json({ message: "hubo un error"})
       
