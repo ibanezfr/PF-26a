@@ -115,9 +115,9 @@ export default function ProductCreationForm() {
     return (
         <div>
             <div className="">
-                <Link to="/admin/home"><button>Back to dashboard</button></Link>
+                <Link to="/admin/home"><button id="back-button">Back to dashboard</button></Link>
                 <div className="creation_form">
-                    <h1 id="title">Product Creation Form</h1>
+                    <h1 id="title">Product Creation Form:</h1>
                     <div id="error_container">
                         <ul className="error">
 
@@ -141,10 +141,11 @@ export default function ProductCreationForm() {
                         <fieldset className="fieldset">
                             <legend>Enter the description:</legend>
                             <textarea
+                                id="textarea"
                                 className=""
                                 placeholder="Your description..."
                                 name="description"
-                                rows="4"
+                                rows="2"
                                 cols="50"
                                 onChange={(e) => handleInputChange(e)}
                             ></textarea>
@@ -283,6 +284,7 @@ export default function ProductCreationForm() {
                             }
                         </ul>
                         <input
+                            id="submit-button"
                             disabled={input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0}
                             type="submit"
                             value="Submit"

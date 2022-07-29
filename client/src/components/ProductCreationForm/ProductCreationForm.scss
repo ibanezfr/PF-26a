@@ -11,16 +11,17 @@ $font: 'Lato', sans-serif;
   flex-wrap: wrap;
   position: relative;
   top: 50px;
-  right: 10px;
+  right: -370px;
 }
 
 .fieldset {
   display: block;
-  border: 1px groove #794983;
+  border: 2px groove #794983;
   min-inline-size: min-content;
   padding: 12px 20px;
-  margin: 8px ;
+  margin: 8px;
   width: 35%;
+  height: 15%;
 }
 
 legend {
@@ -29,8 +30,35 @@ legend {
   padding: 3px 6px;
 }
 
+#title {
+  position: absolute;
+  top: 70px;
+  left: 35px;
+  color: #794983;
+  border-bottom: #794983 2px double;
+  font-family: 'lato';
+}
+
 input {
   margin: .4rem;
+}
+
+#textarea {
+  z-index: 2;
+}
+
+#back-button {
+  position: relative;
+  top: 27px;
+  left: -150px;
+  font-family: 'lato';
+}
+
+#submit-button {
+  position: absolute;
+  top: -52px;
+  left:450px;
+  font-family: 'lato';
 }
 
 #error_container {
