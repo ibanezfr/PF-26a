@@ -9,6 +9,7 @@ export function validate(input, name, value) {
     const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
     const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
     const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
+    const validColor = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/
 
     const noName = "1) NAME: A name is required.";
     const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 70 characters.";
@@ -16,8 +17,11 @@ export function validate(input, name, value) {
     const invalidDescription = "2) DESCRIPTION: Only letters, commas, dots, length within 5 and 255 characters."
     const noPrice = "3) PRICE: A price is required."
     const invalidPrice = "3) PRICE: 4 digits maximum and 2 decimal numbers allowed, dot notation required."
+    const noColor = "4) COLOR: A color is required."
+    const invalidColor = "4) COLOR: Only letters, 5 characters minimum 70 maximum, commas and dots allowed."
+    const noImage = "5) IMAGE: At least 1 image is required."
     let errors = {};
-
+    input.image === "" ? errors[name] = noImage : delete errors.image;
     switch (name) {
         case "name":
             !input[name] ? errors[name] = noName : !validName.test(input[name]) ? errors[name] = invalidName : delete errors[name];
@@ -27,6 +31,9 @@ export function validate(input, name, value) {
             break;
         case "price":
             !input[name] ? errors[name] = noPrice : !validPrice.test(input[name]) ? errors[name] = invalidPrice : delete errors[name];
+            break;
+        case "color":
+            !input[name] ? errors[name] = noColor : !validColor.test(input[name]) ? errors[name] = invalidColor : delete errors[name];
             break;
         default:
             break;
@@ -114,6 +121,7 @@ export default function ProductCreationForm() {
                         {errors && errors.name ? <li className="error">{errors.name}</li> : <br />}
                         {errors && errors.description ? <li className="error">{errors.description}</li> : <br />}
                         {errors && errors.price ? <li className="error">{errors.price}</li> : <br />}
+                        {errors && errors.color ? <li className="error">{errors.color}</li> : <br />}
                     </ul>
                     <form onSubmit={((e) => handleSubmit(e))}>
                         <input
@@ -145,7 +153,7 @@ export default function ProductCreationForm() {
                             type="text"
                             placeholder="Your product's color..."
                             name="color"
-                            onChange={(e) => setInput({ ...input, color: e.target.value })}
+                            onChange={(e) => handleInputChange(e)}
                         ></input>
                         <label >Image 1: </label>
                         <FileBase
