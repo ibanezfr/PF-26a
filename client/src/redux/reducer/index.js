@@ -71,11 +71,11 @@ function rootReducer(state = initialState, action) {
       };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
-      var producto = filterProducts(state.products, auxs)
+      var producto2 = filterProducts(state.products, auxs)
       return {
         ...state,
         filters: auxs,
-        displayedProducts: producto
+        displayedProducts: producto2
       };
     case SET_PRODUCTS_TO_DISPLAY:
       return {
@@ -134,7 +134,7 @@ function rootReducer(state = initialState, action) {
           };
 
     case REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
+      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       return itemToDelete.quantity > 1
         ? {
             ...state,
@@ -149,7 +149,7 @@ function rootReducer(state = initialState, action) {
             cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
           };
     case ADD_ONE_FROM_CART:
-      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
+      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       if  (productAdd.quantity === productAdd.stock) {
         alert("limite alcanzado")
         return {...state}

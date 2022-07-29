@@ -4,10 +4,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
 import HomePage from "./Pages/HomePage/HomePage.jsx";
-import SearchProducts from "./Pages/SearchProducts/SearchProducts";
+// import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import Details from "./Pages/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
-
 import Profile from "./Pages/Account/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from "./components/Cart/Cart";

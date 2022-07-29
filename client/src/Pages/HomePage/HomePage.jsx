@@ -10,7 +10,7 @@ import { filterProducts } from '../../Utils';
 function HomePage() {
     const dispatch = useDispatch();
     let dispProds = useSelector(state => state.displayedProducts);
-    let orderedBy = useSelector(state => state.orderBy);
+    // let orderedBy = useSelector(state => state.orderBy);
     let cart = useSelector(state => state.cart);
     let filters = useSelector(state => state.filters);
     let isSearchActive = useSelector(state => state.isSearchActive)

@@ -22,7 +22,7 @@ export default function Details() {
     dispatch(bringSize(params.id));
     localStorage.setItem('cart', JSON.stringify(cart));
     // return () => dispatch(cleanProduct());
-  }, [cart, params.id]);
+  }, [dispatch, cart, params.id]);
  
   const [newCart, setNewCart] = useState({
     id: "",
