@@ -22,9 +22,9 @@ router.put("/:id", updateUser);
 const allOrders = await Sell_order.findAll({include: Product})
 const user_orders= await User.findByPk(user, {include: Sell_order})
 */
-router.get('/compras/:id'){
+/* router.get('/compras/:id'){
   
-}
+} */
 
-router()
+ //router()
 module.exports = router;
