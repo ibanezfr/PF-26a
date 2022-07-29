@@ -17,6 +17,8 @@ import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
+import UserList from "./components/AdminComponents/UserList/UserList";
+import List from "./components/AdminComponents/List/List";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,9 +45,6 @@ function App() {
           </Route>
           <Route path="/details/:id" component={Details} />
 
-          {/* Admin ROUTES */}
-          <Route path="/admin/home" component={HomeAdmin} />
-
           {/* AUTHENTICATION ROUTES usuarios y eso */}
 
           <ProtectedRoutes>
@@ -55,7 +54,11 @@ function App() {
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
         </Switch>
-        <Footer />
+
+        <Route path="/admin/home" component={HomeAdmin} />
+        <Route path="/admin/users" component={UserList} />
+        <Route path="/admin/products" component={List} />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

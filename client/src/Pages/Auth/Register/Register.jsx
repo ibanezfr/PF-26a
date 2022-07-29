@@ -36,6 +36,12 @@ const Register = () => {
       if (credentials.user.uid) {
         localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
       }
+      if (userInDb.data[0].isAdmin) {
+        localStorage.setItem(
+          "isAdmin",
+          JSON.stringify(userInDb.data[0].isAdmin)
+        );
+      }
 
       history.push("/login");
     } catch (error) {

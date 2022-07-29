@@ -28,7 +28,7 @@ const initialState = {
   ],
   categories: [],
   orderBy: "",
-  user: [],
+  users: {},
   userInfo: [],
   session: false,
   cart: [
@@ -91,6 +91,13 @@ function rootReducer(state = initialState, action) {
     // case "LOGOUT":
     //   localStorage.clear();
     //   return { ...state };
+
+    case "FETCH_USERS": {
+      return {
+        ...state,
+        users: action.payload,
+      };
+    }
 
     case "SESSION":
       return {

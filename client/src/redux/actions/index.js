@@ -168,6 +168,12 @@ export const loginCheck = (dispatch) => {
     });
   }
 };
+export function fetchUsers() {
+  return async function (dispatch) {
+    const result = await axios.get("http://localhost:3001/admin/users");
+    return dispatch({ type: "FETCH_USERS", payload: result.data });
+  };
+}
 
 export function setOrder(order) {
   return function (dispatch) {
