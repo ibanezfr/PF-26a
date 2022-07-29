@@ -13,66 +13,56 @@ export default function Details() {
   const dispatch = useDispatch();    
 
   
-  let actualProduct = useSelector(state => state.detail)
-  let size = useSelector(state => state.size)
-  let cart = useSelector(state=>state.cart)
-  // console.log("size: ", size)
-  // console.log("actualProduct ", actualProduct);
+  let actualProduct = useSelector(state => state.detail);
+  let size = useSelector(state => state.size);
+  let cart = useSelector(state=>state.cart);
   
   useEffect(() => {
-    dispatch(cleanProduct())
-    dispatch(getProductsById(params.id))
-    dispatch(bringSize(params.id))
+    dispatch(getProductsById(params.id));
+    dispatch(bringSize(params.id));
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [dispatch, cart]);
+    // return () => dispatch(cleanProduct());
+  }, [cart, params.id]);
  
-  const [position, setPosition] = useState(0);
   const [newCart, setNewCart] = useState({
     id: "",
     name: "",
     img: "",
     size: "",
     price: "",
-    stock: size[position + 1],
+    stock: size[1],
     quantity: 0
-  })
- 
+  });
 
   const handleSize = (e) => {
     e.preventDefault();
-    setPosition(parseInt(e.target.value));
-    // console.log("value: ", position)
     setNewCart({
       id: actualProduct.id,
       name: actualProduct.name,
       img: actualProduct.image,
-      size: size[parseInt(e.target.value)],
+      size: size[e.target.value],
       price: actualProduct.price,
-      stock: size[position + 1],
+      stock: size[1],
       quantity: 0
-    })
-    // console.log("newCart stock: ", newCart) 
-  }
+    });
+  };
 
   const handleChange = (e)=>{
     e.preventDefault();
     setNewCart({     
       ...newCart,
-      quantity: e.target.value
-    })
-    // console.log("newCart cantidad: ", newCart)
-  }
+      quantity: parseInt(e.target.value)
+    });
+  };
 
   const hanldeSubmit = (e)=>{
     e.preventDefault();
     if(newCart.size === "" || newCart.quantity === 0) {
-      alert("selecciona un talle y una cantidad")
+      alert("selecciona un talle y una cantidad");
     } else {
-      dispatch(addToCart(newCart))
-    }
-  }
-console.log("newCart: ", newCart)
-
+      dispatch(addToCart(newCart));
+    };
+  };
 
   return (
     <div className="father">
@@ -80,21 +70,20 @@ console.log("newCart: ", newCart)
         <div className="container1">
           <img src={actualProduct.image} alt="not found" />
           <span>Selecciona un talle</span>
-          {/* */}
           <form>
             <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
               <option disabled>Seleccioná un talle</option>
               {
                 size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                   return (
-                    (index % 2) === 0 ? <option name={m} value={index} >{m}</option> : null
+                    (index % 2) === 0 ? <option key ={index} name={m} value={index} >{m}</option> : null
                   )
                 })
               }
             </select>
-            <h4>Stock: {size[position + 1]}</h4>
+            <h4>Stock: {size[1]}</h4>
             <label>Ingresá la cantidad que buscas</label>
-            <input type="number" min={1} max={size[position + 1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
+            <input type="number" min={1} max={size[1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
             <div className="btnContainer">
               <button 
               onClick={(e) => hanldeSubmit(e)}
@@ -107,9 +96,8 @@ console.log("newCart: ", newCart)
         <div className="container2">
 
           <h2>{actualProduct.name}</h2>
-          {/* <h2>${formatNumber(mappedPrice)}</h2> */}
+          <h2>${formatNumber(actualProduct.price)}</h2>
           <p>{actualProduct.description}</p>
-          {/* <span>Stock disponible: {mappedStock}</span> */}
         </div>
       </div>
       <div className="formDiv">
@@ -125,4 +113,4 @@ console.log("newCart: ", newCart)
       </div>
     </div>
   )
-}
+};

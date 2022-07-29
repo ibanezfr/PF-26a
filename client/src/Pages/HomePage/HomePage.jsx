@@ -80,7 +80,7 @@ function HomePage() {
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
                 <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products}/>
-                    <Order onSelectChange={onSelectChange}/>
+                <Order onSelectChange={onSelectChange}/>
                 </div>
             </div>
         </div>

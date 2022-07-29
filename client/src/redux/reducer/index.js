@@ -10,14 +10,15 @@ import {
   SET_PRODUCTS_TO_DISPLAY,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART,
   SET_ORDER,
   SESSION,
   SET_SEARCH_STATUS,
   RESET_FILTER_ORDER,
+  ADD_ONE_FROM_CART
 } from "../actions/index";
-import { filterProducts } from "../../Utils";
+import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
 
 const initialState = {
@@ -45,6 +46,7 @@ const initialState = {
   ],
   isSearchActive:false,
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -81,7 +83,6 @@ function rootReducer(state = initialState, action) {
         // displayedProducts: action.payload,
       };
     case FETCH_BY_NAME:
-      if (!action.payload[0]) alert("Producto no encontrado");
       return {
         ...state,
         searchProducts: action.payload,
@@ -114,19 +115,18 @@ function rootReducer(state = initialState, action) {
         session: action.payload.session,
       };
 
-    case ADD_TO_CART: // {na...}
-      // let newItem = state.products.find((p) => p.id === action.payload.id);
-      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
+    case ADD_TO_CART:
+      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       
     
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              (item.id === action.payload.id && item.size !== action.payload.size)
-                ?  item.quantity = action.payload.quantity
+              (item.id === action.payload.id && item.size === action.payload.size)
+                ?  {...item, quantity: action.payload.quantity}
                 : item
-            ),
+            )
           }
         : {
             ...state,
@@ -134,24 +134,38 @@ function rootReducer(state = initialState, action) {
           };
 
     case REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload.id);
+      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
       return itemToDelete.quantity > 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === action.payload.id
+              item.id === action.payload.id && item.size === action.payload.size
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
-            ),
+            )
           }
         : {
             ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload.id),
+            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
           };
+    case ADD_ONE_FROM_CART:
+      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size == action.payload.size);
+      if  (productAdd.quantity === productAdd.stock) {
+        alert("limite alcanzado")
+        return {...state}
+      }
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+        item.id === action.payload.id && item.size === action.payload.size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+      }
 
-    case REMOVE_ALL_FROM_CART:
-      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size)
-      state.cart.splice(indexRemove,1)
+    case REMOVE_FROM_CART:
+      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size);
+      state.cart.splice(indexRemove,1);
       
       return {
         ...state,
