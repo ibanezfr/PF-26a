@@ -125,7 +125,8 @@ function rootReducer(state = initialState, action) {
       //   return state;
       // }
       return itemInCart
-      //itemInCart.id === action.payload.id && itemInCart.size !== action.payload.size
+      //[{}] {product}
+      //state.cart.id === action.payload.id && state.cart.size === action.payload.size ? entonces hace tal cosa...
         ? {
             ...state,
             cart: state.cart.map((item) =>
