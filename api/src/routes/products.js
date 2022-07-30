@@ -339,6 +339,6 @@ router.put("/update/:id", async (req, res) => {
   } catch (error) {
     return res.status(400).send({ msg: error.message });
   }
-})
+});
 
 module.exports = router;
