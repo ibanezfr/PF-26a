@@ -5,6 +5,9 @@ import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
 
+import Carousel from 'react-bootstrap/Carousel';
+
+
 export function validate(input, name, value) {
     const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
     const validDescription = /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.:;!¡¿?]+(?:-[a-zA-Z]+)*$/;
@@ -117,113 +120,126 @@ export default function ProductCreationForm() {
     const submitButtonBoolean = input.name === "" || input.price === 0 || input.description === "" || input.color === "" || input.image === "" || input.categories.length === 0 || input.product_values.length === 0 ? true : false
 
     return (
-        <div>
-            <div className="">
-                <Link to="/admin/home"><button id="back-button">Back to dashboard</button></Link>
+        <div className="productCreationContainer">
+            <Link to="/admin/home"><button id="back-button">Back to dashboard</button></Link>
+            <div className="productFormContainer">
                 <div className="creation_form">
-                    <h1 id="title">Product Creation Form:</h1>
+                    <h2 id="title">Creá un producto:</h2>
                     <div id="error_container">
                         <ul className="error">
-
                             {errors && errors.name && <li className="error">{errors.name}</li>}
                             {errors && errors.description && <li className="error">{errors.description}</li>}
                             {errors && errors.price && <li className="error">{errors.price}</li>}
                             {errors && errors.color && <li className="error">{errors.color}</li>}
                         </ul>
                     </div>
-                    <form className="creation-form" onSubmit={((e) => handleSubmit(e))}>
-                        <fieldset className="fieldset" >
-                            <legend >Enter a title:</legend>
-                            <input
-                                className=""
-                                type="text"
-                                placeholder="title..."
-                                name="name"
-                                id="name-input"
-                                onChange={(e) => handleInputChange(e)}
-                            ></input>
-                        </fieldset>
+                    <form className="formContainer" onSubmit={((e) => handleSubmit(e))}>
+
+                        <div className="sepatarionContainer">
+                            <fieldset className="fieldset rowItems" >
+                                <legend >Ingresá un título:</legend>
+                                <input
+                                    className=""
+                                    type="text"
+                                    placeholder="Title..."
+                                    name="name"
+                                    id="name-input"
+                                    onChange={(e) => handleInputChange(e)}
+                                ></input>
+                            </fieldset>
+
+                            <fieldset className="fieldset rowItems">
+                                <legend>Ingresá el precio:</legend>
+                                <input
+                                    id="price-input"
+                                    type="number"
+                                    placeholder="Price..."
+                                    name="price"
+                                    min="0"
+                                    max="9999.99"
+                                    step=".01"
+                                    onChange={(e) => handleInputChange(e)}
+                                ></input>
+                            </fieldset>
+                        </div>
+
                         <fieldset className="fieldset">
-                            <legend>Enter a description:</legend>
+                            <legend>Ingresá la descripción:</legend>
                             <textarea
                                 id="textarea"
                                 className=""
-                                placeholder="description..."
+                                placeholder="Description..."
                                 name="description"
                                 rows="2"
                                 cols="50"
                                 onChange={(e) => handleInputChange(e)}
                             ></textarea>
                         </fieldset>
+
                         <fieldset className="fieldset">
-                            <legend>Enter the price:</legend>
-                            <input
-                                id="price-input"
-                                type="number"
-                                placeholder="price..."
-                                name="price"
-                                min="0"
-                                max="9999.99"
-                                step=".01"
-                                onChange={(e) => handleInputChange(e)}
-                            ></input>
-                        </fieldset>
-                        <fieldset className="fieldset">
-                            <legend>Enter the colors:</legend>
+                            <legend>Ingresá los colores:</legend>
                             <input
                                 id="color-input"
                                 className=""
                                 type="text"
-                                placeholder="color..."
+                                placeholder="Color..."
                                 name="color"
                                 onChange={(e) => handleInputChange(e)}
                             ></input>
                         </fieldset>
-                        <fieldset id="image1" className="fieldset">
-                            <legend htmlFor="image1">Image 1: </legend>
-                            <FileBase
-                                id="image1"
-                                name="image1"
-                                type="image"
-                                multiple={false}
-                                onDone={({ base64 }) => setInput({ ...input, image: base64 })}
-                            />
-                        </fieldset>
-                        <fieldset id="image2" className="fieldset">
-                            <legend htmlFor="image2">Image 2: </legend>
-                            <FileBase
-                                name="image2"
-                                type="image"
-                                multiple={false}
-                                onDone={({ base64 }) => setInput({ ...input, image2: base64 })}
-                            />
-                        </fieldset>
 
-                        <fieldset id="image3" className="fieldset">
-                            <legend htmlFor="image3">Image 3: </legend>
-                            <FileBase
-                                name="image3"
-                                type="image"
-                                multiple={false}
-                                onDone={({ base64 }) => setInput({ ...input, image3: base64 })}
-                            />
-                        </fieldset>
-                        <fieldset id="image4" className="fieldset">
-                            <legend htmlFor="image4" >Image 4: </legend >
-                            <FileBase
-                                name="image4"
-                                type="image"
-                                multiple={false}
-                                onDone={({ base64 }) => setInput({ ...input, image4: base64 })}
-                            />
-                        </fieldset>
+                        <div className="sepatarionContainer">
+                            <fieldset id="image1" className="fieldset">
+                                <legend htmlFor="image1">Imagen 1: </legend>
+                                <FileBase
+                                    id="image1"
+                                    name="image1"
+                                    type="image"
+                                    multiple={false}
+                                    onDone={({ base64 }) => setInput({ ...input, image: base64 })}
+                                />
+                            </fieldset>
+
+                            <fieldset id="image2" className="fieldset">
+                                <legend htmlFor="image2">Image 2: </legend>
+                                <FileBase
+                                    name="image2"
+                                    type="image"
+                                    multiple={false}
+                                    onDone={({ base64 }) => setInput({ ...input, image2: base64 })}
+                                />
+                            </fieldset>
+                        </div>
+
+                        <div className="sepatarionContainer">
+                            <fieldset id="image3" className="fieldset">
+                                <legend htmlFor="image3">Imagen 3: </legend>
+                                <FileBase
+                                    name="image3"
+                                    type="image"
+                                    multiple={false}
+                                    onDone={({ base64 }) => setInput({ ...input, image3: base64 })}
+                                />
+                            </fieldset>
+
+                            <fieldset id="image4" className="fieldset">
+                                <legend htmlFor="image4" >Imagen 4: </legend >
+                                <FileBase
+                                    name="image4"
+                                    type="image"
+                                    multiple={false}
+                                    onDone={({ base64 }) => setInput({ ...input, image4: base64 })}
+                                />
+                            </fieldset>
+                        </div>
+
                         <fieldset id="categories" className="fieldset">
-                            <legend htmlFor="categories">Categories:</legend>
+                            <legend htmlFor="categories">Categorías:</legend>
                             <select
                                 className=""
                                 name="categories"
                                 onChange={(e) => handleInputChange(e)}>
-                                <option key={"21a"}>--Choose categories--</option>
+                                <option key={"21a"}>--Elegí las categorías--</option>
                                 {
                                     categoriesArray && categoriesArray?.map((elm, index) => {
                                         return (
@@ -240,75 +256,126 @@ export default function ProductCreationForm() {
                         </fieldset>
                         {/* <span>In order to add a size-stock pair succesfully, you must first select only one size and then select only one quantity. You'll know you did it well if a phrase appears bellow the stock select.</span> */}
                         <br />
+
                         <fieldset id="size_stock" className="fieldset">
-                            <legend htmlFor="size_stock">Size & Stock:</legend>
-                            <select
-                                className=""
-                                name="size"
-                                onChange={(e) => handleInputChange(e)}>
-                                <option key={"22a"}>--Choose a size--</option>
-                                {
-                                    sizesArray && sizesArray?.map((elm, index) => {
-                                        return (
-                                            <option
-                                                value={elm}
-                                                key={index}
-                                            >
-                                                {elm}
-                                            </option>
-                                        )
-                                    })
-                                }
-                            </select>
-                            <label>Stock:</label>
-                            <select
-                                className=""
-                                name="stock"
-                                onChange={(e) => handleInputChange(e)}
-                            >
-                                {
-                                    stockArray && stockArray.map((elm, index) => {
-                                        return (
-                                            <option key={index}>
-                                                {elm}
-                                            </option>
-                                        )
-                                    })
-                                }
-                            </select>
+                            <div className="sepatarionContainer">
+                                <div className="fieldset rowItems">
+                                    <legend htmlFor="size_stock">Talle y stock:</legend>
+                                    <select
+                                        className=""
+                                        name="size"
+                                        onChange={(e) => handleInputChange(e)}>
+                                        <option key={"22a"}>--Seleccioná un talle--</option>
+                                        {
+                                            sizesArray && sizesArray?.map((elm, index) => {
+                                                return (
+                                                    <option
+                                                        value={elm}
+                                                        key={index}
+                                                    >
+                                                        {elm}
+                                                    </option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+
+                                <div className="fieldset rowItems">
+                                    <label>Stock:</label>
+                                    <select
+                                        className=""
+                                        name="stock"
+                                        onChange={(e) => handleInputChange(e)}
+                                    >
+                                        {
+                                            stockArray && stockArray.map((elm, index) => {
+                                                return (
+                                                    <option key={index}>
+                                                        {elm}
+                                                    </option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                            </div>
                         </fieldset>
-                        {
-                            input.categories.length !== 0 && <label htmlFor="categories-list" id="categories-list-label">Chosen categories are:</label>
-                        }
-                        <ul className="categories" id="categories-list">
-                            {
-                                input.categories && input.categories.map((elm, index) => {
-                                    return (
-                                        <li key={index}>{elm.name}</li>
-                                    )
-                                })
-                            }
-                        </ul>
-                        <ul className="size-stock">
-                            {
-                                input.product_values && input.product_values.map((elm, index) => {
 
-                                    return (
-                                        <li key={index}>There is <mark>{elm.stock}</mark> <mark>{elm.size}</mark> units. </li>
-                                    )
-                                })
-
-                            }
-                        </ul>
                         <input
                             disabled={submitButtonBoolean}
                             id="submit-button"
                             type="submit"
                             value="Submit"
+                            className="submitBtn"
                         />
                     </form>
                 </div>
             </div >
+            <div className="productView">
+            <h2 id="title">Previsualización:</h2>
+                <div className="background">
+                    <div className="imagesCreate">
+                        <Carousel fade>
+                            {
+                                input.image && <Carousel.Item><img className="d-block w-100" src={input.image} alt="not found" /></Carousel.Item>
+                            }
+                            {
+                                input.image2 && <Carousel.Item><img className="d-block w-100" src={input.image2} alt="not found" /></Carousel.Item>
+                            }
+                            {
+                                input.image3 && <Carousel.Item><img className="d-block w-100" src={input.image3} alt="not found" /></Carousel.Item>
+                            }
+                            {
+                                input.image4 && <Carousel.Item><img className="d-block w-100" src={input.image4} alt="not found" /></Carousel.Item>
+                            }
+                        </Carousel>
+                    </div>
+
+                    {
+                        input.name.length !== 0 && <h2>{input.name}</h2>
+                    }
+
+                    {
+                        input.price.length !== 0 && <h3>${input.price}</h3>
+                    }
+
+                    {
+                        input.description.length !== 0 && <p>{input.description}</p>
+                    }
+
+                    {
+                        input.color.length !== 0 && <span>Color: {input.color}</span>
+                    }
+
+                    <br/>
+
+                    {
+                        input.categories.length !== 0 && <label htmlFor="categories-list" id="categories-list-label">Categorías:</label>
+                    }
+
+                    <ul className="categories" id="categories-list">
+                        {
+                            input.categories && input.categories.map((elm, index) => {
+                                return (
+                                    <li key={index}>{elm.name}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                    <ul className="size-stock">
+                        {
+                            input.product_values && input.product_values.map((elm, index) => {
+
+                                return (
+                                    <li key={index}>Hay <mark>{elm.stock} unidades </mark><mark>del talle {elm.size}</mark> </li>
+                                )
+                            })
+
+                        }
+                    </ul>
+                </div>
+            </div>
         </div >
     )
 }

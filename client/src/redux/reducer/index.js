@@ -16,8 +16,8 @@ import {
   SESSION,
   SET_SEARCH_STATUS,
   RESET_FILTER_ORDER,
-  POST_PRDUCT,
-  ADD_ONE_FROM_CART
+  ADD_ONE_FROM_CART,
+  POST_PRDUCT
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";

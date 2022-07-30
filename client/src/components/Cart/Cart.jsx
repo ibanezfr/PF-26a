@@ -4,17 +4,8 @@ import { changeQuantity, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
 import './Cart.scss'
 import { formatNumber } from "../../Utils";
-import CheckoutForm from "./CheckoutForm.jsx"
-import { loadStripe } from "@stripe/stripe-js";
-import {
-    Elements,
-
-} from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
 
-
-
-const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGuW5bCepjRqE969YH6eAoS8q7mhBpAkXYPYH9T002QhQfVXDcGd7w00kRYp2bdI");
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
