@@ -12,7 +12,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from "./components/Cart/Cart";
 import Login from "./Pages/Auth/Login/Login";
 import Register from "./Pages/Auth/Register/Register";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
@@ -20,6 +20,7 @@ import ProductCreationForm from "./components/ProductCreationForm/ProductCreatio
 import UserList from "./components/AdminComponents/UserList/UserList";
 import List from "./components/AdminComponents/List/List";
 import Purchase from "./components/Purchase/Purchase";
+
 function App() {
   const dispatch = useDispatch();
 

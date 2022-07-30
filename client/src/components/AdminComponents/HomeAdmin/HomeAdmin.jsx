@@ -1,11 +1,6 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Featured from "../Featured/Featured";
-import Graphics from "../Graphics/Graphics";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
-import UserList from "../UserList/UserList";
 import Widget from "../Widget/Widget";
 import "./HomeAdmin.scss";
 
@@ -49,7 +44,7 @@ const HomeAdmin = () => {
         <div className="listContainer">
           <div className="listTitle">
             Usuarios
-            <UserList />
+            {/* <UserList /> */}
           </div>
           {/* TABLAS */}
         </div>

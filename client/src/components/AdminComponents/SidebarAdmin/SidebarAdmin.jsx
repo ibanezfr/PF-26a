@@ -14,6 +14,7 @@ import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
+
 const SidebarAdmin = () => {
   const { logout } = useAuth();
 
@@ -53,7 +54,7 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li id="">
-            <Link to="/admin/creation" id="form" >
+            <Link to="/admin/creation" id="form">
               <AiOutlineForm className="icons" />
               <span>Formulario de creación</span>
             </Link>
@@ -81,10 +82,6 @@ const SidebarAdmin = () => {
           <li>
             <MdSettingsSystemDaydream className="icons" />
             <span>Sistema</span>
-          </li>
-          <li>
-            <SiLogstash className="icons" />
-            <span>Logueados</span>
           </li>
           <p className="title">USUARIO</p>
 

@@ -17,15 +17,8 @@ export default function UserList() {
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
-
   useEffect(() => {
     return !users.length ? dispatch(fetchUsers()) : null;
-
-    // segundo parametro para evitar crear un bucle infinito
-    // mientras este el state currentGames
   }, [dispatch, users]);
 
   console.log(users);
@@ -54,7 +47,7 @@ export default function UserList() {
         headerName: "Status",
         width: 100,
         type: "singleSelect",
-        valueOptions: ["Disabled", "Active"],
+        valueOptions: ["Banned", "Active"],
         editable: true,
       },
 

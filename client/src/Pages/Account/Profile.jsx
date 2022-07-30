@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 // import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
 
@@ -12,7 +12,7 @@ import "./Profile.scss";
 const Profile = () => {
   // const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -23,31 +23,30 @@ const Profile = () => {
       console.log(error);
     }
   };
-  // const getUser = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3001/auth/${user.uid}`
-  //     );
-  //     setUserDb(response.data);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   useEffect(() => {
+    let isMounted = true;
     function getUser() {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      return `http://localhost:3001/auth/${localUser}`;
+      if (localUser) return `http://localhost:3001/auth/${localUser}`;
     }
     async function fetchData() {
       const result = await axios.get(getUser());
-      setUserDb(result.data);
+      if (isMounted) {
+        setUserDb(result.data);
+        console.log(userDb);
+      }
     }
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
-  // console.log(userDb.isAdmin);
-  // console.log(user);
-  console.log(JSON.parse(localStorage.getItem("isAdmin")));
+
+  if (!user) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="wrapper">
       <div className="container">
@@ -55,7 +54,7 @@ const Profile = () => {
           <p className="title">
             {userDb?.email} {userDb === null ? "Logeate Capo" : null}{" "}
           </p>
-          {userDb.image ? (
+          {userDb?.image ? (
             <img src={userDb?.image} alt="" className="profile" />
           ) : (
             <FaUserCircle className="profile" />
@@ -96,7 +95,9 @@ const Profile = () => {
       <Link to="/profile/form">
         <button className="btnProfile">Edit Profile</button>
       </Link>
-      <button className="btnProfile" onClick={handleLogout}>Logout</button>
+      <button className="btnProfile" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
 
     // <div>

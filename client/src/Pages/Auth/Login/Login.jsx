@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 import { Link, useHistory } from "react-router-dom";
@@ -54,8 +54,7 @@ const Login = () => {
         `http://localhost:3001/auth/status/${credentials.user.uid}`
       );
 
-      if (userStatus) {
-        setError("Baneado lince");
+      if (userStatus === true) {
         return await handleLogout();
       }
 
@@ -97,8 +96,7 @@ const Login = () => {
         `http://localhost:3001/auth/status/${credentials.user.uid}`
       );
 
-      if (userStatus) {
-        setError("Baneado lince");
+      if (userStatus === true) {
         return await handleLogout();
       }
 
@@ -113,7 +111,7 @@ const Login = () => {
       }
       console.log(userInDb.data[0].isAdmin);
 
-      history.push("/profile");
+      history.push("/");
     } catch (error) {
       setError(error.message);
     }

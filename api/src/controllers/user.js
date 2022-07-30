@@ -22,10 +22,7 @@ const login = async (req, res, next) => {
   const { fullName, email, id, image } = req.body;
 
   try {
-    const userBanned = await User.findOne({ where: { id: id } });
-    if (userBanned.banned) {
-      return res.status(203).send("Your account have been suspended...");
-    }
+    // const userBanned = await User.findOne({ where: { id: id } });
 
     const userExist = await User.findOrCreate({
       where: { id: id }, //uuid de firebase
@@ -36,6 +33,9 @@ const login = async (req, res, next) => {
         image: image,
       },
     });
+    // if (userExist.banned === true) {
+    //   return res.status(203).send("Your account have been suspended...");
+    // }
     console.log(userExist);
     res.status(200).send(userExist);
   } catch (error) {
@@ -100,7 +100,7 @@ const checkAccount = async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: id } });
 
-    if (user.banned) {
+    if (user.banned === true) {
       return res.status(203).send(true);
     }
     res.status(200).send("Podes pasar pibe");
