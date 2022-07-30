@@ -1,6 +1,16 @@
-const { Product, Category, Review, Qa, Product_values } = require("../db");
-const { Router } = require("express");
-const { Op } = require("sequelize");
+const {
+  Product,
+  Category,
+  Review,
+  Qa,
+  Product_values
+} = require("../db");
+const {
+  Router
+} = require("express");
+const {
+  Op
+} = require("sequelize");
 
 
 const router = Router();
@@ -9,26 +19,33 @@ router.get("/", async (req, res) => {
   try {
 
     const allProducts = await Product.findAll({
-      include: [
-        {
+      include: [{
           model: Category,
           attributes: ["name"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Qa,
           attributes: ["title", "description", "answer", "resolved"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Review,
           attributes: ["rating", "title", "description"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         }
       ],
     });
@@ -36,7 +53,9 @@ router.get("/", async (req, res) => {
     res.status(200).send(allProducts);
 
   } catch (err) {
-    res.status(400).send({ msg: err.message });
+    res.status(400).send({
+      msg: err.message
+    });
   }
 });
 
@@ -44,28 +63,37 @@ router.get("/", async (req, res) => {
 //GET SIZE AND STOCK BY ID:
 router.get('/size/:id', async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
     const allProducts = await Product.findAll({
-      include: [
-        {
+      include: [{
           model: Category,
           attributes: ["name"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Qa,
           attributes: ["title", "description", "answer", "resolved"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Review,
           attributes: ["rating", "title", "description"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         }
       ],
     });
@@ -73,13 +101,13 @@ router.get('/size/:id', async (req, res, next) => {
       const filtered = await allProducts.filter((e) => e.id == id);
 
       const sizeMaped = filtered[0].product_values.map(m => m.size)
-      const stockMaped = filtered[0].product_values.map(p=> p.stock)
+      const stockMaped = filtered[0].product_values.map(p => p.stock)
       // console.log("Size: ", sizeMaped)
       // console.log("Stock: ", stockMaped)
 
       var array = [];
 
-      for (let i=0; i<sizeMaped.length; i++){
+      for (let i = 0; i < sizeMaped.length; i++) {
         array.push(sizeMaped[i])
         array.push(stockMaped[i])
       }
@@ -90,87 +118,44 @@ router.get('/size/:id', async (req, res, next) => {
 
       res.json(array);
     }
-  }
-  catch (error) {
+  } catch (error) {
     next(error);
   }
 });
 
-//PUT SIZE AND STOCK BY ID:
-// router.put('/size/:id', async(req, res, next) =>{
-//   try {
-//     const { id } = req.params;
-//     const allProducts = await Product.findAll({
-//       include: [
-//         {
-//           model: Category,
-//           attributes: ["name"],
-//           through: { attributes: [] },
-//         },
-//         {
-//           model: Qa,
-//           attributes: ["title", "description", "answer", "resolved"],
-//           through: { attributes: [] },
-//         },
-//         {
-//           model: Review,
-//           attributes: ["rating", "title", "description"],
-//           through: { attributes: [] },
-//         },
-//         {
-//           model: Product_values,
-//           attributes: ["size", "stock"],
-//           through: { attributes: [] },
-//         }
-//       ],
-//     });
-//     if (id) {
-//       const filtered = await allProducts.filter((e) => e.id == id);
-
-//       const sizeMaped = filtered[0].product_values.map(m => m.size)
-//       const stockMaped = filtered[0].product_values.map(p=> p.stock)
-
-//       var array = [];
-
-//       for (let i=0; i<sizeMaped.length; i++){
-//         array.push(sizeMaped[i])
-//         array.push(stockMaped[i])
-//       }
-
-//       console.log("array: ", array);
-
-//       res.json(array);
-//     }
-//   }
-//   catch (error) {
-//     next(error);
-//   }
-// })
-
 router.get("/search", async (req, res) => {
-  const { name } = req.query;
+  const {
+    name
+  } = req.query;
   try {
     const searchProducts = await Product.findAll({
-      include: [
-        {
+      include: [{
           model: Category,
           attributes: ["name"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Qa,
           attributes: ["title", "description", "answer", "resolved"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Review,
           attributes: ["rating", "title", "description"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         }
 
       ],
@@ -183,7 +168,9 @@ router.get("/search", async (req, res) => {
 
     res.status(200).send(searchProducts);
   } catch (err) {
-    res.status(400).send({ msg: err.message });
+    res.status(400).send({
+      msg: err.message
+    });
   }
 });
 
@@ -199,7 +186,8 @@ router.post("/create", async (req, res) => {
     image3,
     image4,
     categories,
-    product_values} = req.body;
+    product_values
+  } = req.body;
 
   try {
     const newProduct = await Product.create({
@@ -220,92 +208,122 @@ router.post("/create", async (req, res) => {
 
     var obj = [];
 
-    for(i=0; i<mappedStock.length; i++){
+    for (i = 0; i < mappedStock.length; i++) {
       obj = await Product_values.create({
         stock: mappedStock[i],
         size: mappedSize[i]
       });
 
-      // console.log("obj en el for: ", obj)
       await newProduct.addProduct_values(obj)
     }
 
-    // const newStock = await Product_values.create({
-    //   stock,
-    //   size
-    // })
-
-    // if(newStock){
-    //   await newProduct.addProduct_values(newStock)
-    // }
-
     for (let i = 0; i < categories.length; i++) {
       let cat = await Category.findOne({
-        where: { name: { [Op.iLike]: `%${categories[i].name}%` } },
+        where: {
+          name: {
+            [Op.iLike]: `%${categories[i].name}%`
+          }
+        },
       });
-
+      console.log(cat);
       if (cat) {
         await newProduct.addCategory(cat);
       }
     }
 
-    return res.status(201).send({ msg: "Producto Creado", producto: newProduct });
+    return res.status(201).send({
+      msg: "Producto Creado",
+      producto: newProduct
+    });
   } catch (error) {
-    return res.status(400).send({ msg: error.message });
+    return res.status(400).send({
+      msg: error.message
+    });
   }
 });
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
     const allProducts = await Product.findByPk(id, {
-      include: [
-        {
+      include: [{
           model: Category,
           attributes: ["name"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Qa,
           attributes: ["title", "description", "answer", "resolved"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Review,
           attributes: ["rating", "title", "description"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         },
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: { attributes: [] },
+          through: {
+            attributes: []
+          },
         }
       ],
     });
-    // if (id) {
-    //   const filtered = await allProducts.filter((e) => e.id == id);
-    // }
+
     res.json(allProducts);
-  }
-  catch (error) {
+  } catch (error) {
     next(error);
   }
 });
 
 router.delete("/delete/:id", async (req, res) => {
-  const { id } = req.params;
+  const {
+    id
+  } = req.params;
 
   try {
-    await Product.destroy({ where: { id: id } });
-    return res.status(200).send({ msg: "Producto eliminado" })
+    await Product.destroy({
+      where: {
+        id: id
+      }
+    });
+    return res.status(200).send({
+      msg: "Producto eliminado"
+    })
   } catch (error) {
-    return res.status(400).send({ msg: error.message })
+    return res.status(400).send({
+      msg: error.message
+    })
   }
 });
 
 router.put("/update/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, price, description, color, rating, image, image2, image3, image4, stock, size, categories } = req.body;
+  const {
+    id
+  } = req.params;
+  const {
+    name,
+    price,
+    description,
+    color,
+    rating,
+    image,
+    image2,
+    image3,
+    image4,
+    stock,
+    size,
+    categories
+  } = req.body;
   try {
     const newProduct = await Product.update({
       name: name.toUpperCase(),
@@ -320,13 +338,25 @@ router.put("/update/:id", async (req, res) => {
       stock,
       created: true,
       size
-    }, { where: { id: id } });
+    }, {
+      where: {
+        id: id
+      }
+    });
 
     if (categories) {
-      const productUpdate = await Product.findOne({ where: { id: id } })
+      const productUpdate = await Product.findOne({
+        where: {
+          id: id
+        }
+      })
       for (let i = 0; i < categories.length; i++) {
         let cat = await Category.findOne({
-          where: { name: { [Op.iLike]: `%${categories[i].name}%` } },
+          where: {
+            name: {
+              [Op.iLike]: `%${categories[i].name}%`
+            }
+          },
         });
 
         if (cat) {
@@ -335,10 +365,100 @@ router.put("/update/:id", async (req, res) => {
       }
     };
 
-    return res.status(200).send({ msg: "Producto actualizado" });
+    return res.status(200).send({
+      msg: "Producto actualizado"
+    });
   } catch (error) {
-    return res.status(400).send({ msg: error.message });
+    return res.status(400).send({
+      msg: error.message
+    });
   }
 })
 
+router.get("/q&a/:id", async(req, res) => {
+  const {id} = req.params;
+  const product = await Product.findByPk(id, {
+    include: [{
+        model: Category,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Qa,
+        attributes: ["title", "description", "answer", "resolved"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Review,
+        attributes: ["rating", "title", "description"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Product_values,
+        attributes: ["size", "stock"],
+        through: {
+          attributes: []
+        },
+      }
+    ],
+  });
+
+  const titleMaped = product.qas.map(m => m.title)
+  const descriptionMaped = product.qas.map(p => p.description)
+  // console.log("Size: ", sizeMaped)
+  // console.log("Stock: ", stockMaped)
+
+  var array = [];
+
+  for (let i = 0; i < titleMaped.length; i++) {
+    array.push(titleMaped[i])
+    array.push(descriptionMaped[i])
+  }
+
+
+  res.send(array)
+  // const qas = product.qas;
+  // console.log("qas", qas)
+})
+
+router.post("/q&a/:idProduct", async (req, res) => {
+  const {idProduct} = req.params;
+  const {idUser} = req.body;
+  const {title, description, answer, resolved} = req.body;
+
+  console.log("id:", idProduct)
+
+  try {
+      const newQuestion = await Qa.create({
+        title,
+        description,
+        answer,
+        resolved
+      })
+
+      console.log("newQuestion: ", newQuestion)
+
+      const productUpdate = await Product.findOne({
+        where: {
+          id: idProduct
+        }
+      })
+
+      console.log("productUpdate: ", productUpdate)
+
+      if (newQuestion) {
+        await productUpdate.addQa(newQuestion);
+      }
+
+      res.send(productUpdate)
+  } catch (err) {
+    console.log(err)
+  }
+})
 module.exports = router;

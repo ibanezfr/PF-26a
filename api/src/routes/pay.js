@@ -2,7 +2,7 @@ const { Router } = require("express");
 const Stripe = require("stripe");
 const { User, Product, Sell_order } = require("../db");
 const { Op } = require("sequelize");
-const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRhEOHcLQfx1muclzGM39fTvok1XgfvSbdgHF0t9tpytNGb8DgtorDUsoRtUqArlmUiNwoedu2005lvflXcg");
+const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRtu012BcZsbgDoQtaLp5ADJ5usnS2kbDlUdBTda2fD0HqxN6PbBDUeQKTXFLRdxVZtntborIf00EcE31nIZ");
 const router = Router();
 const { mailPayment} = require("../middlewares/middlewares.js");
 

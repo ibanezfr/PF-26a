@@ -8,6 +8,7 @@ import {
   MdQueryStats,
   MdNotifications,
 } from "react-icons/md";
+import { AiOutlineForm } from "react-icons/ai";
 import { SiLogstash, SiProducthunt } from "react-icons/si";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
@@ -33,9 +34,13 @@ const SidebarAdmin = () => {
             <span>Users</span>
           </li>
           <li>
-            <Link to="/admin/creation">
-              <SiProducthunt className="icons" />
-              <span>Products</span>
+            <SiProducthunt className="icons" />
+            <span>Products</span>
+          </li>
+          <li id="">
+            <Link to="/admin/creation" id="form" >
+              <AiOutlineForm className="icons" />
+              <span>Creation form</span>
             </Link>
           </li>
           <li>
