@@ -96,8 +96,7 @@ const Login = () => {
         `http://localhost:3001/auth/status/${credentials.user.uid}`
       );
 
-      if (userStatus) {
-        setError("Baneado lince");
+      if (userStatus === true) {
         return await handleLogout();
       }
 

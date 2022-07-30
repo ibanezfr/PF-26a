@@ -14,23 +14,15 @@ const UserActions = ({ params, rowId, setRowId }) => {
     setLoading(true);
 
     const { admin, banned, id } = params.row;
-    if (admin) {
-      const setAdmin = await axios.put(`http://localhost:3001/admin/${id}`);
-      if (setAdmin) {
-        setSuccess(true);
-        setRowId(null);
-      }
+    console.log("ADMIN", admin, banned);
+    const result = await axios.put(`http://localhost:3001/admin/status/${id}`, {
+      admin,
+      banned,
+    });
+    if (result) {
+      setSuccess(true);
+      setRowId(null);
     }
-    if (banned) {
-      const setBan = await axios.put(`http://localhost:3001/admin/ban/${id}`);
-      // updateUser(id);
-
-      if (setBan) {
-        setSuccess(true);
-        setRowId(null);
-      }
-    }
-
     setLoading(false);
   };
 

@@ -70,4 +70,41 @@ const disableAccount = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, disableAccount, setAdmin };
+const updateStatus = async (req, res) => {
+  const { id } = req.params;
+  const { admin, banned } = req.body;
+
+  try {
+    console.log(admin);
+    console.log(banned);
+    // let setAdmin;
+    // let setBan;
+
+    // if (admin === "User") {
+    //   let setAdmin = false;
+    // }
+    // if (admin === "Admin") {
+    //   let setAdmin = true;
+    // }
+    // if (banned === "Active") {
+    //   let setBan = false;
+    // }
+    // if (banned === "Banned") {
+    //   let setBan = true;
+    // }
+
+    const updated = await User.update(
+      {
+        banned: banned === "Active" ? false : true,
+        isAdmin: admin === "User" ? false : true,
+      },
+      { where: { id: id } }
+    );
+
+    res.status(200).send(updated);
+  } catch (error) {
+    res.status(500).send("error");
+  }
+};
+
+module.exports = { getAllUsers, disableAccount, setAdmin, updateStatus };

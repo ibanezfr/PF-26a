@@ -18,10 +18,12 @@ const {
   getAllUsers,
   setAdmin,
   disableAccount,
+  updateStatus,
 } = require("../controllers/admin.js");
 router.get("/admin/users", getAllUsers);
 router.put("/admin/:id", setAdmin);
 router.put("/admin/ban/:id", disableAccount);
+router.put("/admin/status/:id", updateStatus);
 
 router.use("/function", functionalities);
 router.use("/users", usersHandlers);
