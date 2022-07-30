@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect, useParams, useHistory } from 'react-router-dom';
 import { bringSize, cleanProduct, getProductsById, deleteFromCart, clearCart, addToCart } from '../../redux/actions';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
     //   const [show, setShow] = useState(false);

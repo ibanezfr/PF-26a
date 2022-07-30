@@ -55,9 +55,7 @@ User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);
 
 User.belongsToMany(Sell_order, 
-    {through: 'user-orders',
-    foreignKey:'userId'
-});
+    {through: 'user-orders'});
 Sell_order.belongsTo(User);
 
 Product.belongsToMany(Sell_order, {through: 'product-orders'});

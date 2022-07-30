@@ -1,7 +1,7 @@
 const products = require("../../../Pruebas/products.json");
 const { Op } = require("sequelize");
 const { Product, Category, Review, Product_values } = require("../db");
-
+const nodemailer = require("nodemailer");
 
 async function getProducts() {
   const findCreated = await Product.findAll({ where: { created: true } });
@@ -64,7 +64,33 @@ async function getProducts() {
   return { msg: "Ok" };
 }
 
+async function mailPayment(recipient, id,mensaje) {
+ 
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.GOOGLE_MAIL_APP,
+      pass: process.env.GOOGLE_MAIL_APP_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  // send mail with defined transport object
+  await transporter.sendMail({
+    from: "kilt indumentaria kilt.indumentaria@gmail.com",
+    to: recipient, // list of receivers
+    subject: `Orden N°: -${id}- ✔`, // Subject line
+    text: mensaje, // plain text body
+    html: mensaje, // html body
+  });
+ 
+}
+
 module.exports = {
-  getProducts
+  getProducts,
+  mailPayment
 
 }
