@@ -50,12 +50,8 @@ const Login = () => {
         image: credentials.user.photoURL,
       });
 
-      const userStatus = await axios.get(
-        `http://localhost:3001/auth/status/${credentials.user.uid}`
-      );
-
-      if (userStatus === true) {
-        return await handleLogout();
+      if (userInDb.data[0].banned === true) {
+        return handleLogout();
       }
 
       if (credentials.user.uid) {
@@ -92,12 +88,8 @@ const Login = () => {
         image: credentials.user.photoURL,
       });
 
-      const userStatus = await axios.get(
-        `http://localhost:3001/auth/status/${credentials.user.uid}`
-      );
-
-      if (userStatus === true) {
-        return await handleLogout();
+      if (userInDb.data[0].banned === true) {
+        return handleLogout();
       }
 
       if (credentials.user.uid) {
@@ -106,7 +98,7 @@ const Login = () => {
       if (userInDb.data[0].isAdmin) {
         localStorage.setItem(
           "isAdmin",
-          JSON.stringify(userInDb.data[0].isAdmin)
+          JSON.stringify(credentials.user.accessToken)
         );
       }
       console.log(userInDb.data[0].isAdmin);
