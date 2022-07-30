@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Products from "../../components/ProductCard/ProductCard.jsx";
+import React, { useState } from "react";
+// import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
 import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import "./SearchProducts.scss"
 import ProductNotFound from "../../components/Errors/ProductNotFound"
 import ProductsCards from "../../components/ProductsCards/ProductsCards.jsx";
 //import ProductsCard from "../../components/ProductsCards/ProductsCards";
-import { onSelectChange } from "../../Utils";
+// import { onSelectChange } from "../../Utils";
 import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
 
@@ -15,12 +15,10 @@ import Order from '../../components/Order/order'
 export default function SearchProducts() {
   let searchProducts = useSelector((state) => state.searchProducts)
   const dispatch = useDispatch()
-  let cart = useSelector(state => state.cart)
-  
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart])
-
+  // let cart = useSelector(state => state.cart)
+  // useEffect(() => {
+  //   localStorage.setItem('cart', JSON.stringify(cart));
+  // }, [cart])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(6);

@@ -10,7 +10,7 @@ import { filterProducts } from '../../Utils';
 function HomePage() {
     const dispatch = useDispatch();
     let dispProds = useSelector(state => state.displayedProducts);
-    let orderedBy = useSelector(state => state.orderBy);
+    // let orderedBy = useSelector(state => state.orderBy);
     let cart = useSelector(state => state.cart);
     let filters = useSelector(state => state.filters);
     let isSearchActive = useSelector(state => state.isSearchActive)
@@ -80,7 +80,7 @@ function HomePage() {
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
                 <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products}/>
-                    <Order onSelectChange={onSelectChange}/>
+                <Order onSelectChange={onSelectChange}/>
                 </div>
             </div>
         </div>
