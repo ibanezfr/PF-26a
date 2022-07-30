@@ -14,15 +14,15 @@ export function validate(input, name, value) {
     const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
     const validColor = /^(?=.{3,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/
 
-    const noName = "1) NAME: A name is required.";
-    const invalidName = "1) NAME: Only letters, optional middle hyphen, length within 5 and 70 characters.";
-    const noDescription = "2) DESCRIPTION: A description is required.";
-    const invalidDescription = "2) DESCRIPTION: Only letters, commas, dots, length within 5 and 255 characters."
-    const noPrice = "3) PRICE: A price is required."
-    const invalidPrice = "3) PRICE: 4 digits maximum and 2 decimal numbers allowed, dot notation required."
-    const noColor = "4) COLOR: A color is required."
-    const invalidColor = "4) COLOR: Only letters, 3 characters minimum 70 maximum, commas and dots allowed."
-    const noImage = "5) IMAGE: At least 1 image is required."
+    const noName = "1) Título: El nombre es obligatorio.";
+    const invalidName = "1) Título: Solo letras, guión medio opcional y la longitud debe ser entre 5 y 70 caracteres.";
+    const noDescription = "2) Descripción: La descripción es obligatoria.";
+    const invalidDescription = "2) Descripción: Solo letras, comas, puntos y la longitued debe ser entre 5 y 255 caracteres."
+    const noPrice = "3) Precio: El precio es obligatorio."
+    const invalidPrice = "3) Precio: Máximo 4 dígitos y 2 decimales permitidos, utilizar punto en vez de coma."
+    const noColor = "4) Color: El color es obligatorio."
+    const invalidColor = "4) Color: Solos letras, longitud entre 3 y 70 caracteres, comas y puntos permitidos."
+    const noImage = "5) Imagen: Es obligatoria al menos una imagen."
     let errors = {};
     input.image === "" ? errors[name] = noImage : delete errors.image;
     switch (name) {
@@ -141,7 +141,7 @@ export default function ProductCreationForm() {
                                 <input
                                     className=""
                                     type="text"
-                                    placeholder="Title..."
+                                    placeholder="Título..."
                                     name="name"
                                     id="name-input"
                                     onChange={(e) => handleInputChange(e)}
@@ -153,7 +153,7 @@ export default function ProductCreationForm() {
                                 <input
                                     id="price-input"
                                     type="number"
-                                    placeholder="Price..."
+                                    placeholder="Precio..."
                                     name="price"
                                     min="0"
                                     max="9999.99"
@@ -168,7 +168,7 @@ export default function ProductCreationForm() {
                             <textarea
                                 id="textarea"
                                 className=""
-                                placeholder="Description..."
+                                placeholder="Descripción..."
                                 name="description"
                                 rows="2"
                                 cols="50"
@@ -201,7 +201,7 @@ export default function ProductCreationForm() {
                             </fieldset>
 
                             <fieldset id="image2" className="fieldset">
-                                <legend htmlFor="image2">Image 2: </legend>
+                                <legend htmlFor="image2">Imagen 2: </legend>
                                 <FileBase
                                     name="image2"
                                     type="image"
@@ -313,7 +313,7 @@ export default function ProductCreationForm() {
                 </div>
             </div >
             <div className="productView">
-            <h2 id="title">Previsualización:</h2>
+                <h2 id="title">Previsualización:</h2>
                 <div className="background">
                     <div className="imagesCreate">
                         <Carousel fade>
@@ -348,7 +348,7 @@ export default function ProductCreationForm() {
                         input.color.length !== 0 && <span>Color: {input.color}</span>
                     }
 
-                    <br/>
+                    <br />
 
                     {
                         input.categories.length !== 0 && <label htmlFor="categories-list" id="categories-list-label">Categorías:</label>
@@ -368,7 +368,7 @@ export default function ProductCreationForm() {
                             input.product_values && input.product_values.map((elm, index) => {
 
                                 return (
-                                    <li key={index}>Hay <mark>{elm.stock} unidades </mark><mark>del talle {elm.size}</mark> </li>
+                                    <li key={index}>Hay <mark>{elm.stock}</mark> unidades del talle <mark>{elm.size}</mark> </li>
                                 )
                             })
 
