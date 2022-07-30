@@ -12,7 +12,7 @@ import "./Profile.scss";
 const Profile = () => {
   // const dispatch = useDispatch();
   const [userDb, setUserDb] = useState("");
-  const { logout, user } = useAuth();
+  const { logout } = useAuth();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -45,14 +45,16 @@ const Profile = () => {
     }
     fetchData();
   }, []);
-  console.log(userDb);
+  // console.log(userDb.isAdmin);
   // console.log(user);
-
+  console.log(JSON.parse(localStorage.getItem("isAdmin")));
   return (
     <div className="wrapper">
       <div className="container">
         <div className="user-info">
-          <p className="title">{userDb?.email}</p>
+          <p className="title">
+            {userDb?.email} {userDb === null ? "Logeate Capo" : null}{" "}
+          </p>
           {userDb.image ? (
             <img src={userDb?.image} alt="" className="profile" />
           ) : (

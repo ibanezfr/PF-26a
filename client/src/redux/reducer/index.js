@@ -112,6 +112,13 @@ function rootReducer(state = initialState, action) {
     //   localStorage.clear();
     //   return { ...state };
 
+    case "FETCH_USERS": {
+      return {
+        ...state,
+        users: action.payload,
+      };
+    }
+
     case SESSION:
       return {
         ...state,
@@ -131,17 +138,17 @@ function rootReducer(state = initialState, action) {
       // }
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ?  item.quantity = action.payload.quantity
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? item.quantity = action.payload.quantity
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: [...state.cart, { ...action.payload }],
-          };
+          ...state,
+          cart: [...state.cart, { ...action.payload }],
+        };
 
     case REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find((item) => item.id === action.payload);

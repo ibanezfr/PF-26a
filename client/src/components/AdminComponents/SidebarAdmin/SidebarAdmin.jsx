@@ -13,7 +13,20 @@ import { SiLogstash, SiProducthunt } from "react-icons/si";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
+import { useAuth } from "../../../context/AuthContext";
 const SidebarAdmin = () => {
+  const { logout } = useAuth();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -34,8 +47,10 @@ const SidebarAdmin = () => {
             <span>Users</span>
           </li>
           <li>
-            <SiProducthunt className="icons" />
-            <span>Products</span>
+            <Link to="/admin/products" className="link">
+              <SiProducthunt className="icons" />
+              <span>Products</span>
+            </Link>
           </li>
           <li id="">
             <Link to="/admin/creation" id="form" >
@@ -74,10 +89,12 @@ const SidebarAdmin = () => {
           <p className="title">USER</p>
 
           <li>
-            <ImProfile className="icons" />
-            <span>Profile</span>
+            <Link to="/profile">
+              <ImProfile className="icons" />
+              <span>Profile</span>
+            </Link>
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <RiLogoutBoxFill className="icons" />
             <span>Logout</span>
           </li>

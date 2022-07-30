@@ -9,7 +9,7 @@ import { useAuth } from "../../../context/AuthContext";
 import axios from "axios";
 
 const Login = () => {
-  const { login, loginWithGoogle, resetPass } = useAuth();
+  const { login, loginWithGoogle, resetPass, logout } = useAuth();
 
   const [user, setUser] = useState({
     email: "",
@@ -17,6 +17,15 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const history = useHistory();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setError("Your account have been suspended");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const handleRedirect = async () => {
   //   const check = await JSON.parse(localStorage.getItem("usuario"));
@@ -34,18 +43,33 @@ const Login = () => {
     setError("");
     try {
       const credentials = await login(user.email, user.password);
-
       const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
         id: credentials.user.uid,
-        name: credentials.user.displayName,
+        fullName: credentials.user.displayName,
         email: credentials.user.email,
         image: credentials.user.photoURL,
       });
-      if (userInDb.data[0].banned) return alert("Baneado lince");
+
+      const userStatus = await axios.get(
+        `http://localhost:3001/auth/status/${credentials.user.uid}`
+      );
+
+      if (userStatus) {
+        setError("Baneado lince");
+        return await handleLogout();
+      }
+
       if (credentials.user.uid) {
         localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
       }
+      if (userInDb.data[0].isAdmin) {
+        localStorage.setItem(
+          "isAdmin",
+          JSON.stringify(credentials.user.accessToken)
+        );
+      }
 
+      console.log(userInDb.data[0].isAdmin);
       history.push("/profile");
     } catch (error) {
       if (
@@ -64,14 +88,30 @@ const Login = () => {
 
       const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
         id: credentials.user.uid,
-        name: credentials.user.displayName,
+        fullName: credentials.user.displayName,
         email: credentials.user.email,
         image: credentials.user.photoURL,
       });
-      if (userInDb.data[0].banned) return alert("Baneado lince");
+
+      const userStatus = await axios.get(
+        `http://localhost:3001/auth/status/${credentials.user.uid}`
+      );
+
+      if (userStatus) {
+        setError("Baneado lince");
+        return await handleLogout();
+      }
+
       if (credentials.user.uid) {
         localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
       }
+      if (userInDb.data[0].isAdmin) {
+        localStorage.setItem(
+          "isAdmin",
+          JSON.stringify(userInDb.data[0].isAdmin)
+        );
+      }
+      console.log(userInDb.data[0].isAdmin);
 
       history.push("/profile");
     } catch (error) {
