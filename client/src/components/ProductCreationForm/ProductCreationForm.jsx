@@ -127,10 +127,10 @@ export default function ProductCreationForm() {
                     <h2 id="title">Creá un producto:</h2>
                     <div id="error_container">
                         <ul className="error">
-                            {errors && errors.name && <li className="error">{errors.name}</li>}
-                            {errors && errors.description && <li className="error">{errors.description}</li>}
-                            {errors && errors.price && <li className="error">{errors.price}</li>}
-                            {errors && errors.color && <li className="error">{errors.color}</li>}
+                            {errors && errors.name && <li className="errorCreation">{errors.name}</li>}
+                            {errors && errors.description && <li className="errorCreation">{errors.description}</li>}
+                            {errors && errors.price && <li className="errorCreation">{errors.price}</li>}
+                            {errors && errors.color && <li className="errorCreation">{errors.color}</li>}
                         </ul>
                     </div>
                     <form className="formContainer" onSubmit={((e) => handleSubmit(e))}>

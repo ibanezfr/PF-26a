@@ -39,13 +39,15 @@ const SidebarAdmin = () => {
           <p className="title">Principal</p>
           <li>
             <MdDashboardCustomize className="icons" />
-            <span>Tablero de control</span>
+            <span>Dashboard</span>
           </li>
           <p className="title">LISTAS</p>
 
           <li>
-            <FaUserCircle className="icons" />
-            <span>Usuarios</span>
+            <Link to="/admin/users">
+              <FaUserCircle className="icons" />
+              <span>Usuarios</span>
+            </Link>
           </li>
           <li>
             <Link to="/admin/products" className="link">
@@ -53,8 +55,8 @@ const SidebarAdmin = () => {
               <span>Productos</span>
             </Link>
           </li>
-          <li id="">
-            <Link to="/admin/creation" id="form">
+          <li >
+            <Link to="/admin/creation" className="link" >
               <AiOutlineForm className="icons" />
               <span>Formulario de creación</span>
             </Link>
