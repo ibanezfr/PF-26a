@@ -13,7 +13,7 @@ import { grey } from "@mui/material/colors";
 
 export default function UserList() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.user);
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
 
@@ -78,7 +78,7 @@ export default function UserList() {
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Manage Users
+        Administrar usuarios
       </Typography>
       <DataGrid
         columns={columns}

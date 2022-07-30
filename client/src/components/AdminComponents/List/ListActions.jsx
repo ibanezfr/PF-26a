@@ -1,7 +1,7 @@
 import React from "react";
 
 const ListActions = () => {
-  return <div>ListActions</div>;
+  return <div>Acciones</div>;
 };
 
 export default ListActions;

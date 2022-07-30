@@ -116,7 +116,7 @@ function rootReducer(state = initialState, action) {
     case "FETCH_USERS": {
       return {
         ...state,
-        users: action.payload,
+        user: action.payload,
       };
     }
 

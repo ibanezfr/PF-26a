@@ -31,23 +31,23 @@ const List = () => {
         width: 200,
         type: "singleSelect",
         valueOptions: [
-          "Equipamento deportivo",
-          "Indumentaria de mujer",
-          "Calzas",
           "Accesorios",
           "Bufandas",
-          "Indumentaria sin género",
           "Buzos",
-          "Indumentaria de hombre",
+          "Calzas",
           "Camperas",
           "Chalecos",
           "Conjuntos",
-          "Pantalones",
-          "Tops deportivos",
+          "Equipamento deportivo",
           "Gorra",
           "Gorros",
+          "Indumentaria de hombre",
+          "Indumentaria de mujer",
+          "Indumentaria sin género",
           "Medias",
+          "Pantalones",
           "Remeras",
+          "Tops deportivos",
         ],
         editable: true,
       },
@@ -86,7 +86,7 @@ const List = () => {
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Products Managment
+        Administrar productos
       </Typography>
       <DataGrid
         columns={columns}

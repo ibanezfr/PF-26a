@@ -121,7 +121,7 @@ export default function ProductCreationForm() {
 
     return (
         <div className="productCreationContainer">
-            <Link to="/admin/home"><button id="back-button">Back to dashboard</button></Link>
+            <Link to="/admin/home"><button id="back-button">Regresar al tablero de control</button></Link>
             <div className="productFormContainer">
                 <div className="creation_form">
                     <h2 id="title">Creá un producto:</h2>

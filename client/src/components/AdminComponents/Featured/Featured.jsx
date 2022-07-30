@@ -4,7 +4,7 @@ const Featured = () => {
   return (
     <div className="featured">
       <div className="featuredItem">
-        <span className="featuredTitle">Revanue</span>
+        <span className="featuredTitle">Ingresos</span>
         <div className="featuredMoneyContainer">
           {/* <span className="featuredMoney">${income[1]?.total}</span> */}
           <span className="featuredMoneyRate">
@@ -16,27 +16,27 @@ const Featured = () => {
             )} */}
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Comparación con el mes pasado</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Sales</span>
+        <span className="featuredTitle">Ventas</span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">$4,415</span>
           <span className="featuredMoneyRate">
             {/* -1.4 <ArrowDownward className="featuredIcon negative" /> */}
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Comparación con el mes pasado</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Cost</span>
+        <span className="featuredTitle">Costo</span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">$2,225</span>
           <span className="featuredMoneyRate">
             {/* +2.4 <ArrowUpward className="featuredIcon" /> */}
           </span>
         </div>
-        <span className="featuredSub">Compared to last month</span>
+        <span className="featuredSub">Comparción con el mes pasado</span>
       </div>
     </div>
   );

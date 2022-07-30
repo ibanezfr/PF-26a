@@ -1,7 +1,7 @@
 import React from "react";
 
 const Graphics = () => {
-  return <div>Graphics</div>;
+  return <div>Gráficos</div>;
 };
 
 export default Graphics;

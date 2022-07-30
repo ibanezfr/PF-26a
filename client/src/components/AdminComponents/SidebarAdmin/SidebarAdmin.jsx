@@ -30,73 +30,73 @@ const SidebarAdmin = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">Admin Panel</span>
+        <span className="logo">Panel del administrador</span>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">Principal</p>
           <li>
             <MdDashboardCustomize className="icons" />
-            <span>Dashboard</span>
+            <span>Tablero de control</span>
           </li>
-          <p className="title">LISTS</p>
+          <p className="title">LISTAS</p>
 
           <li>
             <FaUserCircle className="icons" />
-            <span>Users</span>
+            <span>Usuarios</span>
           </li>
           <li>
             <Link to="/admin/products" className="link">
               <SiProducthunt className="icons" />
-              <span>Products</span>
+              <span>Productos</span>
             </Link>
           </li>
           <li id="">
             <Link to="/admin/creation" id="form" >
               <AiOutlineForm className="icons" />
-              <span>Creation form</span>
+              <span>Formulario de creación</span>
             </Link>
           </li>
           <li>
             <FaShoppingCart className="icons" />
-            <span>Orders</span>
+            <span>Órdenes</span>
           </li>
           <li>
             <MdSettings className="icons" />
-            <span>Settings</span>
+            <span>Configuración</span>
           </li>
-          <p className="title">USEFUL</p>
+          <p className="title">Útiles</p>
 
           <li>
             <MdQueryStats className="icons" />
-            <span>Stats</span>
+            <span>Estadísticas</span>
           </li>
           <li>
             <MdNotifications className="icons" />
-            <span>Notifications</span>
+            <span>Notificaciones</span>
           </li>
-          <p className="title">SERVICE</p>
+          <p className="title">SERVICIO</p>
 
           <li>
             <MdSettingsSystemDaydream className="icons" />
-            <span>System</span>
+            <span>Sistema</span>
           </li>
           <li>
             <SiLogstash className="icons" />
-            <span>Logs</span>
+            <span>Logueados</span>
           </li>
-          <p className="title">USER</p>
+          <p className="title">USUARIO</p>
 
           <li>
             <Link to="/profile">
               <ImProfile className="icons" />
-              <span>Profile</span>
+              <span>Perfil</span>
             </Link>
           </li>
           <li onClick={handleLogout}>
             <RiLogoutBoxFill className="icons" />
-            <span>Logout</span>
+            <span>Salir</span>
           </li>
         </ul>
       </div>
