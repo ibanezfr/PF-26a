@@ -2,7 +2,9 @@ const { Router } = require("express");
 const Stripe = require("stripe");
 const { User, Product, Sell_order } = require("../db");
 const { Op } = require("sequelize");
-const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRhEOHcLQfx1muclzGM39fTvok1XgfvSbdgHF0t9tpytNGb8DgtorDUsoRtUqArlmUiNwoedu2005lvflXcg");
+//aca va la clave privada
+const stripe = new Stripe("sk_test_51LRM01FTo7BILoUXII9kTG5f0fYcBzL9P7w0ZxPiRCcJtVEIIyk61lM7yMwzmf8sdTL0JbjioaEcQvy3JHutCBa200eyDOEA8Z");
+//
 const router = Router();
 const { mailPayment} = require("../middlewares/middlewares.js");
 
@@ -11,7 +13,8 @@ router.post("/api/checkout", async (req, res) => {
     // you can get more data to find in a database, and so on
     const { id, amount , description, user, shippingInfo} = req.body;
     //sacarle el ultimo elemento, que son los datos de envio
-    console.log(shippingInfo)
+    //console.log(shippingInfo)
+    console.log('\n\nDESCRIPTION\n\n',description,'\n\nDESCRIPTION\n\n')
     try {
       const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
       if(user){

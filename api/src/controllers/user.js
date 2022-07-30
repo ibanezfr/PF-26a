@@ -29,7 +29,7 @@ const login = async (req, res, next) => {
         id: id,
       },
     });
-    console.log(userExist);
+    //console.log(userExist);
     res.status(200).send(userExist);
   } catch (error) {
     next(error);
