@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Featured from "../Featured/Featured";
 import Graphics from "../Graphics/Graphics";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
-import UserList from "../UserList/UserList";
+// import UserList from "../UserList/UserList";
 import Widget from "../Widget/Widget";
 import "./HomeAdmin.scss";
 
@@ -49,7 +49,7 @@ const HomeAdmin = () => {
         <div className="listContainer">
           <div className="listTitle">
             Users
-            <UserList />
+            {/* <UserList /> */}
           </div>
           {/* TABLAS */}
         </div>

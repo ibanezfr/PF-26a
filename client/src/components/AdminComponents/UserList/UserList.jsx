@@ -13,7 +13,7 @@ import { grey } from "@mui/material/colors";
 
 export default function UserList() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.user);
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
 
@@ -23,9 +23,6 @@ export default function UserList() {
 
   useEffect(() => {
     return !users.length ? dispatch(fetchUsers()) : null;
-
-    // segundo parametro para evitar crear un bucle infinito
-    // mientras este el state currentGames
   }, [dispatch, users]);
 
   console.log(users);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SidebarAdmin.scss";
 import {
   MdDashboardCustomize,
@@ -7,12 +8,13 @@ import {
   MdQueryStats,
   MdNotifications,
 } from "react-icons/md";
+import { AiOutlineForm } from "react-icons/ai";
 import { SiLogstash, SiProducthunt } from "react-icons/si";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
-import { Link } from "react-router-dom";
+
 const SidebarAdmin = () => {
   const { logout } = useAuth();
 
@@ -49,6 +51,12 @@ const SidebarAdmin = () => {
             <Link to="/admin/products" className="link">
               <SiProducthunt className="icons" />
               <span>Products</span>
+            </Link>
+          </li>
+          <li id="">
+            <Link to="/admin/creation" id="form">
+              <AiOutlineForm className="icons" />
+              <span>Creation form</span>
             </Link>
           </li>
           <li>

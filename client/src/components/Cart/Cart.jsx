@@ -19,13 +19,28 @@ const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGu
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    // console.log(cart)
-    JSON.parse(localStorage.getItem('cart'));
+    console.log(cart)
+    // JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
+    const handleAdd = (e) => {
+        dispatch(addToCart(cart))
+    }
+
+    const handleDeleteOne = (e) => {
+        dispatch(deleteFromCart(cart))
+
+    }
+
+    const handleDeleteAll = (e) => {
+        dispatch(deleteFromCart(cart, true))
+
+    }
+
+    // console.log("carrito: ", cart)
     if (cart[0]) {
         var cantidadPrecio = []
         cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
@@ -35,7 +50,7 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
-    
+
 
     return (
         <div className="maxContainer">
@@ -48,9 +63,9 @@ export default function Cart() {
                                 <ProductItem
                                     key={product.id}
                                     data={product}
-                                    addToCart={() => dispatch(addToCart(product.id))}
-                                    deleteOneFromCart={() => dispatch(deleteFromCart(product.id))}
-                                    deleteAllFromCart={() => dispatch(deleteFromCart(product.id, true))}
+                                    addToCart={(e) => handleAdd(e)}
+                                    deleteOneFromCart={(e) => handleDeleteOne(e)}
+                                    deleteAllFromCart={(e) => handleDeleteAll(e)}
                                 />
                             </div>
                         </div>
@@ -81,15 +96,14 @@ export default function Cart() {
                     <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
                 </div>
-                {/* <div className="btnContainer">
+                <div className="btnContainer">
                     {
                         cart[0] ? <div>TOTAL ${formatNumber(precioTotal)}</div> : <></>
                     }
                     <button className="btnPrincipal">Continuar compra</button>
                     <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                </div> */}
+                </div>
             </div>
         </div>
     )
 }
-

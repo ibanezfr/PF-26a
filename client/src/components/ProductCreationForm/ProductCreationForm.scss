@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+.creation_form {
+  display: flex;
+  align-self: center;
+}
+
+.creation-form {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  top: 50px;
+  right: -370px;
+}
+
+.fieldset {
+  display: block;
+  border-radius: 8px;
+  border: 2px groove #794983;
+  min-inline-size: min-content;
+  padding: 12px 20px;
+  margin: 8px;
+  width: 35%;
+  height: 15%;
+}
+
+legend {
+  background-color: #794983;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 20px;
+}
+
+#title {
+  position: absolute;
+  top: 70px;
+  left: 35px;
+  color: #794983;
+  border-bottom: #794983 2px double;
+  font-family: 'lato';
+}
+
+#color-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+#name-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+#price-input {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+#price-input:focus {
+  width: 100%;
+}
+
+#name-input:focus {
+  width: 100%;
+}
+
+#color-input:focus {
+  width: 100%;
+}
+
+input {
+  margin: .4rem;
+}
+
+input[type=text] {
+  border-radius: 8px;
+}
+
+input[type=text]:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+input[type=number] {
+  border-radius: 8px;
+}
+
+input[type=number]:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+
+#textarea {
+  resize: none;
+  border-radius: 8px;
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+select {
+  font-family: 'lato';
+  font-weight: 600;
+  font-size: large;
+}
+
+select:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+textarea:focus {
+  background-color: #F2F2F2;
+  border: 3px solid #9C9AC0
+}
+
+select {
+  border-radius: 8px;
+}
+
+
+#textarea {
+  z-index: 2;
+}
+
+#back-button {
+  position: relative;
+  top: 99px;
+  left: -750px;
+  font-family: 'lato';
+  background: $backGroundColor;
+  color: $middleColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $secondaryColor;
+  text-shadow: none;
+  height: 50px;
+  width: 100px;
+}
+
+#back-button:hover {
+  background: $primaryColor;
+  color: $lightestColor;
+  border: 1px solid $primaryColor;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px $lightestColor;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#submit-button {
+  position: absolute;
+  top: 0px;
+  left: -120px;
+  background: $backGroundColor;
+  color: $middleColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $secondaryColor;
+  text-shadow: none;
+  height: 50px;
+  width: 100px;
+}
+
+#submit-button:hover {
+  background: $primaryColor;
+  color: $lightestColor;
+  border: 1px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px $lightestColor;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#error_container {
+  display: flex;
+  position: absolute;
+  right: 0px;
+}
+
+#categories-list {
+  position: relative;
+  left: 200px;
+}
+
+.size-stock {
+  position: relative;
+  right: 600px;
+  top: 125px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+  list-style: none;
+}
+
+#categories-list-label {
+  position: relative;
+  right: 1220px;
+  top: 110px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+}
+
+#categories-list {
+  position: absolute;
+  left: 50px;
+  bottom: -110px;
+  font-size: large;
+  font-family: 'lato';
+  font-weight: bold;
+  width: 350px;
+  list-style: none;
+}
+
+.error {
+  display: flex;
+  text-align: center;
+  margin: 0.1rem;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: rgb(243, 33, 33);
+  // background-color: rgb(4, 4, 4);
+}

@@ -4,7 +4,6 @@ const setAdmin = async (req, res) => {
   const { id } = req.params;
 
   let setAdmin = true;
-
   try {
     const user = await User.findOne({ where: { id: id } });
     if (user.isAdmin) {

@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Products from "../../components/ProductCard/ProductCard.jsx";
 import { useDispatch, useSelector } from "react-redux"
+import { addFilter, removeFilter, setOrder } from "../../redux/actions/index";
 import "./SearchProducts.scss"
 import ProductNotFound from "../../components/Errors/ProductNotFound"
+import ProductsCards from "../../components/ProductsCards/ProductsCards.jsx";
+//import ProductsCard from "../../components/ProductsCards/ProductsCards";
+import { onSelectChange } from "../../Utils";
+import Filters from '../../components/Filters/filters';
+import Order from '../../components/Order/order'
+
 
 
 export default function SearchProducts() {
   let searchProducts = useSelector((state) => state.searchProducts)
   const dispatch = useDispatch()
+  let cart = useSelector(state => state.cart)
+  
   useEffect(() => {
-
-  }, [dispatch])
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart])
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,9 +33,24 @@ export default function SearchProducts() {
     numberOfPages.push(i);
   }
 
+      //order
+    function onSelectChange(e) {
+        dispatch(setOrder(e.target.value))
+    }
+
+    // filter functions
+   function onClickFilter(e) {
+        dispatch(addFilter(e.target.id))
+        setCurrentPage(1)
+    }
+
+    function onClickFieldset(e) {
+        dispatch(removeFilter(e.target.id))
+        setCurrentPage(1)
+    }
 
   return (
-    <div className="Homepage containerHome">
+    <div className="totalHomeContainer">
       <div className='paginationContainer'>
         <button
           className={`${currentPage === 1 ? 'disabled' : ''}`}
@@ -43,23 +67,19 @@ export default function SearchProducts() {
         </button>
 
       </div>
-      {/* <div className="row"> */}
-        <div className="cardsContainer col-4">
-
           {currentPosts &&
             React.Children.toArray(
               currentPosts.map((product) => {
                 if (product.status === "active") {
                   return (
-                    <Products
-                      id={product.id}
-                      key={product.id}
-                      name={product.name}
-                      image={product.image}
-                      price={product.price}
-                      description={product.description}
-                      categories={product.categories.map(c => c.name)}
-                    />
+                    <div className='homeContainer'>
+                      <ProductsCards allProducts={currentPosts} />
+                      <div className="filter-container">
+                          <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={searchProducts}/>
+                          <Order onSelectChange={onSelectChange}/>
+                      </div>
+                  </div>
+
                   );
                 } else {
                   return (
@@ -68,11 +88,6 @@ export default function SearchProducts() {
                 }
               })
             )}
-
-        </div>
-      {/* </div> */}
-
-
     </div>
 
 
