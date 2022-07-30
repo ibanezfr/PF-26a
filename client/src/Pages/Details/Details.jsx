@@ -57,11 +57,7 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    if(newCart.size === "" || newCart.quantity === 0) {
-=======
     if (newCart.size === "" || newCart.quantity === 0) {
->>>>>>> eb1c60aee9e8c5e7dfd1b379c8ad743c69343886
       alert("selecciona un talle y una cantidad");
     } else {
       dispatch(addToCart(newCart));
@@ -130,11 +126,7 @@ export default function Details() {
             </select>
             <h4>Stock: {size[1]}</h4>
             <label>Ingresá la cantidad que buscas</label>
-<<<<<<< HEAD
-            <input type="number" min={1} max={size[1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
-=======
             <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
->>>>>>> eb1c60aee9e8c5e7dfd1b379c8ad743c69343886
             <div className="btnContainer">
               <button
                 onClick={(e) => hanldeSubmit(e)}
