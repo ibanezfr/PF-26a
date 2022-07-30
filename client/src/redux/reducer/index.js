@@ -17,7 +17,9 @@ import {
   SET_SEARCH_STATUS,
   RESET_FILTER_ORDER,
   ADD_ONE_FROM_CART,
-  POST_PRDUCT
+  POST_PRDUCT,
+  GET_Q_AND_A,
+  GET_INFO_Q_AND_A
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -45,6 +47,8 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("cart"))),
   ],
+  question: [],
+  infoQuestion: [],
   isSearchActive: false,
 };
 
@@ -204,6 +208,19 @@ function rootReducer(state = initialState, action) {
         filters: [],
         orderBy: ''
       }
+
+    case GET_Q_AND_A: 
+    return{
+      ...state,
+      question: action.payload
+    }
+
+    case GET_INFO_Q_AND_A:
+      return{
+        ...state,
+        infoQuestion: action.payload
+      }
+    
     default:
       return state;
   }

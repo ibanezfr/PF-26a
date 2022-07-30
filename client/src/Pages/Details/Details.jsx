@@ -64,6 +64,9 @@ export default function Details() {
     };
   };
 
+  let qas = actualProduct.qas.map(m=>m.title)
+  console.log("actualProduct.qas: ", qas)
+
   return (
     <div className="father">
       <div className="containerDetail">
@@ -145,7 +148,17 @@ export default function Details() {
       </div>
       <div>
         <QuestionForm/>
-
+        <div>
+          <h2>También preguntaron:</h2>
+          {/* {
+            actualProduct.qas.map(m=>{
+              <div>
+              <h3>{m.title}</h3>
+              <p>{m.description}</p>
+              </div>
+            })
+          } */}
+        </div>
       </div>
     </div>
   )
