@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart, bringAnswers, bringQandA, bringSize, getProductsById } from "../../redux/actions";
 import './Detail.scss'
+import './QandA.scss'
 // import { formatNumber } from "../../Utils";
 import heart from '../../images/heart.png'
 import Carousel from 'react-bootstrap/Carousel';
@@ -152,15 +153,15 @@ export default function Details() {
       </div>
       <div>
         <QuestionForm/>
-        <div>
+        <div className="QandAMaxContainer">
           <h2>También preguntaron:</h2>
           {
                 QandA ? QandA.map((m, index) => {
                   return (
-                    (index % 2) === 0 ? <div><div className="question"><h2>{m}</h2><p>{QandA[index+1]}</p></div>
+                    (index % 2) === 0 ? <div className="QandAContainer"><div className="question"><h2>{m}</h2><p>{QandA[index+1]}</p></div>
                    <div className="answer"><p>{answers[index]}</p></div> </div> : null
                   )
-                }) : <div>No hay preguntas</div>
+                }) : <div className="questionNull">No hay preguntas</div>
               }
         </div>
       </div>

@@ -29,6 +29,10 @@ export default function QuestionForm(){
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(QandA(params.id, question))
+        setQuestion({
+          title: "",
+          description: ""
+      })
     }
     
     console.log("question after", question)
