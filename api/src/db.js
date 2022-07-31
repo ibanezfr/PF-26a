@@ -54,9 +54,8 @@ Review.belongsTo(Product);
 User.belongsToMany(Review, { through: 'user-reviews' });
 Review.belongsTo(User);
 
-User.belongsToMany(Sell_order, 
-    {through: 'user-orders'});
-Sell_order.belongsTo(User);
+User.hasMany(Sell_order);   //1 user tiene muchas sell orders
+Sell_order.belongsTo(User); //sell order pertenece a 1 user
 
 Product.belongsToMany(Sell_order, {through: 'product-orders'});
 Sell_order.belongsToMany(Product, {through: 'product-orders'});
