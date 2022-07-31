@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 // import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import { get_one_user } from "../../api_url/api_url";
 
 import { useAuth } from "../../context/AuthContext";
 
@@ -28,7 +29,7 @@ const Profile = () => {
     let isMounted = true;
     function getUser() {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      if (localUser) return `http://localhost:3001/auth/${localUser}`;
+      if (localUser) return get_one_user + localUser;
     }
     async function fetchData() {
       const result = await axios.get(getUser());

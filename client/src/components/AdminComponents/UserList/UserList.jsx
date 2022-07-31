@@ -10,12 +10,24 @@ import UserActions from "./UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../redux/actions";
 import { grey } from "@mui/material/colors";
+import { useHistory } from "react-router-dom";
 
 export default function UserList() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user);
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
+  const history = useHistory();
+
+  const handleKick = async () => {
+    const check = await JSON.parse(localStorage.getItem("isAdmin"));
+    if (!check) {
+      history.push("/login");
+    }
+  };
+  useEffect(() => {
+    handleKick();
+  }, []);
 
   useEffect(() => {
     return !users.length ? dispatch(fetchUsers()) : null;
@@ -71,7 +83,7 @@ export default function UserList() {
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Administrar usuarios
+        Manage Users
       </Typography>
       <DataGrid
         columns={columns}

@@ -45,10 +45,18 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
-          <Route path="/purchase" component={Purchase}/>
+          <Route path="/purchase" component={Purchase} />
           <Route path="/details/:id" component={Details} />
 
           {/* AUTHENTICATION ROUTES usuarios y eso */}
+
+          {/* Admin ROUTES */}
+
+          <Route path="/admin/home" component={HomeAdmin} />
+          <Route path="/admin/users" component={UserList} />
+          <Route path="/admin/products" component={List} />
+          <Route path="/admin/creation" component={ProductCreationForm} />
+          {/* <Footer /> */}
 
           <ProtectedRoutes>
             <Route path="/profile" exact>
@@ -57,14 +65,6 @@ function App() {
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
         </Switch>
-
-        {/* Admin ROUTES */}
-
-        <Route path="/admin/home" component={HomeAdmin} />
-        <Route path="/admin/users" component={UserList} />
-        <Route path="/admin/products" component={List} />
-        <Route path="/admin/creation" component={ProductCreationForm} />
-        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

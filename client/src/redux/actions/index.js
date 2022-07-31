@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetch_users_action } from "../../api_url/api_url";
 export const GET_BY_ID = "GET_BY_ID";
 export const CLEAN_PRODUCT = "CLEAN_PRODUCT";
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
@@ -18,17 +19,18 @@ const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
 const URL_FOR_GET_PRODUCTS_BY_ID = "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
-const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
+const URL_FOR_GET_PRODUCTS_BY_NAME =
+  "http://localhost:3001/products/search?name=";
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
-export const SET_SEARCH_STATUS = 'SET_SEARCH_STatus';
-export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
+export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
+export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 
-export const SESSION = "SESSION"
+export const SESSION = "SESSION";
 /*
 case CREATE_RECIPE:
             return {
@@ -51,14 +53,14 @@ export const createRecipe = (recipe) => {
 export const postProduct = (payload) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post(URL_FOR_POST_PRODUCT, payload)
+      const response = await axios.post(URL_FOR_POST_PRODUCT, payload);
       console.log(response);
       return response;
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 //carrito de compras FUNCIONES
 export function addToCart(obj) {
@@ -75,22 +77,22 @@ export function clearCart() {
 }
 
 export function deleteFromCart(data) {
-    return {
-      type: REMOVE_FROM_CART,
-      payload: data,
-    };
+  return {
+    type: REMOVE_FROM_CART,
+    payload: data,
+  };
 }
-export function changeQuantity (data, boolean) {
+export function changeQuantity(data, boolean) {
   if (boolean) {
     return {
       type: ADD_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   } else {
     return {
       type: REMOVE_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   }
 }
 
@@ -217,7 +219,7 @@ export const loginCheck = (dispatch) => {
 };
 export function fetchUsers() {
   return async function (dispatch) {
-    const result = await axios.get("http://localhost:3001/admin/users");
+    const result = await axios.get(fetch_users_action);
     return dispatch({ type: "FETCH_USERS", payload: result.data });
   };
 }
@@ -235,15 +237,15 @@ export function setSearchStatus(status) {
   return function (dispatch) {
     dispatch({
       type: SET_SEARCH_STATUS,
-      payload: status
-    })
-  }
+      payload: status,
+    });
+  };
 }
 
 export function resetFilterOrder() {
   return function (dispatch) {
     dispatch({
       type: RESET_FILTER_ORDER,
-    })
-  }
+    });
+  };
 }

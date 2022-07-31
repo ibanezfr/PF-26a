@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./SidebarAdmin.scss";
 import {
   MdDashboardCustomize,
@@ -16,6 +16,8 @@ import { RiLogoutBoxFill } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
 
 const SidebarAdmin = () => {
+  const history = useHistory();
+
   const { logout } = useAuth();
 
   const handleLogout = async (e) => {
@@ -23,6 +25,7 @@ const SidebarAdmin = () => {
     try {
       await logout();
       localStorage.clear();
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -55,8 +58,8 @@ const SidebarAdmin = () => {
               <span>Productos</span>
             </Link>
           </li>
-          <li >
-            <Link to="/admin/creation" className="link" >
+          <li>
+            <Link to="/admin/creation" className="link">
               <AiOutlineForm className="icons" />
               <span>Formulario de creación</span>
             </Link>

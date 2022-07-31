@@ -6,12 +6,24 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
 import ListActions from "./ListActions";
+import { useHistory } from "react-router-dom";
 
 const List = () => {
   const dispatch = useDispatch();
   const [pageSize, setPageSize] = useState(10);
+  const history = useHistory();
   const [rowId, setRowId] = useState(null);
   let products = useSelector((state) => state.products);
+
+  const handleKick = async () => {
+    const check = await JSON.parse(localStorage.getItem("isAdmin"));
+    if (!check) {
+      history.push("/login");
+    }
+  };
+  useEffect(() => {
+    handleKick();
+  }, []);
 
   const columns = useMemo(
     () => [

@@ -7,6 +7,7 @@ import "./Login.css";
 import { useAuth } from "../../../context/AuthContext";
 
 import axios from "axios";
+import { login_post } from "../../../api_url/api_url";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPass, logout } = useAuth();
@@ -43,7 +44,7 @@ const Login = () => {
     setError("");
     try {
       const credentials = await login(user.email, user.password);
-      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+      const userInDb = await axios.post(login_post, {
         id: credentials.user.uid,
         fullName: credentials.user.displayName,
         email: credentials.user.email,
@@ -81,7 +82,7 @@ const Login = () => {
     try {
       const credentials = await loginWithGoogle();
 
-      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+      const userInDb = await axios.post(login_post, {
         id: credentials.user.uid,
         fullName: credentials.user.displayName,
         email: credentials.user.email,

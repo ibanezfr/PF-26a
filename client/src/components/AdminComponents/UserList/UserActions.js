@@ -4,6 +4,7 @@ import { Check, Save } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 import axios from "axios";
 import { useEffect } from "react";
+import { update_status } from "../../../api_url/api_url";
 // import { authContext } from "../../../context/AuthContext";
 
 const UserActions = ({ params, rowId, setRowId }) => {
@@ -15,7 +16,7 @@ const UserActions = ({ params, rowId, setRowId }) => {
 
     const { admin, banned, id } = params.row;
     console.log("ADMIN", admin, banned);
-    const result = await axios.put(`http://localhost:3001/admin/status/${id}`, {
+    const result = await axios.put(update_status + id, {
       admin,
       banned,
     });
