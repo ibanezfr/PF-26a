@@ -1,6 +1,6 @@
 import "./List.scss";
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography, Button } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -93,6 +93,9 @@ const List = () => {
 
   return (
     <Box sx={{ height: 775, width: "100%" }}>
+      <Button onClick={(e) => history.push("/admin/home")}>
+        Voler al Dashboard
+      </Button>
       <Typography
         variant="h3"
         component="h3"
