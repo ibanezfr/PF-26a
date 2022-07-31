@@ -13,6 +13,7 @@ export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const GET_INFO_Q_AND_A = 'GET_INFO_Q_AND_A';
+export const GET_ANSWERS = 'GET_ANSWERS';
 
 //Q and A
 export const GET_Q_AND_A = 'GET_Q_AND_A';
@@ -24,6 +25,7 @@ const URL_FOR_GET_PRODUCTS_BY_ID = "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
 const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
 const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
+const URL_ANSWERS = 'http://localhost:3001/products/answer/'
 
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
@@ -66,6 +68,17 @@ export function bringQandA (id){
     // console.log("en la action: ", info.data)
     dispatch({
       type: GET_INFO_Q_AND_A,
+      payload: info.data,
+    });
+  };
+}
+
+export function bringAnswers (id){
+  return async (dispatch) => {
+    let info = await axios.get(URL_ANSWERS + id);
+    // console.log("en la action: ", info.data)
+    dispatch({
+      type: GET_ANSWERS,
       payload: info.data,
     });
   };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, bringQandA, bringSize, getProductsById } from "../../redux/actions";
+import { addToCart, bringAnswers, bringQandA, bringSize, getProductsById } from "../../redux/actions";
 import './Detail.scss'
 // import { formatNumber } from "../../Utils";
 import heart from '../../images/heart.png'
@@ -16,12 +16,14 @@ export default function Details() {
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   let QandA = useSelector(state => state.infoQuestion)
+  let answers = useSelector(state => state.infoAnswer);
 
 
   useEffect(() => {
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
     dispatch(bringQandA(params.id))
+    dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [dispatch, cart]);
 
@@ -155,7 +157,8 @@ export default function Details() {
           {
                 QandA ? QandA.map((m, index) => {
                   return (
-                    (index % 2) === 0 ? <div><h2>{m}</h2><p>{QandA[index+1]}</p></div> : null
+                    (index % 2) === 0 ? <div><div className="question"><h2>{m}</h2><p>{QandA[index+1]}</p></div>
+                   <div className="answer"><p>{answers[index]}</p></div> </div> : null
                   )
                 }) : <div>No hay preguntas</div>
               }
