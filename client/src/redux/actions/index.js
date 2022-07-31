@@ -51,7 +51,7 @@ export const postProduct = (payload) => {
 }
 
 //QandA
-export function QandA (idProduct, obj){
+export function getQandA (idProduct, obj){
   return async (dispatch) => {
     let info = await axios.post(URL_QUESTIONS + idProduct, obj);
     // console.log("en la action: ", info.data)

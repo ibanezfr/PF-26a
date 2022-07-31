@@ -153,8 +153,8 @@ export default function Details() {
       </div>
       <div>
         <QuestionForm/>
-        <div className="QandAMaxContainer">
-          <h2>También preguntaron:</h2>
+        {/* <div className="QandAMaxContainer">
+          <h2 className="titleQuestion">También preguntaron:</h2>
           {
                 QandA ? QandA.map((m, index) => {
                   return (
@@ -163,7 +163,7 @@ export default function Details() {
                   )
                 }) : <div className="questionNull">No hay preguntas</div>
               }
-        </div>
+        </div> */}
       </div>
     </div>
   )
