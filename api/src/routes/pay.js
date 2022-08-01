@@ -19,7 +19,7 @@ function formatDescription(description){
 router.post("/api/checkout", async (req, res) => {
     // you can get more data to find in a database, and so on
     const { id, amount , description, user, shippingInfo} = req.body;
-    
+    // console.log(description)
 try {
       const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
         if(user){
@@ -40,16 +40,37 @@ try {
             city:shippingInfo.city,
             postalCode:shippingInfo.postalCode
           }) 
-
-          const userCompra = await Promise.all(description.map(async (p)=>{
-            return await Product.findByPk(p.id, {include:[{
-              model: Product_values,
-              where:{size:p.size},
-              attributes: ["id"],
-              through: { attributes: [] }
-            }]})
-          }))
-          //res.send(userCompra)
+          // console.log(newSellOrder)
+          let userCompra=[]
+          if(description.length>1){
+            userCompra = await Promise.all(description.map(async (p)=>{
+              return await Product.findByPk(p.id, {include:[{
+                model: Product_values,
+                where:{size:p.size},
+                attributes: ["id"],
+                through: { attributes: [] }
+              }]})
+            }))
+            userCompra.map(async (prod, i)=>{
+              await Product_values.decrement(
+                'stock', 
+                {by:description[i].quantity,
+                where: {id:prod.product_values[0].id}})
+              //console.log(prod.product_values[0].id)
+            })
+          }else{
+            userCompra =await Product.findByPk(description[0].id, {include:[{
+                model: Product_values,
+                where:{size:description[0].size},
+                attributes: ["id"],
+                through: { attributes: [] }
+              }]})
+            let aux = []
+            aux.push(userCompra)
+            userCompra = aux
+            
+          }
+  
           userCompra.map(async (prod, i)=>{
             await Product_values.decrement(
               'stock', 
