@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
 import SearchBar from "../Search/Search";
@@ -14,6 +14,7 @@ function NavBar() {
 
   const dispatch = useDispatch()
   const { user, logout } = useAuth();
+  const history = useHistory();
 
   function resetFilterOrderSearch () {
     dispatch(setSearchStatus(false));
@@ -30,6 +31,11 @@ function NavBar() {
       console.log(error);
     }
   };
+
+  function handleFavs() {
+    user ? history.push("/favorites") : alert("Debes logearte para acceder a favoritos")
+  } 
+
   return (
     <Navbar className="NavBar" bg="light" expand="lg">
       <Container fluid>
@@ -62,6 +68,9 @@ function NavBar() {
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>
+          <Nav.Link className="navText" onClick={() => handleFavs()}>
+            Favoritos
+          </Nav.Link>
           <SearchBar />
         </Navbar.Collapse>
       </Container>

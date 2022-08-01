@@ -18,6 +18,7 @@ import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
 import Purchase from "./components/Purchase/Purchase";
+import Favorites from "./Pages/Favs/Favs";
 function App() {
   const dispatch = useDispatch();
 
@@ -42,7 +43,6 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
-          <Route path="/purchase" component={Purchase}/>
           <Route path="/details/:id" component={Details} />
 
           {/* Admin ROUTES */}
@@ -51,6 +51,8 @@ function App() {
           {/* AUTHENTICATION ROUTES usuarios y eso */}
 
           <ProtectedRoutes>
+            <Route path="/purchase" component={Purchase}/>
+            <Route path="/favorites" component={Favorites}/>
             <Route path="/profile" exact>
               <Profile />
             </Route>

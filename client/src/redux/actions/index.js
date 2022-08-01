@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import axios from "axios";
 export const GET_BY_ID = "GET_BY_ID";
 export const CLEAN_PRODUCT = "CLEAN_PRODUCT";
@@ -27,6 +28,13 @@ export const SET_SEARCH_STATUS= 'SET_SEARCH_STatus';
 export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
 
 export const SESSION="SESSION"
+
+export const GET_FAVORITES = "GET_FAVORITES";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+const URL_GET_FAVORITES_FROM_USER = "http://localhost:3001/favs/";
+const URL_POST_FAVORITE = "http://localhost:3001/favs/add";
+const URL_REMOVE_FAVORITE = "http://localhost:3001/favs/remove/";
 
 //carrito de compras FUNCIONES
 export function addToCart(obj) {
@@ -209,3 +217,33 @@ export function resetFilterOrder (){
     })
   }
 }
+
+export const getFavsFromUser = (id) => {
+  return async (dispatch) => {
+    let res = await axios.get(URL_GET_FAVORITES_FROM_USER + id);
+    dispatch({
+      type: GET_FAVORITES,
+      payload: res.data.products,
+    });
+  };
+};
+
+export const removeFavsFromUser = (idUser, idProduct) => {
+  return async (dispatch) => {
+    await axios.delete(URL_REMOVE_FAVORITE +`${idUser}/${idProduct}`);
+    dispatch({
+      type: REMOVE_FAVORITE,
+      payload: idProduct
+    });
+  };
+};
+
+export const addFavsToUser = (data) => {
+  return async (dispatch) => {
+    let pedido = await axios.post(URL_POST_FAVORITE, data)
+    dispatch({
+      type:ADD_FAVORITE,
+      payload: pedido.data.res.products[0]
+    });
+  };
+};

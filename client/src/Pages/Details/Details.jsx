@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import { formatNumber } from "../../Utils";
-import heart from '../../images/heart.png'
+import heartA from '../../images/heartAdd.png';
+import heartR from "../../images/heartRemove.png";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useAuth } from "../../context/AuthContext";
+import { async } from "@firebase/util";
 
 export default function Details() {
   const params = useParams();
-  const dispatch = useDispatch();    
-
-  let actualProduct = useSelector(state => state.detail)
-  let size = useSelector(state => state.size)
-  let cart = useSelector(state=>state.cart)
-
-
-  useEffect(() => {
-    dispatch(getProductsById(params.id))
-    dispatch(bringSize(params.id))
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [dispatch, cart]);
+  const dispatch = useDispatch();
+  const { user } = useAuth();
   
+  let actualProduct = useSelector(state => state.detail);
+  let size = useSelector(state => state.size);
+  let cart = useSelector(state => state.cart);
   
+  let favs = useSelector(state => state.favs);
+  var isFavorite = favs.find((f) => f.id === params.id);
+
   const [newCart, setNewCart] = useState({
     id: "",
     name: "",
@@ -33,6 +32,30 @@ export default function Details() {
     stock: size[1],
     quantity: 0
   });
+
+  useEffect(() => {
+    handleFavs();
+    dispatch(getProductsById(params.id));
+    dispatch(bringSize(params.id));
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [dispatch ,cart]);
+
+  const handleFavs = () => {
+    if(user) {
+      dispatch(getFavsFromUser(user.uid));
+    };
+  };
+
+  const handleRemoveFav = async (e) => {
+    e.preventDefault();
+    dispatch(removeFavsFromUser(user.uid, params.id));
+  };
+
+  const handleAddFav = (e) => {
+    e.preventDefault();
+    let data = {userID: user.uid, productID: params.id}
+    dispatch(addFavsToUser(data));
+  };
 
   const handleSize = (e) => {
     e.preventDefault();
@@ -67,7 +90,17 @@ export default function Details() {
   return (
     <div className="father">
       <div className="containerDetail">
-        <button className="btnFav"><img src={heart} alt='Favoritos' className="btnImage" /></button>
+        {
+          isFavorite
+            ?
+              <button className="btnFav">
+                <img src={heartR} alt='Favoritos' className="btnImage" onClick={(e) => handleRemoveFav(e)}/>
+              </button>
+            : 
+              <button className="btnFav">
+                <img src={heartA} alt='Favoritos' className="btnImage" onClick={(e) => handleAddFav(e)}/>
+              </button> 
+        }
         <div className="container1">
           <img src={actualProduct.image} alt="not found" />
           <span>Selecciona un talle</span>

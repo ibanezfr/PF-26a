@@ -19,7 +19,7 @@ router.get("/:userID", async (req, res) => {
             include: [
                 {
                     model: Product,
-                    attributes: [ "name", "image", "price" ],
+                    attributes: [ "id", "name", "image", "price" ],
                     through: { attributes: [] }
                 }
             ]
@@ -30,13 +30,35 @@ router.get("/:userID", async (req, res) => {
     }
 });
 
-router.put("/add/:userID/:productID", async (req, res) => {
-    const { userID, productID } = req.params;
+router.post("/add", async (req, res) => {
+    const { userID, productID } = req.body;
     // const { name, image, price } = req.body;
     try {
         const favsUser = await User.findByPk(userID);
         await favsUser.addProduct(productID);
-        return res.status(200).send({ msg: "Producto añadido a Favoritos"});        
+        const userFavs = await User.findByPk(userID, {
+            include: [
+                {
+                    model: Product,
+                    attributes: [ "id", "name", "image", "price" ],
+                    through: { attributes: [] }
+                }                
+            ]
+        })
+        return res.status(200).send({ msg: "Producto añadido a Favoritos", res: userFavs});        
+    } catch (error) {
+        return res.status(400).send({ msg: error.message });
+    }
+});
+
+router.delete("/remove/:userID/:productID", async (req, res) => {
+    const { userID, productID } = req.params;
+    try {
+        const favsUser = await User.findByPk(userID);
+
+        await favsUser.removeProduct(productID);
+        return res.status(200).send({msg: "Producto eliminado de Favoritos"});
+
     } catch (error) {
         return res.status(400).send({ msg: error.message });
     }

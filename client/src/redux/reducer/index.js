@@ -16,7 +16,10 @@ import {
   SESSION,
   SET_SEARCH_STATUS,
   RESET_FILTER_ORDER,
-  ADD_ONE_FROM_CART
+  ADD_ONE_FROM_CART,
+  GET_FAVORITES,
+  REMOVE_FAVORITE,
+  ADD_FAVORITE
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -45,6 +48,7 @@ const initialState = {
       : JSON.parse(localStorage.getItem("cart"))),
   ],
   isSearchActive:false,
+  favs: []
 };
 
 
@@ -199,6 +203,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         filters:[],
         orderBy:''
+      }
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favs: action.payload
+      }
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        favs: state.favs.filter((f) => f.id !== action.payload)
+    }
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favs: [...state.favs, action.payload]
       }
     default:
       return state;

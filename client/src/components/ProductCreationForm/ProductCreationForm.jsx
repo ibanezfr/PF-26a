@@ -13,7 +13,7 @@ export default function ProductCreationForm() {
     const history = useHistory();
     const categoriesArray = useSelector((state) => state.categories);
     const sizesArray = ["S", "L", "M", "XL", "XXL"]
-    console.log(categoriesArray);
+    // console.log(categoriesArray);
     const [input, setInput] = useState({
         name: "",
         price: 0,

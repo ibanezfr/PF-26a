@@ -37,7 +37,7 @@ export default function Cart() {
 
     }
 
-    console.log("carrito: ", cart)
+    // console.log("carrito: ", cart)
     if (cart[0]) {
         var cantidadPrecio = []
         cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
