@@ -11,7 +11,7 @@ router.get("/", async(req, res) => {
     } catch (error) {
         return res.status(400).send({msg: error.message});      
     }
-});
+}); 
 
 router.post("/", async(req, res) => {
     const { name } = req.body;

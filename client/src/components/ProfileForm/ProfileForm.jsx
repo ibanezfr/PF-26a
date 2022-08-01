@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import "./ProfileForm.scss";
 import { validate } from "./validate";
 import FileBase from "react-file-base64";
+import { update_user } from "../../api_url/api_url";
 
 export default function ProfileForm() {
   const history = useHistory();
@@ -29,8 +30,10 @@ export default function ProfileForm() {
 
     try {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      await axios.put(`/auth/${localUser}`, values);
-      history.push("/profile");
+      if (localUser) {
+        await axios.put(update_user + localUser, values);
+        history.push("/profile");
+      }
     } catch (error) {
       console.log(error);
     }

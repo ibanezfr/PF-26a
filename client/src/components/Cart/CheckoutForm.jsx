@@ -13,23 +13,28 @@ import './Cart.scss'
 import axios from "axios";
 
 
-export default function CheckoutForm({ total, products }) {
+export default function CheckoutForm({ total, products, shippingInfo}) {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth()
 
 
     const [loading, setLoading] = useState(false);
+    console.log(products)
     const handleSubmit = async (e) => {
       e.preventDefault();
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement),
       });
-      setLoading(true);
-  
+      setLoading(true); 
+      //console.log(user).
+      console.log(error)
       if (!error) {
+        //console.log(elements.getElement(CardElement))
+        console.log('no error')
         if(!user) window.alert('Debe loguearse para comprar')
+        
         else{
           const { id } = paymentMethod;
           try {//console.log('total', total)
@@ -40,13 +45,17 @@ export default function CheckoutForm({ total, products }) {
                 id,
                 amount: total,
                 description: products,//array de objetos product
-                user
+                user: user.uid,//le mando el objeto user
+                shippingInfo
               }
             );
             //console.log(data);
     
             elements.getElement(CardElement).clear();
-            if(data.message==='Successful Payment') window.alert('Pago exitoso')
+            if(data.message==='Successful Payment') {
+              localStorage.removeItem('cart')
+              window.alert('Pago exitoso')
+            }
             else window.alert('Hubo un error en el pago')
           } catch (error) {
             console.log(error);
@@ -55,7 +64,7 @@ export default function CheckoutForm({ total, products }) {
         setLoading(false);
       }
     };
-  
+    
     //console.log(!stripe || loading);
     //mostrar alerta de compra exitosa o fallida
     return (
@@ -64,7 +73,7 @@ export default function CheckoutForm({ total, products }) {
   
         {/* User Card Input */}
         <div className="form-group">
-          <CardElement />
+          <CardElement style/>
         </div>
   
         <button disabled={!stripe||!products.length} className="btn btn-success">
@@ -73,7 +82,7 @@ export default function CheckoutForm({ total, products }) {
               <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}
             </div>
           ) : (
-            "Buy"
+            "Comprar"
           )}
         </button>
       </form>

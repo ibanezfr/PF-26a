@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 // import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { get_one_user } from "../../api_url/api_url";
 
 import { useAuth } from "../../context/AuthContext";
 
@@ -23,37 +24,37 @@ const Profile = () => {
       console.log(error);
     }
   };
-  // const getUser = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `/auth/${user.uid}`
-  //     );
-  //     setUserDb(response.data);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   useEffect(() => {
+    let isMounted = true;
     function getUser() {
       let localUser = JSON.parse(localStorage.getItem("usuario"));
-      return `/auth/${localUser}`;
+      if (localUser) return get_one_user + localUser;
     }
     async function fetchData() {
       const result = await axios.get(getUser());
-      setUserDb(result.data);
+      if (isMounted) {
+        setUserDb(result.data);
+        console.log(userDb);
+      }
     }
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
-  console.log(userDb);
-  // console.log(user);
+
+  if (!user) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="wrapper">
       <div className="container">
         <div className="user-info">
-          <p className="title">{userDb?.email}</p>
-          {userDb.image ? (
+          <p className="title">
+            {userDb?.email} {userDb === null ? "Logeate Capo" : null}{" "}
+          </p>
+          {userDb?.image ? (
             <img src={userDb?.image} alt="" className="profile" />
           ) : (
             <FaUserCircle className="profile" />
@@ -94,7 +95,9 @@ const Profile = () => {
       <Link to="/profile/form">
         <button className="btnProfile">Edit Profile</button>
       </Link>
-      <button className="btnProfile" onClick={handleLogout}>Logout</button>
+      <button className="btnProfile" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
 
     // <div>
