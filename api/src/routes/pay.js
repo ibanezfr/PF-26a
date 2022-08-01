@@ -39,22 +39,35 @@ try {
             postalCode:shippingInfo.postalCode
           }) 
 
-          const userCompra = await Promise.all(description.map(async (p)=>{
-            return await Product.findByPk(p.id, {include:[{
-              model: Product_values,
-              where:{size:p.size},
-              attributes: ["id"],
-              through: { attributes: [] }
-            }]})
-          }))
-          //res.send(userCompra)
-          userCompra.map(async (prod, i)=>{
-            await Product_values.decrement(
-              'stock', 
-              {by:description[i].quantity,
-              where: {id:prod.product_values[0].id}})
-            //console.log(prod.product_values[0].id)
-          })
+          let userCompra=[]
+          if(description.length>1){
+            userCompra = await Promise.all(description.map(async (p)=>{
+              return await Product.findByPk(p.id, {include:[{
+                model: Product_values,
+                where:{size:p.size},
+                attributes: ["id"],
+                through: { attributes: [] }
+              }]})
+            }))
+            userCompra.map(async (prod, i)=>{
+              await Product_values.decrement(
+                'stock', 
+                {by:description[i].quantity,
+                where: {id:prod.product_values[0].id}})
+              //console.log(prod.product_values[0].id)
+            })
+          }else{
+            userCompra =await Product.findByPk(description[0].id, {include:[{
+                model: Product_values,
+                where:{size:description[0].size},
+                attributes: ["id"],
+                through: { attributes: [] }
+              }]})
+            let aux = []
+            aux.push(userCompra)
+            userCompra = aux
+            
+          }
           
           let productosComprados = []
           for (let i=0; i<userCompra.length; i++){
