@@ -11,7 +11,7 @@ const { getProducts } = require("./src/middlewares/middlewares");
 // }); 
 
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, () => {
+  server.listen(process.env.PORT, async() => {
     await getProducts();
     console.log("%s listening at 3000"); // eslint-disable-line no-console
   });
