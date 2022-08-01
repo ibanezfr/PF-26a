@@ -20,6 +20,7 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
 
 
     const [loading, setLoading] = useState(false);
+    console.log(products)
     const handleSubmit = async (e) => {
       e.preventDefault();
       const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -27,9 +28,11 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
         card: elements.getElement(CardElement),
       });
       setLoading(true); 
-      console.log(user)
+      //console.log(user).
+      console.log(error)
       if (!error) {
-        console.log(elements.getElement(CardElement))
+        //console.log(elements.getElement(CardElement))
+        console.log('no error')
         if(!user) window.alert('Debe loguearse para comprar')
         
         else{
@@ -46,7 +49,7 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
                 shippingInfo
               }
             );
-            console.log(data);
+            //console.log(data);
     
             elements.getElement(CardElement).clear();
             if(data.message==='Successful Payment') {
@@ -70,7 +73,7 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
   
         {/* User Card Input */}
         <div className="form-group">
-          <CardElement />
+          <CardElement style/>
         </div>
   
         <button disabled={!stripe||!products.length} className="btn btn-success">

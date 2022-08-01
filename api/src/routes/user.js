@@ -32,7 +32,7 @@ promedio
 
 router.get('/compras/all', async (req, res)=>{
   let allOrders = await Sell_order.findAll({include: User})
-  console.log(allOrders)
+  //console.log(allOrders)
   return res.send(allOrders)
 })
 
@@ -40,7 +40,7 @@ router.get('/compras/all', async (req, res)=>{
 router.get('/compras/:id',async (req,res)=>{
   let user = req.params.id;
   user = await User.findByPk(user, {include: Sell_order})
-  console.log(user)
+  //console.log(user)
   user = user.dataValues.sell_orders.map(order=>{
     return{
       id:order.id,

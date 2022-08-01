@@ -33,10 +33,7 @@ const login = async (req, res, next) => {
         image: image,
       },
     });
-    // if (userExist.banned === true) {
-    //   return res.status(203).send("Your account have been suspended...");
-    // }
-    console.log(userExist);
+    //console.log(userExist);
     res.status(200).send(userExist);
   } catch (error) {
     console.log(error);
