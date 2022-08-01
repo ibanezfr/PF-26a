@@ -375,6 +375,8 @@ router.put("/update/:id", async (req, res) => {
   }
 })
 
+// ------- Rutas para las Q&A -------------
+
 router.get("/q&a/:id", async(req, res) => {
   const {id} = req.params;
   const product = await Product.findByPk(id, {

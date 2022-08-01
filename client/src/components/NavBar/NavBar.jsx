@@ -9,7 +9,6 @@ import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
-// import { MdDashboardCustomize } from "react-icons/md";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -63,6 +62,9 @@ function NavBar() {
               )}
               <Nav.Link href="/profile" className="navText">
                 Perfil
+              </Nav.Link>
+              <Nav.Link href="/admin/home" className="navText">
+                Admin Dashboard
               </Nav.Link>
               <NavDropdown.Divider />
             </NavDropdown>

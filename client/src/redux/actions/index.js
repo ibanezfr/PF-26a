@@ -36,8 +36,7 @@ export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
-
-export const SESSION = "SESSION"
+export const SESSION = "SESSION";
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
@@ -240,6 +239,7 @@ export const loginCheck = (dispatch) => {
     });
   }
 };
+
 export function fetchUsers() {
   return async function (dispatch) {
     const result = await axios.get(fetch_users_action);
