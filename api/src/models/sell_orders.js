@@ -45,7 +45,16 @@ module.exports = (sequelize) => {
         street: {
             type: DataTypes.STRING,
             defaultValue: ""
-        },/* 
+        },
+        postalCode: {
+            type: DataTypes.STRING,
+            defaultValue: ''
+        },
+        phoneNumber:{
+            type: DataTypes.STRING,
+            defaultValue: ''
+        },
+        /* 
         paymentStatus: {
             type: DataTypes.ENUM("pending", "completed", "canceled"),
             defaultValue: "pending"

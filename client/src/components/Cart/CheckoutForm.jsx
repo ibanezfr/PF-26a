@@ -13,7 +13,7 @@ import './Cart.scss'
 import axios from "axios";
 
 
-export default function CheckoutForm({ total, products }) {
+export default function CheckoutForm({ total, products, shippingInfo}) {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth()
@@ -26,10 +26,12 @@ export default function CheckoutForm({ total, products }) {
         type: "card",
         card: elements.getElement(CardElement),
       });
-      setLoading(true);
-  
+      setLoading(true); 
+      console.log(user)
       if (!error) {
+        console.log(elements.getElement(CardElement))
         if(!user) window.alert('Debe loguearse para comprar')
+        
         else{
           const { id } = paymentMethod;
           try {//console.log('total', total)
@@ -40,7 +42,8 @@ export default function CheckoutForm({ total, products }) {
                 id,
                 amount: total,
                 description: products,//array de objetos product
-                user: user.uid//le mando el objeto user
+                user: user.uid,//le mando el objeto user
+                shippingInfo
               }
             );
             console.log(data);
@@ -58,7 +61,7 @@ export default function CheckoutForm({ total, products }) {
         setLoading(false);
       }
     };
-  
+    
     //console.log(!stripe || loading);
     //mostrar alerta de compra exitosa o fallida
     return (

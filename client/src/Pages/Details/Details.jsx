@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, bringSize, cleanProduct, getProductsById } from "../../redux/actions";
+import { addToCart, bringAnswers, bringQandA, bringSize, getProductsById } from "../../redux/actions";
 import './Detail.scss'
+import './QandA.scss'
 // import { formatNumber } from "../../Utils";
 import heart from '../../images/heart.png'
 import Carousel from 'react-bootstrap/Carousel';
@@ -15,13 +16,20 @@ export default function Details() {
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
+  let QandA = useSelector(state => state.infoQuestion)
+  let answers = useSelector(state => state.infoAnswer);
 
 
   useEffect(() => {
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
+    dispatch(bringQandA(params.id))
+    dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [dispatch, cart]);
+
+
+  console.log("qanda: ", QandA)
 
 
   const [newCart, setNewCart] = useState({
@@ -145,7 +153,17 @@ export default function Details() {
       </div>
       <div>
         <QuestionForm/>
-
+        {/* <div className="QandAMaxContainer">
+          <h2 className="titleQuestion">También preguntaron:</h2>
+          {
+                QandA ? QandA.map((m, index) => {
+                  return (
+                    (index % 2) === 0 ? <div className="QandAContainer"><div className="question"><h2>{m}</h2><p>{QandA[index+1]}</p></div>
+                   <div className="answer"><p>{answers[index]}</p></div> </div> : null
+                  )
+                }) : <div className="questionNull">No hay preguntas</div>
+              }
+        </div> */}
       </div>
     </div>
   )

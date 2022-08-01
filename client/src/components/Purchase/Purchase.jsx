@@ -1,13 +1,17 @@
-import { Elements } from "@stripe/react-stripe-js";
+import { Elements,
+    CardElement,
+    useStripe,
+    useElements,} from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import CheckoutForm from "../Cart/CheckoutForm"
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
+import {formatNumber} from '../../Utils/index'
 
 
 
-const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRQYImFmTBLwYKDGGcm8FGuW5bCepjRqE969YH6eAoS8q7mhBpAkXYPYH9T002QhQfVXDcGd7w00kRYp2bdI");
+const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksAHJoCUcIdwVVJCSr5wSzYHQAH6s0GEYcWZtfKa6SnAUrpIBtAYVc00IIKUjC8f");
 
 
 export default function Purchase() {
@@ -65,14 +69,14 @@ export default function Purchase() {
                 <div className="containerPayment">
                     <div className="row h-100">
                         <div className="col-md-4 offset-md-4 h-100">
-                            <CheckoutForm total={precioTotal} products={cart} shippingInfo={info}/>
+                            <CheckoutForm total={formatNumber(precioTotal)} products={cart} shippingInfo={info}/>
                         </div>
                     </div>
                 </div>
             </Elements>
             </div>
             <div>
-                <h2>Precio total: ${precioTotal}</h2>
+                <h2>Precio total: ${precioTotal?formatNumber(precioTotal):0}</h2>
                 <Link to='/cart'><button>Volver al carrito</button></Link>
             </div>
 
