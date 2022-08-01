@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetch_users_action } from "../../api_url/api_url";
 export const GET_BY_ID = "GET_BY_ID";
 export const CLEAN_PRODUCT = "CLEAN_PRODUCT";
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
@@ -33,22 +34,21 @@ export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
-export const SET_SEARCH_STATUS = 'SET_SEARCH_STatus';
-export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
-
-export const SESSION = "SESSION"
+export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
+export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
+export const SESSION = "SESSION";
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post(URL_FOR_POST_PRODUCT, payload)
+      const response = await axios.post(URL_FOR_POST_PRODUCT, payload);
       console.log(response);
       return response;
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 //QandA
 export function getQandA (idProduct, obj){
@@ -99,22 +99,22 @@ export function clearCart() {
 }
 
 export function deleteFromCart(data) {
-    return {
-      type: REMOVE_FROM_CART,
-      payload: data,
-    };
+  return {
+    type: REMOVE_FROM_CART,
+    payload: data,
+  };
 }
-export function changeQuantity (data, boolean) {
+export function changeQuantity(data, boolean) {
   if (boolean) {
     return {
       type: ADD_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   } else {
     return {
       type: REMOVE_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   }
 }
 
@@ -240,6 +240,13 @@ export const loginCheck = (dispatch) => {
   }
 };
 
+export function fetchUsers() {
+  return async function (dispatch) {
+    const result = await axios.get(fetch_users_action);
+    return dispatch({ type: "FETCH_USERS", payload: result.data });
+  };
+}
+
 export function setOrder(order) {
   return function (dispatch) {
     dispatch({
@@ -253,15 +260,15 @@ export function setSearchStatus(status) {
   return function (dispatch) {
     dispatch({
       type: SET_SEARCH_STATUS,
-      payload: status
-    })
-  }
+      payload: status,
+    });
+  };
 }
 
 export function resetFilterOrder() {
   return function (dispatch) {
     dispatch({
       type: RESET_FILTER_ORDER,
-    })
-  }
+    });
+  };
 }

@@ -6,19 +6,18 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
 import SearchBar from "../Search/Search";
-import './NavBar.css'
-import {useDispatch} from 'react-redux'
+import "./NavBar.css";
+import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
 
 function NavBar() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { user, logout } = useAuth();
 
-  function resetFilterOrderSearch () {
+  function resetFilterOrderSearch() {
     dispatch(setSearchStatus(false));
-    localStorage.removeItem('filter');//ver que onda aca
-    localStorage.removeItem('order');
+    localStorage.removeItem("filter"); //ver que onda aca
+    localStorage.removeItem("order");
   }
 
   const handleLogout = async (e) => {
@@ -30,6 +29,7 @@ function NavBar() {
       console.log(error);
     }
   };
+
   return (
     <Navbar className="NavBar" bg="light" expand="lg">
       <Container fluid>
@@ -45,7 +45,11 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link className="navText" href="/" onClick={resetFilterOrderSearch()}>
+            <Nav.Link
+              className="navText"
+              href="/"
+              onClick={resetFilterOrderSearch()}
+            >
               Inicio
             </Nav.Link>
             <NavDropdown title="Usuario" id="navbarScrollingDropdown">
@@ -59,9 +63,13 @@ function NavBar() {
               <Nav.Link href="/profile" className="navText">
                 Perfil
               </Nav.Link>
+              <Nav.Link href="/admin/home" className="navText">
+                Admin Dashboard
+              </Nav.Link>
               <NavDropdown.Divider />
             </NavDropdown>
           </Nav>
+
           <SearchBar />
         </Navbar.Collapse>
       </Container>

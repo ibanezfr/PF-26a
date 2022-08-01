@@ -29,7 +29,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
     });
 
     
-    console.log("antes del handleChange: ", newCart)
+    // .log("antes del handleChange: ", newCart)
 
     const handleSize = (e) => {
         e.preventDefault();
@@ -67,7 +67,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         });
       };
 
-      console.log("despues del handleChange: ", newCart)
+    //   console.log("despues del handleChange: ", newCart)
 
     return (
         <>

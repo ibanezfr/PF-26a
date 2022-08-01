@@ -112,7 +112,7 @@ router.get('/size/:id', async (req, res, next) => {
         array.push(stockMaped[i])
       }
 
-      console.log("array: ", array);
+      // console.log("array: ", array);
       // const maped2 = maped[0]
       // const split = maped2.split(/\s*,\s*/)
 
