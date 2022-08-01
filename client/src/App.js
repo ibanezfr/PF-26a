@@ -12,7 +12,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Cart from "./components/Cart/Cart";
 import Login from "./Pages/Auth/Login/Login";
 import Register from "./Pages/Auth/Register/Register";
-// import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import ProfileForm from "./components/ProfileForm/ProfileForm";
 import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
@@ -56,7 +56,6 @@ function App() {
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={List} />
           <Route path="/admin/creation" component={ProductCreationForm} />
-          {/* <Footer /> */}
 
           <ProtectedRoutes>
             <Route path="/profile" exact>
@@ -65,6 +64,7 @@ function App() {
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
