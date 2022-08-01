@@ -1,8 +1,7 @@
-
 const products = require("../../../Pruebas/products.json");
 const { Op } = require("sequelize");
-const { Product, Category, Review } = require("../db");
-
+const { Product, Category, Review, Product_values } = require("../db");
+const nodemailer = require("nodemailer");
 
 async function getProducts() {
   const findCreated = await Product.findAll({ where: { created: true } });
@@ -18,12 +17,28 @@ async function getProducts() {
         image2: products[i].image2,
         image3: products[i].image3,
         image4: products[i].image4,
-        stock: products[i].stock,
         status: products[i].status,
-        size: products[i].size,
         color: products[i].color,
         db: true,
       });
+
+      // const mappedStock = product_values.map(m => m.stock)
+      // const mappedSize = product_values.map(m => m.size)
+
+      var obj = [];
+
+      for(j=0; j<products[i].product_values.length; j++){
+        // const valueStock= products[i].product_values[j]
+        // const mappedStock = valueStock.map(m => m.stock)
+        // const mappedSize = valueStock.map(m => m.size)
+        obj = await Product_values.create({
+          stock: products[i].product_values[j].stock,
+          size: products[i].product_values[j].size
+        });
+  
+        // console.log("obj en el for: ", obj)
+        await newProduct.addProduct_values(obj)
+      }
       
       for (let j = 0; j < products[i].categories.length; j++) {
         let cat = await Category.findOne({
@@ -49,7 +64,33 @@ async function getProducts() {
   return { msg: "Ok" };
 }
 
+async function mailPayment(recipient, id,mensaje) {
+ 
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.GOOGLE_MAIL_APP,
+      pass: process.env.GOOGLE_MAIL_APP_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  // send mail with defined transport object
+  await transporter.sendMail({
+    from: "kilt indumentaria kilt.indumentaria@gmail.com",
+    to: recipient, // list of receivers
+    subject: `Orden N°: -${id}- ✔`, // Subject line
+    text: mensaje, // plain text body
+    html: mensaje, // html body
+  });
+ 
+}
+
 module.exports = {
-  getProducts
+  getProducts,
+  mailPayment
 
 }

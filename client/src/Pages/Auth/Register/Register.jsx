@@ -26,18 +26,18 @@ const Register = () => {
     }
     try {
       const credentials = await signup(newUser.email, newUser.password);
-      const userInDb = await axios.post(`http://localhost:3001/auth/login`, {
+      const userInDb = await axios.post(`http://localhost:3001/auth/register`, {
         id: credentials.user.uid,
         name: credentials.user.displayName,
         email: credentials.user.email,
         image: credentials.user.photoURL,
       });
-      if (userInDb.data[0].banned) return alert("Baneado lince");
+      console.log(userInDb);
       if (credentials.user.uid) {
         localStorage.setItem("usuario", JSON.stringify(credentials.user.uid));
       }
 
-      history.push("/login");
+      history.push("/");
     } catch (error) {
       if (
         error.code === "auth/invalid-email" ||

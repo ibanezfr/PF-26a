@@ -1,7 +1,7 @@
 const { User } = require("../db");
 
 const register = async (req, res, next) => {
-  const { id, fullName, email } = req.body;
+  const { id, fullName, email, image } = req.body;
   try {
     const userExist = await User.findOne({ where: { email: email } });
     if (!userExist) {
@@ -9,6 +9,7 @@ const register = async (req, res, next) => {
         id: id,
         email: email,
         fullName: fullName,
+        image: image,
       });
     }
     return res.status(200).send({ msg: "Signed in Successfully" });
@@ -18,21 +19,25 @@ const register = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  const { fullName, email, id } = req.body;
+  const { fullName, email, id, image } = req.body;
 
   try {
+    // const userBanned = await User.findOne({ where: { id: id } });
+
     const userExist = await User.findOrCreate({
-      where: { id: id },//uuid de firebase
+      where: { id: id }, //uuid de firebase
       defaults: {
         email: email,
         fullName: fullName,
         id: id,
+        image: image,
       },
     });
-    console.log(userExist);
+    //console.log(userExist);
     res.status(200).send(userExist);
   } catch (error) {
-    next(error);
+    console.log(error);
+    // next(error);
   }
 };
 
@@ -87,9 +92,24 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+const checkAccount = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findOne({ where: { id: id } });
+
+    if (user.banned === true) {
+      return res.status(203).send(true);
+    }
+    res.status(200).send("Podes pasar pibe");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   register,
   login,
   getUser,
   updateUser,
+  checkAccount,
 };

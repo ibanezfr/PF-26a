@@ -10,24 +10,36 @@ import {
   SET_PRODUCTS_TO_DISPLAY,
   ADD_TO_CART,
   REMOVE_ONE_FROM_CART,
-  REMOVE_ALL_FROM_CART,
+  REMOVE_FROM_CART,
   CLEAR_CART,
   SET_ORDER,
+  // SESSION,
+  SET_SEARCH_STATUS,
+  RESET_FILTER_ORDER,
+  ADD_ONE_FROM_CART,
+  POST_PRDUCT,
+  GET_Q_AND_A,
+  GET_INFO_Q_AND_A,
+  GET_ANSWERS
 } from "../actions/index";
+import { filterCart, filterProducts } from "../../Utils";
+import { orderProducts } from "../../Utils";
 
 const initialState = {
   products: [],
-  detail: [],
+  detail: {},
   searchProducts: [],
   size: [],
-  displayedProducts: [],
+  displayedProducts: [], //los productos que se van mostrando de acuerdo a los filtros
   filters: [
     ...(JSON.parse(localStorage.getItem("filter")) === null
       ? []
       : JSON.parse(localStorage.getItem("filter"))),
   ],
   categories: [],
-  orderBy: "",
+  orderBy: (JSON.parse(localStorage.getItem("order")) === null
+    ? ''
+    : JSON.parse(localStorage.getItem("order"))),
   user: [],
   userInfo: [],
   session: false,
@@ -36,10 +48,19 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem("cart"))),
   ],
+  question: [],
+  infoQuestion: [],
+  infoAnswer: [],
+  isSearchActive: false,
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case POST_PRDUCT:
+      return {
+        ...state,
+      };
     case FETCH_PRODUCTS:
       return {
         ...state,
@@ -52,25 +73,31 @@ function rootReducer(state = initialState, action) {
         categories: action.payload,
       };
     case ADD_FILTER:
+      var aux = [...state.filters, action.payload];
+      var producto = filterProducts(state.products, aux);
       return {
         ...state,
-        filters: [...state.filters, action.payload],
+        filters: aux,
+        displayedProducts: producto,
       };
     case REMOVE_FILTER:
+      var auxs = state.filters.filter((fil) => fil !== action.payload);
+      var producto2 = filterProducts(state.products, auxs)
       return {
         ...state,
-        filters: state.filters.filter((fil) => fil !== action.payload),
+        filters: auxs,
+        displayedProducts: producto2
       };
     case SET_PRODUCTS_TO_DISPLAY:
       return {
         ...state,
-        displayedProducts: action.payload,
+        // displayedProducts: action.payload,
       };
     case FETCH_BY_NAME:
-      if (!action.payload[0]) alert("Producto no encontrado");
       return {
         ...state,
         searchProducts: action.payload,
+        displayedProducts: action.payload, //edite agus
       };
     case GET_BY_ID:
       return {
@@ -80,7 +107,7 @@ function rootReducer(state = initialState, action) {
     case CLEAN_PRODUCT:
       return {
         ...state,
-        detail: [],
+        detail: {},
       };
     case GET_SIZE:
       return {
@@ -92,6 +119,13 @@ function rootReducer(state = initialState, action) {
     //   localStorage.clear();
     //   return { ...state };
 
+    case "FETCH_USERS": {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+
     case "SESSION":
       return {
         ...state,
@@ -100,50 +134,61 @@ function rootReducer(state = initialState, action) {
       };
 
     case ADD_TO_CART:
-      let newItem = state.products.find((p) => p.id === action.payload);
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
-      if (
-        itemInCart !== undefined &&
-        itemInCart.quantity === itemInCart.stock
-      ) {
-        alert("Limite de producto alcanzado");
-        return state;
-      }
+      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+      
+    
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? // && item.stock > newItem.quantity
-                  { ...item, quantity: item.quantity + 1 }
+              (item.id === action.payload.id && item.size === action.payload.size)
+                ?  {...item, quantity: action.payload.quantity}
                 : item
-            ),
+            )
           }
         : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
+          ...state,
+          cart: [...state.cart, { ...action.payload }],
+        };
 
     case REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       return itemToDelete.quantity > 1
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === action.payload
+              item.id === action.payload.id && item.size === action.payload.size
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
-            ),
+            )
           }
         : {
             ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
+            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
           };
 
-    case REMOVE_ALL_FROM_CART:
+    case ADD_ONE_FROM_CART:
+      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+      if  (productAdd.quantity === productAdd.stock) {
+        alert("limite alcanzado")
+        return {...state}
+      }
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart.map((item) =>
+        item.id === action.payload.id && item.size === action.payload.size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+      }
+
+    case REMOVE_FROM_CART:
+      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size);
+      state.cart.splice(indexRemove,1);
+      
+      return {
+        ...state,
+        cart: [...state.cart]
       };
     case CLEAR_CART:
       return {
@@ -152,11 +197,47 @@ function rootReducer(state = initialState, action) {
       };
 
     case SET_ORDER:
+      let prod = state.displayedProducts;
+      if (state.isSearchActive) {
+        prod = state.searchProducts;
+      }
+
+      prod = orderProducts(prod, action.payload); //quiero ordenar lo que se ve
+
       return {
         ...state,
         orderBy: action.payload,
+        displayedProducts: prod,
       };
+    case SET_SEARCH_STATUS:
+      return {
+        ...state,
+        isSearchActive: action.payload,
+      };
+    case RESET_FILTER_ORDER:
+      return {
+        ...state,
+        filters: [],
+        orderBy: ''
+      }
 
+    case GET_Q_AND_A: 
+    return{
+      ...state,
+      question: action.payload
+    }
+
+    case GET_INFO_Q_AND_A:
+      return{
+        ...state,
+        infoQuestion: action.payload
+      }
+    
+    case GET_ANSWERS:
+      return{
+        ...state,
+        infoAnswer: action.payload
+      }
     default:
       return state;
   }
