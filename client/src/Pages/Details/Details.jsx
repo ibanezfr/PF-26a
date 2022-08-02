@@ -16,8 +16,8 @@ export default function Details() {
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
-  let QandA = useSelector(state => state.infoQuestion)
-  let answers = useSelector(state => state.infoAnswer);
+  // let QandA = useSelector(state => state.infoQuestion)
+  // let answers = useSelector(state => state.infoAnswer);
 
 
   useEffect(() => {
@@ -26,10 +26,10 @@ export default function Details() {
     dispatch(bringQandA(params.id))
     dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [dispatch, cart]);
+  }, [dispatch, cart, params.id]);
 
 
-  console.log("qanda: ", QandA)
+  // console.log("qanda: ", QandA)
 
 
   const [newCart, setNewCart] = useState({
@@ -71,7 +71,7 @@ export default function Details() {
       dispatch(addToCart(newCart));
     };
   };
-
+  console.log("soy detalle")
   return (
     <div className="father">
       <div className="containerDetail">
@@ -152,7 +152,7 @@ export default function Details() {
         </div>
       </div>
       <div>
-        <QuestionForm/>
+        <QuestionForm />
         {/* <div className="QandAMaxContainer">
           <h2 className="titleQuestion">También preguntaron:</h2>
           {
