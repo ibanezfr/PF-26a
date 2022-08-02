@@ -48,7 +48,11 @@ const initialState = {
       : JSON.parse(localStorage.getItem("cart"))),
   ],
   isSearchActive:false,
-  favs: []
+  favs: [
+    ...(JSON.parse(localStorage.getItem('fav') === null)
+      ? []
+      : JSON.parse(localStorage.getItem('fav')))
+  ]
 };
 
 
@@ -210,11 +214,13 @@ function rootReducer(state = initialState, action) {
         favs: action.payload
       }
     case REMOVE_FAVORITE:
+      localStorage.setItem('fav', JSON.stringify(state.favs.filter((f) => f.id !== action.payload)));
       return {
         ...state,
         favs: state.favs.filter((f) => f.id !== action.payload)
     }
     case ADD_FAVORITE:
+      localStorage.setItem('fav', JSON.stringify([...action.payload]));
       return {
         ...state,
         favs: [...action.payload]
