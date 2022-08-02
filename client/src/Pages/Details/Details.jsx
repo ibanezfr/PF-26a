@@ -9,8 +9,6 @@ import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
 import QuestionForm from "./QuestionForm";
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstrap/Button';
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 
@@ -119,7 +117,16 @@ export default function Details() {
   const hanldeSubmit = (e) => {
     e.preventDefault();
     if (newCart.size === "" || newCart.quantity === 0) {
-      alert("selecciona un talle y una cantidad");
+      // alert("selecciona un talle y una cantidad");
+      Swal.fire({
+        title: 'Seleccioná un talle y una cantidad para continuar',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
     } else {
       dispatch(addToCart(newCart));
     };
