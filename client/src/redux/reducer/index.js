@@ -217,7 +217,7 @@ function rootReducer(state = initialState, action) {
     case ADD_FAVORITE:
       return {
         ...state,
-        favs: [...state.favs, action.payload]
+        favs: [...action.payload]
       }
     default:
       return state;

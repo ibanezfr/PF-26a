@@ -243,7 +243,7 @@ export const addFavsToUser = (data) => {
     let pedido = await axios.post(URL_POST_FAVORITE, data)
     dispatch({
       type:ADD_FAVORITE,
-      payload: pedido.data.res.products[0]
+      payload: pedido.data.res.products
     });
   };
 };
