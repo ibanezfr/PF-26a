@@ -49,7 +49,6 @@ export default function Purchase() {
             [e.target.name]: e.target.value
         });
     }
-
     //console.log("Datos del form: ", info)
     console.log()
 

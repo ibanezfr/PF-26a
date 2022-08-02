@@ -2,17 +2,19 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
 import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
+import Swal from 'sweetalert2'
 
 function NavBar() {
   const dispatch = useDispatch();
   const { user, logout } = useAuth();
+  const history = useHistory();
 
   function resetFilterOrderSearch() {
     dispatch(setSearchStatus(false));
@@ -29,6 +31,22 @@ function NavBar() {
       console.log(error);
     }
   };
+
+  function handleFavs() {
+    user ? history.push("/favorites") : Swal.fire({
+      title: 'No estás logueado',
+      text: "Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iniciar sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/login")
+      }
+    })
+  } 
 
   return (
     <Navbar className="NavBar" bg="light" expand="lg">
@@ -69,7 +87,9 @@ function NavBar() {
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
-
+          <Nav.Link className="navText" onClick={() => handleFavs()}>
+            Favoritos
+          </Nav.Link>
           <SearchBar />
         </Navbar.Collapse>
       </Container>

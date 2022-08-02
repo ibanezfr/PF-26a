@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect, useParams, useHistory } from 'react-router-dom';
@@ -7,14 +6,13 @@ import { bringSize, cleanProduct, getProductsById, deleteFromCart, clearCart, ad
 //import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
-    //   const [show, setShow] = useState(false);
-    // const params = useParams();
+ 
     const dispatch = useDispatch();
 
     let size = useSelector(state => state.size)
 
     useEffect(() => {
-        dispatch(getProductsById(id))
+        // dispatch(getProductsById(id)) igual funciona y evita la carga del estado
         dispatch(bringSize(id))
     }, [dispatch]);
 
@@ -53,7 +51,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
           } else {
             dispatch(clearCart())
             dispatch(addToCart(newCart));
-            // setShow(false)
             history.push('/purchase')
           };
         
@@ -71,10 +68,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
 
     return (
         <>
-            {/* <Button variant="primary" onClick={() => setShow(true)}>
-        Custom Width Modal
-      </Button> */}
-
             <Modal
                 show={show}
                 onHide={() => setShow(false)}
@@ -89,7 +82,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                 <Modal.Body>
                     <div>
                         <h2>{name}</h2>
-                        <img src={image} width="400px" height="400px" />
+                        <img src={image} width="400px" height="400px" alt='Not Found'/>
                         <h4>{price}</h4>
                     </div>
                     <div>
