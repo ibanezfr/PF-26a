@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./SidebarAdmin.scss";
 import {
   MdDashboardCustomize,
@@ -8,73 +8,97 @@ import {
   MdQueryStats,
   MdNotifications,
 } from "react-icons/md";
+import { AiOutlineForm } from "react-icons/ai";
 import { SiLogstash, SiProducthunt } from "react-icons/si";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
+import { useAuth } from "../../../context/AuthContext";
+
 const SidebarAdmin = () => {
+  const history = useHistory();
+
+  const { logout } = useAuth();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      localStorage.clear();
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">Admin Panel</span>
+        <span className="logo">Panel del administrador</span>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">Principal</p>
           <li>
             <MdDashboardCustomize className="icons" />
             <span>Dashboard</span>
           </li>
-          <p className="title">LISTS</p>
+          <p className="title">LISTAS</p>
 
           <li>
-            <FaUserCircle className="icons" />
-            <span>Users</span>
+            <Link to="/admin/users">
+              <FaUserCircle className="icons" />
+              <span>Usuarios</span>
+            </Link>
           </li>
           <li>
-            <Link to="/admin/creation">
+            <Link to="/admin/products" className="link">
               <SiProducthunt className="icons" />
-              <span>Products</span>
+              <span>Productos</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin/creation" className="link">
+              <AiOutlineForm className="icons" />
+              <span>Formulario de creación</span>
             </Link>
           </li>
           <li>
             <FaShoppingCart className="icons" />
-            <span>Orders</span>
+            <span>Órdenes</span>
           </li>
           <li>
             <MdSettings className="icons" />
-            <span>Settings</span>
+            <span>Configuración</span>
           </li>
-          <p className="title">USEFUL</p>
+          <p className="title">Útiles</p>
 
           <li>
             <MdQueryStats className="icons" />
-            <span>Stats</span>
+            <span>Estadísticas</span>
           </li>
           <li>
             <MdNotifications className="icons" />
-            <span>Notifications</span>
+            <span>Notificaciones</span>
           </li>
-          <p className="title">SERVICE</p>
+          <p className="title">SERVICIO</p>
 
           <li>
             <MdSettingsSystemDaydream className="icons" />
-            <span>System</span>
+            <span>Sistema</span>
           </li>
-          <li>
-            <SiLogstash className="icons" />
-            <span>Logs</span>
-          </li>
-          <p className="title">USER</p>
+          <p className="title">USUARIO</p>
 
           <li>
-            <ImProfile className="icons" />
-            <span>Profile</span>
+            <Link to="/profile">
+              <ImProfile className="icons" />
+              <span>Perfil</span>
+            </Link>
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <RiLogoutBoxFill className="icons" />
-            <span>Logout</span>
+            <span>Salir</span>
           </li>
         </ul>
       </div>

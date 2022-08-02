@@ -1,28 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
+import { addToCart, bringAnswers, bringQandA, bringSize, getProductsById, addFavsToUser, getFavsFromUser, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
-import { formatNumber } from "../../Utils";
+import './QandA.scss'
+// import { formatNumber } from "../../Utils";
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
+import QuestionForm from "./QuestionForm";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();
   const { user } = useAuth();
-  
-  let actualProduct = useSelector(state => state.detail);
-  let size = useSelector(state => state.size);
-  let cart = useSelector(state => state.cart);
-  
+  let actualProduct = useSelector(state => state.detail)
+  let size = useSelector(state => state.size)
+  let cart = useSelector(state => state.cart)
+  // let QandA = useSelector(state => state.infoQuestion)
+  // let answers = useSelector(state => state.infoAnswer);
   let favs = useSelector(state => state.favs);
   var isFavorite = favs.find((f) => f.id === params.id);
 
   const [position, setPosition] = useState(0);
+
+
+  useEffect(() => {
+    handleFavs();
+    dispatch(getProductsById(params.id))
+    dispatch(bringSize(params.id))
+    dispatch(bringQandA(params.id))
+    dispatch(bringAnswers(params.id))
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [dispatch, cart, params.id]);
+
+
+  // console.log("qanda: ", QandA)
+
+
   const [newCart, setNewCart] = useState({
     id: "",
     name: "",
@@ -33,12 +49,6 @@ export default function Details() {
     quantity: 0
   });
 
-  useEffect(() => {
-    handleFavs();
-    dispatch(getProductsById(params.id));
-    dispatch(bringSize(params.id));
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [dispatch, cart]);
 
   const handleFavs = () => {
     if(user) {
@@ -72,23 +82,23 @@ export default function Details() {
     });
   };
 
-  const handleChange = (e)=>{
+  const handleChange = (e) => {
     e.preventDefault();
-    setNewCart({     
+    setNewCart({
       ...newCart,
       quantity: parseInt(e.target.value)
     });
   };
 
-  const hanldeSubmit = (e)=>{
+  const hanldeSubmit = (e) => {
     e.preventDefault();
-    if(newCart.size === "" || newCart.quantity === 0) {
+    if (newCart.size === "" || newCart.quantity === 0) {
       alert("selecciona un talle y una cantidad");
     } else {
       dispatch(addToCart(newCart));
     };
   };
-
+  
   return (
     <div className="father">
       <div className="containerDetail">
@@ -104,7 +114,50 @@ export default function Details() {
               </button> 
         }
         <div className="container1">
-          <img src={actualProduct.image} alt="not found" />
+          {/* <img src={actualProduct.image} alt="not found" /> */}
+
+
+          <Carousel fade>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={actualProduct.image}
+                alt="First slide"
+              />
+            </Carousel.Item>
+            {
+              actualProduct.image2 ?
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={actualProduct.image2}
+                    alt="Second slide"
+                  />
+                </Carousel.Item> : null
+            }
+            {
+              actualProduct.image3 ?
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={actualProduct.image2}
+                    alt="Second slide"
+                  />
+                </Carousel.Item> : null
+            }
+            {
+              actualProduct.image4 ?
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={actualProduct.image2}
+                    alt="Second slide"
+                  />
+                </Carousel.Item> : null
+            }
+          </Carousel>
+
+
           <span>Selecciona un talle</span>
           <form>
             <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
@@ -112,7 +165,7 @@ export default function Details() {
               {
                 size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                   return (
-                    (index % 2) === 0 ? <option key ={index} name={m} value={index} >{m}</option> : null
+                    (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
                   )
                 })
               }
@@ -133,20 +186,23 @@ export default function Details() {
         <div className="container2">
 
           <h2>{actualProduct.name}</h2>
-          <h2>${formatNumber(actualProduct.price)}</h2>
+          {/* <h2>${formatNumber(actualProduct.price)}</h2> */}
           <p>{actualProduct.description}</p>
         </div>
       </div>
-      <div className="formDiv">
-        <Form className="form">
-          <Form.Group className="mb-3 formGroup" controlId="Question">
-            <Form.Label className="text">Pregunta</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-            <Button className="btn" size="sm">
-              Hacer pregunta
-            </Button>
-          </Form.Group>
-        </Form>
+      <div>
+        <QuestionForm />
+        {/* <div className="QandAMaxContainer">
+          <h2 className="titleQuestion">También preguntaron:</h2>
+          {
+                QandA ? QandA.map((m, index) => {
+                  return (
+                    (index % 2) === 0 ? <div className="QandAContainer"><div className="question"><h2>{m}</h2><p>{QandA[index+1]}</p></div>
+                   <div className="answer"><p>{answers[index]}</p></div> </div> : null
+                  )
+                }) : <div className="questionNull">No hay preguntas</div>
+              }
+        </div> */}
       </div>
     </div>
   )

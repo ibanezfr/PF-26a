@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { bringSize, getProductsById, clearCart, addToCart } from '../../redux/actions';
+import { Link, Redirect, useParams, useHistory } from 'react-router-dom';
+import { bringSize, cleanProduct, getProductsById, deleteFromCart, clearCart, addToCart } from '../../redux/actions';
+//import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
  
@@ -26,7 +27,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
     });
 
     
-    // console.log("antes del handleChange: ", newCart)
+    // .log("antes del handleChange: ", newCart)
 
     const handleSize = (e) => {
         e.preventDefault();
