@@ -23,7 +23,8 @@ import {
   GET_ANSWERS,
   GET_FAVORITES,
   REMOVE_FAVORITE,
-  ADD_FAVORITE
+  ADD_FAVORITE,
+  ANSWER_QUESTION
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -244,6 +245,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         infoAnswer: action.payload
       }
+
+    case ANSWER_QUESTION:
+      return{
+        ...state,
+        question: action.payload
+      }
+
+      
     case GET_FAVORITES:
       return {
         ...state,

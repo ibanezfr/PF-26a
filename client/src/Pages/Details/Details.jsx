@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { bringAnswers, bringQandA, addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
-import { formatNumber } from "../../Utils";
+// import { formatNumber } from "../../Utils";
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -24,8 +24,8 @@ export default function Details() {
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
-  let QandA = useSelector(state => state.infoQuestion)
-  let answers = useSelector(state => state.infoAnswer);
+  // let QandA = useSelector(state => state.infoQuestion)
+  // let answers = useSelector(state => state.infoAnswer);
 
 
   const history = useHistory();
@@ -35,11 +35,11 @@ export default function Details() {
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-    dispatch(bringQandA(params.id))
-    dispatch(bringAnswers(params.id))
+    // dispatch(bringQandA(params.id))
+    // dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('favs', JSON.stringify(favs));
-  }, [cart, favs, dispatch, params.id]);
+  }, [cart, favs, params.id]);
 
 
   console.log("stateFavs: ", favs)

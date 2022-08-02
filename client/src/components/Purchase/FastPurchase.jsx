@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect, useParams, useHistory } from 'react-router-dom';
-import { bringSize, cleanProduct, getProductsById, deleteFromCart, clearCart, addToCart } from '../../redux/actions';
+import {useHistory } from 'react-router-dom';
+import { bringSize, clearCart, addToCart } from '../../redux/actions';
+import Swal from 'sweetalert2'
 //import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {

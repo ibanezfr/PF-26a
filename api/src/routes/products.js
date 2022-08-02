@@ -306,6 +306,38 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
+//----------------------------------------------RUTA PARA OCULTAR EL PRODUCTO-----------------------------
+router.put("/delete/:id", async (req, res) => {
+  const {
+    id
+  } = req.params;
+
+  try {
+    const product = await Product.findByPk(id);
+    if(product.status === "active"){
+      const newState = Product.update({
+        status: "inactive"
+      })
+      return res.status(200).send({
+        msg: "Producto deshabilitado"
+      })
+    }
+    else{
+      const newState = Product.update({
+        status: "active"
+      })
+      return res.status(200).send({
+        msg: "Producto habilitado"
+      })
+    }
+
+  } catch (error) {
+    return res.status(400).send({
+      msg: error.message
+    })
+  }
+});
+
 router.put("/update/:id", async (req, res) => {
   const {
     id
@@ -429,6 +461,7 @@ router.get("/q&a/:id", async(req, res) => {
   // console.log("qas", qas)
 })
 
+
 //GET para el id de las preguntas y respuestas
 router.get("/answer/id", async (req,res)=>{
   try{
@@ -436,6 +469,7 @@ router.get("/answer/id", async (req,res)=>{
     res.send(questions)
   }catch(err){console.log(err)}
 })
+
 //GET para las respuestas
 router.get("/answer/:id", async(req, res) => {
   const {id} = req.params;
@@ -449,7 +483,7 @@ router.get("/answer/:id", async(req, res) => {
       },
       {
         model: Qa,
-        attributes: ["title", "description", "answer", "resolved"],
+        attributes: ["id", "title", "description", "answer", "resolved"],
         through: {
           attributes: []
         },
@@ -503,15 +537,11 @@ router.post("/q&a/:idProduct", async (req, res) => {
         resolved
       })
 
-      console.log("newQuestion: ", newQuestion)
-
       const productUpdate = await Product.findOne({
         where: {
           id: idProduct
         }
       })
-
-      console.log("productUpdate: ", productUpdate)
 
       if (newQuestion) {
         await productUpdate.addQa(newQuestion);
