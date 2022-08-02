@@ -23,10 +23,10 @@ export default function Favs() {
         <>
             {
                 favs[0] ?
-                    favs.map((p) => {
+                    favs.map((p, i) => {
                         return (
                             <FavItem
-                                key={p.id}
+                                key={i}
                                 id={p.id}
                                 user={user.uid}
                                 name={p.name}

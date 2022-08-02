@@ -9,7 +9,6 @@ import heartR from "../../images/heartRemove.png";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from "../../context/AuthContext";
-import { async } from "@firebase/util";
 
 export default function Details() {
   const params = useParams();
@@ -23,6 +22,7 @@ export default function Details() {
   let favs = useSelector(state => state.favs);
   var isFavorite = favs.find((f) => f.id === params.id);
 
+  const [position, setPosition] = useState(0);
   const [newCart, setNewCart] = useState({
     id: "",
     name: "",
@@ -38,7 +38,7 @@ export default function Details() {
     dispatch(getProductsById(params.id));
     dispatch(bringSize(params.id));
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [dispatch ,cart]);
+  }, [dispatch, cart]);
 
   const handleFavs = () => {
     if(user) {
@@ -46,12 +46,13 @@ export default function Details() {
     };
   };
 
-  const handleRemoveFav = async (e) => {
+  const handleRemoveFav = (e) => {
     e.preventDefault();
     dispatch(removeFavsFromUser(user.uid, params.id));
   };
 
   const handleAddFav = (e) => {
+    if(!user) return alert("Debes logearte para usar Favoritos")
     e.preventDefault();
     let data = {userID: user.uid, productID: params.id}
     dispatch(addFavsToUser(data));
@@ -59,13 +60,14 @@ export default function Details() {
 
   const handleSize = (e) => {
     e.preventDefault();
+    setPosition(parseInt(e.target.value) + 1);
     setNewCart({
       id: actualProduct.id,
       name: actualProduct.name,
       img: actualProduct.image,
       size: size[e.target.value],
       price: actualProduct.price,
-      stock: size[1],
+      stock: size[position],
       quantity: 0
     });
   };
@@ -115,9 +117,11 @@ export default function Details() {
                 })
               }
             </select>
-            <h4>Stock: {size[1]}</h4>
+            {
+              position !== 0 && <h4>Stock: {size[position]}</h4>
+            }            
             <label>Ingresá la cantidad que buscas</label>
-            <input type="number" min={1} max={size[1]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
+            <input type="number" min={1} max={size[position]} onChange={e=>handleChange(e)} value={newCart.quantity}></input>
             <div className="btnContainer">
               <button onClick={(e) => hanldeSubmit(e)}>
                 Agregar al carrito
