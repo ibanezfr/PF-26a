@@ -15,7 +15,7 @@ export default function QuestionForm() {
     description: ""
   })
 
-  let actualProduct = useSelector(state => state.detail)
+  // let actualProduct = useSelector(state => state.detail)
   let QandA = useSelector(state => state.infoQuestion)
   let answers = useSelector(state => state.infoAnswer);
   const history = useHistory();
@@ -28,7 +28,7 @@ export default function QuestionForm() {
     dispatch(getProductsById(params.id))
     dispatch(bringQandA(params.id))
     dispatch(bringAnswers(params.id))
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -40,16 +40,16 @@ export default function QuestionForm() {
 
   }
 
-  console.log("question before", question)
+  // console.log("question before", question)
 
-  function mapState (){
+  function mapState() {
     var mappedTitle = question.title;
     var mappedDescription = question.description;
-    console.log("maped", mappedTitle, mappedDescription)
+    // console.log("maped", mappedTitle, mappedDescription)
     qState.push(mappedTitle)
     qState.push(mappedDescription)
-    
-    console.log("estado de prueba", qState)
+
+    // console.log("estado de prueba", qState)
   }
 
   const handleSubmit = (e) => {
@@ -74,7 +74,7 @@ export default function QuestionForm() {
     dispatch(mapState)
   }
 
-  console.log("question after", question)
+  // console.log("question after", question)
 
   return (
     <div className="formDiv">

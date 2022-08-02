@@ -45,7 +45,6 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
-          <Route path="/purchase" component={Purchase} />
           <Route path="/details/:id" component={Details} />
 
           {/* AUTHENTICATION ROUTES usuarios y eso */}

@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import axios from "axios";
 import { fetch_users_action } from "../../api_url/api_url";
 export const GET_BY_ID = "GET_BY_ID";
@@ -292,7 +291,7 @@ export function resetFilterOrder() {
       type: RESET_FILTER_ORDER,
     });
   };
-}
+};
 
 export const getFavsFromUser = (id) => {
   return async (dispatch) => {
@@ -319,7 +318,7 @@ export const addFavsToUser = (data) => {
     let pedido = await axios.post(URL_POST_FAVORITE, data)
     dispatch({
       type:ADD_FAVORITE,
-      payload: pedido.data.res.products[0]
+      payload: pedido.data.res.products
     });
   };
 };

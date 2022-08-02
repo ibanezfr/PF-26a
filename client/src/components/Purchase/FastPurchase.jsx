@@ -27,7 +27,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         quantity: 0
     });
 
-
     // .log("antes del handleChange: ", newCart)
 
     const handleSize = (e) => {

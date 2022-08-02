@@ -50,7 +50,6 @@ export default function Purchase() {
         });
     }
     //console.log("Datos del form: ", info)
-    console.log()
 
     return (
         <div>

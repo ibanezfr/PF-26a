@@ -8,7 +8,6 @@ const admin= require("./admin")
 const favorites = require("./favorites")
 
 
-
 router.use("/products", products);
 router.use("/categories", categories);
 router.use("/pay", pay)

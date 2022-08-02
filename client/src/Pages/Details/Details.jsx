@@ -15,21 +15,18 @@ import Swal from 'sweetalert2'
 export default function Details() {
   const params = useParams();
   const dispatch = useDispatch();
-
-  let favs = useSelector(state => state.favs);
-  var isFavorite = favs.find((f) => f.id === params.id);
   const { user } = useAuth();
-  console.log("user", user)
+  const history = useHistory();
 
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   // let QandA = useSelector(state => state.infoQuestion)
   // let answers = useSelector(state => state.infoAnswer);
+  let favs = useSelector(state => state.favs);
+  var isFavorite = favs.find((f) => f.id === params.id);
 
-
-  const history = useHistory();
-
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
     handleFavs();
@@ -38,19 +35,7 @@ export default function Details() {
     // dispatch(bringQandA(params.id))
     // dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('favs', JSON.stringify(favs));
-  }, [cart, favs, params.id]);
-
-
-  console.log("stateFavs: ", favs)
-
-
-  console.log("isFavorite", isFavorite)
-
-  const [position, setPosition] = useState(0);
-
-  // console.log("qanda: ", QandA)
-
+  }, [cart, dispatch, params.id]);
 
   const [newCart, setNewCart] = useState({
     id: "",
@@ -131,7 +116,7 @@ export default function Details() {
       dispatch(addToCart(newCart));
     };
   };
-
+  
   return (
     <div className="father">
       <div className="containerDetail">
