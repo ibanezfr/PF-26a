@@ -5,7 +5,7 @@ const { getProducts } = require("./src/middlewares/middlewares");
 //con alter:true actualiza las tablas con los cambios que hago en models
 
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(process.env.PORT, async() => {
     await getProducts();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
