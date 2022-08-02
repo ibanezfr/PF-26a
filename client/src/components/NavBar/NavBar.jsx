@@ -38,8 +38,8 @@ function NavBar() {
             <img src={carrito} alt="not found" width="20px" />
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
@@ -52,7 +52,7 @@ function NavBar() {
             >
               Inicio
             </Nav.Link>
-            <NavDropdown title="Usuario" id="navbarScrollingDropdown">
+            <NavDropdown title="Usuario" id="basic-nav-dropdown">
               {user ? (
                 <button onClick={handleLogout}>Logout</button>
               ) : (
@@ -66,7 +66,7 @@ function NavBar() {
               <Nav.Link href="/admin/home" className="navText">
                 Admin Dashboard
               </Nav.Link>
-              <NavDropdown.Divider />
+              {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
 
