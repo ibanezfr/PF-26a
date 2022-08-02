@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import { register_post } from '../../../api_url/api_url';
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 // import { register } from "../../../redux/actions";
@@ -26,7 +26,7 @@ const Register = () => {
     }
     try {
       const credentials = await signup(newUser.email, newUser.password);
-      const userInDb = await axios.post(`http://localhost:3001/auth/register`, {
+      const userInDb = await axios.post(register_post, {
         id: credentials.user.uid,
         name: credentials.user.displayName,
         email: credentials.user.email,

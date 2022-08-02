@@ -9,6 +9,7 @@ import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
+import Swal from 'sweetalert2'
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -32,7 +33,19 @@ function NavBar() {
   };
 
   function handleFavs() {
-    user ? history.push("/favorites") : alert("Debes logearte para acceder a favoritos")
+    user ? history.push("/favorites") : Swal.fire({
+      title: 'No estás logueado',
+      text: "Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iniciar sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/login")
+      }
+    })
   } 
 
   return (
@@ -43,8 +56,8 @@ function NavBar() {
             <img src={carrito} alt="not found" width="20px" />
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
@@ -57,7 +70,7 @@ function NavBar() {
             >
               Inicio
             </Nav.Link>
-            <NavDropdown title="Usuario" id="navbarScrollingDropdown">
+            <NavDropdown title="Usuario" id="basic-nav-dropdown">
               {user ? (
                 <button onClick={handleLogout}>Logout</button>
               ) : (
@@ -71,7 +84,7 @@ function NavBar() {
               <Nav.Link href="/admin/home" className="navText">
                 Admin Dashboard
               </Nav.Link>
-              <NavDropdown.Divider />
+              {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
           <Nav.Link className="navText" onClick={() => handleFavs()}>

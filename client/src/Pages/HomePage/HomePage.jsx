@@ -15,9 +15,9 @@ function HomePage() {
     let filters = useSelector(state => state.filters);
     let isSearchActive = useSelector(state => state.isSearchActive)
     let searchProducts = useSelector((state) => state.searchProducts)
-    let products= dispProds
+    let products = dispProds
 
-    if(isSearchActive){
+    if (isSearchActive) {
         products = searchProducts
     }
 
@@ -26,7 +26,7 @@ function HomePage() {
         //products = dispProds
     }, [cart, isSearchActive]);
 
-    if(filters.length) {
+    if (filters.length) {
         products = filterProducts(products, filters);
     };
 
@@ -48,7 +48,7 @@ function HomePage() {
     }
 
     // filter functions
-   function onClickFilter(e) {
+    function onClickFilter(e) {
         dispatch(addFilter(e.target.id))
         setCurrentPage(1)
     }
@@ -79,10 +79,12 @@ function HomePage() {
             <div className='homeContainer'>
                 <ProductsCards allProducts={currentPosts} />
                 <div className="filter-container">
-                <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products}/>
-                <Order onSelectChange={onSelectChange}/>
+                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={products} />
+                    <Order onSelectChange={onSelectChange} />
                 </div>
             </div>
+
+
         </div>
     )
 }

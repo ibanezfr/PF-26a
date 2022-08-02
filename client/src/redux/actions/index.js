@@ -276,9 +276,9 @@ export function resetFilterOrder() {
   return function (dispatch) {
     dispatch({
       type: RESET_FILTER_ORDER,
-    })
-  }
-}
+    });
+  };
+};
 
 export const getFavsFromUser = (id) => {
   return async (dispatch) => {

@@ -22,7 +22,7 @@ router.use("/auth", user);
 const {
   getAllUsers,
   setAdmin,
-  disableAccount,
+  disableAccount, 
   updateStatus,
 } = require("../controllers/admin.js");
 router.get("/admin/users", getAllUsers);
@@ -32,5 +32,5 @@ router.put("/admin/status/:id", updateStatus);
 
 router.use("/function", functionalities);
 router.use("/users", usersHandlers);
-
+ 
 module.exports = router;
