@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { bringAnswers, bringQandA, addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
-import { formatNumber } from "../../Utils";
+// import { formatNumber } from "../../Utils";
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';

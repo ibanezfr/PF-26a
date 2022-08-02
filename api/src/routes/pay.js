@@ -17,7 +17,7 @@ function formatDescription(description) {
 router.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
   const { id, amount, description, user, shippingInfo } = req.body;
-
+  console.log(description)
   try {
     const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
     if (user) {
