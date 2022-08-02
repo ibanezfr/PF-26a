@@ -6,7 +6,7 @@ import { bringSize, cleanProduct, getProductsById, deleteFromCart, clearCart, ad
 //import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
- 
+
     const dispatch = useDispatch();
 
     let size = useSelector(state => state.size)
@@ -26,7 +26,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         quantity: 0
     });
 
-    
+
     // .log("antes del handleChange: ", newCart)
 
     const handleSize = (e) => {
@@ -42,27 +42,35 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         });
     };
 
-    let history =useHistory();
+    let history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(newCart.size === "" || newCart.quantity === 0) {
-            alert("selecciona un talle y una cantidad");
-          } else {
+        if (newCart.size === "" || newCart.quantity === 0) {
+            Swal.fire({
+                title: 'Seleccioná un talle y una cantidad para continuar',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        } else {
             dispatch(clearCart())
             dispatch(addToCart(newCart));
             history.push('/purchase')
-          };
-        
+        };
+
     }
 
-    const handleChange = (e)=>{
+    const handleChange = (e) => {
         e.preventDefault();
-        setNewCart({     
-          ...newCart,
-          quantity: parseInt(e.target.value)
+        setNewCart({
+            ...newCart,
+            quantity: parseInt(e.target.value)
         });
-      };
+    };
 
     //   console.log("despues del handleChange: ", newCart)
 
@@ -82,7 +90,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                 <Modal.Body>
                     <div>
                         <h2>{name}</h2>
-                        <img src={image} width="400px" height="400px" alt='Not Found'/>
+                        <img src={image} width="400px" height="400px" alt='Not Found' />
                         <h4>{price}</h4>
                     </div>
                     <div>

@@ -56,7 +56,7 @@ export default function QuestionForm() {
     e.preventDefault();
     user ? dispatch(getQandA(params.id, question)) : Swal.fire({
       title: 'No estás logueado',
-      text: "Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+      text: "Para poder realizar una pregunta debes loguearte primero!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
