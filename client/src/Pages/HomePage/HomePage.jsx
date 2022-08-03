@@ -9,7 +9,7 @@ import { filterProducts } from '../../Utils';
 import { useTranslation } from 'react-i18next';
 
 function HomePage() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     let dispProds = useSelector(state => state.displayedProducts);
     // let orderedBy = useSelector(state => state.orderBy);

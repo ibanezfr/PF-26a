@@ -9,7 +9,7 @@ import ProductsCards from "../../components/ProductsCards/ProductsCards.jsx";
 // import { onSelectChange } from "../../Utils";
 import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
-
+import { useTranslation } from 'react-i18next';
 
 
 export default function SearchProducts() {
@@ -19,7 +19,7 @@ export default function SearchProducts() {
   // useEffect(() => {
   //   localStorage.setItem('cart', JSON.stringify(cart));
   // }, [cart])
-
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(6);
   const indexOfLastPost = currentPage * postPerPage;
@@ -31,21 +31,21 @@ export default function SearchProducts() {
     numberOfPages.push(i);
   }
 
-      //order
-    function onSelectChange(e) {
-        dispatch(setOrder(e.target.value))
-    }
+  //order
+  function onSelectChange(e) {
+    dispatch(setOrder(e.target.value))
+  }
 
-    // filter functions
-   function onClickFilter(e) {
-        dispatch(addFilter(e.target.id))
-        setCurrentPage(1)
-    }
+  // filter functions
+  function onClickFilter(e) {
+    dispatch(addFilter(e.target.id))
+    setCurrentPage(1)
+  }
 
-    function onClickFieldset(e) {
-        dispatch(removeFilter(e.target.id))
-        setCurrentPage(1)
-    }
+  function onClickFieldset(e) {
+    dispatch(removeFilter(e.target.id))
+    setCurrentPage(1)
+  }
 
   return (
     <div className="totalHomeContainer">
@@ -54,38 +54,38 @@ export default function SearchProducts() {
           className={`${currentPage === 1 ? 'disabled' : ''}`}
           onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
         >
-          Prev
+          {t('searchproducts.prev')}
         </button>
         <button>{currentPage}</button>
         <button
           className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
           onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
         >
-          Next
+          {t('searchproducts.next')}
         </button>
 
       </div>
-          {currentPosts &&
-            React.Children.toArray(
-              currentPosts.map((product) => {
-                if (product.status === "active") {
-                  return (
-                    <div className='homeContainer'>
-                      <ProductsCards allProducts={currentPosts} />
-                      <div className="filter-container">
-                          <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={searchProducts}/>
-                          <Order onSelectChange={onSelectChange}/>
-                      </div>
+      {currentPosts &&
+        React.Children.toArray(
+          currentPosts.map((product) => {
+            if (product.status === "active") {
+              return (
+                <div className='homeContainer'>
+                  <ProductsCards allProducts={currentPosts} />
+                  <div className="filter-container">
+                    <Filters onClickFilter={onClickFilter} onClickFieldset={onClickFieldset} products={searchProducts} />
+                    <Order onSelectChange={onSelectChange} />
                   </div>
+                </div>
 
-                  );
-                } else {
-                  return (
-                    <ProductNotFound/>
-                  );
-                }
-              })
-            )}
+              );
+            } else {
+              return (
+                <ProductNotFound />
+              );
+            }
+          })
+        )}
     </div>
 
 

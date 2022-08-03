@@ -11,5 +11,17 @@
     "homepage": {
         "prev": "Anterior",
         "next": "Siguiente"
+    },
+    "searchproducts": {
+        "prev": "Anterior",
+        "next": "Siguiente"
+    },
+    "carrousel": {
+        "bestoutfits": "Los mejores conjuntos.",
+        "bestdescription": "Encontralos en nuestra tienda online o en el local de lunes a viernes de 8:00AM a 6:00PM.",
+        "bestquality": "La mejor calidad de ropa.",
+        "bestOffer": "Seleccionamos cuidadosamente nuestros productos para ofrecerte lo mejor.",
+        "missIt": "¿Te lo vas a perder?",
+        "waiting": "Te esperamos esta semana para disfrutar de los mejores descuentos."
     }
 }

@@ -11,5 +11,17 @@
     "homepage": {
         "prev": "Previous",
         "next": "Next"
+    },
+    "searchproducts": {
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "carrousel": {
+        "bestoutfits": "Best outfits!",
+        "bestdescription": "Find them on our website or in person on our store from monday until friday from 8:00AM to 6:00PM.",
+        "bestquality": "Best clothes quality!",
+        "bestOffer": "We carefully chose our products to make you the best offer.",
+        "missIt": "Are you going to miss this chance?",
+        "waiting": "We will waiting for you this week to enjoy awesome discounts."
     }
 }
