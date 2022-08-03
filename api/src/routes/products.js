@@ -63,63 +63,33 @@ router.get("/", async (req, res) => {
 //GET SIZE AND STOCK BY ID:
 router.get('/size/:id', async (req, res, next) => {
   try {
-    const {
-      id
-    } = req.params;
-    const allProducts = await Product.findAll({
-      include: [{
-          model: Category,
-          attributes: ["name"],
-          through: {
-            attributes: []
-          },
-        },
-        {
-          model: Qa,
-          attributes: ["title", "description", "answer", "resolved"],
-          through: {
-            attributes: []
-          },
-        },
-        {
-          model: Review,
-          attributes: ["rating", "title", "description"],
-          through: {
-            attributes: []
-          },
-        },
+    const { id } = req.params;
+    const product = await Product.findByPk(id, {
+      include: [
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: {
-            attributes: []
-          },
+          through: { attributes: [] }
         }
-      ],
+      ]
     });
-    if (id) {
-      const filtered = await allProducts.filter((e) => e.id == id);
-
-      const sizeMaped = filtered[0].product_values.map(m => m.size)
-      const stockMaped = filtered[0].product_values.map(p => p.stock)
+    
+    const sizeMaped = product.product_values.map(m => m.size)
+    const stockMaped = product.product_values.map(p => p.stock)
       // console.log("Size: ", sizeMaped)
       // console.log("Stock: ", stockMaped)
 
-      var array = [];
+    var size_Stock = [];
 
-      for (let i = 0; i < sizeMaped.length; i++) {
-        array.push(sizeMaped[i])
-        array.push(stockMaped[i])
-      }
-
-      //console.log("array: ", array);
-      // const maped2 = maped[0]
-      // const split = maped2.split(/\s*,\s*/)
-
-      res.json(array);
+    for (let i = 0; i < sizeMaped.length; i++) {
+      size_Stock.push(sizeMaped[i])
+      size_Stock.push(stockMaped[i])
     }
+      //console.log("array: ", size_Stock);
+
+    return res.status(200).send(size_Stock);
   } catch (error) {
-    next(error);
+    return res.status(400).send({ msg: error.message });
   }
 });
 

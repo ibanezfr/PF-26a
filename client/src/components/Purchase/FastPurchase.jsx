@@ -5,17 +5,20 @@ import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 //import { browserHistory } from 'react-router';
 import Swal from 'sweetalert2'
+import { cartController, formatNumber } from '../../Utils';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
 
     const dispatch = useDispatch();
-
     let size = useSelector(state => state.size)
+    let history = useHistory();
 
     useEffect(() => {
         // dispatch(getProductsById(id)) igual funciona y evita la carga del estado
-        dispatch(bringSize(id))
-    }, [dispatch]);
+        if(show) {
+            dispatch(bringSize(id))
+        }
+    }, [show]);
 
     const [newCart, setNewCart] = useState({
         id: "",
@@ -26,8 +29,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         stock: size[1],
         quantity: 0
     });
-
-    // .log("antes del handleChange: ", newCart)
 
     const handleSize = (e) => {
         e.preventDefault();
@@ -42,27 +43,16 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         });
     };
 
-    let history = useHistory();
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (newCart.size === "" || newCart.quantity === 0) {
-            Swal.fire({
-                title: 'Seleccioná un talle y una cantidad para continuar',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            })
-        } else {
-            dispatch(clearCart())
+        var bool = false;
+        cartController(Swal, newCart.size, newCart.stock, newCart.quantity, bool);
+        if (bool) {
+            dispatch(clearCart());
             dispatch(addToCart(newCart));
-            history.push('/purchase')
+            history.push('/purchase');
         };
-
-    }
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -71,8 +61,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
             quantity: parseInt(e.target.value)
         });
     };
-
-    //   console.log("despues del handleChange: ", newCart)
 
     return (
         <>
@@ -91,7 +79,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                     <div>
                         <h2>{name}</h2>
                         <img src={image} width="400px" height="400px" alt='Not Found' />
-                        <h4>{price}</h4>
+                        <h4>${formatNumber(price)}</h4>
                     </div>
                     <div>
                         <span>Selecciona un talle</span>
