@@ -40,8 +40,8 @@ router.post("/api/checkout", async (req, res) => {
       newSellOrder.addProducts(userCompra)
           userComprador.addSell_order(newSellOrder)  
         }
-        console.log("Hola1",userComprador.dataValues.email)
-     mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
+        console.log("Hola1",userComprador)
+     mailPayment(userComprador.dataValues.email, id);
       }     
       else return res.json({ message: "hubo un error"})
       

@@ -84,7 +84,7 @@ async function mailPayment(recipient, id,mensaje) {
     to: recipient, // list of receivers
     subject: `Orden N°: -${id}- ✔`, // Subject line
     text: mensaje, // plain text body
-    html: mensaje, // html body
+    html: `<center><img src=https://static.vecteezy.com/system/resources/previews/002/006/605/large_2x/paper-art-shopping-online-on-smartphone-and-new-buy-sale-promotion-pink-backgroud-for-banner-market-ecommerce-free-vector.jpg height=200px/> <div style="background-color:#e0a0ed" width=300px> <h3>Hola ${recipient} </h3> <br> <span> Procesamos correctamente tu pago </span> <br> <label>Gracias, Equipo Kilt Indumentaria</label></div></center>`,
   });
  
 }

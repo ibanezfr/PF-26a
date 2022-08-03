@@ -10,6 +10,7 @@ import './NavBar.css'
 import {useDispatch} from 'react-redux'
 import { setSearchStatus } from "../../redux/actions";
 
+
 function NavBar() {
 
   const dispatch = useDispatch()

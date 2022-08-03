@@ -34,6 +34,7 @@ export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = 'SET_SEARCH_STatus';
 export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
 
+
 export const SESSION = "SESSION"
 
 export const postProduct = (payload) => {
