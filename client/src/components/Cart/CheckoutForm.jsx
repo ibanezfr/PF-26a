@@ -85,7 +85,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
               }
             })
           }
-          else window.Swal.fire({
+          else Swal.fire({
             title: '<strong>HTML <u>Hubo un error</u></strong>',
             icon: 'info',
             html:
@@ -105,8 +105,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   //console.log(!stripe || loading);
   //mostrar alerta de compra exitosa o fallida
   return (
-    <form className="card card-body" onSubmit={handleSubmit}>
-
+      <form className="card card-body" onSubmit={handleSubmit}>
 
       {/* User Card Input */}
       <div className="form-group">

@@ -3,7 +3,8 @@ const Stripe = require("stripe");
 const { User, Product, Sell_order, Product_values } = require("../db");
 const { Sequelize } = require('sequelize');
 const { Op } = require("sequelize");
-const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRtu012BcZsbgDoQtaLp5ADJ5usnS2kbDlUdBTda2fD0HqxN6PbBDUeQKTXFLRdxVZtntborIf00EcE31nIZ");
+const apiKey = process.env.API_KEY_STRIPE
+const stripe = new Stripe(apiKey);
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
@@ -17,11 +18,10 @@ router.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
 
     const { id, amount , description, user, shippingInfo} = req.body;
-    //console.log("description-body", description);
 
   try {
-      const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
-      //console.log("usuario", userComprador);
+      const userComprador = await User.findByPk(user)
+
       if(user){
       const payment = await stripe.paymentIntents.create({
           amount:amount*100,
@@ -30,19 +30,18 @@ router.post("/api/checkout", async (req, res) => {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
-       //console.log("payment-stripe", payment);
+
         
         if(payment.status === 'succeeded'){
           const newSellOrder = await Sell_order.create({
             amount:amount*100,
-            product:formatDescription(description).join('\n'),//armar funcion 
+            product:formatDescription(description).join('\n'),
             country:shippingInfo.country,
             province:shippingInfo.province,
             city:shippingInfo.city,
             postalCode:shippingInfo.postalCode
           })
-          //console.log("payment-exitoso", newSellOrder); 
-          
+       
           let userCompra=[]
           if(description.length>1){
             userCompra = await Promise.all(description.map(async (p)=>{
@@ -53,13 +52,12 @@ router.post("/api/checkout", async (req, res) => {
                 through: { attributes: [] }
               }]})
             }))
-            //console.log("userCompra", userCompra);
+
             userCompra.map(async (prod, i)=>{
               await Product_values.decrement(
                 'stock', 
                 {by:description[i].quantity,
                 where: {id:prod.product_values[0].id}})
-              //console.log(prod.product_values[0].id)
             }) 
           }else{
             userCompra =await Product.findByPk(description[0].id, {include:[{
@@ -74,7 +72,7 @@ router.post("/api/checkout", async (req, res) => {
               {by:description[0].quantity,
                 where: {id:userCompra.product_values[0].id}
               })
-            console.log(userCompra)
+            //console.log(userCompra)
             let aux = []
             aux.push(userCompra)
             userCompra = aux
@@ -93,7 +91,7 @@ router.post("/api/checkout", async (req, res) => {
           
           await userComprador.addSell_order(newSellOrder)
         
-
+          
         mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
       }}     
       else return res.json({ message: "hubo un error"})
