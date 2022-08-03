@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { getProductsByName, setSearchStatus } from '../../redux/actions/index.js';
 import './Search.scss';
+import Swal from 'sweetalert2'
 
 
 
@@ -21,7 +22,12 @@ export default function SearchBar() {
     function submitHandler(event) {
         event.preventDefault();
         if (!name) {
-            alert("Por favor ingrese un nombre")
+            // alert("Por favor ingrese un nombre")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se debe ingresar una palabra clave para realizar la búsqueda!'
+              })
         } else {
             dispatch(getProductsByName(name));    
             setRedirect(true);            //original

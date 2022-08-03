@@ -112,7 +112,7 @@ router.get('/size/:id', async (req, res, next) => {
         array.push(stockMaped[i])
       }
 
-      console.log("array: ", array);
+      //console.log("array: ", array);
       // const maped2 = maped[0]
       // const split = maped2.split(/\s*,\s*/)
 
@@ -373,7 +373,9 @@ router.put("/update/:id", async (req, res) => {
       msg: error.message
     });
   }
-})
+});
+
+// ------- Rutas para las Q&A -------------
 
 router.get("/q&a/:id", async(req, res) => {
   const {id} = req.params;
@@ -427,6 +429,65 @@ router.get("/q&a/:id", async(req, res) => {
   // console.log("qas", qas)
 })
 
+//GET para el id de las preguntas y respuestas
+router.get("/answer/id", async (req,res)=>{
+  try{
+    const questions = await Qa.findAll()
+    res.send(questions)
+  }catch(err){console.log(err)}
+})
+//GET para las respuestas
+router.get("/answer/:id", async(req, res) => {
+  const {id} = req.params;
+  const product = await Product.findByPk(id, {
+    include: [{
+        model: Category,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Qa,
+        attributes: ["title", "description", "answer", "resolved"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Review,
+        attributes: ["rating", "title", "description"],
+        through: {
+          attributes: []
+        },
+      },
+      {
+        model: Product_values,
+        attributes: ["size", "stock"], 
+        through: {
+          attributes: []
+        },
+      }
+    ],
+  });
+
+  const answerMaped = product.qas.map(m => m.answer)
+  // console.log("Size: ", sizeMaped)
+  // console.log("Stock: ", stockMaped)
+
+  var array = [];
+
+  for (let i = 0; i < answerMaped.length; i++) {
+    array.push(answerMaped[i])
+    array.push("")
+  }
+
+
+  res.send(array)
+  // const qas = product.qas;
+  // console.log("qas", qas)
+})
+
 router.post("/q&a/:idProduct", async (req, res) => {
   const {idProduct} = req.params;
   const {idUser} = req.body;
@@ -462,3 +523,4 @@ router.post("/q&a/:idProduct", async (req, res) => {
   }
 })
 module.exports = router;
+ 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetch_users_action } from "../../api_url/api_url";
 export const GET_BY_ID = "GET_BY_ID";
 export const CLEAN_PRODUCT = "CLEAN_PRODUCT";
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
@@ -13,6 +14,7 @@ export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const GET_INFO_Q_AND_A = 'GET_INFO_Q_AND_A';
+export const GET_ANSWERS = 'GET_ANSWERS';
 
 //Q and A
 export const GET_Q_AND_A = 'GET_Q_AND_A';
@@ -24,6 +26,7 @@ const URL_FOR_GET_PRODUCTS_BY_ID = "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
 const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
 const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
+const URL_ANSWERS = 'http://localhost:3001/products/answer/'
 
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
@@ -31,26 +34,24 @@ export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const SET_PRODUCTS_TO_DISPLAY = "SET_PRODUCTS_TO_DISPLAY";
 export const SET_ORDER = "SET_ORDER";
-export const SET_SEARCH_STATUS = 'SET_SEARCH_STatus';
-export const RESET_FILTER_ORDER = 'RESET_FILTER_ORDER';
-
-
-export const SESSION = "SESSION"
+export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
+export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
+export const SESSION = "SESSION";
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post(URL_FOR_POST_PRODUCT, payload)
+      const response = await axios.post(URL_FOR_POST_PRODUCT, payload);
       console.log(response);
       return response;
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 //QandA
-export function QandA (idProduct, obj){
+export function getQandA (idProduct, obj){
   return async (dispatch) => {
     let info = await axios.post(URL_QUESTIONS + idProduct, obj);
     // console.log("en la action: ", info.data)
@@ -72,6 +73,24 @@ export function bringQandA (id){
   };
 }
 
+export function bringAnswers (id){
+  return async (dispatch) => {
+    let info = await axios.get(URL_ANSWERS + id);
+    // console.log("en la action: ", info.data)
+    dispatch({
+      type: GET_ANSWERS,
+      payload: info.data,
+    });
+  };
+}
+
+export const GET_FAVORITES = "GET_FAVORITES";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+const URL_GET_FAVORITES_FROM_USER = "http://localhost:3001/favs/";
+const URL_POST_FAVORITE = "http://localhost:3001/favs/add";
+const URL_REMOVE_FAVORITE = "http://localhost:3001/favs/remove/";
+
 //carrito de compras FUNCIONES
 export function addToCart(obj) {
   return {
@@ -87,22 +106,22 @@ export function clearCart() {
 }
 
 export function deleteFromCart(data) {
-    return {
-      type: REMOVE_FROM_CART,
-      payload: data,
-    };
+  return {
+    type: REMOVE_FROM_CART,
+    payload: data,
+  };
 }
-export function changeQuantity (data, boolean) {
+export function changeQuantity(data, boolean) {
   if (boolean) {
     return {
       type: ADD_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   } else {
     return {
       type: REMOVE_ONE_FROM_CART,
-      payload: data
-    }
+      payload: data,
+    };
   }
 }
 
@@ -228,6 +247,13 @@ export const loginCheck = (dispatch) => {
   }
 };
 
+export function fetchUsers() {
+  return async function (dispatch) {
+    const result = await axios.get(fetch_users_action);
+    return dispatch({ type: "FETCH_USERS", payload: result.data });
+  };
+}
+
 export function setOrder(order) {
   return function (dispatch) {
     dispatch({
@@ -241,15 +267,45 @@ export function setSearchStatus(status) {
   return function (dispatch) {
     dispatch({
       type: SET_SEARCH_STATUS,
-      payload: status
-    })
-  }
+      payload: status,
+    });
+  };
 }
 
 export function resetFilterOrder() {
   return function (dispatch) {
     dispatch({
       type: RESET_FILTER_ORDER,
-    })
-  }
-}
+    });
+  };
+};
+
+export const getFavsFromUser = (id) => {
+  return async (dispatch) => {
+    let res = await axios.get(URL_GET_FAVORITES_FROM_USER + id);
+    dispatch({
+      type: GET_FAVORITES,
+      payload: res.data.products,
+    });
+  };
+};
+
+export const removeFavsFromUser = (idUser, idProduct) => {
+  return async (dispatch) => {
+    await axios.delete(URL_REMOVE_FAVORITE +`${idUser}/${idProduct}`);
+    dispatch({
+      type: REMOVE_FAVORITE,
+      payload: idProduct
+    });
+  };
+};
+
+export const addFavsToUser = (data) => {
+  return async (dispatch) => {
+    let pedido = await axios.post(URL_POST_FAVORITE, data)
+    dispatch({
+      type:ADD_FAVORITE,
+      payload: pedido.data.res.products
+    });
+  };
+};

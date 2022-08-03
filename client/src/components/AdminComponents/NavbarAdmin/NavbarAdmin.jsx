@@ -1,7 +1,7 @@
 import React from "react";
 
 const NavbarAdmin = () => {
-  return <div>NavbarAdmin</div>;
+  return <div>Herramientas de administrador</div>;
 };
 
 export default NavbarAdmin;

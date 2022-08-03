@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
             defaultValue: false
         },*/
         amount: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: true
         },
         date: {

@@ -4,31 +4,36 @@ import { changeQuantity, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
 import './Cart.scss'
 import { formatNumber } from "../../Utils";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import Swal from 'sweetalert2'
 
 
 export default function Cart() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    console.log(cart)
+    // console.log(cart)
+
+    const { user } = useAuth();
+    const history = useHistory();
     // JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-    const handlechangeQuantity = (e, data, boolean) =>{
+    const handlechangeQuantity = (e, data, boolean) => {
         e.preventDefault()
         dispatch(changeQuantity(data, boolean))
     }
 
-    const handleDeleteAll = (e, data) =>{
+    const handleDeleteAll = (e, data) => {
         e.preventDefault()
         dispatch(deleteFromCart(data))
 
     }
 
-    console.log("carrito: ", cart)
+    // console.log("carrito: ", cart)
     if (cart[0]) {
         var cantidadPrecio = []
         cart.map((p) => cantidadPrecio.push(p.price) && cantidadPrecio.push(p.quantity))
@@ -38,6 +43,24 @@ export default function Cart() {
             precioTotal += cantidadPrecio[i] * cantidadPrecio[i + 1]
         }
     };
+
+    const hanleSubmit = (e) => {
+        if (!user) return Swal.fire({
+            title: 'No estás logueado',
+            text: "Para poder comprar los productos debes loguearte primero!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iniciar sesión'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push("/login")
+            }
+        })
+        e.preventDefault();
+        history.push("/purchase")
+    }
 
 
     return (
@@ -69,9 +92,9 @@ export default function Cart() {
                 }
                 {
                     cart[0] &&
-                        <div className="btnContainer">
-                            <div className="totalText">TOTAL ${formatNumber(precioTotal)}</div>
-                            {/* <Elements stripe={stripePromise}>
+                    <div className="btnContainer">
+                        <div className="totalText">TOTAL ${formatNumber(precioTotal)}</div>
+                        {/* <Elements stripe={stripePromise}>
                                 <div className="containerPayment p-4">
                                     <div className="row h-100">
                                         <div className="col-md-4 offset-md-4 h-100">
@@ -80,9 +103,13 @@ export default function Cart() {
                                     </div>
                                 </div>
                             </Elements> */}
-                            <button className="btnPrincipal"><Link to='/purchase'>Continuar compra</Link></button>
-                            <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
-                        </div>
+                        <button className="btnPrincipal" onClick={e => hanleSubmit(e)}>
+                            {/* <Link to='/purchase'> */}
+                            Continuar compra
+                            {/* </Link> */}
+                        </button>
+                        <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
+                    </div>
                 }
             </div>
         </div>

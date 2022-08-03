@@ -1,19 +1,23 @@
-import "./List.scss";
+// import "./UserList.scss";
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
-
+// import { useValue } from "../../../context/ContextProvider";
+// import { getUsers } from "../../../actions/user";
+// import moment from "moment";
+// import { grey } from "@mui/material/colors";
+import UserActions from "./UserActions";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../../redux/actions";
 import { grey } from "@mui/material/colors";
-import ListActions from "./ListActions";
 import { useHistory } from "react-router-dom";
 
-const List = () => {
+export default function UserList() {
   const dispatch = useDispatch();
-  const [pageSize, setPageSize] = useState(10);
-  const history = useHistory();
+  const users = useSelector((state) => state.user);
+  const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
-  let products = useSelector((state) => state.products);
+  const history = useHistory();
 
   const handleKick = async () => {
     const check = await JSON.parse(localStorage.getItem("isAdmin"));
@@ -25,56 +29,37 @@ const List = () => {
     handleKick();
   }, []);
 
+  useEffect(() => {
+    return !users.length ? dispatch(fetchUsers()) : null;
+  }, [dispatch, users]);
+
+  console.log(users);
   const columns = useMemo(
     () => [
       {
         field: "image",
-        headerName: "Image",
+        headerName: "Avatar",
         width: 60,
         renderCell: (params) => <Avatar src={params.row.image} />,
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", width: 200 },
-      { field: "color", headerName: "Color", width: 150 },
+      { field: "fullName", headerName: "Name", width: 170 },
+      { field: "email", headerName: "Email", width: 200 },
       {
-        field: "categories",
-        headerName: "Category",
-        width: 200,
+        field: "admin",
+        headerName: "Role",
+        width: 100,
         type: "singleSelect",
-        valueOptions: [
-          "Accesorios",
-          "Bufandas",
-          "Buzos",
-          "Calzas",
-          "Camperas",
-          "Chalecos",
-          "Conjuntos",
-          "Equipamento deportivo",
-          "Gorra",
-          "Gorros",
-          "Indumentaria de hombre",
-          "Indumentaria de mujer",
-          "Indumentaria sin género",
-          "Medias",
-          "Pantalones",
-          "Remeras",
-          "Tops deportivos",
-        ],
+        valueOptions: ["User", "Admin"],
         editable: true,
       },
       {
-        field: "rating",
-        headerName: "Ratings",
-        width: 60,
-        type: "integer",
-        editable: false,
-      },
-      {
-        field: "stock",
-        headerName: "Stock",
-        width: 60,
-        type: "integer",
+        field: "banned",
+        headerName: "Status",
+        width: 100,
+        type: "singleSelect",
+        valueOptions: ["Banned", "Active"],
         editable: true,
       },
 
@@ -84,7 +69,7 @@ const List = () => {
         headerName: "Actions",
         type: "actions",
         renderCell: (params) => (
-          <ListActions {...{ params, rowId, setRowId }} />
+          <UserActions {...{ params, rowId, setRowId }} />
         ),
       },
     ],
@@ -92,22 +77,19 @@ const List = () => {
   );
 
   return (
-    <Box sx={{ height: 775, width: "100%" }}>
-      <Button onClick={(e) => history.push("/admin/home")}>
-        Voler al Dashboard
-      </Button>
+    <Box sx={{ height: 400, width: "100%" }}>
       <Typography
         variant="h3"
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Administrar productos
+        Manage Users
       </Typography>
       <DataGrid
         columns={columns}
-        rows={products}
+        rows={users}
         getRowId={(row) => row.id}
-        rowsPerPageOptions={[10, 20, 30]}
+        rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         getRowSpacing={(params) => ({
@@ -124,6 +106,4 @@ const List = () => {
       />
     </Box>
   );
-};
-
-export default List;
+}

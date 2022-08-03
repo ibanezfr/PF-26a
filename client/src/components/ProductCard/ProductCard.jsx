@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function ProductCard({ id, name, price, image, categories }) {
   const [show, setShow] = useState(false);
-  
+
   // console.log(id)
   return (
     <div className="card">

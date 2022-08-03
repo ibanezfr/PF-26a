@@ -14,7 +14,6 @@ $lightestColor: #F2F2F2;
     align-items: stretch;
     align-content: center;
     width: 100%;
-    height: 150vh;
     
 }
 
@@ -95,7 +94,7 @@ $lightestColor: #F2F2F2;
         flex-direction: column;
         justify-content: right;
         position: left;
-        
+        height: 100%;
 
         select {
             border: 1px solid $secondaryColor;
@@ -122,3 +121,5 @@ $lightestColor: #F2F2F2;
         }
     }
 }
+
+
