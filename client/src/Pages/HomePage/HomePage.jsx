@@ -6,8 +6,10 @@ import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
 import './HomePage.scss'
 import { filterProducts } from '../../Utils';
+import { useTranslation } from 'react-i18next';
 
 function HomePage() {
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch();
     let dispProds = useSelector(state => state.displayedProducts);
     // let orderedBy = useSelector(state => state.orderBy);
@@ -65,14 +67,14 @@ function HomePage() {
                     className={`${currentPage === 1 ? 'disabled' : ''}`}
                     onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
                 >
-                    Prev
+                    {t('homepage.prev')}
                 </button>
                 <button>{currentPage}</button>
                 <button
                     className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
                     onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
                 >
-                    Next
+                    {t('homepage.next')}
                 </button>
 
             </div>

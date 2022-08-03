@@ -1,0 +1,15 @@
+{
+    "navbar": {
+        "home": "Inicio",
+        "login": "Iniciar sesión",
+        "profile": "Perfil",
+        "admin-dashboard": "Controles de administrador",
+        "favorites": "Favoritos",
+        "logout": "Cerrar sesión",
+        "navdropdown": "Usuario"
+    },
+    "homepage": {
+        "prev": "Anterior",
+        "next": "Siguiente"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "navbar": {
+        "home": "Home",
+        "login": "Login",
+        "profile": "Profile",
+        "admin-dashboard": "Admin Dashboard",
+        "favorites": "Favorites",
+        "logout": "Logout",
+        "navdropdown": "User"
+    },
+    "homepage": {
+        "prev": "Previous",
+        "next": "Next"
+    }
+}
