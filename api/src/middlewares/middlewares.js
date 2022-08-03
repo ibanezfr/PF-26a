@@ -1,6 +1,6 @@
 const products = require("../../Pruebas/products.json");
 const { Op } = require("sequelize");
-const { Product, Category, Review, Product_values } = require("../db");
+const { Product, Category, Product_values } = require("../db");
 const nodemailer = require("nodemailer");
  
 async function getProducts() {

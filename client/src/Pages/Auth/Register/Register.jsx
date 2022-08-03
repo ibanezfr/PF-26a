@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-// import { register_post } from '../../../api_url';
 import { register_post } from '../../../api_url/api_url';
-
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 // import { register } from "../../../redux/actions";

@@ -449,35 +449,3 @@ export default function ProductCreationForm() {
     </div>
   );
 }
-/*
-name: "",
-        price: 0,
-        description: "",
-        color: "",
-        image: "",
-        image2: "",
-        image3: "",
-        image4: "",
-        status: "",
-        categories: [],
-        product_values: [],
-*/
-//   {
-//         "name": "Bochas",
-//         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
-//         "price": 500,
-//         "rating": 5,
-//         "color": "rosa",
-//         "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
-//         "categories": [
-//             {
-//                 "name": "Equipamento deportivo"
-//             }
-//         ],
-//         "product_values": [
-//             {
-//                 "size": "único",
-//                 "stock": 40
-//             }
-//         ]
-//     }

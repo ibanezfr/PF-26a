@@ -5,18 +5,17 @@ const { Sequelize } = require('sequelize');
 const { Op } = require("sequelize");
 const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRtu012BcZsbgDoQtaLp5ADJ5usnS2kbDlUdBTda2fD0HqxN6PbBDUeQKTXFLRdxVZtntborIf00EcE31nIZ");
 const router = Router();
-const { mailPayment} = require("../middlewares/middlewares.js");
+const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
 
 //
-
-
-function formatDescription(description){
-  return description.map(p=>p.name+' '+p.size+' '+p.quantity+' price '+p.price+' subTotal '+p.price*p.quantity)
+function formatDescription(description) {
+  return description.map(p => p.name + ' ' + p.size + ' ' + p.quantity + ' price ' + p.price + ' subTotal ' + p.price * p.quantity)
 }
 
 router.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
+
     const { id, amount , description, user, shippingInfo} = req.body;
     //console.log("description-body", description);
 
@@ -106,4 +105,4 @@ router.post("/api/checkout", async (req, res) => {
     } 
   }); 
 
-  module.exports = router;
+module.exports = router;

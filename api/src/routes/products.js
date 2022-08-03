@@ -373,7 +373,7 @@ router.put("/update/:id", async (req, res) => {
       msg: error.message
     });
   }
-})
+});
 
 // ------- Rutas para las Q&A -------------
 
@@ -523,3 +523,4 @@ router.post("/q&a/:idProduct", async (req, res) => {
   }
 })
 module.exports = router;
+ 
