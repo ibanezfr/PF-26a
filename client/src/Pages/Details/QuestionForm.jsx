@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { bringAnswers, bringQandA, getProductsById, getQandA} from "../../redux/actions";
+import Swal from 'sweetalert2'
+import { useAuth } from "../../context/AuthContext";
 
 export default function QuestionForm() {
   const dispatch = useDispatch();
@@ -13,9 +15,11 @@ export default function QuestionForm() {
     description: ""
   })
 
-  let actualProduct = useSelector(state => state.detail)
+  // let actualProduct = useSelector(state => state.detail)
   let QandA = useSelector(state => state.infoQuestion)
   let answers = useSelector(state => state.infoAnswer);
+  const history = useHistory();
+  const { user} = useAuth();
 
   const qState = QandA;
 
@@ -24,7 +28,7 @@ export default function QuestionForm() {
     dispatch(getProductsById(params.id))
     dispatch(bringQandA(params.id))
     dispatch(bringAnswers(params.id))
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -36,21 +40,33 @@ export default function QuestionForm() {
 
   }
 
-  console.log("question before", question)
+  // console.log("question before", question)
 
-  function mapState (){
+  function mapState() {
     var mappedTitle = question.title;
     var mappedDescription = question.description;
-    console.log("maped", mappedTitle, mappedDescription)
+    // console.log("maped", mappedTitle, mappedDescription)
     qState.push(mappedTitle)
     qState.push(mappedDescription)
-    
-    console.log("estado de prueba", qState)
+
+    // console.log("estado de prueba", qState)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getQandA(params.id, question))
+    user ? dispatch(getQandA(params.id, question)) : Swal.fire({
+      title: 'No estás logueado',
+      text: "Para poder realizar una pregunta debes loguearte primero!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iniciar sesión'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/login")
+      }
+    })
     setQuestion({
       title: "",
       description: ""
@@ -58,7 +74,7 @@ export default function QuestionForm() {
     dispatch(mapState)
   }
 
-  console.log("question after", question)
+  // console.log("question after", question)
 
   return (
     <div className="formDiv">

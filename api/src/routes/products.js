@@ -523,3 +523,4 @@ router.post("/q&a/:idProduct", async (req, res) => {
   }
 });
 module.exports = router;
+ 

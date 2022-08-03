@@ -24,7 +24,6 @@ const Profile = () => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     let isMounted = true;
     function getUser() {

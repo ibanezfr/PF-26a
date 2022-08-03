@@ -20,7 +20,10 @@ import {
   POST_PRDUCT,
   GET_Q_AND_A,
   GET_INFO_Q_AND_A,
-  GET_ANSWERS
+  GET_ANSWERS,
+  GET_FAVORITES,
+  REMOVE_FAVORITE,
+  ADD_FAVORITE
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -52,6 +55,11 @@ const initialState = {
   infoQuestion: [],
   infoAnswer: [],
   isSearchActive: false,
+  favs: [
+    ...(JSON.parse(localStorage.getItem('favs') === null)
+      ? []
+      : JSON.parse(localStorage.getItem('favs')))
+  ]
 };
 
 
@@ -237,6 +245,23 @@ function rootReducer(state = initialState, action) {
       return{
         ...state,
         infoAnswer: action.payload
+      }
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favs: action.payload
+      }
+    case REMOVE_FAVORITE:
+      localStorage.setItem('favs', JSON.stringify(state.favs.filter((f) => f.id !== action.payload)));
+      return {
+        ...state,
+        favs: state.favs.filter((f) => f.id !== action.payload)
+    }
+    case ADD_FAVORITE:
+      localStorage.setItem('favs', JSON.stringify([...action.payload]));
+      return {
+        ...state,
+        favs: [...action.payload]
       }
     default:
       return state;
