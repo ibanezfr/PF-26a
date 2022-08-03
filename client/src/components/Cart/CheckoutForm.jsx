@@ -23,8 +23,8 @@ export default function CheckoutForm({ total, products, shippingInfo}) {
     console.log(products)
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
+      const { error, paymentMethod } = await stripe.createPaymentMethod({ 
+        type: "card", 
         card: elements.getElement(CardElement),
       });
       setLoading(true); 

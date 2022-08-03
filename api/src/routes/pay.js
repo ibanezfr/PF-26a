@@ -9,18 +9,21 @@ const { mailPayment} = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
 
 //
+
+
 function formatDescription(description){
   return description.map(p=>p.name+' '+p.size+' '+p.quantity+' price '+p.price+' subTotal '+p.price*p.quantity)
 }
 
-
 router.post("/api/checkout", async (req, res) => {
-    // you can get more data to find in a database, and so on
+  // you can get more data to find in a database, and so on
     const { id, amount , description, user, shippingInfo} = req.body;
-    
-try {
+    //console.log("description-body", description);
+
+  try {
       const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
-        if(user){
+      //console.log("usuario", userComprador);
+      if(user){
       const payment = await stripe.paymentIntents.create({
           amount:amount*100,
           currency: "USD",
@@ -28,6 +31,7 @@ try {
           payment_method: id,
           confirm: true, //confirm the payment at the same time
         });
+       //console.log("payment-stripe", payment);
         
         if(payment.status === 'succeeded'){
           const newSellOrder = await Sell_order.create({
@@ -37,8 +41,9 @@ try {
             province:shippingInfo.province,
             city:shippingInfo.city,
             postalCode:shippingInfo.postalCode
-          }) 
-
+          })
+          //console.log("payment-exitoso", newSellOrder); 
+          
           let userCompra=[]
           if(description.length>1){
             userCompra = await Promise.all(description.map(async (p)=>{
@@ -49,20 +54,28 @@ try {
                 through: { attributes: [] }
               }]})
             }))
+            //console.log("userCompra", userCompra);
             userCompra.map(async (prod, i)=>{
               await Product_values.decrement(
                 'stock', 
                 {by:description[i].quantity,
                 where: {id:prod.product_values[0].id}})
               //console.log(prod.product_values[0].id)
-            })
+            }) 
           }else{
             userCompra =await Product.findByPk(description[0].id, {include:[{
                 model: Product_values,
                 where:{size:description[0].size},
                 attributes: ["id"],
-                through: { attributes: [] }
+                through: { attributes: [] } 
               }]})
+
+            await Product_values.decrement(
+              'stock',
+              {by:description[0].quantity,
+                where: {id:userCompra.product_values[0].id}
+              })
+            console.log(userCompra)
             let aux = []
             aux.push(userCompra)
             userCompra = aux
@@ -80,10 +93,10 @@ try {
           await newSellOrder.addProducts(productosComprados)
           
           await userComprador.addSell_order(newSellOrder)
-        }
+        
 
         mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
-      }     
+      }}     
       else return res.json({ message: "hubo un error"})
       
       return res.status(200).json({ message: "Successful Payment" });

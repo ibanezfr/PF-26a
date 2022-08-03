@@ -12,7 +12,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+axios.defaults.baseURL = /* process.env.REACT_APP_API || */ "http://localhost:3001";
 
 
 
