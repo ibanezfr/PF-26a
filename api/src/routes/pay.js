@@ -9,15 +9,37 @@ const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
 
 //
-function formatDescription(description) {
-  return description.map(p => p.name + ' ' + p.size + ' ' + p.quantity + ' price ' + p.price + ' subTotal ' + p.price * p.quantity)
+function formatDescription(description ) {
+  return description.map(p => 
+    '<tr>' + 
+      '<td style= "text-align: center">' +
+        p.name + 
+      '</td>' +
+      '<td> </td>' +
+      '<td style= "text-align: center">' +
+        p.size +
+      '</td>' +
+      '<td> </td>' +
+      '<td style= "text-align: center">' +
+        p.quantity + 
+      '</td>' +
+      '<td> </td>' + 
+      '<td style= "text-align: center">' +
+        p.price + 
+      '</td>' +
+      '<td> </td>' +
+      '<td> </td>' +
+      '<td style= "text-align: center">' +
+        p.price * p.quantity +
+      '</td>' +
+    '</tr>')
 }
 
 
 router.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
   const { id, amount, description, user, shippingInfo } = req.body;
-
+  console.log(description)
   try {
     const userComprador = await User.findByPk(user)//trae el user que compro, validar si no existe
     if (user) {
@@ -73,7 +95,7 @@ router.post("/api/checkout", async (req, res) => {
         await userComprador.addSell_order(newSellOrder)
       }
 
-      mailPayment(userComprador.dataValues.email, id, mensaje = formatDescription(description).join('\n'));
+      mailPayment(userComprador.dataValues.email, id, mensaje = formatDescription(description).join('\n'), total= amount);
     }
     else return res.json({ message: "hubo un error" })
 

@@ -2,6 +2,7 @@ const products = require("../../Pruebas/products.json");
 const { Op } = require("sequelize");
 const { Product, Category, Product_values } = require("../db");
 const nodemailer = require("nodemailer");
+
  
 async function getProducts() {
   const findCreated = await Product.findAll({ where: { created: true } });
@@ -64,7 +65,7 @@ async function getProducts() {
   return { msg: "Ok" };
 }
 
-async function mailPayment(recipient, id,mensaje) {
+async function mailPayment(recipient, id,mensaje, total) {
  
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -84,7 +85,29 @@ async function mailPayment(recipient, id,mensaje) {
     to: recipient, // list of receivers
     subject: `Orden N°: -${id}- ✔`, // Subject line
     text: mensaje, // plain text body
-    html: mensaje, // html body
+    html: `<center>
+            <img src=https://i.pinimg.com/originals/ea/46/bf/ea46bf588ce10e78a9eadf2007a82b6a.jpg height=400px/> 
+            <div width=300px style="font-size: 2rem; background-color: #dfced5; height: 65rem; width: 83rem;"> 
+              <br>
+              <h3>Hola ${recipient} </h3> 
+              <span> Procesamos correctamente tu pago </span> 
+              <br>
+              <h3>Tu compra</h3>
+              <table>
+                <tr>
+                  <th style= "text-align: center">Nombre</th>
+                  <th style= "text-align: center">Talle</th>
+                  <th style= "text-align: center">Cantidad</th>
+                  <th style= "text-align: center">Precio</th>
+                  <th style= "text-align: center">Sub total</th>
+                </tr>  
+                ${mensaje}
+              </table>
+              <h2>$${total}</h2>
+              <br>
+              <label>Gracias, Equipo Kilt Indumentaria</label>
+            </div>
+          </center>`
   });
  
 }
