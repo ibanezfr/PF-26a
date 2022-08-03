@@ -101,10 +101,16 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
-    var bool = false;
-    cartController(Swal, newCart.size, newCart.stock, newCart.quantity, bool);
-    if (bool) {
+    var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
+    if (bool === true) {
       dispatch(addToCart(newCart));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Producto añadido al carrito',
+        showConfirmButton: false,
+        timer: 1000
+      });
     };
   };
   

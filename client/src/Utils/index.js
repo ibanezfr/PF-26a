@@ -65,11 +65,11 @@ export function filterCart (item, product) {
     return true;
 };
 
-export function cartController (Swal, size, stock, quantity, bool) {
+export function cartController (Swal, size, stock, quantity) {
     if (size === "" || quantity === 0) {
-         return Swal.fire({
-          title: 'Seleccioná un talle y una cantidad para continuar',
-          showClass: {
+        return Swal.fire({
+            title: 'Seleccioná un talle y una cantidad para continuar',
+            showClass: {
             popup: 'animate__animated animate__fadeInDown'
           },
           hideClass: {
@@ -97,6 +97,6 @@ export function cartController (Swal, size, stock, quantity, bool) {
           }
         });      
     } else {
-        bool = true
+       return true
     }
 };

@@ -45,9 +45,8 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        var bool = false;
-        cartController(Swal, newCart.size, newCart.stock, newCart.quantity, bool);
-        if (bool) {
+        var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
+        if (bool === true) {
             dispatch(clearCart());
             dispatch(addToCart(newCart));
             history.push('/purchase');
