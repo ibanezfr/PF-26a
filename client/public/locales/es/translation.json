@@ -101,5 +101,36 @@
     "productCard": {
         "details": "Detalles",
         "fastPurchase": "Compra rápida"
+    },
+    "profileForm": {
+        "inputImage": "Imagen de perfil: ",
+        "inputFullName": "Nombre de usuario: ",
+        "inputFullNamePlaceHolder": "Nombre...",
+        "inputCountry": {
+            "label": "País: ",
+            "placeHolder": "País..."
+        },
+        "inputProvince": {
+            "label": "Provincia: ",
+            "placeHolder": "Provincia o Estado..."
+        },
+        "inputCity": {
+            "label": "Ciudad: ",
+            "placeHolder": "Ciudad..."
+        },
+        "inputStreet": {
+            "label": "Calle: ",
+            "placeHolder": "Calle..."
+        },
+        "postalCode": {
+            "label": "Código postal: ",
+            "placeHolder": "Código postal..."
+        },
+        "uploadChanges": "Confirmar y subir cambios",
+        "errorAllFields": "Todos los campos son obligatorios.",
+        "validate": {
+            "allFields": "Todos los campos son obligatorios.",
+            "fullName": "Solo se aceptan números, letras y espacios en blanco."
+        }
     }
 }
