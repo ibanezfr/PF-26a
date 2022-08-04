@@ -15,7 +15,6 @@ export default function Filters({ onClickFilter, onClickFieldset, products }) {
     let categoriesDisplayed = [];
     categoriesInProducts.map((e) => categoriesDisplayed = [...new Set([...categoriesDisplayed, ...e])]);
 
-
     return (
         <div className="filterContainer">
             {

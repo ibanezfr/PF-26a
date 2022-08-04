@@ -85,6 +85,7 @@ export default function Purchase() {
             <div>
                 <h2>Precio total: ${precioTotal ? formatNumber(precioTotal) : 0}</h2>
                 <Link to='/cart'><button>Volver al carrito</button></Link>
+                <Link to='/buy'><button>Pagar!</button></Link>
             </div>
 
         </div>

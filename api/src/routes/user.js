@@ -48,9 +48,6 @@ router.get('/compras/:id',async (req,res)=>{
       amount: order.amount
     }
   })
-
-
-
   return res.send(user)
 })
 
