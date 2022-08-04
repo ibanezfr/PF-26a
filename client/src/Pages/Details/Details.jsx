@@ -121,7 +121,7 @@ export default function Details() {
     <div className="father">
 
       <div className="containerDetail">
-        <div>
+        <div className="isFavorite">
           {
             isFavorite
               ?
@@ -184,11 +184,16 @@ export default function Details() {
             <p>{actualProduct.description}</p>
           </div>
 
-          <div className="container3">
-            <span>Selecciona un talle</span>
-            <form>
+        </div>
+
+        <div className="container3">
+          <form>
+            <div className="containerMedium">
+              <div>
+                <h4>Selecciona un talle</h4>
+              </div>
               <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                <option disabled>Seleccioná un talle</option>
+                <option disabled>Talles</option>
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                     return (
@@ -198,20 +203,20 @@ export default function Details() {
                 }
               </select>
               {
-                position !== 0 && <h4>Stock: {size[position]}</h4>
+                position !== 0 && <span>Stock: {size[position]}</span>
               }
-              <label>Ingresá la cantidad que buscas</label>
+            </div>
+            <div className="containerMedium2">
+              <label className="label">Ingresá la cantidad que buscas</label>
               <input type="number" min={1} max={size[position]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
-              <div className="btnContainer">
-                <button onClick={(e) => hanldeSubmit(e)}>
-                  Agregar al carrito
-                </button>
-              </div>
-            </form>
-          </div>
-
+            </div>
+            <div className="btnContainer">
+              <button onClick={(e) => hanldeSubmit(e)}>
+                Agregar al carrito
+              </button>
+            </div>
+          </form>
         </div>
-
       </div >
       <div>
         <QuestionForm />
