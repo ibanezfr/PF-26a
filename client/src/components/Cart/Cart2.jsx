@@ -35,7 +35,7 @@ export default function App() {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm data-i18n="[html]content.body" />
+          <CheckoutForm />
         </Elements>
       )}
     </div>

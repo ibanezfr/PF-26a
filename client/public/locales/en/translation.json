@@ -6,7 +6,13 @@
         "admin-dashboard": "Admin Dashboard",
         "favorites": "Favorites",
         "logout": "Logout",
-        "navdropdown": "User"
+        "navdropdown": "User",
+        "alert": {
+            "title": "You're not logged in",
+            "text": "To acces  your favorites list you must log in first!",
+            "confirmButtonText": "Log in",
+            "cancelButtonText": "Cancel"
+        }
     },
     "homepage": {
         "prev": "Previous",
@@ -42,12 +48,14 @@
         "loginAlert": {
             "title": "Your not logged in",
             "text": "You must be logged in first to perfom this action",
-            "confirmButtonText": "Log in"
+            "confirmButtonText": "Log in",
+            "cancelButtonText": "Cancelar"
         },
         "confirmationAlert": {
             "title": "Purchase made succesfully!",
             "text": "You will receive this information on your inbox",
-            "confirmButtonAlert": "Return homepage"
+            "confirmButtonText": "Return homepage",
+            "cancelButtonText": "Cancel"
         },
         "errorAlert": {
             "title": "<strong>HTML <u>Hubo un error</u></strong>",
@@ -68,5 +76,26 @@
         "stock": "Stock: ",
         "add": "Add",
         "remove": "Remove"
+    },
+    "search": {
+        "errorAlert": {
+            "title": "Oops...",
+            "text": "You must enter a keyword to perform the search!"
+        },
+        "placeHolder": "🔍 Search!"
+    },
+    "filters": {
+        "activeFilters": "Active Filters",
+        "lookingFor": "Find what you're looking for"
+    },
+    "footer": {
+        "p": "Group-08 Cohort-26A Henry Bootcamp 2022 All Rights Reserved"
+    },
+    "order": {
+        "orderBy": "Order by...",
+        "ascName": "Letters: A-Z",
+        "descName": "Letters: Z-A",
+        "ascPrice": "Most cheap ones",
+        "descPrice": "Most expensive ones"
     }
 }

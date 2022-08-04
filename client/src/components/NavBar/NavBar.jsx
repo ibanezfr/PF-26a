@@ -42,13 +42,14 @@ function NavBar() {
 
   function handleFavs() {
     user ? history.push("/favorites") : Swal.fire({
-      title: 'No estás logueado',
-      text: "Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+      title: t('navbar.alert.title'),
+      text: t('navbar.alert.text'),
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Iniciar sesión'
+      cancelButtonText: t('navbar.alert.cancelButtonText'),
+      confirmButtonText: t('navbar.alert.confirmButtonText')
     }).then((result) => {
       if (result.isConfirmed) {
         history.push("/login")
@@ -95,11 +96,14 @@ function NavBar() {
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
-          {
+
+          {// Este es el switcher para cambiar idiomas:
+
             Object.keys(lngs).map((lng) => (
               <button type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
             ))
           }
+
           <Nav.Link className="navText" onClick={() => handleFavs()}>
             {t('navbar.favorites')}
           </Nav.Link>

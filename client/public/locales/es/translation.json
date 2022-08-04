@@ -6,7 +6,13 @@
         "admin-dashboard": "Controles de administrador",
         "favorites": "Favoritos",
         "logout": "Cerrar sesión",
-        "navdropdown": "Usuario"
+        "navdropdown": "Usuario",
+        "alert": {
+            "title": "No estás logueado",
+            "text": "Para poder ver tu lista de favoritos debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión",
+            "cancelButtonText": "Cancelar"
+        }
     },
     "homepage": {
         "prev": "Anterior",
@@ -42,12 +48,14 @@
         "loginAlert": {
             "title": "No estás logueado",
             "text": "¡Para poder realizar esta acción debes loguearte primero!",
-            "confirmButtonText": "Iniciar sesión"
+            "confirmButtonText": "Iniciar sesión",
+            "cancelButtonText": "Cancelar"
         },
         "confirmationAlert": {
             "title": "¡Compra realizada con éxito!",
             "text": "Te llegará la información de la misma a tu casilla de correo",
-            "confirmButtonAlert": "Volver al inicio"
+            "confirmButtonText": "Volver al inicio",
+            "cancelButtonText": "Cancel"
         },
         "errorAlert": {
             "title": "<strong>HTML <u>Hubo un error</u></strong>",
@@ -68,5 +76,26 @@
         "stock": "Cantidad: ",
         "add": "Agregar",
         "remove": "Quitar"
+    },
+    "search": {
+        "errorAlert": {
+            "title": "Upps...",
+            "text": "Se debe ingresar una palabra clave para realizar la búsqueda!"
+        },
+        "placeHolder": "🔍 ¡Buscar!"
+    },
+    "filters": {
+        "activeFilters": "Filtros Activos",
+        "lookingFor": "Econtrá lo que buscas"
+    },
+    "footer": {
+        "p": "Grupo-08 Cohorte-26A Henry Bootcamp 2022 Todos los derechos reservados"
+    },
+    "order": {
+        "orderBy": "Ordenar por...",
+        "ascName": "Letras: A-Z",
+        "descName": "Letras: Z-A",
+        "ascPrice": "Más baratos",
+        "descPrice": "Más caros"
     }
 }

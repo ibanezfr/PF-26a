@@ -45,6 +45,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
+        cancelButtonText: t('checkOutForm.loginAlert.cancelButtonText'),
         confirmButtonText: t('checkOutForm.loginAlert.confirmButtonText')
       }).then((result) => {
         if (result.isConfirmed) {
@@ -78,7 +79,8 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: t('checkOutForm.confirmationAlert.confirmButtonAlert')
+              cancelButtonText: t('checkOutForm.confirmationAlert.cancelButtonText'),
+              confirmButtonText: t('checkOutForm.confirmationAlert.confirmButtonText')
             }).then((result) => {
               if (result.isConfirmed) {
                 Swal.fire(
