@@ -23,5 +23,19 @@
         "bestOffer": "Seleccionamos cuidadosamente nuestros productos para ofrecerte lo mejor.",
         "missIt": "¿Te lo vas a perder?",
         "waiting": "Te esperamos esta semana para disfrutar de los mejores descuentos."
+    },
+    "cart": {
+        "alert": {
+            "title": "No estás logueado",
+            "text": "Para poder comprar los productos debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión"
+        },
+        "shoppingCartText": "Tu carrito de compras",
+        "upps": "Upss...",
+        "carritoVacio": "Tu carrito está vacío",
+        "seeProducts": "Ver productos",
+        "totalPrice": "PRECIO TOTAL $",
+        "continueShopping": "Continuar la compra",
+        "clearCart":"Limpiar carrito"
     }
 }

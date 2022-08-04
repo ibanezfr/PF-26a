@@ -19,9 +19,23 @@
     "carrousel": {
         "bestoutfits": "Best outfits!",
         "bestdescription": "Find them on our website or in person on our store from monday until friday from 8:00AM to 6:00PM.",
-        "bestquality": "Best clothes quality!",
+        "bestquality": "Best quality clothes!",
         "bestOffer": "We carefully chose our products to make you the best offer.",
         "missIt": "Are you going to miss this chance?",
         "waiting": "We will waiting for you this week to enjoy awesome discounts."
+    },
+    "cart": {
+        "alert": {
+            "title": "You need to log in first",
+            "text": "In order to buy our products you need to login first!",
+            "confirmButtonText": "Log in"
+        },
+        "shoppingCartText": "Your shopping cart",
+        "upps": "Oops...",
+        "carritoVacio": "Your shopping cart is empty",
+        "seeProducts": "See products",
+        "totalPrice": "TOTAL PRICE $",
+        "continueShopping": "Continue shopping",
+        "clearCart": "Clear cart"
     }
 }
