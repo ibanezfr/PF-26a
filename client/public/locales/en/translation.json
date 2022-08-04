@@ -184,5 +184,16 @@
         "signUp": "Sign Up",
         "already": "Do you already have an account?",
         "signIn": "Log In"
+    },
+    "details": {
+        "title": "Your not logged in",
+        "text": "To be able to save items on the cart you must log in first!",
+        "cancelButtonText": "Cancel",
+        "confirmButtonText": "Log In",
+        "title2": "Chose a size and quantity to continue",
+        "choseSize": "Chose a size",
+        "stock": "Quantity:",
+        "labelStock": "Enter how many units you want",
+        "addToCart": "Add to cart"
     }
 }

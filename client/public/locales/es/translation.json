@@ -184,5 +184,16 @@
         "signUp": "Registrarse",
         "already": "¿Ya tienes una cuenta?",
         "signIn": "Iniciar sesión"
+    },
+    "details": {
+        "title": "No estás logueado.",
+        "text": "¡Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+        "cancelButtonText": "Cancelar",
+        "confirmButtonText": "Iniciar sesión",
+        "title2": "Seleccioná un talle y una cantidad para continuar.",
+        "choseSize": "Selecciona un talle",
+        "stock": "Cantidad:",
+        "labelStock": "Ingresá la cantidad que buscas",
+        "addToCart": "Agregar al carrito"
     }
 }
