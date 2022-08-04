@@ -173,5 +173,16 @@
         "forgotPass": "¿Te has olvidado tu contraseña?",
         "notMember": "¿Aún no estás registrado?",
         "signUp": "Registrarse"
+    },
+    "register": {
+        "register": "Registro",
+        "placeHolderEmail": "Tu correo electrónico...",
+        "placeHolderPassword": "Tu contraseña...",
+        "placeHolder2Password": "Repite la contraseña...",
+        "placeHolderName": "Tu nombre...",
+        "notMatching": "Las contraseñas no coinciden, inténtalo nuevamente.",
+        "signUp": "Registrarse",
+        "already": "¿Ya tienes una cuenta?",
+        "signIn": "Iniciar sesión"
     }
 }
