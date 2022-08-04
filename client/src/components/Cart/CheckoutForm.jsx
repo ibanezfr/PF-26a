@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from '../../context/AuthContext'
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next';
 
 // import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -16,6 +17,7 @@ import axios from "axios";
 
 
 export default function CheckoutForm({ total, products, shippingInfo }) {
+  const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -37,18 +39,18 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
       //console.log(elements.getElement(CardElement))
       console.log('no error')
       if (!user) window.Swal.fire({
-        title: 'No estás logueado',
-        text: "Para poder realizar esta acción debes loguearte primero!",
+        title: t('checkOutForm.loginAlert.title'),
+        text: t('checkOutForm.loginAlert.text'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Iniciar sesión'
-    }).then((result) => {
+        confirmButtonText: t('checkOutForm.loginAlert.confirmButtonText')
+      }).then((result) => {
         if (result.isConfirmed) {
-            history.push("/login")
+          history.push("/login")
         }
-    })
+      })
 
       else {
         const { id } = paymentMethod;
@@ -70,13 +72,13 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
           if (data.message === 'Successful Payment') {
             localStorage.removeItem('cart')
             window.Swal.fire({
-              title: 'Compra realizada con éxito!',
-              text: "Te llegará la información de la misma a tu casilla de correo",
+              title: t('checkOutForm.confirmationAlert.title'),
+              text: t('checkOutForm.confirmationAlert.text'),
               icon: 'success',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Volver al inicio'
+              confirmButtonText: t('checkOutForm.confirmationAlert.confirmButtonAlert')
             }).then((result) => {
               if (result.isConfirmed) {
                 Swal.fire(
@@ -119,7 +121,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
             <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}
           </div>
         ) : (
-          "Comprar"
+          t('checkOutForm.buy')
         )}
       </button>
     </form>

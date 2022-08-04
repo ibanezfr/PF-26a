@@ -27,7 +27,7 @@
     "cart": {
         "alert": {
             "title": "No estás logueado",
-            "text": "Para poder comprar los productos debes loguearte primero!",
+            "text": "¡Para poder comprar los productos debes loguearte primero!",
             "confirmButtonText": "Iniciar sesión"
         },
         "shoppingCartText": "Tu carrito de compras",
@@ -36,6 +36,31 @@
         "seeProducts": "Ver productos",
         "totalPrice": "PRECIO TOTAL $",
         "continueShopping": "Continuar la compra",
-        "clearCart":"Limpiar carrito"
+        "clearCart": "Limpiar carrito"
+    },
+    "checkOutForm": {
+        "loginAlert": {
+            "title": "No estás logueado",
+            "text": "¡Para poder realizar esta acción debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión"
+        },
+        "confirmationAlert": {
+            "title": "¡Compra realizada con éxito!",
+            "text": "Te llegará la información de la misma a tu casilla de correo",
+            "confirmButtonAlert": "Volver al inicio"
+        },
+        "errorAlert": {
+            "title": "<strong>HTML <u>Hubo un error</u></strong>",
+            "html": "<b>No se ha podido realizar el pago</b>"
+        },
+        "buy": "Comprar"
+    },
+    "checkOutForm2": {
+        "succeeded": "¡Pago realizado con éxito!",
+        "processing": "El pago está siendo procesado.",
+        "requires_payment_method": "Tu pago tuvo un error, por favor vuelve a intentarlo.",
+        "wentWrong": "Algo salió mal.",
+        "unexpectedError": "Ocurrió un error inesperado.",
+        "payNow": "Pagar ahora"
     }
 }

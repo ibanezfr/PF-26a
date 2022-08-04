@@ -37,5 +37,30 @@
         "totalPrice": "TOTAL PRICE $",
         "continueShopping": "Continue shopping",
         "clearCart": "Clear cart"
+    },
+    "checkOutForm": {
+        "loginAlert": {
+            "title": "Your not logged in",
+            "text": "You must be logged in first to perfom this action",
+            "confirmButtonText": "Log in"
+        },
+        "confirmationAlert": {
+            "title": "Purchase made succesfully!",
+            "text": "You will receive this information on your inbox",
+            "confirmButtonAlert": "Return homepage"
+        },
+        "errorAlert": {
+            "title": "<strong>HTML <u>Hubo un error</u></strong>",
+            "html": "<b>No se ha podido realizar el pago</b>"
+        },
+        "buy": "Buy"
+    },
+    "checkOutForm2": {
+        "succeeded": "Payment succeeded!",
+        "processing": "Your payment is processing.",
+        "requires_payment_method": "Your payment was not successful, please try again.",
+        "wentWrong": "Something went wrong.",
+        "unexpectedError": "An unexpected error occurred.",
+        "payNow": "Pay now"
     }
 }
