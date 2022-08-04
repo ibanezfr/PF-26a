@@ -132,5 +132,22 @@
             "allFields": "All fields are required.",
             "fullName": "Only number, letters and spaces are accepted"
         }
+    },
+    "fastPurchase": {
+        "size": "Choose a size",
+        "stock": "Stock:",
+        "enterQuantity": "Enter how many units you are searching for",
+        "continue": "Continue purchase"
+    },
+    "purchase": {
+        "data": "Data",
+        "question": "Where do you want your purchase to be sent?",
+        "country": "Country:",
+        "province": "Province or State:",
+        "city": "City:",
+        "postalCode": "Postal Code:",
+        "phoneNumber": "Phone number:",
+        "totalPrice": "Total price: $",
+        "goBack": "Go back to cart"
     }
 }

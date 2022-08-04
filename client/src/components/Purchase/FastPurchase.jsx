@@ -5,9 +5,10 @@ import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 //import { browserHistory } from 'react-router';
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
 
     let size = useSelector(state => state.size)
@@ -94,10 +95,10 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                         <h4>{price}</h4>
                     </div>
                     <div>
-                        <span>Selecciona un talle</span>
+                        <span>{t('fastPurchase.size')}</span>
                         <form>
                             <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                                <option disabled>Seleccioná un talle</option>
+                                <option disabled>{t('fastPurchase.size')}</option>
                                 {
                                     size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                                         return (
@@ -106,13 +107,13 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                     })
                                 }
                             </select>
-                            <h4>Stock: {size[1]}</h4>
-                            <label>Ingresá la cantidad que buscas</label>
+                            <h4>{t('fastPurchase.stock')}{size[1]}</h4>
+                            <label>{t('fastPurchase.enterQuantity')}</label>
                             <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
                         </form>
                     </div>
                     <div>
-                        <button onClick={e => handleSubmit(e)}>Continuar compra</button>
+                        <button onClick={e => handleSubmit(e)}>{t('fastPurchase.continue')}</button>
                     </div>
                 </Modal.Body>
             </Modal>

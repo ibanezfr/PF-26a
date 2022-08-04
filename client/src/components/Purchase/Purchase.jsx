@@ -13,6 +13,7 @@ import CheckoutForm from "../Cart/CheckoutForm"
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { formatNumber } from '../../Utils/index'
+import { useTranslation } from 'react-i18next';
 // const API_KEY = 'pk_test_51LRM01FTo7BILoUXakAa8q2EIaJlH9MDt7XKPEFjp9FjQb3vOYrWSgvcbqQZRr1koqulG4m9wpAiLTmUBMoyu8DC00dDBGg6oB'
 
 
@@ -21,7 +22,7 @@ const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksA
 
 
 export default function Purchase() {
-
+    const { t } = useTranslation();
     const cart = useSelector((state) => state.cart);
 
     if (cart[0]) {
@@ -54,18 +55,18 @@ export default function Purchase() {
     return (
         <div>
             <div>
-                <h2>Datos</h2>
+                <h2>{t('purchase.data')}</h2>
                 <form>
-                    <h3>¿Donde querés recibir tu compra?</h3>
-                    <label>Pais:</label>
+                    <h3>{t('purchase.question')}</h3>
+                    <label>{t('purchase.country')}</label>
                     <input type="text" name={"country"} value={info.country} onChange={e => handleChange(e)}></input>
-                    <label>Provincia:</label>
+                    <label>{t('purchase.province')}</label>
                     <input type="text" name={"province"} value={info.province} onChange={e => handleChange(e)}></input>
-                    <label>Ciudad:</label>
+                    <label>{t('purchase.city')}:</label>
                     <input type="text" name={"city"} value={info.city} onChange={e => handleChange(e)}></input>
-                    <label>Código postal:</label>
+                    <label>{t('purchase.postalCode')}</label>
                     <input type="text" name={"postalCode"} value={info.postalCode} onChange={e => handleChange(e)}></input>
-                    <label>Número de teléfono:</label>
+                    <label>{t('purchase.phoneNumber')}</label>
                     <input type="text" name={"phoneNumber"} value={info.phoneNumber} onChange={e => handleChange(e)}></input>
                 </form>
 
@@ -80,8 +81,8 @@ export default function Purchase() {
                 </Elements>
             </div>
             <div>
-                <h2>Precio total: ${precioTotal ? formatNumber(precioTotal) : 0}</h2>
-                <Link to='/cart'><button>Volver al carrito</button></Link>
+                <h2>{t('purchase.totalPrice')}{precioTotal ? formatNumber(precioTotal) : 0}</h2>
+                <Link to='/cart'><button>{t('purchase.goBack')}</button></Link>
             </div>
 
         </div>
