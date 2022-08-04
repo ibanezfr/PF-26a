@@ -97,5 +97,9 @@
         "descName": "Letters: Z-A",
         "ascPrice": "Most cheap ones",
         "descPrice": "Most expensive ones"
+    },
+    "productCard": {
+        "details": "Details",
+        "fastPurchase": "Fast purchase"
     }
 }
