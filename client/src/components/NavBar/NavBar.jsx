@@ -17,6 +17,7 @@ const lngs = {
   en: { nativeName: 'English' },
 }
 
+
 function NavBar() {
   const { t, i18n } = useTranslation();
 

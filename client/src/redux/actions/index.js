@@ -37,6 +37,7 @@ export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
+export const FETCH_CATEGORY= "FETCH_CATEGORY"
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
@@ -157,6 +158,24 @@ export function fetchCategories() {
       });
   };
 }
+
+export function fetchCategory() {
+  return function (dispatch) {
+    axios
+      .get(URL_FOR_FETCH_CATEGORIES)
+      .then((categories) => {
+        
+        dispatch({
+          type: FETCH_CATEGORY,
+          payload: categories.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
 
 export function addFilter(filter) {
   return function (dispatch) {

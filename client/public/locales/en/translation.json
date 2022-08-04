@@ -145,6 +145,7 @@
         "country": "Country:",
         "province": "Province or State:",
         "city": "City:",
+        "street": "Street:",
         "postalCode": "Postal Code:",
         "phoneNumber": "Phone number:",
         "totalPrice": "Total price: $",
@@ -192,6 +193,7 @@
         "confirmButtonText": "Log In",
         "title2": "Choose a size and quantity to continue",
         "choseSize": "Choose a size",
+        "defaultValue": "Sizes",
         "stock": "Stock:",
         "labelStock": "Enter how many units you want",
         "addToCart": "Add to cart"

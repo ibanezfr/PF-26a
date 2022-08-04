@@ -25,7 +25,9 @@ export default function ProductCard({ id, name, price, image, categories }) {
         <div className="cardFooter">
           <h3 className="price">${formatNumber(price)}</h3>
           <h6 className="categoryText">{categories[0]} <br /> {categories[1]} <br /> {categories[2] && categories[2]}</h6>
-          <FastPurchase setShow={setShow} show={show} image={image} name={name} price={price} id={id} />
+          {show &&
+            <FastPurchase setShow={setShow} show={show} image={image} name={name} price={price} id={id}/>
+          }
           <Button variant="primary" onClick={() => setShow(true)}>
             {t('productCard.fastPurchase')}
           </Button>

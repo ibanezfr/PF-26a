@@ -39,6 +39,7 @@ export default function Purchase() {
         country: "",
         province: "",
         city: "",
+        street: "",
         postalCode: "",
         phoneNumber: ""
     })
@@ -64,6 +65,8 @@ export default function Purchase() {
                     <input type="text" name={"province"} value={info.province} onChange={e => handleChange(e)}></input>
                     <label>{t('purchase.city')}:</label>
                     <input type="text" name={"city"} value={info.city} onChange={e => handleChange(e)}></input>
+                    <label>{t('purchase.street')}</label>
+                    <input type="text" name={"street"} value={info.street} onChange={e => handleChange(e)}></input>
                     <label>{t('purchase.postalCode')}</label>
                     <input type="text" name={"postalCode"} value={info.postalCode} onChange={e => handleChange(e)}></input>
                     <label>{t('purchase.phoneNumber')}</label>

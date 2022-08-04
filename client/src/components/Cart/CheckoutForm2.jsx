@@ -5,6 +5,8 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
+import "./App.css";
+
 
 export default function CheckoutForm() {
   const { t } = useTranslation();

@@ -145,6 +145,7 @@
         "country": "País:",
         "province": "Provincia:",
         "city": "Ciudad:",
+        "street": "Calle:",
         "postalCode": "Código postal:",
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
@@ -192,6 +193,7 @@
         "confirmButtonText": "Iniciar sesión",
         "title2": "Seleccioná un talle y una cantidad para continuar.",
         "choseSize": "Selecciona un talle",
+        "defaultValue": "Talles",
         "stock": "Cantidad:",
         "labelStock": "Ingresá la cantidad que buscas",
         "addToCart": "Agregar al carrito"

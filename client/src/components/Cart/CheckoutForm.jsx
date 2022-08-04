@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../context/AuthContext';
 import { useHistory } from "react-router-dom";
-import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2';
+import { clearCart } from "../../redux/actions";
+import { useDispatch } from 'react-redux';
 
 // import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -22,6 +24,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   const elements = useElements();
   const { user } = useAuth();
   const history = useHistory();
+  const dispatch = useDispatch();
 
 
   const [loading, setLoading] = useState(false);
@@ -35,10 +38,24 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     setLoading(true);
     //console.log(user).
     console.log(error)
+    if (error.code === 'incomplete_number') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Ingrese el numero de targeta'
+      });
+      setLoading(false);
+    };
+    if (error.code === 'invalid_number') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error de numero targeta'
+      });
+      setLoading(false);
+    }
     if (!error) {
       //console.log(elements.getElement(CardElement))
       console.log('no error')
-      if (!user) window.Swal.fire({
+      if (!user) Swal.fire({
         title: t('checkOutForm.loginAlert.title'),
         text: t('checkOutForm.loginAlert.text'),
         icon: 'warning',
@@ -54,6 +71,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
       })
 
       else {
+
         const { id } = paymentMethod;
         try {//console.log('total', total)
           const { data } = await axios.post(
@@ -71,8 +89,8 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
 
           elements.getElement(CardElement).clear();
           if (data.message === 'Successful Payment') {
-            localStorage.removeItem('cart')
-            window.Swal.fire({
+            dispatch(clearCart());
+            Swal.fire({
               title: t('checkOutForm.confirmationAlert.title'),
               text: t('checkOutForm.confirmationAlert.text'),
               icon: 'success',
@@ -83,13 +101,11 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
               confirmButtonText: t('checkOutForm.confirmationAlert.confirmButtonText')
             }).then((result) => {
               if (result.isConfirmed) {
-                Swal.fire(
-                  history.push("/")
-                )
+                history.push("/")
               }
             })
           }
-          else window.Swal.fire({
+          else Swal.fire({
             title: '<strong>HTML <u>Hubo un error</u></strong>',
             icon: 'info',
             html:
@@ -111,13 +127,12 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
 
-
       {/* User Card Input */}
       <div className="form-group">
         <CardElement style />
       </div>
 
-      <button disabled={!stripe || !products.length} className="btn btn-success">
+      <button disabled={!stripe || !products.length || loading} className="btn btn-success">
         {loading && user ? (/* agregue user para que valide el log */
           <div className="spinner-border text-light" role="status">
             <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}

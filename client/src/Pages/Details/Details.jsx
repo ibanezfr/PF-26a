@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { bringAnswers, bringQandA, addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
-// import { formatNumber } from "../../Utils";
+import { cartController, formatNumber } from "../../Utils";
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -89,7 +89,7 @@ export default function Details() {
       img: actualProduct.image,
       size: size[e.target.value],
       price: actualProduct.price,
-      stock: size[position],
+      stock: size[parseInt(e.target.value) + 1],
       quantity: 0
     });
   };
@@ -104,19 +104,16 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
-    if (newCart.size === "" || newCart.quantity === 0) {
-      // alert("selecciona un talle y una cantidad");
-      Swal.fire({
-        title: t('details.title2'),
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-    } else {
+    var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
+    if (bool === true) {
       dispatch(addToCart(newCart));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Producto añadido al carrito',
+        showConfirmButton: false,
+        timer: 1000
+      });
     };
   };
 
@@ -135,7 +132,6 @@ export default function Details() {
             </button>
         }
         <div className="container1">
-
           <Carousel fade>
             <Carousel.Item>
               <img
@@ -179,14 +175,20 @@ export default function Details() {
 
           <span>{t('details.choseSize')}</span>
           <form>
-            <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+            <select defaultValue={t('details.defaultValue')} onChange={e => handleSize(e)}>
               <option disabled>{t('details.choseSize')}</option>
               {
-                size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
-                  return (
-                    (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
-                  )
-                })
+                size[0] === "único" 
+                ?
+                  <option name={size[0]} value={0}> {size[0]} </option>
+                : 
+                  size.map((m, index) => {
+                    return (
+                      (index % 2) === 0
+                      &&
+                        <option key={index} name={m} value={index}> {m} </option> 
+                    )
+                  })
               }
             </select>
             {
@@ -200,11 +202,10 @@ export default function Details() {
               </button>
             </div>
           </form>
-
         </div >
         <div className="container2">
-
           <h2>{actualProduct.name}</h2>
+          <h2>${formatNumber(actualProduct.price)}</h2>
           <p>{actualProduct.description}</p>
         </div>
       </div >

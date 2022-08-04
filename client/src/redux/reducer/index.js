@@ -23,10 +23,12 @@ import {
   GET_ANSWERS,
   GET_FAVORITES,
   REMOVE_FAVORITE,
-  ADD_FAVORITE
+  ADD_FAVORITE,
+  FETCH_CATEGORY
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
+import Swal from 'sweetalert2';
 
 const initialState = {
   products: [],
@@ -59,7 +61,8 @@ const initialState = {
     ...(JSON.parse(localStorage.getItem('favs') === null)
       ? []
       : JSON.parse(localStorage.getItem('favs')))
-  ]
+  ],
+  category:[]
 };
 
 
@@ -88,6 +91,11 @@ function rootReducer(state = initialState, action) {
         filters: aux,
         displayedProducts: producto,
       };
+      case FETCH_CATEGORY:
+        return {
+          ...state,
+          category: action.payload,
+        };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
       var producto2 = filterProducts(state.products, auxs)
@@ -107,6 +115,8 @@ function rootReducer(state = initialState, action) {
         searchProducts: action.payload,
         displayedProducts: action.payload, //edite agus
       };
+
+   
     case GET_BY_ID:
       return {
         ...state,
@@ -178,7 +188,15 @@ function rootReducer(state = initialState, action) {
     case ADD_ONE_FROM_CART:
       let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       if  (productAdd.quantity === productAdd.stock) {
-        alert("limite alcanzado")
+        Swal.fire({
+          title: 'La cantidad excede el limite del producto',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
         return {...state}
       }
       return {

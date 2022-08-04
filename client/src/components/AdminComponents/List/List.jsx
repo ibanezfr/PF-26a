@@ -5,8 +5,9 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
 import { useDispatch, useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
+
+import { Link, Redirect, useHistory } from "react-router-dom";
 import ListActions from "./ListActions";
-import { useHistory } from "react-router-dom";
 
 const List = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,11 @@ const List = () => {
         field: "image",
         headerName: "Image",
         width: 60,
-        renderCell: (params) => <Avatar src={params.row.image} />,
+        renderCell: (params) => (
+          <Link to={`/details/${params.row.id}`}>
+            <Avatar src={params.row.image} />
+          </Link>
+        ),
         sortable: false,
         filterable: false,
       },
@@ -40,28 +45,57 @@ const List = () => {
       {
         field: "categories",
         headerName: "Category",
-        width: 200,
-        type: "singleSelect",
-        valueOptions: [
-          "Accesorios",
-          "Bufandas",
-          "Buzos",
-          "Calzas",
-          "Camperas",
-          "Chalecos",
-          "Conjuntos",
-          "Equipamento deportivo",
-          "Gorra",
-          "Gorros",
-          "Indumentaria de hombre",
-          "Indumentaria de mujer",
-          "Indumentaria sin género",
-          "Medias",
-          "Pantalones",
-          "Remeras",
-          "Tops deportivos",
-        ],
+        width: 250,
+        type: "array",
+        renderCell: (params) =>
+          params.row.categories
+            .map((e) => e.name)
+            .join(", ")
+            .trim(),
+        // valueOptions: [
+        //   "Accesorios",
+        //   "Bufandas",
+        //   "Buzos",
+        //   "Calzas",
+        //   "Camperas",
+        //   "Chalecos",
+        //   "Conjuntos",
+        //   "Equipamento deportivo",
+        //   "Gorra",
+        //   "Gorros",
+        //   "Indumentaria de hombre",
+        //   "Indumentaria de mujer",
+        //   "Indumentaria sin género",
+        //   "Medias",
+        //   "Pantalones",
+        //   "Remeras",
+        //   "Tops deportivos",
+        // ],
         editable: true,
+      },
+      {
+        field: "size",
+        headerName: "Size",
+        width: 120,
+        type: "array",
+        renderCell: (params) =>
+          params.row.product_values
+            .map((e) => e.size)
+            .join(", ")
+            .trim(),
+        editable: true,
+      },
+      {
+        field: "stock",
+        headerName: "Stock",
+        width: 120,
+        type: "array",
+        renderCell: (params) =>
+          params.row.product_values
+            .map((e) => e.stock)
+            .join(", ")
+            .trim(),
+        editable: false,
       },
       {
         field: "rating",
@@ -71,10 +105,11 @@ const List = () => {
         editable: false,
       },
       {
-        field: "stock",
-        headerName: "Stock",
+        field: "status",
+        headerName: "Status",
         width: 60,
-        type: "integer",
+        type: "singleSelect",
+        valueOptions: ["active", "inactive"],
         editable: true,
       },
 
