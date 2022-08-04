@@ -62,5 +62,11 @@
         "wentWrong": "Something went wrong.",
         "unexpectedError": "An unexpected error occurred.",
         "payNow": "Pay now"
+    },
+    "productItem": {
+        "size": "Size: ",
+        "stock": "Stock: ",
+        "add": "Add",
+        "remove": "Remove"
     }
 }

@@ -62,5 +62,11 @@
         "wentWrong": "Algo salió mal.",
         "unexpectedError": "Ocurrió un error inesperado.",
         "payNow": "Pagar ahora"
+    },
+    "productItem": {
+        "size": "Talle: ",
+        "stock": "Cantidad: ",
+        "add": "Agregar",
+        "remove": "Quitar"
     }
 }
