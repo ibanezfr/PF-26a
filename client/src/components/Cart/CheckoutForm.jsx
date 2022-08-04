@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../context/AuthContext';
 import { useHistory } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { clearCart } from "../../redux/actions";
+import { useDispatch } from 'react-redux';
 
 // import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -20,6 +22,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   const elements = useElements();
   const { user } = useAuth();
   const history = useHistory();
+  const dispatch = useDispatch();
 
 
   const [loading, setLoading] = useState(false);
@@ -33,10 +36,24 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     setLoading(true);
     //console.log(user).
     console.log(error)
+    if (error.code === 'incomplete_number') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Ingrese el numero de targeta'
+      });
+      setLoading(false);
+    };
+    if (error.code === 'invalid_number') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error de numero targeta'
+      });
+      setLoading(false);
+    }
     if (!error) {
       //console.log(elements.getElement(CardElement))
       console.log('no error')
-      if (!user) window.Swal.fire({
+      if (!user) Swal.fire({
         title: 'No estás logueado',
         text: "Para poder realizar esta acción debes loguearte primero!",
         icon: 'warning',
@@ -51,6 +68,28 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     })
 
       else {
+        // let timerInterval
+        // Swal.fire({
+        //   title: 'Auto close alert!',
+        //   html: 'I will close in <b></b> milliseconds.',
+        //   timer: 2000,
+        //   timerProgressBar: true,
+        //   didOpen: () => {
+        //     Swal.showLoading()
+        //     const b = Swal.getHtmlContainer().querySelector('b')
+        //     timerInterval = setInterval(() => {
+        //       b.textContent = Swal.getTimerLeft()
+        //     }, 100)
+        //   },
+        //   willClose: () => {
+        //     clearInterval(timerInterval)
+        //   }
+        // }).then((result) => {
+        //   /* Read more about handling dismissals below */
+        //   if (result.dismiss === Swal.DismissReason.timer) {
+        //     console.log('I was closed by the timer')
+        //   }
+        // })
         const { id } = paymentMethod;
         try {//console.log('total', total)
           const { data } = await axios.post(
@@ -68,7 +107,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
 
           elements.getElement(CardElement).clear();
           if (data.message === 'Successful Payment') {
-            localStorage.removeItem('cart')
+            // dispatch(clearCart());
             Swal.fire({
               title: 'Compra realizada con éxito!',
               text: "Te llegará la información de la misma a tu casilla de correo",
@@ -79,9 +118,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
               confirmButtonText: 'Volver al inicio'
             }).then((result) => {
               if (result.isConfirmed) {
-                Swal.fire(
-                  history.push("/")
-                )
+                history.push("/")
               }
             })
           }
@@ -112,7 +149,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
         <CardElement style />
       </div>
 
-      <button disabled={!stripe || !products.length} className="btn btn-success">
+      <button disabled={!stripe || !products.length || loading} className="btn btn-success">
         {loading && user ? (/* agregue user para que valide el log */
           <div className="spinner-border text-light" role="status">
             <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}

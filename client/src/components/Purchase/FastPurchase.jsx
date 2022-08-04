@@ -6,12 +6,14 @@ import { bringSize, clearCart, addToCart } from '../../redux/actions';
 //import { browserHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { cartController, formatNumber } from '../../Utils';
+import { useAuth } from '../../context/AuthContext';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
 
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { user } = useAuth();
     let size = useSelector(state => state.size)
-    let history = useHistory();
     const [position, setPosition] = useState(0);
 
     useEffect(() => {
@@ -47,6 +49,19 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (!user) return Swal.fire({
+            title: 'No estás logueado',
+            text: "Para poder comprar los productos debes loguearte primero!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iniciar sesión'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push("/login")
+            }
+        });
         var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
         if (bool === true) {
             dispatch(clearCart());
