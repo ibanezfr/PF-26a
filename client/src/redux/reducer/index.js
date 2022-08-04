@@ -23,7 +23,8 @@ import {
   GET_ANSWERS,
   GET_FAVORITES,
   REMOVE_FAVORITE,
-  ADD_FAVORITE
+  ADD_FAVORITE,
+  FETCH_CATEGORY
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -59,7 +60,8 @@ const initialState = {
     ...(JSON.parse(localStorage.getItem('favs') === null)
       ? []
       : JSON.parse(localStorage.getItem('favs')))
-  ]
+  ],
+  category:[]
 };
 
 
@@ -88,6 +90,11 @@ function rootReducer(state = initialState, action) {
         filters: aux,
         displayedProducts: producto,
       };
+      case FETCH_CATEGORY:
+        return {
+          ...state,
+          category: action.payload,
+        };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
       var producto2 = filterProducts(state.products, auxs)
