@@ -1,0 +1,214 @@
+{
+    "navbar": {
+        "home": "Inicio",
+        "login": "Iniciar sesión",
+        "profile": "Perfil",
+        "admin-dashboard": "Controles de administrador",
+        "favorites": "Favoritos",
+        "logout": "Cerrar sesión",
+        "navdropdown": "Usuario",
+        "alert": {
+            "title": "No estás logueado",
+            "text": "Para poder ver tu lista de favoritos debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión",
+            "cancelButtonText": "Cancelar"
+        }
+    },
+    "homepage": {
+        "prev": "Anterior",
+        "next": "Siguiente"
+    },
+    "searchproducts": {
+        "prev": "Anterior",
+        "next": "Siguiente"
+    },
+    "carrousel": {
+        "bestoutfits": "Los mejores conjuntos.",
+        "bestdescription": "Encontralos en nuestra tienda online o en el local de lunes a viernes de 8:00AM a 6:00PM.",
+        "bestquality": "La mejor calidad de ropa.",
+        "bestOffer": "Seleccionamos cuidadosamente nuestros productos para ofrecerte lo mejor.",
+        "missIt": "¿Te lo vas a perder?",
+        "waiting": "Te esperamos esta semana para disfrutar de los mejores descuentos."
+    },
+    "cart": {
+        "alert": {
+            "title": "No estás logueado",
+            "text": "¡Para poder comprar los productos debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión"
+        },
+        "shoppingCartText": "Tu carrito de compras",
+        "upps": "Upss...",
+        "carritoVacio": "Tu carrito está vacío",
+        "seeProducts": "Ver productos",
+        "totalPrice": "PRECIO TOTAL $",
+        "continueShopping": "Continuar la compra",
+        "clearCart": "Limpiar carrito"
+    },
+    "checkOutForm": {
+        "loginAlert": {
+            "title": "No estás logueado",
+            "text": "¡Para poder realizar esta acción debes loguearte primero!",
+            "confirmButtonText": "Iniciar sesión",
+            "cancelButtonText": "Cancelar"
+        },
+        "confirmationAlert": {
+            "title": "¡Compra realizada con éxito!",
+            "text": "Te llegará la información de la misma a tu casilla de correo",
+            "confirmButtonText": "Volver al inicio",
+            "cancelButtonText": "Cancel"
+        },
+        "errorAlert": {
+            "title": "<strong>HTML <u>Hubo un error</u></strong>",
+            "html": "<b>No se ha podido realizar el pago</b>"
+        },
+        "buy": "Comprar"
+    },
+    "checkOutForm2": {
+        "succeeded": "¡Pago realizado con éxito!",
+        "processing": "El pago está siendo procesado.",
+        "requires_payment_method": "Tu pago tuvo un error, por favor vuelve a intentarlo.",
+        "wentWrong": "Algo salió mal.",
+        "unexpectedError": "Ocurrió un error inesperado.",
+        "payNow": "Pagar ahora"
+    },
+    "productItem": {
+        "size": "Talle: ",
+        "stock": "Cantidad: ",
+        "add": "Agregar",
+        "remove": "Quitar"
+    },
+    "search": {
+        "errorAlert": {
+            "title": "Upps...",
+            "text": "Se debe ingresar una palabra clave para realizar la búsqueda!"
+        },
+        "placeHolder": "🔍 ¡Buscar!"
+    },
+    "filters": {
+        "activeFilters": "Filtros Activos",
+        "lookingFor": "Econtrá lo que buscas"
+    },
+    "footer": {
+        "p": "Grupo-08 Cohorte-26A Henry Bootcamp 2022 Todos los derechos reservados"
+    },
+    "order": {
+        "orderBy": "Ordenar por...",
+        "ascName": "Letras: A-Z",
+        "descName": "Letras: Z-A",
+        "ascPrice": "Más baratos",
+        "descPrice": "Más caros"
+    },
+    "productCard": {
+        "details": "Detalles",
+        "fastPurchase": "Compra rápida"
+    },
+    "profileForm": {
+        "inputImage": "Imagen de perfil: ",
+        "inputFullName": "Nombre de usuario: ",
+        "inputFullNamePlaceHolder": "Nombre...",
+        "inputCountry": {
+            "label": "País: ",
+            "placeHolder": "País..."
+        },
+        "inputProvince": {
+            "label": "Provincia: ",
+            "placeHolder": "Provincia o Estado..."
+        },
+        "inputCity": {
+            "label": "Ciudad: ",
+            "placeHolder": "Ciudad..."
+        },
+        "inputStreet": {
+            "label": "Calle: ",
+            "placeHolder": "Calle..."
+        },
+        "postalCode": {
+            "label": "Código postal: ",
+            "placeHolder": "Código postal..."
+        },
+        "uploadChanges": "Confirmar y subir cambios",
+        "errorAllFields": "Todos los campos son obligatorios.",
+        "validate": {
+            "allFields": "Todos los campos son obligatorios.",
+            "fullName": "Solo se aceptan números, letras y espacios en blanco."
+        }
+    },
+    "fastPurchase": {
+        "size": "Seleciona un talle",
+        "stock": "Cantidad:",
+        "enterQuantity": "Ingresá la cantidad que buscas",
+        "continue": "Continuar la compra"
+    },
+    "purchase": {
+        "data": "Datos",
+        "question": "¿Dónde querés recibir tu compra?",
+        "country": "País:",
+        "province": "Provincia:",
+        "city": "Ciudad:",
+        "street": "Calle:",
+        "postalCode": "Código postal:",
+        "phoneNumber": "Número de teléfono:",
+        "totalPrice": "Precio total: $",
+        "goBack": "Volver al carrito"
+    },
+    "profile": {
+        "country": "País:",
+        "province": "Provincia:",
+        "city": "Ciudad:",
+        "street": "Calle:",
+        "postalCode": "Código postal:",
+        "editeProfile": "Modificar perfil",
+        "logOut": "Cerrar sesión"
+    },
+    "login": {
+        "suspesion": "Tu cuenta ha sido suspendida.",
+        "invalidCred": "El email y/o la contraseña no coinciden",
+        "reset": {
+            "email": "Ingresa un email para actualizar tu contraseña.",
+            "sentEmail": "Te hemos enviado un correo, revisa tu bandeja de entrada."
+        },
+        "h1": "Inicio de sesión",
+        "emailInput": "Correo electrónico...",
+        "passwordInput": "Contraseña...",
+        "login": "Iniciar sesión",
+        "forgotPass": "¿Te has olvidado tu contraseña?",
+        "notMember": "¿Aún no estás registrado?",
+        "signUp": "Registrarse"
+    },
+    "register": {
+        "register": "Registro",
+        "placeHolderEmail": "Tu correo electrónico...",
+        "placeHolderPassword": "Tu contraseña...",
+        "placeHolder2Password": "Repite la contraseña...",
+        "placeHolderName": "Tu nombre...",
+        "notMatching": "Las contraseñas no coinciden, inténtalo nuevamente.",
+        "signUp": "Registrarse",
+        "already": "¿Ya tienes una cuenta?",
+        "signIn": "Iniciar sesión"
+    },
+    "details": {
+        "title": "No estás logueado.",
+        "text": "¡Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+        "cancelButtonText": "Cancelar",
+        "confirmButtonText": "Iniciar sesión",
+        "title2": "Seleccioná un talle y una cantidad para continuar.",
+        "choseSize": "Selecciona un talle",
+        "defaultValue": "Talles",
+        "stock": "Cantidad:",
+        "labelStock": "Ingresá la cantidad que buscas",
+        "addToCart": "Agregar al carrito"
+    },
+    "questionForm": {
+        "alert": {
+            "title": "No estás logueado",
+            "text": "Para poder realizar una pregunta debes loguearte primero!",
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Iniciar sesión"
+        },
+        "title": "Título",
+        "question": "Pregunta",
+        "makeQuestion": "Hacer pregunta",
+        "alsoAsked": "También preguntaron:",
+        "noQuestion": "No hay preguntas"
+    }
+}

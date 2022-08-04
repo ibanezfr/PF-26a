@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from '../../context/AuthContext';
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 import { clearCart } from "../../redux/actions";
 import { useDispatch } from 'react-redux';
@@ -18,6 +19,7 @@ import axios from "axios";
 
 
 export default function CheckoutForm({ total, products, shippingInfo }) {
+  const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -56,42 +58,22 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
       //console.log(elements.getElement(CardElement))
       console.log('no error')
       if (!user) Swal.fire({
-        title: 'No estás logueado',
-        text: "Para poder realizar esta acción debes loguearte primero!",
+        title: t('checkOutForm.loginAlert.title'),
+        text: t('checkOutForm.loginAlert.text'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Iniciar sesión'
-    }).then((result) => {
+        cancelButtonText: t('checkOutForm.loginAlert.cancelButtonText'),
+        confirmButtonText: t('checkOutForm.loginAlert.confirmButtonText')
+      }).then((result) => {
         if (result.isConfirmed) {
-            history.push("/login")
+          history.push("/login")
         }
-    })
+      })
 
       else {
-        // let timerInterval
-        // Swal.fire({
-        //   title: 'Auto close alert!',
-        //   html: 'I will close in <b></b> milliseconds.',
-        //   timer: 2000,
-        //   timerProgressBar: true,
-        //   didOpen: () => {
-        //     Swal.showLoading()
-        //     const b = Swal.getHtmlContainer().querySelector('b')
-        //     timerInterval = setInterval(() => {
-        //       b.textContent = Swal.getTimerLeft()
-        //     }, 100)
-        //   },
-        //   willClose: () => {
-        //     clearInterval(timerInterval)
-        //   }
-        // }).then((result) => {
-        //   /* Read more about handling dismissals below */
-        //   if (result.dismiss === Swal.DismissReason.timer) {
-        //     console.log('I was closed by the timer')
-        //   }
-        // })
+
         const { id } = paymentMethod;
         try {//console.log('total', total)
           const { data } = await axios.post(
@@ -109,15 +91,16 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
 
           elements.getElement(CardElement).clear();
           if (data.message === 'Successful Payment') {
-            // dispatch(clearCart());
+            dispatch(clearCart());
             Swal.fire({
-              title: 'Compra realizada con éxito!',
-              text: "Te llegará la información de la misma a tu casilla de correo",
+              title: t('checkOutForm.confirmationAlert.title'),
+              text: t('checkOutForm.confirmationAlert.text'),
               icon: 'success',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Volver al inicio'
+              cancelButtonText: t('checkOutForm.confirmationAlert.cancelButtonText'),
+              confirmButtonText: t('checkOutForm.confirmationAlert.confirmButtonText')
             }).then((result) => {
               if (result.isConfirmed) {
                 history.push("/")
@@ -144,7 +127,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   //console.log(!stripe || loading);
   //mostrar alerta de compra exitosa o fallida
   return (
-      <form className="card card-body" onSubmit={handleSubmit}>
+    <form className="card card-body" onSubmit={handleSubmit}>
 
       {/* User Card Input */}
       <div className="form-group">
@@ -157,7 +140,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
             <span className="sr-only"> </span>{/* cambio loading para que quede solo el spinner */}
           </div>
         ) : (
-          "Comprar"
+          t('checkOutForm.buy')
         )}
       </button>
     </form>

@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { register_post } from '../../../api_url/api_url';
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import { useTranslation } from 'react-i18next';
 // import { register } from "../../../redux/actions";
 
 const Register = () => {
   const { signup } = useAuth();
-
+  const { t } = useTranslation();
   const [newUser, setNewUser] = useState({
     fullName: "",
     email: "",
@@ -22,7 +23,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     if (newUser.confirmPassword !== newUser.password) {
-      return setError("Passwords do not match, please try again.");
+      return setError(t('register.notMatching'));
     }
     try {
       const credentials = await signup(newUser.email, newUser.password);
@@ -51,28 +52,24 @@ const Register = () => {
   return (
     <div className="login">
       <section id="login-window">
-        <h1>Register</h1>
+        <h1>{t('register.register')}</h1>
 
         {error && <span className="error"> {error} </span>}
         <form onSubmit={handleSubmit}>
           <input
             className="form-input"
             type="text"
-            placeholder="Your Name"
+            placeholder={t('register.placeHolderName')}
             name="email"
             onChange={(e) =>
               setNewUser({ ...newUser, fullName: e.target.value })
             }
           />
-          {/* <p className="error" id="username-error">
-          {" "}
-          * Username is required !{" "}
-        </p> */}
 
           <input
             className="form-input"
             type="email"
-            placeholder="Your Email"
+            placeholder={t('register.placeHolderEmail')}
             id="password"
             onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
           />
@@ -80,7 +77,7 @@ const Register = () => {
           <input
             className="form-input"
             type="password"
-            placeholder="Password"
+            placeholder={t('register.placeHolderPassword')}
             id="password"
             onChange={(e) =>
               setNewUser({ ...newUser, password: e.target.value })
@@ -90,7 +87,7 @@ const Register = () => {
           <input
             className="form-input"
             type="password"
-            placeholder="Repeat Password"
+            placeholder={t('register.placeHolder2Password')}
             id="password"
             onChange={(e) =>
               setNewUser({ ...newUser, confirmPassword: e.target.value })
@@ -99,13 +96,13 @@ const Register = () => {
 
           <button className="login-btn" type="submit">
             {" "}
-            Sign Up!
+            {t('register.signUp')}
           </button>
         </form>
 
         <p className="form-footer">
           {" "}
-          Already have an account ? <Link to="/login"> Sign In!</Link>
+          {t('register.already')}<Link to="/login"> {t('register.signIn')}</Link>
         </p>
       </section>
     </div>

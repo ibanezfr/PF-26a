@@ -3,13 +3,14 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
-//import { browserHistory } from 'react-router';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next';
 import { cartController, formatNumber } from '../../Utils';
 import { useAuth } from '../../context/AuthContext';
+import './FastPurchase.scss'
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const history = useHistory();
     const { user } = useAuth();
@@ -17,8 +18,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
     const [position, setPosition] = useState(0);
 
     useEffect(() => {
-        // dispatch(getProductsById(id)) igual funciona y evita la carga del estado
-        if(show) {
+        if (show) {
             dispatch(bringSize(id))
         }
     }, [show]);
@@ -87,41 +87,46 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                 aria-labelledby="example-custom-modal-styling-title"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Custom Modal Styling
-                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
-                        <h2>{name}</h2>
-                        <img src={image} width="400px" height="400px" alt='Not Found' />
-                        <h4>${formatNumber(price)}</h4>
+                    <div className='modalInformation'>
+                        <div className='imgCont'>
+                            <img src={image} alt='Not Found' />
+                        </div>
+                        <div className='bodyCont'>
+                            <h2>{name}</h2>
+                            <h4>${price}</h4>
+                        </div>
                     </div>
-                    <div>
-                        <span>Selecciona un talle</span>
+                    <div className='modalInteractive'>
                         <form>
-                            <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                                <option disabled>Seleccioná un talle</option>
+                            <div className='quantityCont'>
+                                <span>{t('fastPurchase.size')}</span>
+                                <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+                                    <option disabled>{t('fastPurchase.size')}</option>
+                                    {
+                                        size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
+                                            return (
+                                                (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
+                                            )
+                                        })
+                                    }
+                                </select>
                                 {
-                                    size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
-                                        return (
-                                            (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
-                                        )
-                                    })
+                                    position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
                                 }
-                            </select>
-                            {
-                                position !== 0 && <h4>Stock: {size[position]}</h4>
-                            }
-                            <label>Ingresá la cantidad que buscas</label>
-                            <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
-                        </form>
+                            </div>
+                            <div className='quantityCont'>
+                                <label>{t('fastPurchase.enterQuantity')}</label>
+                                <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
+                            </div>
+                        </form >
+                    </div >
+                    <div className='buttonModalContainer'>
+                        <button onClick={e => handleSubmit(e)}>{t('fastPurchase.continue')}</button>
                     </div>
-                    <div>
-                        <button onClick={e => handleSubmit(e)}>Continuar compra</button>
-                    </div>
-                </Modal.Body>
-            </Modal>
+                </Modal.Body >
+            </Modal >
         </>
     );
 }

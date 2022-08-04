@@ -23,7 +23,8 @@ import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
 import AllCategories from "./components/Categories/AllCategories";
 import EditCategories from "./components/Categories/EditCategories";
-import NewCategory from "./components/Categories/NewCategory";
+import NewCategory from "./components/Categories/NewCategory"
+import Answers from "./components/AdminComponents/Answers/Answers";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,9 +65,11 @@ function App() {
           <Route path="/admin/categoria/nueva" exact component={NewCategory} />
           <Route path="/admin/categorias/:id" exact component={EditCategories} />
           <Route path="/admin/categorias" exact component={AllCategories} />
+          <Route path="/admin/qas" component={Answers}/>
+
           <ProtectedRoutes>
-            <Route path="/purchase" component={Purchase}/>
-            <Route path="/favorites" component={Favorites}/>
+            <Route path="/purchase" component={Purchase} />
+            <Route path="/favorites" component={Favorites} />
             <Route path="/profile" exact>
               <Profile />
             </Route>

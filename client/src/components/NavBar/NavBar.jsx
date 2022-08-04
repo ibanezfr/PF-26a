@@ -10,9 +10,17 @@ import "./NavBar.css";
 import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next';
+
+const lngs = {
+  es: { nativeName: 'Español' },
+  en: { nativeName: 'English' },
+}
 
 
 function NavBar() {
+  const { t, i18n } = useTranslation();
+
   const dispatch = useDispatch();
   const { user, logout } = useAuth();
   const history = useHistory();
@@ -35,19 +43,20 @@ function NavBar() {
 
   function handleFavs() {
     user ? history.push("/favorites") : Swal.fire({
-      title: 'No estás logueado',
-      text: "Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
+      title: t('navbar.alert.title'),
+      text: t('navbar.alert.text'),
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Iniciar sesión'
+      cancelButtonText: t('navbar.alert.cancelButtonText'),
+      confirmButtonText: t('navbar.alert.confirmButtonText')
     }).then((result) => {
       if (result.isConfirmed) {
         history.push("/login")
       }
     })
-  } 
+  }
 
   return (
     <Navbar className="NavBar" bg="light" expand="lg">
@@ -69,27 +78,35 @@ function NavBar() {
               href="/"
               onClick={resetFilterOrderSearch()}
             >
-              Inicio
+              {t('navbar.home')}
             </Nav.Link>
-            <NavDropdown title="Usuario" id="basic-nav-dropdown">
+            <NavDropdown title={t('navbar.navdropdown')} id="basic-nav-dropdown">
               {user ? (
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout}>{t('logout')}</button>
               ) : (
                 <Nav.Link className="navText" href="/login">
-                  Login
+                  {t('navbar.login')}
                 </Nav.Link>
               )}
               <Nav.Link href="/profile" className="navText">
-                Perfil
+                {t('navbar.profile')}
               </Nav.Link>
               <Nav.Link href="/admin/home" className="navText">
-                Admin Dashboard
+                {t('navbar.admin-dashboard')}
               </Nav.Link>
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
+
+          {// Este es el switcher para cambiar idiomas:
+
+            Object.keys(lngs).map((lng) => (
+              <button type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+            ))
+          }
+
           <Nav.Link className="navText" onClick={() => handleFavs()}>
-            Favoritos
+            {t('navbar.favorites')}
           </Nav.Link>
           <SearchBar />
         </Navbar.Collapse>

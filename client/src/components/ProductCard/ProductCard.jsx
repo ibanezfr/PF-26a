@@ -4,11 +4,11 @@ import { formatNumber } from "../../Utils";
 import FastPurchase from "../Purchase/FastPurchase";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 
 export default function ProductCard({ id, name, price, image, categories }) {
   const [show, setShow] = useState(false);
-
+  const { t } = useTranslation();
   // console.log(id)
   return (
     <div className="card">
@@ -17,7 +17,7 @@ export default function ProductCard({ id, name, price, image, categories }) {
       </div>
       <div className="bodyContainer">
         <div className="category">
-          <Link to={'details/' + id} className='linkBtn'><button className='btnInfo '>Detalles</button></Link>
+          <Link to={'details/' + id} className='linkBtn'><button className='btnInfo '>{t('productCard.details')}</button></Link>
         </div>
         <div className="titleProduct">
           <h2>{name} </h2>
@@ -29,7 +29,7 @@ export default function ProductCard({ id, name, price, image, categories }) {
             <FastPurchase setShow={setShow} show={show} image={image} name={name} price={price} id={id}/>
           }
           <Button variant="primary" onClick={() => setShow(true)}>
-            Compra rápida
+            {t('productCard.fastPurchase')}
           </Button>
         </div>
       </div>
