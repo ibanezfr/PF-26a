@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
 import { cartController, formatNumber } from '../../Utils';
 import { useAuth } from '../../context/AuthContext';
+import './FastPurchase.scss'
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
     const { t } = useTranslation();
@@ -86,37 +87,42 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                 aria-labelledby="example-custom-modal-styling-title"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Custom Modal Styling
-                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
-                        <h2>{name}</h2>
-                        <img src={image} width="400px" height="400px" alt='Not Found' />
-                        <h4>${formatNumber(price)}</h4>
+                    <div className='modalInformation'>
+                        <div className='imgCont'>
+                            <img src={image} alt='Not Found' />
+                        </div>
+                        <div className='bodyCont'>
+                            <h2>{name}</h2>
+                            <h4>${price}</h4>
+                        </div>
                     </div>
-                    <div>
-                        <span>{t('fastPurchase.size')}</span>
+                    <div className='modalInteractive'>
                         <form>
-                            <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                                <option disabled>{t('fastPurchase.size')}</option>
+                            <div className='quantityCont'>
+                                <span>{t('fastPurchase.size')}</span>
+                                <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+                                    <option disabled>{t('fastPurchase.size')}</option>
+                                    {
+                                        size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
+                                            return (
+                                                (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
+                                            )
+                                        })
+                                    }
+                                </select>
                                 {
-                                    size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
-                                        return (
-                                            (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
-                                        )
-                                    })
+                                    position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
                                 }
-                            </select>
-                            {
-                                position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
-                            }
-                            <label>{t('fastPurchase.enterQuantity')}</label>
-                            <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
+                            </div>
+                            <div className='quantityCont'>
+                                <label>{t('fastPurchase.enterQuantity')}</label>
+                                <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
+                            </div>
                         </form >
                     </div >
-                    <div>
+                    <div className='buttonModalContainer'>
                         <button onClick={e => handleSubmit(e)}>{t('fastPurchase.continue')}</button>
                     </div>
                 </Modal.Body >

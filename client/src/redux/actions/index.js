@@ -27,6 +27,7 @@ const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
 const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
 const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
 const URL_ANSWERS = 'http://localhost:3001/products/answer/'
+const URL_GET_ANSWERS = 'http://localhost:3001/admin/all/'
 
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
@@ -38,6 +39,7 @@ export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
 export const FETCH_CATEGORY= "FETCH_CATEGORY"
+export const ANSWER_QUESTION = "ANSWER_QUESTION";
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
@@ -80,6 +82,17 @@ export function bringAnswers (id){
     // console.log("en la action: ", info.data)
     dispatch({
       type: GET_ANSWERS,
+      payload: info.data,
+    });
+  };
+}
+
+export function answerQuestion(resolved){
+  return async (dispatch) => {
+    let info = await axios.get(URL_GET_ANSWERS + resolved);
+    // console.log("en la action: ", info.data)
+    dispatch({
+      type: ANSWER_QUESTION,
       payload: info.data,
     });
   };
