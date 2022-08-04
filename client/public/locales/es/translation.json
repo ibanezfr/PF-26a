@@ -195,5 +195,18 @@
         "stock": "Cantidad:",
         "labelStock": "Ingresá la cantidad que buscas",
         "addToCart": "Agregar al carrito"
+    },
+    "questionForm": {
+        "alert": {
+            "title": "No estás logueado",
+            "text": "Para poder realizar una pregunta debes loguearte primero!",
+            "cancelButtonText": "Cancelar",
+            "confirmButtonText": "Iniciar sesión"
+        },
+        "title": "Título",
+        "question": "Pregunta",
+        "makeQuestion": "Hacer pregunta",
+        "alsoAsked": "También preguntaron:",
+        "noQuestion": "No hay preguntas"
     }
 }

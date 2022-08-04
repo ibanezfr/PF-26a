@@ -190,10 +190,23 @@
         "text": "To be able to save items on the cart you must log in first!",
         "cancelButtonText": "Cancel",
         "confirmButtonText": "Log In",
-        "title2": "Chose a size and quantity to continue",
-        "choseSize": "Chose a size",
-        "stock": "Quantity:",
+        "title2": "Choose a size and quantity to continue",
+        "choseSize": "Choose a size",
+        "stock": "Stock:",
         "labelStock": "Enter how many units you want",
         "addToCart": "Add to cart"
+    },
+    "questionForm": {
+        "alert": {
+            "title": "You're not logged in",
+            "text": "To make a question you must be logged in first!",
+            "cancelButtonText": "Cancel",
+            "confirmButtonText": "Log In"
+        },
+        "title": "Title",
+        "question": "Question",
+        "makeQuestion": "Make a question",
+        "alsoAsked": "Also was asked:",
+        "noQuestion": "There is no questions."
     }
 }

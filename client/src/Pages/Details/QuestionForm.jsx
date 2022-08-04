@@ -3,11 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { bringAnswers, bringQandA, getProductsById, getQandA} from "../../redux/actions";
+import { bringAnswers, bringQandA, getProductsById, getQandA } from "../../redux/actions";
 import Swal from 'sweetalert2'
 import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from 'react-i18next';
 
 export default function QuestionForm() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const params = useParams();
   const [question, setQuestion] = useState({
@@ -19,7 +21,7 @@ export default function QuestionForm() {
   let QandA = useSelector(state => state.infoQuestion)
   let answers = useSelector(state => state.infoAnswer);
   const history = useHistory();
-  const { user} = useAuth();
+  const { user } = useAuth();
 
   const qState = QandA;
 
@@ -55,13 +57,14 @@ export default function QuestionForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     user ? dispatch(getQandA(params.id, question)) : Swal.fire({
-      title: 'No estás logueado',
-      text: "Para poder realizar una pregunta debes loguearte primero!",
+      title: t('questionForm.title'),
+      text: t('questionForm.text'),
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Iniciar sesión'
+      cancelButtonText: t('questionForm.cancelButtonText'),
+      confirmButtonText: t('questionForm.confirmButtonText')
     }).then((result) => {
       if (result.isConfirmed) {
         history.push("/login")
@@ -80,26 +83,26 @@ export default function QuestionForm() {
     <div className="formDiv">
       <Form className="form">
         <Form.Group className="mb-3 formGroup" controlId="Question">
-          <Form.Label className="text">Título</Form.Label>
+          <Form.Label className="text">{t('questionForm.title')}</Form.Label>
           <Form.Control onChange={e => handleChange(e)} name="title" value={question.title} as="textarea" rows={3} />
-          <Form.Label className="text">Pregunta</Form.Label>
+          <Form.Label className="text">{t('questionForm.question')}</Form.Label>
           <Form.Control onChange={e => handleChange(e)} name="description" value={question.description} as="textarea" rows={3} />
           <Button onClick={e => handleSubmit(e)} className="btn" size="sm">
-            Hacer pregunta
+            {t('questionForm.makeQuestion')}
           </Button>
         </Form.Group>
       </Form>
 
       <div>
         <div className="questions">
-          <h2 className="titleQuestion">También preguntaron:</h2>
+          <h2 className="titleQuestion">{t('questionForm.alsoAsked')}</h2>
           {
             QandA ? QandA.map((m, index) => {
               return (
                 (index % 2) === 0 ? <div className="QandAContainer"><div className="question bubble"><h2>{m}</h2><p>{QandA[index + 1]}</p></div>
                   <div className="answer"><p>{answers[index]}</p></div> </div> : null
               )
-            }) : <div className="questionNull">No hay preguntas</div>
+            }) : <div className="questionNull">{t('questionForm.noQuestion')}</div>
           }
         </div>
       </div>
