@@ -149,5 +149,29 @@
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
         "goBack": "Volver al carrito"
+    },
+    "profile": {
+        "country": "País:",
+        "province": "Provincia:",
+        "city": "Ciudad:",
+        "street": "Calle:",
+        "postalCode": "Código postal:",
+        "editeProfile": "Modificar perfil",
+        "logOut": "Cerrar sesión"
+    },
+    "login": {
+        "suspesion": "Tu cuenta ha sido suspendida.",
+        "invalidCred": "El email y/o la contraseña no coinciden",
+        "reset": {
+            "email": "Ingresa un email para actualizar tu contraseña.",
+            "sentEmail": "Te hemos enviado un correo, revisa tu bandeja de entrada."
+        },
+        "h1": "Inicio de sesión",
+        "emailInput": "Correo electrónico...",
+        "passwordInput": "Contraseña...",
+        "login": "Iniciar sesión",
+        "forgotPass": "¿Te has olvidado tu contraseña?",
+        "notMember": "¿Aún no estás registrado?",
+        "signUp": "Registrarse"
     }
 }

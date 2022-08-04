@@ -149,5 +149,29 @@
         "phoneNumber": "Phone number:",
         "totalPrice": "Total price: $",
         "goBack": "Go back to cart"
+    },
+    "profile": {
+        "country": "Country:",
+        "province": "Province:",
+        "city": "City:",
+        "street": "Street:",
+        "postalCode": "Postal code:",
+        "editeProfile": "Modify profile",
+        "logOut": "Log out"
+    },
+    "login": {
+        "suspesion": "Your account have been suspended.",
+        "invalidCred": "Invalid credentials",
+        "reset": {
+            "email": "Write an email to reset your Password",
+            "sentEmail": "We sent you an email. Check your inbox"
+        },
+        "h1": "Log in",
+        "emailInput": "Email..",
+        "passwordInput": "Password...",
+        "login": "Log in",
+        "forgotPass": "Has you forgot your password?",
+        "notMember": "You're not member yet?",
+        "signUp": "Sing Up"
     }
 }
