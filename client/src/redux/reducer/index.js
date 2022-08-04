@@ -27,6 +27,7 @@ import {
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
+import Swal from 'sweetalert2';
 
 const initialState = {
   products: [],
@@ -180,7 +181,15 @@ function rootReducer(state = initialState, action) {
     case ADD_ONE_FROM_CART:
       let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       if  (productAdd.quantity === productAdd.stock) {
-        alert("limite alcanzado")
+        Swal.fire({
+          title: 'La cantidad excede el limite del producto',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
         return {...state}
       }
       return {

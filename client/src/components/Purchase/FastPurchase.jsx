@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 //import { browserHistory } from 'react-router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { cartController, formatNumber } from '../../Utils';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {

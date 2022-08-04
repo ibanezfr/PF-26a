@@ -4,6 +4,8 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import "./App.css";
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -87,5 +89,6 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
-  );
+
+    );
 }
