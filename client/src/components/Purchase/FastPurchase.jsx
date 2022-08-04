@@ -12,6 +12,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
     const dispatch = useDispatch();
     let size = useSelector(state => state.size)
     let history = useHistory();
+    const [position, setPosition] = useState(0);
 
     useEffect(() => {
         // dispatch(getProductsById(id)) igual funciona y evita la carga del estado
@@ -32,13 +33,14 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
 
     const handleSize = (e) => {
         e.preventDefault();
+        setPosition(parseInt(e.target.value) + 1);
         setNewCart({
             id: id,
             name: name,
             img: image,
             size: size[e.target.value],
             price: price,
-            stock: size[1],
+            stock: size[parseInt(e.target.value) + 1],
             quantity: 0
         });
     };
@@ -93,7 +95,9 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                     })
                                 }
                             </select>
-                            <h4>Stock: {size[1]}</h4>
+                            {
+                                position !== 0 && <h4>Stock: {size[position]}</h4>
+                            }
                             <label>Ingresá la cantidad que buscas</label>
                             <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
                         </form>
