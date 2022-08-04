@@ -21,6 +21,7 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 import List from "./components/AdminComponents/List/List";
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import Answers from "./components/AdminComponents/Answers/Answers";
 function App() {
   const dispatch = useDispatch();
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={List} />
           <Route path="/admin/creation" component={ProductCreationForm} />
+          <Route path="/admin/qas" component={Answers}/>
 
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase}/>

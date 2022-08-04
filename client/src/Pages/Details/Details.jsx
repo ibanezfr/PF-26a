@@ -116,97 +116,102 @@ export default function Details() {
       dispatch(addToCart(newCart));
     };
   };
-  
+
   return (
     <div className="father">
+
       <div className="containerDetail">
-        {
-          isFavorite
-            ?
-            <button className="btnFav">
-              <img src={heartR} alt='Favoritos' className="btnImage" onClick={(e) => handleRemoveFav(e)} />
-            </button>
-            :
-            <button className="btnFav">
-              <img src={heartA} alt='Favoritos' className="btnImage" onClick={(e) => handleAddFav(e)} />
-            </button>
-        }
-        <div className="container1">
-          {/* <img src={actualProduct.image} alt="not found" /> */}
-
-
-          <Carousel fade>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={actualProduct.image}
-                alt="First slide"
-              />
-            </Carousel.Item>
-            {
-              actualProduct.image2 ?
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={actualProduct.image2}
-                    alt="Second slide"
-                  />
-                </Carousel.Item> : null
-            }
-            {
-              actualProduct.image3 ?
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={actualProduct.image2}
-                    alt="Second slide"
-                  />
-                </Carousel.Item> : null
-            }
-            {
-              actualProduct.image4 ?
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={actualProduct.image2}
-                    alt="Second slide"
-                  />
-                </Carousel.Item> : null
-            }
-          </Carousel>
-
-
-          <span>Selecciona un talle</span>
-          <form>
-            <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-              <option disabled>Seleccioná un talle</option>
-              {
-                size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
-                  return (
-                    (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
-                  )
-                })
-              }
-            </select>
-            {
-              position !== 0 && <h4>Stock: {size[position]}</h4>
-            }
-            <label>Ingresá la cantidad que buscas</label>
-            <input type="number" min={1} max={size[position]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
-            <div className="btnContainer">
-              <button onClick={(e) => hanldeSubmit(e)}>
-                Agregar al carrito
+        <div>
+          {
+            isFavorite
+              ?
+              <button className="btnFav">
+                <img src={heartR} alt='Favoritos' className="btnImage" onClick={(e) => handleRemoveFav(e)} />
               </button>
-            </div>
-          </form>
-
-        </div >
-        <div className="container2">
-
-          <h2>{actualProduct.name}</h2>
-          {/* <h2>${formatNumber(actualProduct.price)}</h2> */}
-          <p>{actualProduct.description}</p>
+              :
+              <button className="btnFav">
+                <img src={heartA} alt='Favoritos' className="btnImage" onClick={(e) => handleAddFav(e)} />
+              </button>
+          }
         </div>
+
+        <div className="containerInfoDetail">
+          <div className="container1">
+            <Carousel fade>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={actualProduct.image}
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              {
+                actualProduct.image2 ?
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100"
+                      src={actualProduct.image2}
+                      alt="Second slide"
+                    />
+                  </Carousel.Item> : null
+              }
+              {
+                actualProduct.image3 ?
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100"
+                      src={actualProduct.image2}
+                      alt="Second slide"
+                    />
+                  </Carousel.Item> : null
+              }
+              {
+                actualProduct.image4 ?
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100"
+                      src={actualProduct.image2}
+                      alt="Second slide"
+                    />
+                  </Carousel.Item> : null
+              }
+            </Carousel>
+          </div>
+
+
+          <div className="container2">
+            <h2>{actualProduct.name}</h2>
+            <p>{actualProduct.description}</p>
+          </div>
+
+          <div className="container3">
+            <span>Selecciona un talle</span>
+            <form>
+              <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+                <option disabled>Seleccioná un talle</option>
+                {
+                  size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
+                    return (
+                      (index % 2) === 0 ? <option key={index} name={m} value={index} >{m}</option> : null
+                    )
+                  })
+                }
+              </select>
+              {
+                position !== 0 && <h4>Stock: {size[position]}</h4>
+              }
+              <label>Ingresá la cantidad que buscas</label>
+              <input type="number" min={1} max={size[position]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
+              <div className="btnContainer">
+                <button onClick={(e) => hanldeSubmit(e)}>
+                  Agregar al carrito
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
       </div >
       <div>
         <QuestionForm />

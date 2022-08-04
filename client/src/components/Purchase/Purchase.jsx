@@ -13,6 +13,7 @@ import CheckoutForm from "../Cart/CheckoutForm"
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { formatNumber } from '../../Utils/index'
+import './FastPurchase.scss'
 // const API_KEY = 'pk_test_51LRM01FTo7BILoUXakAa8q2EIaJlH9MDt7XKPEFjp9FjQb3vOYrWSgvcbqQZRr1koqulG4m9wpAiLTmUBMoyu8DC00dDBGg6oB'
 
 

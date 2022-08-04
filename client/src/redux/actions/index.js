@@ -27,7 +27,7 @@ const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
 const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
 const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
 const URL_ANSWERS = 'http://localhost:3001/products/answer/'
-const URL_GET_ANSWERS = 'http://localhost:3001/admin/answer/'
+const URL_GET_ANSWERS = 'http://localhost:3001/admin/all/'
 
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
@@ -86,9 +86,9 @@ export function bringAnswers (id){
   };
 }
 
-export function answerQuestion(id){
+export function answerQuestion(resolved){
   return async (dispatch) => {
-    let info = await axios.put(URL_GET_ANSWERS + id);
+    let info = await axios.get(URL_GET_ANSWERS + resolved);
     // console.log("en la action: ", info.data)
     dispatch({
       type: ANSWER_QUESTION,

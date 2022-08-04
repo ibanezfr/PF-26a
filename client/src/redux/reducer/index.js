@@ -55,6 +55,7 @@ const initialState = {
   question: [],
   infoQuestion: [],
   infoAnswer: [],
+  questionToAnswer: [],
   isSearchActive: false,
   favs: [
     ...(JSON.parse(localStorage.getItem('favs') === null)
@@ -251,7 +252,7 @@ function rootReducer(state = initialState, action) {
     case ANSWER_QUESTION:
       return{
         ...state,
-        question: action.payload
+        questionToAnswer: action.payload
       }
 
       

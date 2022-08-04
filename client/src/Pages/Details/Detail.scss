@@ -15,7 +15,7 @@ $lightestColor: #F2F2F2;
 
 .containerDetail {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: $lightestColor;
     border-radius: 20px;
     box-shadow: 0 4px 16px $primaryColor;
@@ -110,17 +110,22 @@ $lightestColor: #F2F2F2;
         transition: all 0.2s ease;
     }
 
-    .btnFav {
-        color: $secondaryColor;
-        background-color: #794983;
-    }
-
-    .btnImage {
-        width: 15px;
-        height: 15px;
-    }
-
 }
+
+// .btnFav {
+//     color: $secondaryColor;
+//     background-color: #794983;
+//     position: fixed;
+//     left: 0;
+//     top: 0;
+//     width: 100px;
+//     height: 100px;
+// }
+
+// .btnImage {
+//     width: 15px;
+//     height: 15px;
+// }
 
 .formDiv {
     display: flex;
