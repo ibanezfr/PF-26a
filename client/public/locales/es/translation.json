@@ -1,4 +1,30 @@
 {
+    "productCreationForm": {
+        "backButton": "Regresar al tablero de control",
+        "h1Title": "Creá un producto:",
+        "legend1": "Ingresá un título:",
+        "placeHolderLegend1": "Título...",
+        "legend2": "Ingresá el precio:",
+        "placeHolderLegend2": "Precio...",
+        "legend3": "Ingersá la descripción:",
+        "placeHolderLegend3": "Descripción...",
+        "legend4": "Ingresá los colores:",
+        "placeHolderLegend4": "Color...",
+        "legend5": "Imagen 1:",
+        "legend6": "Imagen 2:",
+        "legend7": "Imagen 3:",
+        "legend8": "Imagen 4:",
+        "legend9": "Categorías:",
+        "categorySelect": "--Elegí las categorías--",
+        "legend10": "Talle y Stock:",
+        "sizeSelect": "--Seleccioná un talle--",
+        "labelStock": "Stock:",
+        "submit": "Confirmar y enviar",
+        "preview": "Previsualización:",
+        "notFound": "La imagen no se encuentra",
+        "label1": "Categorías:",
+        "sizeStock": "Hay {{stock}} artículos de tamaño {{size}}."
+    },
     "newCategory": {
         "name": "Nombre...",
         "submit": "Confirmar"
@@ -211,7 +237,7 @@
         "confirmButtonText": "Iniciar sesión",
         "title2": "Seleccioná un talle y una cantidad para continuar.",
         "choseSize": "Selecciona un talle",
-        "defaultValue": "Talles",
+        "disabled": "Talles",
         "stock": "Cantidad:",
         "labelStock": "Ingresá la cantidad que buscas",
         "addToCart": "Agregar al carrito"

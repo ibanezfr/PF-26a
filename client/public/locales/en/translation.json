@@ -1,4 +1,29 @@
 {
+    "productCreationForm": {
+        "backButton": "Back to dashboard",
+        "h1Title": "Post your product:",
+        "legend1": "Enter title:",
+        "placeHolderLegend1": "Título...",
+        "legend2": "Ingresá el precio:",
+        "placeHolderLegend2": "Precio...",
+        "legend3": "Ingersá la descripción:",
+        "placeHolderLegend3": "Descripción...",
+        "legend4": "Ingresá los colores:",
+        "placeHolderLegend4": "Color...",
+        "legend5": "Imagen 1:",
+        "legend6": "Imagen 2:",
+        "legend7": "Imagen 3:",
+        "legend8": "Imagen 4:",
+        "legend9": "Categorías:",
+        "categorySelect": "--Elegí las categorías--",
+        "legend10": "Talle y Stock:",
+        "sizeSelect": "--Seleccioná un talle--",
+        "labelStock": "Stock:",
+        "preview": "Previsualización:",
+        "notFound": "La imagen no se encuentra",
+        "label1": "Categorías:",
+        "sizeStock": "There are {{stock}} size {{size}} items."
+    },
     "newCategory": {
         "name": "Name...",
         "submit": "Submit"
