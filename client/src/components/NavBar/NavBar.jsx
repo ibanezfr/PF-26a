@@ -101,11 +101,11 @@ function NavBar() {
           {// Este es el switcher para cambiar idiomas:
 
             Object.keys(lngs).map((lng) => (
-              <button type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+              <button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
             ))
           }
 
-          <Nav.Link className="navText" onClick={() => handleFavs()}>
+          <Nav.Link id="btnLang" className="navText" onClick={() => handleFavs()}>
             {t('navbar.favorites')}
           </Nav.Link>
           <SearchBar />

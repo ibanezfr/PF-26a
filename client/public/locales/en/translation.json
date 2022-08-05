@@ -1,4 +1,18 @@
 {
+    "newCategory": {
+        "name": "Name...",
+        "submit": "Submit"
+    },
+    "cardCategory": {
+        "edit": "Modify"
+    },
+    "allCategories": {
+        "myCategories": "My categories",
+        "create": "Create category"
+    },
+    "favs": {
+        "noFavs": "There is no favorites."
+    },
     "navbar": {
         "home": "Home",
         "login": "Login",
@@ -45,6 +59,10 @@
         "clearCart": "Clear cart"
     },
     "checkOutForm": {
+        "cardAlert": {
+            "title1": "You must enter you card number.",
+            "title2": "Invalid card number."
+        },
         "loginAlert": {
             "title": "Your not logged in",
             "text": "You must be logged in first to perfom this action",

@@ -1,3 +1,31 @@
-.navText{
+.navText {
     color: #794983;
+}
+
+#btnLang {
+    height: 20px;
+    /* margin: 1%; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    /* padding: 1%; */
+    padding-bottom: 1.5%;
+    width: auto;
+    background: #794983;
+    border: 2px solid;
+    border-radius: 5%;
+    border-color: #794983;
+    text-align:center;
+
+}
+
+#btnLang:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 12px #794983;
+    transition: all 0.2s ease;
 }

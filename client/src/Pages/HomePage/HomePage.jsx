@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addFilter, removeFilter, setOrder, setSearchStatus,fetchCategories } from "../../redux/actions/index";
+import { addFilter, removeFilter, setOrder, setSearchStatus, fetchCategories } from "../../redux/actions/index";
 import ProductsCards from '../../components/ProductsCards/ProductsCards.jsx';
 import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
@@ -60,22 +60,24 @@ function HomePage() {
         dispatch(removeFilter(e.target.id))
         setCurrentPage(1)
     }
-    useEffect(() =>{
+    useEffect(() => {
         dispatch(fetchCategories())
-    },[])
+    }, [])
 
     return (
         <div className='totalHomeContainer'>
             <div className='paginationContainer'>
                 <button
                     className={`${currentPage === 1 ? 'disabled' : ''}`}
+                    id="btnPagination"
                     onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
                 >
                     {t('homepage.prev')}
                 </button>
-                <button>{currentPage}</button>
+                <button id="btnPagination">{currentPage}</button>
                 <button
                     className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
+                    id="btnPagination"
                     onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
                 >
                     {t('homepage.next')}

@@ -1,4 +1,18 @@
 {
+    "newCategory": {
+        "name": "Nombre...",
+        "submit": "Confirmar"
+    },
+    "cardCategory": {
+        "edit": "Modificar"
+    },
+    "allCategories": {
+        "myCategories": "Mis categorias",
+        "create": "Crear catgoría"
+    },
+    "favs": {
+        "noFavs": "No hay favoritos."
+    },
     "navbar": {
         "home": "Inicio",
         "login": "Iniciar sesión",
@@ -45,6 +59,10 @@
         "clearCart": "Limpiar carrito"
     },
     "checkOutForm": {
+        "cardAlert": {
+            "title1": "Debe ingresar el número de tarjeta.",
+            "title2": "Número de tarjeta inválido."
+        },
         "loginAlert": {
             "title": "No estás logueado",
             "text": "¡Para poder realizar esta acción debes loguearte primero!",
