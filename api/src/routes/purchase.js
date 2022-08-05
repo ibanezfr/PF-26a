@@ -20,7 +20,7 @@ router.put('/purchaseState/:idOrder', async (req, res) => {
   
     if (order.orderStatus === 'pending') {
       const newOrder = Sell_order.update({
-        order.orderStatus: 'accepted'
+        // order.orderStatus: 'accepted'
       })
   
   

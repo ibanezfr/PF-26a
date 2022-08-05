@@ -4,20 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next';
+import { cartController, formatNumber } from '../../Utils';
+import { useAuth } from '../../context/AuthContext';
 import './FastPurchase.scss'
-//import { browserHistory } from 'react-router';
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
-
+    const history = useHistory();
+    const { user } = useAuth();
     let size = useSelector(state => state.size)
     const [position, setPosition] = useState(0);
 
     useEffect(() => {
-        // dispatch(getProductsById(id)) igual funciona y evita la carga del estado
-        dispatch(bringSize(id))
-    }, [dispatch]);
+        if (show) {
+            dispatch(bringSize(id))
+        }
+    }, [show]);
 
     const [newCart, setNewCart] = useState({
         id: "",
@@ -29,8 +33,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         quantity: 0
     });
 
-    // .log("antes del handleChange: ", newCart)
-
     const handleSize = (e) => {
         e.preventDefault();
         setPosition(parseInt(e.target.value) + 1);
@@ -40,32 +42,33 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
             img: image,
             size: size[e.target.value],
             price: price,
-            stock: size[position],
+            stock: size[parseInt(e.target.value) + 1],
             quantity: 0
         });
     };
 
-    let history = useHistory();
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (newCart.size === "" || newCart.quantity === 0) {
-            Swal.fire({
-                title: 'Seleccioná un talle y una cantidad para continuar',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            })
-        } else {
-            dispatch(clearCart())
+        if (!user) return Swal.fire({
+            title: 'No estás logueado',
+            text: "Para poder comprar los productos debes loguearte primero!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iniciar sesión'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push("/login")
+            }
+        });
+        var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
+        if (bool === true) {
+            dispatch(clearCart());
             dispatch(addToCart(newCart));
-            history.push('/purchase')
+            history.push('/purchase');
         };
-
-    }
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -74,8 +77,6 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
             quantity: parseInt(e.target.value)
         });
     };
-
-    //   console.log("despues del handleChange: ", newCart)
 
     return (
         <>
@@ -100,9 +101,9 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                     <div className='modalInteractive'>
                         <form>
                             <div className='quantityCont'>
-                                <span>Selecciona un talle</span>
+                                <span>{t('fastPurchase.size')}</span>
                                 <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                                    <option disabled>Seleccioná un talle</option>
+                                    <option disabled>{t('fastPurchase.size')}</option>
                                     {
                                         size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                                             return (
@@ -112,20 +113,20 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                     }
                                 </select>
                                 {
-                                    position !== 0 && <h4>Stock: {size[position]}</h4>
+                                    position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
                                 }
                             </div>
                             <div className='quantityCont'>
-                                <label>Ingresá la cantidad que buscas</label>
+                                <label>{t('fastPurchase.enterQuantity')}</label>
                                 <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
                             </div>
-                        </form>
-                    </div>
+                        </form >
+                    </div >
                     <div className='buttonModalContainer'>
-                        <button onClick={e => handleSubmit(e)}>Continuar compra</button>
+                        <button onClick={e => handleSubmit(e)}>{t('fastPurchase.continue')}</button>
                     </div>
-                </Modal.Body>
-            </Modal>
+                </Modal.Body >
+            </Modal >
         </>
     );
 }

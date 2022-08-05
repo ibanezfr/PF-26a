@@ -7,9 +7,10 @@ import { formatNumber } from "../../Utils";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
-
+import { useTranslation } from "react-i18next";
 
 export default function Cart() {
+    const { t } = useTranslation();
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     // console.log(cart)
@@ -46,13 +47,13 @@ export default function Cart() {
 
     const hanleSubmit = (e) => {
         if (!user) return Swal.fire({
-            title: 'No estás logueado',
-            text: "Para poder comprar los productos debes loguearte primero!",
+            title: t('cart.alert.title'),
+            text: t('cart.alert.text'),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Iniciar sesión'
+            confirmButtonText: t('cart.alert.confirmButtonText')
         }).then((result) => {
             if (result.isConfirmed) {
                 history.push("/login")
@@ -65,7 +66,7 @@ export default function Cart() {
 
     return (
         <div className="maxContainer">
-            <h2 className="shoppingCartText">Tu carrito de compras</h2>
+            <h2 className="shoppingCartText">{t('cart.shoppingCartText')}</h2>
             <div className='allCardsContainer'>
                 {
                     cart[0] ? cart.map((product, index) =>
@@ -82,33 +83,22 @@ export default function Cart() {
                     ) :
                         <div>
                             <div className="emptyChartTextContainer">
-                                <h2>Upss...</h2>
-                                <h3>Tu carrito está vacío</h3>
+                                <h2>{t('cart.upps')}</h2>
+                                <h3>{t('cart.carritoVacio')}</h3>
                             </div>
                             <div className="btnContainer">
-                                <button className="btnPrincipal"><Link to="/">Ver productos</Link></button>
+                                <button className="btnPrincipal"><Link to="/">{t('cart.seeProducts')}</Link></button>
                             </div>
                         </div>
                 }
                 {
                     cart[0] &&
                     <div className="btnContainer">
-                        <div className="totalText">TOTAL ${formatNumber(precioTotal)}</div>
-                        {/* <Elements stripe={stripePromise}>
-                                <div className="containerPayment p-4">
-                                    <div className="row h-100">
-                                        <div className="col-md-4 offset-md-4 h-100">
-                                            <CheckoutForm total={precioTotal} products={cart} />
-                                        </div>
-                                    </div>
-                                </div>
-                            </Elements> */}
+                        <div className="totalText">{t('cart.totalPrice')}{formatNumber(precioTotal)}</div>
                         <button className="btnPrincipal" onClick={e => hanleSubmit(e)}>
-                            {/* <Link to='/purchase'> */}
-                            Continuar compra
-                            {/* </Link> */}
+                            {t('cart.continueShopping')}
                         </button>
-                        <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
+                        <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>{t('cart.clearCart')}</button>
                     </div>
                 }
             </div>

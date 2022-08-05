@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addFilter, removeFilter, setOrder, setSearchStatus } from "../../redux/actions/index";
+import { addFilter, removeFilter, setOrder, setSearchStatus,fetchCategories } from "../../redux/actions/index";
 import ProductsCards from '../../components/ProductsCards/ProductsCards.jsx';
 import Filters from '../../components/Filters/filters';
 import Order from '../../components/Order/order'
 import './HomePage.scss'
 import { filterProducts } from '../../Utils';
+import { useTranslation } from 'react-i18next';
+
 
 function HomePage() {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     let dispProds = useSelector(state => state.displayedProducts);
     // let orderedBy = useSelector(state => state.orderBy);
@@ -57,6 +60,9 @@ function HomePage() {
         dispatch(removeFilter(e.target.id))
         setCurrentPage(1)
     }
+    useEffect(() =>{
+        dispatch(fetchCategories())
+    },[])
 
     return (
         <div className='totalHomeContainer'>
@@ -65,14 +71,14 @@ function HomePage() {
                     className={`${currentPage === 1 ? 'disabled' : ''}`}
                     onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
                 >
-                    Prev
+                    {t('homepage.prev')}
                 </button>
                 <button>{currentPage}</button>
                 <button
                     className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
                     onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
                 >
-                    Next
+                    {t('homepage.next')}
                 </button>
 
             </div>

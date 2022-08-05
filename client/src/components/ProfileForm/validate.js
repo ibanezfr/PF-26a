@@ -1,3 +1,4 @@
+
 const checkUndefined = (input) => {
   if (input.fullName.length === 0) return true;
   if (input.street.length === 0) return true;
@@ -12,6 +13,7 @@ const checkUndefined = (input) => {
   }
 };
 
+
 export const validate = (input) => {
   const { fullName, image, street, city, province, postalCode, country } =
     input;
@@ -23,7 +25,7 @@ export const validate = (input) => {
 
   const errors = {};
 
-  if (checkUndefined(input)) errors.allFields = "All fields are required";
+  if (checkUndefined(input)) errors.allFields = "Todos los campos son obligatorios.";
 
   if (!namecheck.test(fullName)) {
     errors.fullName = "Only number, letters and spaces are accepted";
