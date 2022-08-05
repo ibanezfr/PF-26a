@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-
+import { useTranslation } from "react-i18next";
 import { Link, useHistory } from "react-router-dom";
 
 import "./Login.css";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { login_post } from "../../../api_url/api_url";
 
 const Login = () => {
+  const { t } = useTranslation();
   const { login, loginWithGoogle, resetPass, logout } = useAuth();
 
   const [user, setUser] = useState({
@@ -22,22 +23,12 @@ const Login = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      setError("Your account have been suspended");
+      setError(t('login.suspension'));
     } catch (error) {
       console.log(error);
     }
   };
 
-  // const handleRedirect = async () => {
-  //   const check = await JSON.parse(localStorage.getItem("usuario"));
-  //   if (check) {
-  //     history.push("/profile");
-  //   }
-  // };
-  // useEffect(() => {
-  //   handleRedirect();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +64,7 @@ const Login = () => {
         error.code === "auth/weak-password" ||
         error.code === "auth/user-not-found"
       ) {
-        setError("Invalid credentials");
+        setError(t('login.invalidCred'));
       } else setError(error.message);
     }
   }; //auth/invalid-email auth/weak-password
@@ -111,10 +102,10 @@ const Login = () => {
   };
   const handleResetPass = async (e) => {
     e.preventDefault();
-    if (!user.email) return setError("Write an email to reset your Password");
+    if (!user.email) return setError(t('login.reset.email'));
     try {
       await resetPass(user.email);
-      alert("We sent you an email. Check your inbox");
+      alert(t('login.reset.sentEmail'));
     } catch (error) {
       setError(error.message);
     }
@@ -123,7 +114,7 @@ const Login = () => {
   return (
     <div className="login">
       <section id="login-window">
-        <h1>LOGIN</h1>
+        <h1>{t('login.h1')}</h1>
         <p className="error" id="username-error">
           {error && <span className="error"> {error} </span>}
         </p>
@@ -131,21 +122,21 @@ const Login = () => {
           <input
             className="form-input"
             type="email"
-            placeholder="Email"
+            placeholder={t('login.emailInput')}
             name="email"
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
           <input
             className="form-input"
             type="password"
-            placeholder="********"
+            placeholder={t('login.passwordInput')}
             id="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
 
           <button className="login-btn" type="submit">
             {" "}
-            Login
+            {t('login.login')}
           </button>
         </form>
 
@@ -160,10 +151,10 @@ const Login = () => {
 
         <p className="form-footer">
           <a href="#!" onClick={handleResetPass}>
-            Forgot Password?
+            {t('login.forgotPass')}
           </a>
           <br />
-          Not a member ? <Link to="/register"> Sign Up</Link>
+          {t('login.notMember')}<Link to="/register"> {t('login.signUp')}</Link>
         </p>
       </section>
     </div>

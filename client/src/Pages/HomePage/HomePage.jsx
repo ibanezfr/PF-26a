@@ -4,16 +4,21 @@ import {
   addFilter,
   removeFilter,
   setOrder,
+  setSearchStatus,
   fetchCategories,
 } from "../../redux/actions/index";
+
 import ProductsCards from "../../components/ProductsCards/ProductsCards.jsx";
 import Filters from "../../components/Filters/filters";
 import Order from "../../components/Order/order";
 import "./HomePage.scss";
 import { filterProducts } from "../../Utils";
+import { useTranslation } from "react-i18next";
 
 function HomePage() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   let dispProds = useSelector((state) => state.displayedProducts);
   // let orderedBy = useSelector(state => state.orderBy);
   let cart = useSelector((state) => state.cart);
@@ -72,24 +77,26 @@ function HomePage() {
       <div className="paginationContainer">
         <button
           className={`${currentPage === 1 ? "disabled" : ""}`}
+          id="btnPagination"
           onClick={() =>
             setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1))
           }
         >
-          Prev
+          {t("homepage.prev")}
         </button>
-        <button>{currentPage}</button>
+        <button id="btnPagination">{currentPage}</button>
         <button
           className={`${
             currentPage === numberOfPages.length ? "disabled" : ""
           }`}
+          id="btnPagination"
           onClick={() =>
             setCurrentPage((prev) =>
               prev >= numberOfPages.length ? prev : prev + 1
             )
           }
         >
-          Next
+          {t("homepage.next")}
         </button>
       </div>
       <div className="homeContainer">

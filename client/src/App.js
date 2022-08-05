@@ -25,8 +25,10 @@ import Favorites from "./Pages/Favs/Favs";
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 import AllCategories from "./components/Categories/AllCategories";
 import EditCategories from "./components/Categories/EditCategories";
-import NewCategory from "./components/Categories/NewCategory";
+
 import UpdateProd from "./components/AdminComponents/productsAdmin/UpdateProd/UpdateProd";
+import NewCategory from "./components/Categories/NewCategory"
+import Answers from "./components/AdminComponents/Answers/Answers";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,6 +74,8 @@ function App() {
             component={EditCategories}
           />
           <Route path="/admin/categorias" exact component={AllCategories} />
+          <Route path="/admin/qas" component={Answers}/>
+
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />

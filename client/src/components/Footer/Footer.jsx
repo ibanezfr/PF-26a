@@ -7,11 +7,13 @@ import {
   AiOutlineLinkedin,
 } from "react-icons/ai";
 import "./Footer.css";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <div className="footer-container">
-      <p>2022 loremIpsum All rights reserverd</p>
+      <p>{t('footer.p')}</p>
       <p className="icons">
         <AiOutlineGithub />
         <AiOutlineLinkedin />

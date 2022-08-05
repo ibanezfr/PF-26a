@@ -24,10 +24,12 @@ import {
   GET_FAVORITES,
   REMOVE_FAVORITE,
   ADD_FAVORITE,
-  FETCH_CATEGORY
+  FETCH_CATEGORY,
+  ANSWER_QUESTION
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
+import Swal from 'sweetalert2';
 
 const initialState = {
   products: [],
@@ -55,13 +57,14 @@ const initialState = {
   question: [],
   infoQuestion: [],
   infoAnswer: [],
+  questionToAnswer: [],
   isSearchActive: false,
   favs: [
     ...(JSON.parse(localStorage.getItem('favs') === null)
       ? []
       : JSON.parse(localStorage.getItem('favs')))
   ],
-  category:[]
+  category: []
 };
 
 
@@ -90,11 +93,11 @@ function rootReducer(state = initialState, action) {
         filters: aux,
         displayedProducts: producto,
       };
-      case FETCH_CATEGORY:
-        return {
-          ...state,
-          category: action.payload,
-        };
+    case FETCH_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
+      };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
       var producto2 = filterProducts(state.products, auxs)
@@ -115,7 +118,7 @@ function rootReducer(state = initialState, action) {
         displayedProducts: action.payload, //edite agus
       };
 
-   
+
     case GET_BY_ID:
       return {
         ...state,
@@ -152,17 +155,17 @@ function rootReducer(state = initialState, action) {
 
     case ADD_TO_CART:
       let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
-      
-    
+
+
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              (item.id === action.payload.id && item.size === action.payload.size)
-                ?  {...item, quantity: action.payload.quantity}
-                : item
-            )
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            (item.id === action.payload.id && item.size === action.payload.size)
+              ? { ...item, quantity: action.payload.quantity }
+              : item
+          )
+        }
         : {
           ...state,
           cart: [...state.cart, { ...action.payload }],
@@ -172,37 +175,45 @@ function rootReducer(state = initialState, action) {
       let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            )
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
-          };
+          ...state,
+          cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
+        };
 
     case ADD_ONE_FROM_CART:
       let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
-      if  (productAdd.quantity === productAdd.stock) {
-        alert("limite alcanzado")
-        return {...state}
+      if (productAdd.quantity === productAdd.stock) {
+        Swal.fire({
+          title: 'La cantidad excede el limite del producto',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
+        return { ...state }
       }
       return {
         ...state,
         cart: state.cart.map((item) =>
-        item.id === action.payload.id && item.size === action.payload.size
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
+          item.id === action.payload.id && item.size === action.payload.size
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
       }
 
     case REMOVE_FROM_CART:
       let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size);
-      state.cart.splice(indexRemove,1);
-      
+      state.cart.splice(indexRemove, 1);
+
       return {
         ...state,
         cart: [...state.cart]
@@ -238,23 +249,31 @@ function rootReducer(state = initialState, action) {
         orderBy: ''
       }
 
-    case GET_Q_AND_A: 
-    return{
-      ...state,
-      question: action.payload
-    }
+    case GET_Q_AND_A:
+      return {
+        ...state,
+        question: action.payload
+      }
 
     case GET_INFO_Q_AND_A:
-      return{
+      return {
         ...state,
         infoQuestion: action.payload
       }
-    
+
     case GET_ANSWERS:
-      return{
+      return {
         ...state,
         infoAnswer: action.payload
       }
+
+    case ANSWER_QUESTION:
+      return {
+        ...state,
+        questionToAnswer: action.payload
+      }
+
+
     case GET_FAVORITES:
       return {
         ...state,
@@ -265,7 +284,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         favs: state.favs.filter((f) => f.id !== action.payload)
-    }
+      }
     case ADD_FAVORITE:
       localStorage.setItem('favs', JSON.stringify([...action.payload]));
       return {

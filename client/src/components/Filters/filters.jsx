@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import './filters.scss';
 import '../../Pages/HomePage/HomePage.scss';
 import trash from '../../images/trash.png';
+import { useTranslation } from "react-i18next";
 
 export default function Filters({ onClickFilter, onClickFieldset, products }) {
     let filters = useSelector(state => state.filters);
-
+    const { t } = useTranslation();
     useEffect(() => {
         localStorage.setItem('filter', JSON.stringify(filters));
     }, [filters]);
@@ -22,7 +23,7 @@ export default function Filters({ onClickFilter, onClickFieldset, products }) {
                 filters.length
                     ?
                     <div className="activeContainer">
-                        <h6>Filtros Activos</h6>
+                        <h6>{t('filters.activeFilters')}</h6>
                         <fieldset>
                             {filters.map(filter =>
                                 <div className='activeFilterContainer' id={filter} key={filter} onClick={(e) => onClickFieldset(e)}>
@@ -34,7 +35,7 @@ export default function Filters({ onClickFilter, onClickFieldset, products }) {
                     : <></>
             }
 
-            <h2 className="menu-title">Encontrá lo que buscas...</h2>
+            <h2 className="menu-title">{t('filters.lookingFor')}</h2>
             <ul className='ulElement'>
                 {
                     categoriesDisplayed.sort().map(cat => {
