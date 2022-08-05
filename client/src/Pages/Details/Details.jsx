@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { bringAnswers, bringQandA, addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
+import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
 import { cartController, formatNumber } from "../../Utils";
 // import { formatNumber } from "../../Utils";
+
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -24,8 +25,6 @@ export default function Details() {
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
-  // let QandA = useSelector(state => state.infoQuestion)
-  // let answers = useSelector(state => state.infoAnswer);
   let favs = useSelector(state => state.favs);
   var isFavorite = favs.find((f) => f.id === params.id);
 
@@ -35,8 +34,6 @@ export default function Details() {
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-    // dispatch(bringQandA(params.id))
-    // dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart, dispatch, params.id]);
 
@@ -195,6 +192,7 @@ export default function Details() {
               </div>
               <select defaultValue={t('details.choseSize')} onChange={e => handleSize(e)}>
                 <option disabled>{t('details.disabled')}</option>
+
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                     return (

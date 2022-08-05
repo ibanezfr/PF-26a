@@ -46,15 +46,6 @@ $lightestColor: #F2F2F2;
     align-items: center;
     padding-top: 3%;
     padding: 3%;
-
-    // img {
-    //     width: 300px;
-    //     height: 70%;
-    //     object-fit: cover;
-    //     margin: 5%;
-    //     border-radius: 20%;
-    // }
-
 }
 
 
@@ -86,8 +77,6 @@ $lightestColor: #F2F2F2;
         display: flex;
         flex-direction: row;
     }
-
-
 }
 
 .container3 {
@@ -160,6 +149,8 @@ $lightestColor: #F2F2F2;
                 font-size: 1rem;
                 color: $primaryColor;
                 margin-bottom: 0;
+                width: 210px;
+                text-align: left;
             }
 
             input {
@@ -178,7 +169,7 @@ $lightestColor: #F2F2F2;
             border: 1px solid $middleColor;
             border-radius: 5%;
             //realizar los cambios pertinentes
-            height: 50px;
+            height: 20px;
             margin: 5%;
             color: white;
             font-family: 'Raleway', sans-serif;
