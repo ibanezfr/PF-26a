@@ -585,7 +585,7 @@ router.get("/review/:idReview", async (req, res) => {
   }
 })
 
-router.post("/revew/:idProduct", async (req, res, next) => {
+router.post("/review/:idProduct", async (req, res, next) => {
   const {
     idProduct
   } = req.params;

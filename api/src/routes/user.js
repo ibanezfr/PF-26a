@@ -1,5 +1,11 @@
-const { Router } = require("express");
-const { User, Sell_order, Product } = require("../db");
+const {
+  Router
+} = require("express");
+const {
+  User,
+  Sell_order,
+  Product
+} = require("../db");
 
 const router = Router();
 // Users controller ->
@@ -30,27 +36,57 @@ promedio
 //compras desde el front
 
 
-router.get('/compras/all', async (req, res)=>{
-  let allOrders = await Sell_order.findAll({include: User})
+router.get('/compras/all', async (req, res) => {
+  let allOrders = await Sell_order.findAll({
+    include: User
+  })
   //console.log(allOrders)
   return res.send(allOrders)
 })
 
 
-router.get('/compras/:id',async (req,res)=>{
-  let user = req.params.id;
-  user = await User.findByPk(user, {include: Sell_order})
+router.put('/purchateState/:idOrder', async (req, res) => {
+  let {
+    idOrder
+  } = req.params;
   //console.log(user)
-  user = user.dataValues.sell_orders.map(order=>{
-    return{
-      id:order.id,
-      product: order.product.split(','),
-      amount: order.amount
+
+  const order = await Sell_order.findOne({
+    where: {
+      id: idOrder
     }
   })
 
+  if (order.orderStatus === 'pending') {
+    const newOrder = Sell_order.update({
+      orderStatus: 'accepted'
+    })
 
 
+    return res.status(200).send(newOrder)
+  }
+
+  // const newOrder = await Sell_order.update({
+  //   orderStatus: "accepted"
+  // })
+
+})
+
+router.put('/compras/:id', async (req, res) => {
+  let user = req.params.id;
+  user = await User.findByPk(user, {
+    include: Sell_order
+  })
+  //console.log(user)
+
+  user = user.dataValues.sell_orders.map(order => {
+    return {
+      id: order.id,
+      product: order.product.split(','),
+      amount: order.amount,
+      orderStatus: order.orderStatus
+    }
+  })
   return res.send(user)
 })
 
