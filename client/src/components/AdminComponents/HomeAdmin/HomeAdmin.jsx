@@ -20,6 +20,7 @@ import {
 import "./HomeAdmin.scss";
 import Graphics from "../Graphics/Graphics";
 import UserList from "../UserList/UserList";
+import Lista from "../List/List";
 
 const HomeAdmin = () => {
   const history = useHistory();
@@ -136,9 +137,12 @@ const HomeAdmin = () => {
           <Paper elevation={3} sx={{ p: 2, gridColumn: "1/3" }}>
             <Graphics products={products} />
           </Paper>
-          <Paper elevation={3} sx={{ p: 2, gridColumn: "1/3" }}>
+          <Paper elevation={3} sx={{ p: 2, gridColumn: "1/4" }}>
             <UserList />
           </Paper>
+          {/* <Paper elevation={3} sx={{ p: 2, gridColumn: "1/4" }}>
+            <Lista />
+          </Paper> */}
         </Box>
       </div>
     </div>

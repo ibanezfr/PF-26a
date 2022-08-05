@@ -4,11 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
-<<<<<<< HEAD
-=======
 import { cartController, formatNumber } from "../../Utils";
 // import { formatNumber } from "../../Utils";
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -104,22 +101,9 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    if (newCart.size === "" || newCart.quantity === 0) {
-      Swal.fire({
-        title: 'Seleccioná un talle y una cantidad para continuar',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-    } else {
-=======
+
     var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
     if (bool === true) {
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
       dispatch(addToCart(newCart));
       Swal.fire({
         position: 'center',
@@ -206,8 +190,9 @@ export default function Details() {
               <div>
                 <h4>{t('details.choseSize')}</h4>
               </div>
-              <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                <option value="selected" hidden>Talles</option>
+              <select defaultValue={t('details.choseSize')} onChange={e => handleSize(e)}>
+                <option disabled>{t('details.disabled')}</option>
+
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                     return (

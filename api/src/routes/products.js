@@ -69,10 +69,10 @@ router.get("/size/:id", async (req, res, next) => {
     var size_Stock = [];
 
     for (let i = 0; i < sizeMaped.length; i++) {
-      size_Stock.push(sizeMaped[i])
-      size_Stock.push(stockMaped[i])
+      size_Stock.push(sizeMaped[i]);
+      size_Stock.push(stockMaped[i]);
     }
-      //console.log("array: ", size_Stock);
+    //console.log("array: ", size_Stock);
 
     return res.status(200).send(size_Stock);
   } catch (error) {
@@ -289,7 +289,7 @@ router.put("/delete/:id", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -304,11 +304,12 @@ router.put("/update/:id", async (req, res) => {
     stock,
     size,
     categories,
+    status,
   } = req.body;
   try {
     const newProduct = await Product.update(
       {
-        name: name.toUpperCase(),
+        name: name?.toUpperCase(),
         price,
         description,
         color,
@@ -320,6 +321,7 @@ router.put("/update/:id", async (req, res) => {
         stock,
         created: true,
         size,
+        status,
       },
       {
         where: {
@@ -327,22 +329,6 @@ router.put("/update/:id", async (req, res) => {
         },
       }
     );
-    router.put("/status/:id", async (req, res) => {
-      const { id } = req.params;
-      const { status } = req.body;
-
-      try {
-        const updated = await Product.update(
-          {
-            status: status,
-          },
-          { where: { id: id } }
-        );
-        res.status(200).send(updated);
-      } catch (error) {
-        res.status(500).send(error);
-      }
-    });
 
     if (categories) {
       const productUpdate = await Product.findOne({
@@ -378,13 +364,7 @@ router.put("/update/:id", async (req, res) => {
 // ------- Rutas para las Q&A -------------
 
 router.get("/q&a/:id", async (req, res) => {
-<<<<<<< HEAD
-  const {
-    id
-  } = req.params;
-=======
   const { id } = req.params;
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
   const product = await Product.findByPk(id, {
     include: [
       {
@@ -439,20 +419,6 @@ router.get("/q&a/:id", async (req, res) => {
 //GET para el id de las preguntas y respuestas
 router.get("/answer/id", async (req, res) => {
   try {
-<<<<<<< HEAD
-    const questions = await Qa.findAll()
-    res.send(questions)
-  } catch (err) {
-    console.log(err)
-  }
-})
-
-//GET para las respuestas
-router.get("/answer/:id", async (req, res) => {
-  const {
-    id
-  } = req.params;
-=======
     const questions = await Qa.findAll();
     res.send(questions);
   } catch (err) {
@@ -462,7 +428,6 @@ router.get("/answer/:id", async (req, res) => {
 //GET para las respuestas
 router.get("/answer/:id", async (req, res) => {
   const { id } = req.params;
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
   const product = await Product.findByPk(id, {
     include: [
       {
@@ -513,24 +478,9 @@ router.get("/answer/:id", async (req, res) => {
 });
 
 router.post("/q&a/:idProduct", async (req, res) => {
-<<<<<<< HEAD
-  const {
-    idProduct
-  } = req.params;
-  const {
-    idUser
-  } = req.body;
-  const {
-    title,
-    description,
-    answer,
-    resolved
-  } = req.body;
-=======
   const { idProduct } = req.params;
   const { idUser } = req.body;
   const { title, description, answer, resolved } = req.body;
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
 
   console.log("id:", idProduct);
 
@@ -539,33 +489,22 @@ router.post("/q&a/:idProduct", async (req, res) => {
       title,
       description,
       answer,
-<<<<<<< HEAD
-      resolved
-    })
-=======
       resolved,
     });
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
-
     const productUpdate = await Product.findOne({
       where: {
         id: idProduct
       }
     })
 
-<<<<<<< HEAD
     if (newQuestion) {
       await productUpdate.addQa(newQuestion);
     }
 
     res.send(productUpdate)
-=======
-    res.send(productUpdate);
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
   } catch (err) {
     console.log(err);
   }
-<<<<<<< HEAD
 })
 
 //------------------------------------RUTAS PARA REVEWS---------------------------------
@@ -616,8 +555,3 @@ router.post("/review/:idProduct", async (req, res, next) => {
 
 
 module.exports = router;
-=======
-});
-module.exports = router;
- 
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48

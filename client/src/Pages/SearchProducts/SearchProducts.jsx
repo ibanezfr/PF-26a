@@ -51,13 +51,15 @@ export default function SearchProducts() {
     <div className="totalHomeContainer">
       <div className='paginationContainer'>
         <button
+          id="btnPagination"
           className={`${currentPage === 1 ? 'disabled' : ''}`}
           onClick={() => setCurrentPage(prev => prev <= 1 ? prev : prev - 1)}
         >
           {t('searchproducts.prev')}
         </button>
-        <button>{currentPage}</button>
+        <button id="btnPagination">{currentPage}</button>
         <button
+          id="btnPagination"
           className={`${currentPage === numberOfPages.length ? 'disabled' : ''}`}
           onClick={() => setCurrentPage(prev => prev >= numberOfPages.length ? prev : prev + 1)}
         >

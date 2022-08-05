@@ -41,13 +41,15 @@ const SidebarAdmin = () => {
         <ul>
           <p className="title">Principal</p>
           <li>
-            <MdDashboardCustomize className="icons" />
-            <span>Dashboard</span>
+            <Link to="/admin/home" className="link">
+              <MdDashboardCustomize className="icons" />
+              <span>Dashboard</span>
+            </Link>
           </li>
           <p className="title">LISTAS</p>
 
           <li>
-            <Link to="/admin/users">
+            <Link to="/admin/users" className="link">
               <FaUserCircle className="icons" />
               <span>Usuarios</span>
             </Link>
@@ -59,66 +61,66 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin/creation" className="link">
-              <AiOutlineForm className="icons" />
-              <span>Formulario de creación</span>
-            </Link>
-          </li>
-          <li>
-<<<<<<< HEAD
-            <Link to="/admin/qas" className="link">
-              <AiOutlineForm className="icons" />
-              <span>Preguntas y respuestas</span>
-=======
-            <Link to="/admin/categorias" className="link">
-              <AiOutlineForm className="icons" />
-              <span>Formulario de categorias</span>
->>>>>>> 190d0a113c93f6db6a93b0f971682aa50aa11e48
-            </Link>
-          </li>
-          <li>
-            <FaShoppingCart className="icons" />
-            <span>Órdenes</span>
-          </li>
-          <li>
-            <MdSettings className="icons" />
-            <span>Configuración</span>
-          </li>
-          <p className="title">Útiles</p>
+          <Link to="/admin/categorias" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Formulario de categorias</span>
+          </Link>
+        </li>
+        <li>
+          <FaShoppingCart className="icons" />
+          <span>Órdenes</span>
+        </li>
+        <li>
+          <MdSettings className="icons" />
+          <span>Configuración</span>
+        </li>
+        <p className="title">Útiles</p>
+        <li>
+          <Link to="/admin/creation" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Formulario de creación</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/admin/qas" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Preguntas y respuestas</span>
+          </Link>
+        </li>
+        <li>
+          <MdQueryStats className="icons" />
+          <span>Estadísticas</span>
+        </li>
+        <li>
+          <MdNotifications className="icons" />
+          <span>Notificaciones</span>
+        </li>
+        <p className="title">SERVICIO</p>
 
-          <li>
-            <MdQueryStats className="icons" />
-            <span>Estadísticas</span>
-          </li>
-          <li>
-            <MdNotifications className="icons" />
-            <span>Notificaciones</span>
-          </li>
-          <p className="title">SERVICIO</p>
+        <li>
+          <MdSettingsSystemDaydream className="icons" />
+          <span>Sistema</span>
+        </li>
+        <p className="title">USUARIO</p>
 
-          <li>
-            <MdSettingsSystemDaydream className="icons" />
-            <span>Sistema</span>
-          </li>
-          <p className="title">USUARIO</p>
-
-          <li>
-            <Link to="/profile">
-              <ImProfile className="icons" />
-              <span>Perfil</span>
-            </Link>
-          </li>
-          <li onClick={handleLogout}>
-            <RiLogoutBoxFill className="icons" />
-            <span>Salir</span>
-          </li>
+        <li>
+          <Link to="/profile" className="link">
+            <ImProfile className="icons" />
+            <span>Perfil</span>
+          </Link>
+        </li>
+        <li onClick={handleLogout}>
+          <RiLogoutBoxFill className="icons" />
+          <span>Salir</span>
+        </li>
         </ul>
       </div>
-      <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
-      </div>
-    </div>
+
+  <div className="bottom">
+    <div className="colorOption"></div>
+    <div className="colorOption"></div>
+  </div>
+</div >
   );
 };
 

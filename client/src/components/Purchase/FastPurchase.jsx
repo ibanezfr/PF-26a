@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
-import { cartController, formatNumber } from '../../Utils';
+import { cartController } from '../../Utils';
 import { useAuth } from '../../context/AuthContext';
 import './FastPurchase.scss'
 
@@ -102,7 +102,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                         <form>
                             <div className='quantityCont'>
                                 <span>{t('fastPurchase.size')}</span>
-                                <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+                                <select defaultValue={t('fastPurchase.size')} onChange={e => handleSize(e)}>
                                     <option disabled>{t('fastPurchase.size')}</option>
                                     {
                                         size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
