@@ -11,11 +11,16 @@ const ListActions = ({ params, rowId, setRowId }) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const { status, id } = params.row;
+    const { name, color, status, id } = params.row;
     console.log({ status });
-    const result = await axios.put(`http://localhost:3001/products/${id}`, {
-      status,
-    });
+    const result = await axios.patch(
+      `http://localhost:3001/products/update/${id}`,
+      {
+        status,
+        name,
+        color,
+      }
+    );
     if (result) {
       setSuccess(true);
       setRowId(null);
