@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { bringAnswers, bringQandA, addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
+import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
-// import { formatNumber } from "../../Utils";
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -21,8 +20,6 @@ export default function Details() {
   let actualProduct = useSelector(state => state.detail)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
-  // let QandA = useSelector(state => state.infoQuestion)
-  // let answers = useSelector(state => state.infoAnswer);
   let favs = useSelector(state => state.favs);
   var isFavorite = favs.find((f) => f.id === params.id);
 
@@ -32,8 +29,6 @@ export default function Details() {
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
-    // dispatch(bringQandA(params.id))
-    // dispatch(bringAnswers(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart, dispatch, params.id]);
 
@@ -102,7 +97,6 @@ export default function Details() {
   const hanldeSubmit = (e) => {
     e.preventDefault();
     if (newCart.size === "" || newCart.quantity === 0) {
-      // alert("selecciona un talle y una cantidad");
       Swal.fire({
         title: 'Seleccioná un talle y una cantidad para continuar',
         showClass: {
@@ -193,7 +187,7 @@ export default function Details() {
                 <h4>Selecciona un talle</h4>
               </div>
               <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                <option disabled>Talles</option>
+                <option value="selected" hidden>Talles</option>
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                     return (
