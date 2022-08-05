@@ -314,15 +314,14 @@ router.put("/delete/:id", async (req, res) => {
 
   try {
     const product = await Product.findByPk(id);
-    if(product.status === "active"){
+    if (product.status === "active") {
       const newState = Product.update({
         status: "inactive"
       })
       return res.status(200).send({
         msg: "Producto deshabilitado"
       })
-    }
-    else{
+    } else {
       const newState = Product.update({
         status: "active"
       })
@@ -409,8 +408,10 @@ router.put("/update/:id", async (req, res) => {
 
 // ------- Rutas para las Q&A -------------
 
-router.get("/q&a/:id", async(req, res) => {
-  const {id} = req.params;
+router.get("/q&a/:id", async (req, res) => {
+  const {
+    id
+  } = req.params;
   const product = await Product.findByPk(id, {
     include: [{
         model: Category,
@@ -463,16 +464,20 @@ router.get("/q&a/:id", async(req, res) => {
 
 
 //GET para el id de las preguntas y respuestas
-router.get("/answer/id", async (req,res)=>{
-  try{
+router.get("/answer/id", async (req, res) => {
+  try {
     const questions = await Qa.findAll()
     res.send(questions)
-  }catch(err){console.log(err)}
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 //GET para las respuestas
-router.get("/answer/:id", async(req, res) => {
-  const {id} = req.params;
+router.get("/answer/:id", async (req, res) => {
+  const {
+    id
+  } = req.params;
   const product = await Product.findByPk(id, {
     include: [{
         model: Category,
@@ -497,7 +502,7 @@ router.get("/answer/:id", async(req, res) => {
       },
       {
         model: Product_values,
-        attributes: ["size", "stock"], 
+        attributes: ["size", "stock"],
         through: {
           attributes: []
         },
@@ -523,34 +528,90 @@ router.get("/answer/:id", async(req, res) => {
 })
 
 router.post("/q&a/:idProduct", async (req, res) => {
-  const {idProduct} = req.params;
-  const {idUser} = req.body;
-  const {title, description, answer, resolved} = req.body;
+  const {
+    idProduct
+  } = req.params;
+  const {
+    idUser
+  } = req.body;
+  const {
+    title,
+    description,
+    answer,
+    resolved
+  } = req.body;
 
   console.log("id:", idProduct)
 
   try {
-      const newQuestion = await Qa.create({
-        title,
-        description,
-        answer,
-        resolved
-      })
+    const newQuestion = await Qa.create({
+      title,
+      description,
+      answer,
+      resolved
+    })
 
-      const productUpdate = await Product.findOne({
-        where: {
-          id: idProduct
-        }
-      })
-
-      if (newQuestion) {
-        await productUpdate.addQa(newQuestion);
+    const productUpdate = await Product.findOne({
+      where: {
+        id: idProduct
       }
+    })
 
-      res.send(productUpdate)
+    if (newQuestion) {
+      await productUpdate.addQa(newQuestion);
+    }
+
+    res.send(productUpdate)
   } catch (err) {
     console.log(err)
   }
 })
+
+//------------------------------------RUTAS PARA REVEWS---------------------------------
+router.get("/review/:idReview", async (req, res) => {
+  const {
+    idReview
+  } = req.params;
+  try {
+    const review = await Review.findOne({
+      where: {
+        id: idReview
+      }
+    })
+
+    res.send(review)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.post("/revew/:idProduct", async (req, res, next) => {
+  const {
+    idProduct
+  } = req.params;
+  const {
+    rating,
+    title,
+    description
+  } = req.body;
+  try {
+    const product = await Product.findByPk(idProduct)
+    console.log("product: ", product)
+    const review = await Review.create({
+      rating,
+      title,
+      description
+    })
+    if (product) {
+      await review.setProduct(product)
+    }
+  
+  res.status(200).send({msg: "ok"})
+
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+
 module.exports = router;
- 

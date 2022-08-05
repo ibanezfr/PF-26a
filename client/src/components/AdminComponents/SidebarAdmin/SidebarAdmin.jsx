@@ -65,6 +65,12 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
+            <Link to="/admin/qas" className="link">
+              <AiOutlineForm className="icons" />
+              <span>Preguntas y respuestas</span>
+            </Link>
+          </li>
+          <li>
             <FaShoppingCart className="icons" />
             <span>Órdenes</span>
           </li>
