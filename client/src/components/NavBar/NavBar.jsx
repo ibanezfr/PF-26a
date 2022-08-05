@@ -83,7 +83,7 @@ function NavBar() {
             </Nav.Link>
             <NavDropdown title={t('navbar.navdropdown')} id="basic-nav-dropdown">
               {user ? (
-                <button onClick={handleLogout}>{t('logout')}</button>
+                <button onClick={handleLogout}>{t('navbar.logout')}</button>
               ) : (
                 <Nav.Link className="navText" href="/login">
                   {t('navbar.login')}
