@@ -26,6 +26,7 @@ import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAd
 import AllCategories from "./components/Categories/AllCategories";
 import EditCategories from "./components/Categories/EditCategories";
 import NewCategory from "./components/Categories/NewCategory";
+import UpdateProd from "./components/AdminComponents/productsAdmin/UpdateProd/UpdateProd";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,8 @@ function App() {
           <Route path="/admin/home" component={HomeAdmin} />
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={ProductsAdmin} />
+          <Route path="/products/:id" component={UpdateProd} />
+
           <Route path="/admin/creation" component={ProductCreationForm} />
           <Route path="/admin/categoria/nueva" exact component={NewCategory} />
           <Route

@@ -1,15 +1,15 @@
 import "./List.scss";
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
 import { Link, useHistory } from "react-router-dom";
 import ListActions from "./ListActions";
 
 const Lista = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [pageSize, setPageSize] = useState(10);
   const history = useHistory();
   const [rowId, setRowId] = useState(null);
@@ -23,6 +23,7 @@ const Lista = () => {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = useMemo(
@@ -32,7 +33,7 @@ const Lista = () => {
         headerName: "Image",
         width: 60,
         renderCell: (params) => (
-          <Link to={`/details/${params.row.id}`}>
+          <Link to={`/products/${params.row.id}`}>
             <Avatar src={params.row.image} />
           </Link>
         ),
@@ -50,32 +51,12 @@ const Lista = () => {
             .map((e) => e.name)
             .join(", ")
             .trim(),
-
-        // valueOptions: [
-        //   "Accesorios",
-        //   "Bufandas",
-        //   "Buzos",
-        //   "Calzas",
-        //   "Camperas",
-        //   "Chalecos",
-        //   "Conjuntos",
-        //   "Equipamento deportivo",
-        //   "Gorra",
-        //   "Gorros",
-        //   "Indumentaria de hombre",
-        //   "Indumentaria de mujer",
-        //   "Indumentaria sin género",
-        //   "Medias",
-        //   "Pantalones",
-        //   "Remeras",
-        //   "Tops deportivos",
-        // ],
       },
       {
         field: "size",
         headerName: "Size",
         width: 120,
-        type: "array",
+        type: "string",
         renderCell: (params) =>
           params.row.product_values
             .map((e) => e.size)
@@ -87,7 +68,7 @@ const Lista = () => {
         field: "stock",
         headerName: "Stock",
         width: 120,
-        type: "array",
+        type: "string",
         renderCell: (params) =>
           params.row.product_values
             .map((e) => e.stock)
@@ -125,14 +106,8 @@ const Lista = () => {
   );
 
   return (
-    <Box sx={{ height: 750, width: "100%" }}>
-      {/* <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 3, mb: 3 }}
-      >
-        Administrar productos
-      </Typography> */}
+    <Box sx={{ height: 800, width: "100%" }}>
+      <Typography variant="h5">Administrar productos</Typography>
       <DataGrid
         columns={columns}
         rows={products}

@@ -41,13 +41,15 @@ const SidebarAdmin = () => {
         <ul>
           <p className="title">Principal</p>
           <li>
-            <MdDashboardCustomize className="icons" />
-            <span>Dashboard</span>
+            <Link to="/admin/home" className="link">
+              <MdDashboardCustomize className="icons" />
+              <span>Dashboard</span>
+            </Link>
           </li>
           <p className="title">LISTAS</p>
 
           <li>
-            <Link to="/admin/users">
+            <Link to="/admin/users" className="link">
               <FaUserCircle className="icons" />
               <span>Usuarios</span>
             </Link>
@@ -58,18 +60,7 @@ const SidebarAdmin = () => {
               <span>Productos</span>
             </Link>
           </li>
-          <li>
-            <Link to="/admin/creation" className="link">
-              <AiOutlineForm className="icons" />
-              <span>Formulario de creación</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin/categorias" className="link">
-              <AiOutlineForm className="icons" />
-              <span>Formulario de categorias</span>
-            </Link>
-          </li>
+
           <li>
             <FaShoppingCart className="icons" />
             <span>Órdenes</span>
@@ -79,7 +70,12 @@ const SidebarAdmin = () => {
             <span>Configuración</span>
           </li>
           <p className="title">Útiles</p>
-
+          <li>
+            <Link to="/admin/creation" className="link">
+              <AiOutlineForm className="icons" />
+              <span>Formulario de creación</span>
+            </Link>
+          </li>
           <li>
             <MdQueryStats className="icons" />
             <span>Estadísticas</span>
@@ -97,7 +93,7 @@ const SidebarAdmin = () => {
           <p className="title">USUARIO</p>
 
           <li>
-            <Link to="/profile">
+            <Link to="/profile" className="link">
               <ImProfile className="icons" />
               <span>Perfil</span>
             </Link>
