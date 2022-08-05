@@ -77,6 +77,7 @@ function NavBar() {
               className="navText"
               href="/"
               onClick={resetFilterOrderSearch()}
+              id="btnHome"
             >
               {t('navbar.home')}
             </Nav.Link>
