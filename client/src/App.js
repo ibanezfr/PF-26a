@@ -18,9 +18,11 @@ import Carrousel from "./components/Carousel/Carrousel";
 import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
 import UserList from "./components/AdminComponents/UserList/UserList";
-import List from "./components/AdminComponents/List/List";
+
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import Lista from "./components/AdminComponents/List/List";
+import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 function App() {
   const dispatch = useDispatch();
 
@@ -53,12 +55,12 @@ function App() {
 
           <Route path="/admin/home" component={HomeAdmin} />
           <Route path="/admin/users" component={UserList} />
-          <Route path="/admin/products" component={List} />
+          <Route path="/admin/products" component={ProductsAdmin} />
           <Route path="/admin/creation" component={ProductCreationForm} />
 
           <ProtectedRoutes>
-            <Route path="/purchase" component={Purchase}/>
-            <Route path="/favorites" component={Favorites}/>
+            <Route path="/purchase" component={Purchase} />
+            <Route path="/favorites" component={Favorites} />
             <Route path="/profile" exact>
               <Profile />
             </Route>

@@ -5,11 +5,10 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
 import { useDispatch, useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
-
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ListActions from "./ListActions";
 
-const List = () => {
+const Lista = () => {
   const dispatch = useDispatch();
   const [pageSize, setPageSize] = useState(10);
   const history = useHistory();
@@ -40,18 +39,18 @@ const List = () => {
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", width: 200 },
-      { field: "color", headerName: "Color", width: 150 },
+      { field: "name", headerName: "Name", width: 200, editable: true },
+      { field: "color", headerName: "Color", width: 150, editable: true },
       {
         field: "categories",
         headerName: "Category",
         width: 250,
-        type: "array",
         renderCell: (params) =>
           params.row.categories
             .map((e) => e.name)
             .join(", ")
             .trim(),
+
         // valueOptions: [
         //   "Accesorios",
         //   "Bufandas",
@@ -71,7 +70,6 @@ const List = () => {
         //   "Remeras",
         //   "Tops deportivos",
         // ],
-        editable: true,
       },
       {
         field: "size",
@@ -83,7 +81,7 @@ const List = () => {
             .map((e) => e.size)
             .join(", ")
             .trim(),
-        editable: true,
+        // editable: true,
       },
       {
         field: "stock",
@@ -95,7 +93,7 @@ const List = () => {
             .map((e) => e.stock)
             .join(", ")
             .trim(),
-        editable: false,
+        // editable: false,
       },
       {
         field: "rating",
@@ -127,17 +125,14 @@ const List = () => {
   );
 
   return (
-    <Box sx={{ height: 775, width: "100%" }}>
-      <Button onClick={(e) => history.push("/admin/home")}>
-        Voler al Dashboard
-      </Button>
-      <Typography
+    <Box sx={{ height: 750, width: "100%" }}>
+      {/* <Typography
         variant="h3"
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
         Administrar productos
-      </Typography>
+      </Typography> */}
       <DataGrid
         columns={columns}
         rows={products}
@@ -151,8 +146,7 @@ const List = () => {
         })}
         sx={{
           [`& .${gridClasses.row}`]: {
-            bgcolor: (theme) =>
-              theme.palette.mode === "light" ? grey[200] : grey[900],
+            bgcolor: grey[200],
           },
         }}
         onCellEditCommit={(params) => setRowId(params.id)}
@@ -161,4 +155,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Lista;

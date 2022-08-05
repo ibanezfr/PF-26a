@@ -287,7 +287,7 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -302,11 +302,12 @@ router.put("/update/:id", async (req, res) => {
     stock,
     size,
     categories,
+    status,
   } = req.body;
   try {
     const newProduct = await Product.update(
       {
-        name: name.toUpperCase(),
+        name: name?.toUpperCase(),
         price,
         description,
         color,
@@ -318,6 +319,7 @@ router.put("/update/:id", async (req, res) => {
         stock,
         created: true,
         size,
+        status,
       },
       {
         where: {
@@ -325,22 +327,6 @@ router.put("/update/:id", async (req, res) => {
         },
       }
     );
-    router.put("/status/:id", async (req, res) => {
-      const { id } = req.params;
-      const { status } = req.body;
-
-      try {
-        const updated = await Product.update(
-          {
-            status: status,
-          },
-          { where: { id: id } }
-        );
-        res.status(200).send(updated);
-      } catch (error) {
-        res.status(500).send(error);
-      }
-    });
 
     if (categories) {
       const productUpdate = await Product.findOne({
@@ -523,4 +509,3 @@ router.post("/q&a/:idProduct", async (req, res) => {
   }
 });
 module.exports = router;
- 
