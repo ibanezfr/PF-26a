@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
 import Swal from 'sweetalert2'
 
+
 function NavBar() {
   const dispatch = useDispatch();
   const { user, logout } = useAuth();

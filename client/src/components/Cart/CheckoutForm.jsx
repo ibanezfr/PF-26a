@@ -69,7 +69,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
           elements.getElement(CardElement).clear();
           if (data.message === 'Successful Payment') {
             localStorage.removeItem('cart')
-            window.Swal.fire({
+            Swal.fire({
               title: 'Compra realizada con éxito!',
               text: "Te llegará la información de la misma a tu casilla de correo",
               icon: 'success',
@@ -85,7 +85,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
               }
             })
           }
-          else window.Swal.fire({
+          else Swal.fire({
             title: '<strong>HTML <u>Hubo un error</u></strong>',
             icon: 'info',
             html:

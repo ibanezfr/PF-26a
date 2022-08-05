@@ -21,8 +21,12 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
-import Lista from "./components/AdminComponents/List/List";
+
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
+import AllCategories from "./components/Categories/AllCategories";
+import EditCategories from "./components/Categories/EditCategories";
+import NewCategory from "./components/Categories/NewCategory";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -40,6 +44,7 @@ function App() {
             <Carrousel />
             <HomePage />
           </Route>
+
           <Route path="/cart" component={Cart} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
@@ -57,7 +62,13 @@ function App() {
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={ProductsAdmin} />
           <Route path="/admin/creation" component={ProductCreationForm} />
-
+          <Route path="/admin/categoria/nueva" exact component={NewCategory} />
+          <Route
+            path="/admin/categorias/:id"
+            exact
+            component={EditCategories}
+          />
+          <Route path="/admin/categorias" exact component={AllCategories} />
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
