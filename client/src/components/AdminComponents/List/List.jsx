@@ -1,16 +1,15 @@
 import "./List.scss";
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography, Button } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
-
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ListActions from "./ListActions";
 
-const List = () => {
-  const dispatch = useDispatch();
+const Lista = () => {
+  // const dispatch = useDispatch();
   const [pageSize, setPageSize] = useState(10);
   const history = useHistory();
   const [rowId, setRowId] = useState(null);
@@ -24,6 +23,7 @@ const List = () => {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = useMemo(
@@ -33,69 +33,48 @@ const List = () => {
         headerName: "Image",
         width: 60,
         renderCell: (params) => (
-          <Link to={`/details/${params.row.id}`}>
+          <Link to={`/products/${params.row.id}`}>
             <Avatar src={params.row.image} />
           </Link>
         ),
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", width: 200 },
-      { field: "color", headerName: "Color", width: 150 },
+      { field: "name", headerName: "Name", width: 200, editable: true },
+      { field: "color", headerName: "Color", width: 150, editable: true },
       {
         field: "categories",
         headerName: "Category",
         width: 250,
-        type: "array",
         renderCell: (params) =>
           params.row.categories
             .map((e) => e.name)
             .join(", ")
             .trim(),
-        // valueOptions: [
-        //   "Accesorios",
-        //   "Bufandas",
-        //   "Buzos",
-        //   "Calzas",
-        //   "Camperas",
-        //   "Chalecos",
-        //   "Conjuntos",
-        //   "Equipamento deportivo",
-        //   "Gorra",
-        //   "Gorros",
-        //   "Indumentaria de hombre",
-        //   "Indumentaria de mujer",
-        //   "Indumentaria sin género",
-        //   "Medias",
-        //   "Pantalones",
-        //   "Remeras",
-        //   "Tops deportivos",
-        // ],
-        editable: true,
       },
       {
         field: "size",
         headerName: "Size",
         width: 120,
-        type: "array",
+        type: "string",
         renderCell: (params) =>
           params.row.product_values
             .map((e) => e.size)
             .join(", ")
             .trim(),
-        editable: true,
+        // editable: true,
       },
       {
         field: "stock",
         headerName: "Stock",
         width: 120,
-        type: "array",
+        type: "string",
         renderCell: (params) =>
           params.row.product_values
             .map((e) => e.stock)
             .join(", ")
             .trim(),
-        editable: false,
+        // editable: false,
       },
       {
         field: "rating",
@@ -127,17 +106,8 @@ const List = () => {
   );
 
   return (
-    <Box sx={{ height: 775, width: "100%" }}>
-      <Button onClick={(e) => history.push("/admin/home")}>
-        Voler al Dashboard
-      </Button>
-      <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 3, mb: 3 }}
-      >
-        Administrar productos
-      </Typography>
+    <Box sx={{ height: 800, width: "100%" }}>
+      <Typography variant="h5">Administrar productos</Typography>
       <DataGrid
         columns={columns}
         rows={products}
@@ -151,8 +121,7 @@ const List = () => {
         })}
         sx={{
           [`& .${gridClasses.row}`]: {
-            bgcolor: (theme) =>
-              theme.palette.mode === "light" ? grey[200] : grey[900],
+            bgcolor: grey[200],
           },
         }}
         onCellEditCommit={(params) => setRowId(params.id)}
@@ -161,4 +130,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Lista;

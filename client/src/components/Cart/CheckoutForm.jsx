@@ -37,19 +37,19 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     });
     setLoading(true);
     //console.log(user).
-    console.log(error)
+    // console.log(error)
     if (error) {
       if (error.code === 'incomplete_number') {
         Swal.fire({
           icon: 'warning',
-          title: 'Ingrese el numero de targeta'
+          title: t('checkOutForm.cardAlert.title1')
         });
         setLoading(false);
       };
       if (error.code === 'invalid_number') {
         Swal.fire({
           icon: 'warning',
-          title: 'Error de numero targeta'
+          title: t('checkOutForm.cardAlert.title2')
         });
         setLoading(false);
       }

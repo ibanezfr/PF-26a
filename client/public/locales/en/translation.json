@@ -1,4 +1,43 @@
 {
+    "productCreationForm": {
+        "backButton": "Back to dashboard",
+        "h1Title": "Post your product:",
+        "legend1": "Enter title:",
+        "placeHolderLegend1": "Title...",
+        "legend2": "Enter price",
+        "placeHolderLegend2": "Price...",
+        "legend3": "Enter description:",
+        "placeHolderLegend3": "Description...",
+        "legend4": "Enter color:",
+        "placeHolderLegend4": "Color...",
+        "legend5": "Image 1:",
+        "legend6": "Image 2:",
+        "legend7": "Image 3:",
+        "legend8": "Image 4:",
+        "legend9": "Categories:",
+        "categorySelect": "--Choose categories--",
+        "legend10": "Size & Stock:",
+        "sizeSelect": "--Choose a size--",
+        "labelStock": "Stock:",
+        "preview": "Preview:",
+        "notFound": "Image not found",
+        "label1": "Categories:",
+        "sizeStock": "There are {{stock}} size {{size}} items."
+    },
+    "newCategory": {
+        "name": "Name...",
+        "submit": "Submit"
+    },
+    "cardCategory": {
+        "edit": "Modify"
+    },
+    "allCategories": {
+        "myCategories": "My categories",
+        "create": "Create category"
+    },
+    "favs": {
+        "noFavs": "There is no favorites."
+    },
     "navbar": {
         "home": "Home",
         "login": "Login",
@@ -45,6 +84,10 @@
         "clearCart": "Clear cart"
     },
     "checkOutForm": {
+        "cardAlert": {
+            "title1": "You must enter you card number.",
+            "title2": "Invalid card number."
+        },
         "loginAlert": {
             "title": "Your not logged in",
             "text": "You must be logged in first to perfom this action",

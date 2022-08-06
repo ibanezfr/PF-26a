@@ -77,12 +77,13 @@ function NavBar() {
               className="navText"
               href="/"
               onClick={resetFilterOrderSearch()}
+              id="btnHome"
             >
               {t('navbar.home')}
             </Nav.Link>
             <NavDropdown title={t('navbar.navdropdown')} id="basic-nav-dropdown">
               {user ? (
-                <button onClick={handleLogout}>{t('logout')}</button>
+                <button onClick={handleLogout}>{t('navbar.logout')}</button>
               ) : (
                 <Nav.Link className="navText" href="/login">
                   {t('navbar.login')}
@@ -101,11 +102,11 @@ function NavBar() {
           {// Este es el switcher para cambiar idiomas:
 
             Object.keys(lngs).map((lng) => (
-              <button type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+              <button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
             ))
           }
 
-          <Nav.Link className="navText" onClick={() => handleFavs()}>
+          <Nav.Link id="btnLang" className="navText" onClick={() => handleFavs()}>
             {t('navbar.favorites')}
           </Nav.Link>
           <SearchBar />
