@@ -1,4 +1,24 @@
 {
+    "sidebarAdmin": {
+        "spanLogo": "Panel del administrador",
+        "pTitle": "Principal",
+        "linkDashboard": "Panel de control",
+        "pLists": "LISTAS",
+        "spanUsers": "Usuarios",
+        "spanProducts": "Productos",
+        "spanOrders": "Órdenes",
+        "spanSettings": "Configuración",
+        "pUtils": "Útiles",
+        "spanCreationForm": "Formulario de creación",
+        "spanStats": "Estadísticas",
+        "spanNotis": "Notificaciones",
+        "pService": "SERVICIO",
+        "spanSystem": "Sistema",
+        "pUser": "USUARIO",
+        "spanProfile": "Perfil",
+        "spanQuit":"Salir"
+    },
+    "navbarAdmin": "Dashboard",
     "productCreationForm": {
         "backButton": "Regresar al tablero de control",
         "h1Title": "Creá un producto:",

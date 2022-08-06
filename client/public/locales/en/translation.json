@@ -1,4 +1,24 @@
 {
+    "sidebarAdmin": {
+        "spanLogo": "Admin Dashboard",
+        "pTitle": "Main",
+        "linkDashboard": "Dashboard",
+        "pLists": "LISTS",
+        "spanUsers": "Users",
+        "spanProducts": "Products",
+        "spanOrders": "Orders",
+        "spanSettings": "Settings",
+        "pUtils": "Tools",
+        "spanCreationForm": "Creation form",
+        "spanStats": "Statistics",
+        "spanNotis": "Notifications",
+        "pService": "SERVICE",
+        "spanSystem": "System",
+        "pUser": "USER",
+        "spanProfile": "Profile",
+        "spanQuit": "Quit"
+    },
+    "navbarAdmin": "Herramientas de administrador",
     "productCreationForm": {
         "backButton": "Back to dashboard",
         "h1Title": "Post your product:",
