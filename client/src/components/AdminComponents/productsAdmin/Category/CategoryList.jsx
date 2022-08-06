@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
 import { fetchCategory } from "../../../../redux/actions";
 import { ActionsUpdate, ActionsDelete } from "./ActionsCategory";
+import { useTranslation } from 'react-i18next';
 
 const CategoryList = () => {
+  const { t } = useTranslation();
   const [pageSize, setPageSize] = useState(3);
   const [rowId, setRowId] = useState(null);
   const allCategories = useSelector((state) => state.category);
@@ -21,17 +23,17 @@ const CategoryList = () => {
     () => [
       {
         field: "name",
-        headerName: "Name",
+        headerName: t('categoryList.headerName1'),
         width: 200,
         renderCell: (params) => params.row.name,
 
         editable: true,
       },
 
-      { field: "id", headerName: "Id", width: 300 },
+      { field: "id", headerName: t('categoryList.headerName3'), width: 300 },
       {
         field: "actionUpdate",
-        headerName: "Edit",
+        headerName: t('categoryList.headerName2'),
         type: "actions",
         renderCell: (params) => (
           <ActionsUpdate {...{ params, rowId, setRowId }} />
@@ -39,13 +41,13 @@ const CategoryList = () => {
       },
       {
         field: "select",
-        headerName: "Select",
+        headerName: t('categoryList.headerName4'),
         type: "boolean",
         editable: true,
       },
       {
         field: "actionDelete",
-        headerName: "Delete",
+        headerName: t('categoryList.headerName5'),
         type: "actions",
         renderCell: (params) => (
           <ActionsDelete {...{ params, rowId, setRowId }} />

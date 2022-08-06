@@ -1,4 +1,25 @@
 {
+    "categoryList": {
+        "headerName1": "Name",
+        "headerName2": "Modify",
+        "headerName3": "Category ID",
+        "headerName4": "Select",
+        "headerName5": "Delete"
+    },
+    "productsAdmin": "All categories",
+    "list": {
+        "headerName1": "Image",
+        "headerName2": "Name",
+        "headerName3": "Color",
+        "headerName4": "Category",
+        "headerName5": "Size",
+        "headerName6": "Stock",
+        "headerName7": "Rating",
+        "headerName8": "Status",
+        "headerName9": "Actions",
+        "headerName10": "Product ID",
+        "h5Title": "Manage products"
+    },
     "homeAdmin": {
         "totalUsers": "Total users",
         "totalProducts": "Total products",

@@ -1,11 +1,32 @@
 {
+    "categoryList": {
+        "headerName1": "Nombre",
+        "headerName2": "Modificar",
+        "headerName3": "ID de la categría",
+        "headerName4": "Seleccionar",
+        "headerName5": "Borrar"
+    },
+    "productsAdmin": "Todas las categorías",
+    "list": {
+        "headerName1": "Imagen",
+        "headerName2": "Nombre",
+        "headerName3": "Color",
+        "headerName4": "Categoría",
+        "headerName5": "Talle",
+        "headerName6": "Cantidad",
+        "headerName7": "Puntaje",
+        "headerName8": "Estado",
+        "headerName9": "Acciones",
+        "headerName10": "ID del producto",
+        "h5Title": "Administrar productos"
+    },
     "homeAdmin": {
         "totalUsers": "Usuarios totales",
         "totalProducts": "Productos totales",
         "recentAdded": "Usuarios agregados recientemente",
-        "recentProducts":"Productos agregados recientemente",
-        "created":"Creado el:",
-        "added":"Se agregó:"
+        "recentProducts": "Productos agregados recientemente",
+        "created": "Creado el:",
+        "added": "Se agregó:"
     },
     "graphicsAdmin": {
         "less1": "Menos de $888",
