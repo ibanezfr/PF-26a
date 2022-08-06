@@ -5,6 +5,7 @@ import { green } from "@mui/material/colors";
 import axios from "axios";
 import { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { BASE_URL } from "../../../../api_url/api_url";
 
 export const ActionsUpdate = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export const ActionsUpdate = ({ params, rowId, setRowId }) => {
 
     const { name, id } = params.row;
     try {
-      const result = await axios.put(`http://localhost:3001/categories/${id}`, {
+      const result = await axios.put(`${BASE_URL}/categories/${id}`, {
         name,
       });
       if (result) {
@@ -89,9 +90,7 @@ export const ActionsDelete = ({ params, rowId, setRowId }) => {
 
     const { id } = params.row;
     try {
-      const result = await axios.delete(
-        `http://localhost:3001/categories/${id}`
-      );
+      const result = await axios.delete(`${BASE_URL}/categories/${id}`);
       if (result) {
         setSuccess(true);
         setRowId(null);

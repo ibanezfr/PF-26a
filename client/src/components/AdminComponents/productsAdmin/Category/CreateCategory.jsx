@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
 import axios from "axios";
+import { BASE_URL } from "../../../../api_url/api_url";
 
 const CreateCategory = () => {
   const history = useHistory();
@@ -15,7 +16,7 @@ const CreateCategory = () => {
     const { name } = categories;
 
     try {
-      await axios.post(`http://localhost:3001/categories`, {
+      await axios.post(`${BASE_URL}/categories`, {
         name,
       });
       setCategories({ name: "" });

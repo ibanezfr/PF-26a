@@ -5,6 +5,7 @@ import FileBase from "react-file-base64";
 import Carousel from "react-bootstrap/Carousel";
 
 import axios from "axios";
+import { BASE_URL } from "../../../../api_url/api_url";
 
 export function validate(input, name, value) {
   const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
@@ -99,7 +100,7 @@ const UpdateProd = () => {
     }
   };
   const getProduct = async () => {
-    let { data } = await axios.get("http://localhost:3001/products/" + id);
+    let { data } = await axios.get(`${BASE_URL}/products/` + id);
     let categorias = [];
 
     // data.categories.forEach((e) => {
@@ -180,23 +181,20 @@ const UpdateProd = () => {
       product_values,
     } = input;
     try {
-      const { data } = await axios.put(
-        `http://localhost:3001/products/update/${id}`,
-        {
-          input,
-          // name,
-          // price,
-          // description,
-          // color,
-          // image,
-          // image2,
-          // image3,
-          // image4,
-          // rating,
-          // categories,
-          // product_values,
-        }
-      );
+      const { data } = await axios.put(`${BASE_URL}/products/update/${id}`, {
+        input,
+        // name,
+        // price,
+        // description,
+        // color,
+        // image,
+        // image2,
+        // image3,
+        // image4,
+        // rating,
+        // categories,
+        // product_values,
+      });
       console.log(data);
       setInput({
         name: "",
