@@ -1,4 +1,12 @@
 {
+    "homeAdmin": {
+        "totalUsers": "Total users",
+        "totalProducts": "Total products",
+        "recentAdded": "Recently added users",
+        "recentProducts": "Recently added products",
+        "created": "It was created:",
+        "added": "Added:"
+    },
     "graphicsAdmin": {
         "less1": "Less than $888",
         "less2": "Less than $1600",
