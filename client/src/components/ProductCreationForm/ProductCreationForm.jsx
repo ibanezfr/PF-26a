@@ -156,6 +156,7 @@ export default function ProductCreationForm() {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(input);

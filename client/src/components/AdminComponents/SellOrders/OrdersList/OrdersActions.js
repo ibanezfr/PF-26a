@@ -1,37 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, CircularProgress, Fab } from "@mui/material";
 import { Check, Save } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 import axios from "axios";
-import { useEffect } from "react";
-import { update_status } from "../../../api_url/api_url";
-// import { authContext } from "../../../context/AuthContext";
 
-const UserActions = ({ params, rowId, setRowId }) => {
+const OrdersActions = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true);
+    try {
+      const { orderStatus, id } = params.row;
 
-    const { admin, banned, id } = params.row;
-    console.log("ADMIN", admin, banned);
-    const result = await axios.put(update_status + id, {
-      admin,
-      banned,
-    });
-    if (result) {
-      setSuccess(true);
-      setRowId(null);
+      const result = await axios.put(
+        `http://localhost:3001/auth/compras/${id}`,
+        {
+          orderStatus,
+        }
+      );
+      if (result) {
+        setSuccess(true);
+        setRowId(null);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
     if (rowId === params.id && success) setSuccess(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowId]);
-
   return (
     <Box
       sx={{
@@ -80,4 +81,4 @@ const UserActions = ({ params, rowId, setRowId }) => {
   );
 };
 
-export default UserActions;
+export default OrdersActions;
