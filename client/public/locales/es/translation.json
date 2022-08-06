@@ -1,4 +1,12 @@
 {
+    "answersAdmin": {
+        "h1": "Preguntas y respuestas",
+        "h2": "No hay preguntas para responder."
+    },
+    "answerAdmin": {
+        "labelAnswer": "Respuesta",
+        "btnAnswer": "Responder"
+    },
     "sidebarAdmin": {
         "spanLogo": "Panel del administrador",
         "pTitle": "Principal",
@@ -16,7 +24,7 @@
         "spanSystem": "Sistema",
         "pUser": "USUARIO",
         "spanProfile": "Perfil",
-        "spanQuit":"Salir"
+        "spanQuit": "Salir"
     },
     "navbarAdmin": "Dashboard",
     "productCreationForm": {

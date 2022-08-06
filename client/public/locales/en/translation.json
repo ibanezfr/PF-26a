@@ -1,4 +1,12 @@
 {
+    "answersAdmin": {
+        "h1": "Questions & Answers",
+        "h2": "There is not questions to anwswer."
+    },
+    "answerAdmin": {
+        "labelAnswer": "Response",
+        "btnAnswer": "Answer"
+    },
     "sidebarAdmin": {
         "spanLogo": "Admin Dashboard",
         "pTitle": "Main",
