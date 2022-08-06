@@ -245,6 +245,8 @@
         }
     },
     "fastPurchase": {
+        "titleNotLoggedIn": "Your are not logged in yet",
+        "textNotLoggedIn": "To buy our products you must log in first!",
         "size": "Choose a size",
         "stock": "Stock:",
         "enterQuantity": "Enter how many units you are searching for",
@@ -298,6 +300,7 @@
         "signIn": "Log In"
     },
     "details": {
+        "titleSuccesCart": "Item added to cart",
         "title": "Your not logged in",
         "text": "To be able to save items on the cart you must log in first!",
         "cancelButtonText": "Cancel",

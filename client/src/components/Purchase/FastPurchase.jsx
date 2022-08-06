@@ -50,8 +50,8 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!user) return Swal.fire({
-            title: 'No estás logueado',
-            text: "Para poder comprar los productos debes loguearte primero!",
+            title: t('fastPurchase.titleNotLoggedIn'),
+            text: t('fastPurchase.textNotLoggedIn'),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -103,7 +103,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                             <div className='quantityCont'>
                                 <span>{t('fastPurchase.size')}</span>
                                 <select defaultValue={t('fastPurchase.size')} onChange={e => handleSize(e)}>
-                                    <option disabled>{t('fastPurchase.size')}</option>
+                                    <option value="selected" hidden>{t('fastPurchase.size')}</option>
                                     {
                                         size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                                             return (

@@ -247,6 +247,8 @@
         }
     },
     "fastPurchase": {
+        "titleNotLoggedIn": "No estás logueado",
+        "textNotLoggedIn": "¡Para poder comprar los productos debes loguearte primero!",
         "size": "Seleciona un talle",
         "stock": "Cantidad:",
         "enterQuantity": "Ingresá la cantidad que buscas",
@@ -300,6 +302,7 @@
         "signIn": "Iniciar sesión"
     },
     "details": {
+        "titleSuccesCart": "Producto añadido al carrito",
         "title": "No estás logueado.",
         "text": "¡Para poder guardar los productos en tu lista de favoritos debes loguearte primero!",
         "cancelButtonText": "Cancelar",
