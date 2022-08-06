@@ -108,7 +108,7 @@ export default function Details() {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Producto añadido al carrito',
+        title: t('details.titleSuccesCart'),
         showConfirmButton: false,
         timer: 1000
       });

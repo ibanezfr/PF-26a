@@ -4,11 +4,11 @@ import { RiArrowUpCircleFill } from "react-icons/ri";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { MdMonetizationOn, MdAccountBalance } from "react-icons/md";
 
-const Widget = ({ type }) => {
+const Widget = ({ type, amount, ordersNumber }) => {
   let data;
 
   // Valores temporales hasta que traiga los datos de la db
-  const amount = 100;
+
   const porcentage = 20;
 
   switch (type) {
@@ -55,7 +55,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && <b>$</b>} {amount ? amount : ordersNumber}
         </span>
         <span className="link">{data.link}</span>
       </div>

@@ -56,15 +56,15 @@ router.get("/size/:id", async (req, res, next) => {
         {
           model: Product_values,
           attributes: ["size", "stock"],
-          through: { attributes: [] }
-        }
-      ]
+          through: { attributes: [] },
+        },
+      ],
     });
-    
-    const sizeMaped = product.product_values.map(m => m.size)
-    const stockMaped = product.product_values.map(p => p.stock)
-      // console.log("Size: ", sizeMaped)
-      // console.log("Stock: ", stockMaped)
+
+    const sizeMaped = product.product_values.map((m) => m.size);
+    const stockMaped = product.product_values.map((p) => p.stock);
+    // console.log("Size: ", sizeMaped)
+    // console.log("Stock: ", stockMaped)
 
     var size_Stock = [];
 
@@ -260,36 +260,33 @@ router.delete("/delete/:id", async (req, res) => {
 
 //----------------------------------------------RUTA PARA OCULTAR EL PRODUCTO-----------------------------
 router.put("/delete/:id", async (req, res) => {
-  const {
-    id
-  } = req.params;
+  const { id } = req.params;
 
   try {
     const product = await Product.findByPk(id);
     if (product.status === "active") {
       const newState = Product.update({
-        status: "inactive"
-      })
+        status: "inactive",
+      });
       return res.status(200).send({
         msg: "Producto deshabilitado"
       })
     } else {
       const newState = Product.update({
-        status: "active"
-      })
+        status: "active",
+      });
       return res.status(200).send({
-        msg: "Producto habilitado"
-      })
+        msg: "Producto habilitado",
+      });
     }
-
   } catch (error) {
     return res.status(400).send({
-      msg: error.message
-    })
+      msg: error.message,
+    });
   }
 });
 
-router.patch("/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -415,7 +412,6 @@ router.get("/q&a/:id", async (req, res) => {
   // console.log("qas", qas)
 });
 
-
 //GET para el id de las preguntas y respuestas
 router.get("/answer/id", async (req, res) => {
   try {
@@ -496,7 +492,6 @@ router.post("/q&a/:idProduct", async (req, res) => {
         id: idProduct
       }
     })
-
     if (newQuestion) {
       await productUpdate.addQa(newQuestion);
     }

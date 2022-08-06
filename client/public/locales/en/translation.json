@@ -1,4 +1,76 @@
 {
+    "createCategory": {
+        "placeHolder1": "Category's name",
+        "create": "Create"
+    },
+    "categoryList": {
+        "headerName1": "Name",
+        "headerName2": "Modify",
+        "headerName3": "Category ID",
+        "headerName4": "Select",
+        "headerName5": "Delete"
+    },
+    "productsAdmin": "All categories",
+    "list": {
+        "headerName1": "Image",
+        "headerName2": "Name",
+        "headerName3": "Color",
+        "headerName4": "Category",
+        "headerName5": "Size",
+        "headerName6": "Stock",
+        "headerName7": "Rating",
+        "headerName8": "Status",
+        "headerName9": "Actions",
+        "headerName10": "Product ID",
+        "h5Title": "Manage products"
+    },
+    "homeAdmin": {
+        "totalUsers": "Total users",
+        "totalProducts": "Total products",
+        "recentAdded": "Recently added users",
+        "recentProducts": "Recently added products",
+        "created": "It was created:",
+        "added": "Added:"
+    },
+    "graphicsAdmin": {
+        "less1": "Less than $888",
+        "less2": "Less than $1600",
+        "major1": "Greater than or equal to  $2400",
+        "major2": "Greater than $3500"
+    },
+    "featuredAdmin": {
+        "spanComparison": "Last month comparison.",
+        "spanIncome": "Income",
+        "spanSells": "Sells",
+        "spanCosts": "Costs"
+    },
+    "answersAdmin": {
+        "h1": "Questions & Answers",
+        "h2": "There is not questions to anwswer."
+    },
+    "answerAdmin": {
+        "labelAnswer": "Response",
+        "btnAnswer": "Answer"
+    },
+    "sidebarAdmin": {
+        "spanLogo": "Admin Dashboard",
+        "pTitle": "Main",
+        "linkDashboard": "Dashboard",
+        "pLists": "LISTS",
+        "spanUsers": "Users",
+        "spanProducts": "Products",
+        "spanOrders": "Orders",
+        "spanSettings": "Settings",
+        "pUtils": "Tools",
+        "spanCreationForm": "Creation form",
+        "spanStats": "Statistics",
+        "spanNotis": "Notifications",
+        "pService": "SERVICE",
+        "spanSystem": "System",
+        "pUser": "USER",
+        "spanQuit": "Quit"
+    },
+    "navbarAdmin": "Herramientas de administrador",
     "productCreationForm": {
         "backButton": "Back to dashboard",
         "h1Title": "Post your product:",
@@ -177,6 +249,8 @@
         }
     },
     "fastPurchase": {
+        "titleNotLoggedIn": "Your are not logged in yet",
+        "textNotLoggedIn": "To buy our products you must log in first!",
         "size": "Choose a size",
         "stock": "Stock:",
         "enterQuantity": "Enter how many units you are searching for",
@@ -230,6 +304,7 @@
         "signIn": "Log In"
     },
     "details": {
+        "titleSuccesCart": "Item added to cart",
         "title": "Your not logged in",
         "text": "To be able to save items on the cart you must log in first!",
         "cancelButtonText": "Cancel",
