@@ -191,7 +191,7 @@ export default function Details() {
                 <h4>{t('details.choseSize')}</h4>
               </div>
               <select defaultValue={t('details.choseSize')} onChange={e => handleSize(e)}>
-                <option disabled>{t('details.disabled')}</option>
+                <option value="selected" hidden>{t('details.disabled')}</option>
 
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {

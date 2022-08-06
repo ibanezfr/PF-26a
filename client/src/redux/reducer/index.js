@@ -25,7 +25,8 @@ import {
   REMOVE_FAVORITE,
   ADD_FAVORITE,
   FETCH_CATEGORY,
-  ANSWER_QUESTION
+  ANSWER_QUESTION,
+  INFO_PURCHASE
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -64,7 +65,8 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem('favs')))
   ],
-  category: []
+  category: [],
+  purchaseInfo: []
 };
 
 
@@ -249,6 +251,9 @@ function rootReducer(state = initialState, action) {
         orderBy: ''
       }
 
+
+      //PREGUNTAS Y RESPUESTAS
+
     case GET_Q_AND_A:
       return {
         ...state,
@@ -274,6 +279,8 @@ function rootReducer(state = initialState, action) {
       }
 
 
+      //FAVORITOS
+
     case GET_FAVORITES:
       return {
         ...state,
@@ -291,6 +298,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         favs: [...action.payload]
       }
+
+
+      // INFORMACIÓN DE LAS COMPRAS
+
+    case INFO_PURCHASE:
+      return{
+        ...state,
+        purchaseInfo: action.payload
+      }
+
+
     default:
       return state;
   }

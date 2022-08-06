@@ -1,14 +1,14 @@
-const { Sell_order, Product, User } = require("../db");
+const { Sell_order } = require("../db");
 const { Router } = require("express");
-const { Op } = require("sequelize");
 
 const router = Router();
+
+//-----------------------------CON ESTA RUTA MODIFICO EL ESTADO DE LAS ORDENES DE PRENDIENTE A ACEPTADA----------------
 
 router.put('/purchaseState/:idOrder', async (req, res) => {
     let {
       idOrder
     } = req.params;
-    //console.log(user)
   
     const order = await Sell_order.findOne({
       where: {
@@ -19,17 +19,14 @@ router.put('/purchaseState/:idOrder', async (req, res) => {
     console.log("orderStatus: ", order.orderStatus)
   
     if (order.orderStatus === 'pending') {
-      const newOrder = Sell_order.update({
-        // order.orderStatus: 'accepted'
+      await order.update({
+        orderStatus: 'accepted'
       })
-  
-  
+
+      console.log("order" , order)
+      // console.log("newOrder: ", newOrder)
       return res.status(200).send(order)
 }
-  
-    // const newOrder = await Sell_order.update({
-    //   orderStatus: "accepted"
-    // })
   
   })
 

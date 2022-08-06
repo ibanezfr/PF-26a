@@ -44,33 +44,7 @@ router.get('/compras/all', async (req, res) => {
   return res.send(allOrders)
 })
 
-
-router.put('/purchateState/:idOrder', async (req, res) => {
-  let {
-    idOrder
-  } = req.params;
-  //console.log(user)
-
-  const order = await Sell_order.findOne({
-    where: {
-      id: idOrder
-    }
-  })
-
-  if (order.orderStatus === 'pending') {
-    const newOrder = Sell_order.update({
-      orderStatus: 'accepted'
-    })
-
-
-    return res.status(200).send(newOrder)
-  }
-
-  // const newOrder = await Sell_order.update({
-  //   orderStatus: "accepted"
-  // })
-
-})
+//----------------------------ME TRAIGO LA INFORMACIÓN DE LAS COMPRAS ------------------
 
 router.put('/compras/:id', async (req, res) => {
   let user = req.params.id;

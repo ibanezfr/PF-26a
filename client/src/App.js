@@ -29,6 +29,7 @@ import EditCategories from "./components/Categories/EditCategories";
 import UpdateProd from "./components/AdminComponents/productsAdmin/UpdateProd/UpdateProd";
 import NewCategory from "./components/Categories/NewCategory"
 import Answers from "./components/AdminComponents/Answers/Answers";
+import PurchaseInfo from "./components/PurchaseInfo/PurchaseInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ function App() {
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
+            <Route path="/purchases" component={PurchaseInfo}/>
             <Route path="/profile" exact>
               <Profile />
             </Route>
