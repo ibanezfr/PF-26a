@@ -8,39 +8,30 @@ $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
 
-.totalHomeContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    align-content: center;
-    width: 100%;
-    
-}
-
 .paginationContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
     font-family: $font;
-    font-weight: 500;
-    font-size: 1rem;
     color: $primaryColor;
+    // align-items: center;
+    // width: 100%;
+    // font-weight: 500;
+    // font-size: 1rem;
 }
 
 .paginationContainer button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: $primaryColor;
     height: 40px;
-    width: 40px;
-    text-decoration: none;
-    transition: background-color .2s;
+    width: 80px;
     border: 1px solid $middleColor;
-    cursor: pointer;
     border-radius: 10%;
     margin: 10px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // text-decoration: none;
+    // transition: background-color .2s;
+    // cursor: pointer;
 }
 
 .paginationContainer button.active {
@@ -59,8 +50,9 @@ $lightestColor: #F2F2F2;
 
 .homeContainer {
     display: flex;
-    margin-right: 20px;
-    justify-content: flex-end;
+    align-items: center;
+    // justify-content: space-evenly;
+    // margin-right: 20px;
 
     h2 {
         font-family: $font;
@@ -70,39 +62,55 @@ $lightestColor: #F2F2F2;
         margin-left: 4%;
         margin-right: 4%;
     }
-
+    .activeContainer {
+        h6 {
+            border-bottom: solid;
+            border-style: ridge;
+            margin-bottom: 1rem;
+        }
+    }
     .activeFilterContainer {
         color: $primaryColor;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        border-bottom: solid;
+        border-top: solid;
+        border-color: thistle;
+        margin: 1px;
+
+        div {
+            width: 11rem;
+        }
 
         img {
-            width: 15px;
+            cursor: pointer;
             height: 15px;
-
+            // width: 15px;
         }
     }
 
     .filter-container {
         background-color: $lightestColor;
         box-shadow: 0 2px 4px $primaryColor;
+        margin-left: 3rem;
+        height: 42rem;
+        width: 14rem;
         display: flex;
         flex-direction: column;
-        justify-content: right;
-        position: left;
-        height: 100%;
+        justify-content: space-evenly;
+        // justify-content: right;
+        // position: left;
+        // height: 100%;
 
         select {
             border: 1px solid $secondaryColor;
             background-color: $secondaryColor;
             color: $lightestColor;
             width: 150px;
-            display: flex;
-
-
+            margin-left: 1.6rem;
+            // display: flex;
         }
 
         ul {
@@ -114,11 +122,8 @@ $lightestColor: #F2F2F2;
                 list-style: none;
                 cursor: pointer;
                 color: $secondaryColor;
-
-
+                margin: 2px;
             }
         }
     }
 }
-
-

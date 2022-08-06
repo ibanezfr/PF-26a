@@ -95,14 +95,14 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                         </div>
                         <div className='bodyCont'>
                             <h2>{name}</h2>
-                            <h4>${price}</h4>
+                            <h4>${formatNumber(price)}</h4>
                         </div>
                     </div>
                     <div className='modalInteractive'>
                         <form>
                             <div className='quantityCont'>
                                 <span>{t('fastPurchase.size')}</span>
-                                <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
+                                <select defaultValue={t('fastPurchase.size')} onChange={e => handleSize(e)}>
                                     <option disabled>{t('fastPurchase.size')}</option>
                                     {
                                         size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
@@ -113,7 +113,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                     }
                                 </select>
                                 {
-                                    position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
+                                    position !== 0 && <h4>Stock {size[position]}</h4>
                                 }
                             </div>
                             <div className='quantityCont'>

@@ -193,8 +193,8 @@ export default function Details() {
               <div>
                 <h4>{t('details.choseSize')}</h4>
               </div>
-              <select defaultValue="Seleccioná un talle" onChange={e => handleSize(e)}>
-                <option disabled>Talles</option>
+              <select defaultValue={t('details.choseSize')} onChange={e => handleSize(e)}>
+                <option disabled>{t('details.choseSize')}</option>
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
                     return (
@@ -204,7 +204,7 @@ export default function Details() {
                 }
               </select>
               {
-                position !== 0 && <span>{t('details.stock')}{size[position]}</span>
+                position !== 0 && <span>Stock{size[position]}</span>
               }
             </div>
             <div className="containerMedium2">

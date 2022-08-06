@@ -16,8 +16,12 @@ $lightestColor: #F2F2F2;
 
 .isFavorite{
     display: flex;
-    flex-direction: row;
+    justify-content: flex-end;
 
+    .btnFav{
+        border-style: hidden;
+        margin: 0.5rem;
+    }
 }
 
 .containerDetail {
@@ -114,7 +118,7 @@ $lightestColor: #F2F2F2;
             span {
                 margin-left: 1px;
                 color: $primaryColor;
-                font-size: 0.6rem;
+                font-size: 0.8rem;
 
             }
 
