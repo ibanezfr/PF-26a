@@ -54,7 +54,7 @@ const CategoryList = () => {
         ),
       },
     ],
-    [rowId]
+    [rowId,t]
   );
 
   return (

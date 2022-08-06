@@ -1,4 +1,8 @@
 {
+    "createCategory": {
+        "placeHolder1": "Nombre de la categoría",
+        "create": "Crear"
+    },
     "categoryList": {
         "headerName1": "Nombre",
         "headerName2": "Modificar",
