@@ -1,4 +1,16 @@
 {
+    "graphicsAdmin": {
+        "less1": "Less than $888",
+        "less2": "Less than $1600",
+        "major1": "Greater than or equal to  $2400",
+        "major2": "Greater than $3500"
+    },
+    "featuredAdmin": {
+        "spanComparison": "Last month comparison.",
+        "spanIncome": "Income",
+        "spanSells": "Sells",
+        "spanCosts": "Costs"
+    },
     "answersAdmin": {
         "h1": "Questions & Answers",
         "h2": "There is not questions to anwswer."
@@ -23,7 +35,6 @@
         "pService": "SERVICE",
         "spanSystem": "System",
         "pUser": "USER",
-        "spanProfile": "Profile",
         "spanQuit": "Quit"
     },
     "navbarAdmin": "Herramientas de administrador",

@@ -1,4 +1,16 @@
 {
+    "graphicsAdmin": {
+        "less1": "Menos de $888",
+        "less2": "Menos de $1600",
+        "major1": "Mayor o igual a $2400",
+        "major2": "Más de $3500"
+    },
+    "featuredAdmin": {
+        "spanComparison": "Comparación con el mes pasado",
+        "spanIncome": "Ingresos",
+        "spanSells": "Ventas",
+        "spanCosts": "Costos"
+    },
     "answersAdmin": {
         "h1": "Preguntas y respuestas",
         "h2": "No hay preguntas para responder."
