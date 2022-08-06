@@ -12,8 +12,8 @@ const ListActions = ({ params, rowId, setRowId }) => {
   const handleSubmit = async () => {
     setLoading(true);
     const { name, color, status, id } = params.row;
-    console.log({ status });
-    const result = await axios.patch(
+    // console.log({ status });
+    const result = await axios.put(
       `http://localhost:3001/products/update/${id}`,
       {
         status,
@@ -30,6 +30,7 @@ const ListActions = ({ params, rowId, setRowId }) => {
 
   useEffect(() => {
     if (rowId === params.id && success) setSuccess(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowId]);
   return (
     <Box

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 // import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
@@ -43,12 +43,13 @@ const Profile = () => {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!user) {
     return <Redirect to="/" />;
   }
-
+  // console.log(typeof userDb.sell_orders);
   return (
     <div className="wrapper">
       <div className="container">
@@ -67,41 +68,49 @@ const Profile = () => {
           <div className="div-details">
             <div className="container-details">
               <p className="details">
-                <span className="span-details">{t('profile.country')}</span>
+                <span className="span-details">{t("profile.country")}</span>
                 <br /> {userDb?.country}
               </p>
               <p className="details">
-                <span className="span-details">{t('profile.province')}</span>
+                <span className="span-details">{t("profile.province")}</span>
                 <br />
                 {userDb?.province}
               </p>
               <p className="details">
-                <span className="span-details">{t('profile.city')}</span>
+                <span className="span-details">{t("profile.city")}</span>
                 <br />
                 {userDb?.city}
               </p>
               <p className="details">
-                <span className="span-details">{t('profile.street')}</span>
+                <span className="span-details">{t("profile.street")}</span>
                 <br />
                 {userDb?.street}
               </p>
               <p className="details">
-                <span className="span-details">{t('profile.postalCode')}</span>
+                <span className="span-details">{t("profile.postalCode")}</span>
                 <br />
                 {userDb?.postalCode}
               </p>
+
+              <ul>
+                <h4>Compras: </h4>
+                {userDb?.sell_orders?.map((e) => (
+                  <li key={e.id}>
+                    <span>{e.product}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </div>{" "}
+        </div>
       </div>
       <Link to="/profile/form">
-        <button className="btnProfile">{t('profile.editeProfile')}</button>
+        <button className="btnProfile">{t("profile.editeProfile")}</button>
       </Link>
       <button className="btnProfile" onClick={handleLogout}>
-        {t('profile.logOut')}
+        {t("profile.logOut")}
       </button>
     </div>
-
   );
 };
 

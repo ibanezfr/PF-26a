@@ -63,9 +63,13 @@ const SidebarAdmin = () => {
           </li>
 
           <li>
-            <FaShoppingCart className="icons" />
-            <span>{t('sidebarAdmin.spanOrders')}</span>
-          </li>
+            <Link to="/admin/orders" className="link">
+
+              <FaShoppingCart className="icons" />
+              <span>{t('sidebarAdmin.spanOrders')}</span>
+            </Link>
+
+          </li >
           <li>
             <MdSettings className="icons" />
             <span>{t('sidebarAdmin.spanSettings')}</span>
@@ -103,13 +107,13 @@ const SidebarAdmin = () => {
             <RiLogoutBoxFill className="icons" />
             <span>{t('sidebarAdmin.spanQuit')}</span>
           </li>
-        </ul>
-      </div>
+        </ul >
+      </div >
       <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
       </div>
-    </div>
+    </div >
   );
 };
 
