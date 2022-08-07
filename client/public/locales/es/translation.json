@@ -1,4 +1,14 @@
 {
+    "userList": {
+        "avatar": "Imagen de perfil",
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "rol": "Tipo de cuenta",
+        "status": "Estado de la cuenta",
+        "id": "ID del usuario",
+        "actions": "Acciones",
+        "manageUsers": "Administrar usuarios"
+    },
     "createCategory": {
         "placeHolder1": "Nombre de la categoría",
         "create": "Crear"

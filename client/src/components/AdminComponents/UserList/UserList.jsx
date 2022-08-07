@@ -11,9 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../redux/actions";
 import { grey } from "@mui/material/colors";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 export default function UserList() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const users = useSelector((state) => state.user);
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
@@ -39,17 +41,17 @@ export default function UserList() {
     () => [
       {
         field: "image",
-        headerName: "Avatar",
+        headerName: t('userList.avatar'),
         width: 60,
         renderCell: (params) => <Avatar src={params.row.image} />,
         sortable: false,
         filterable: false,
       },
-      { field: "fullName", headerName: "Name", width: 170 },
-      { field: "email", headerName: "Email", width: 200 },
+      { field: "fullName", headerName: t('userList.name'), width: 170 },
+      { field: "email", headerName: t('userList.email'), width: 200 },
       {
         field: "admin",
-        headerName: "Role",
+        headerName: t('userList.rol'),
         width: 100,
         type: "singleSelect",
         valueOptions: ["User", "Admin"],
@@ -57,17 +59,17 @@ export default function UserList() {
       },
       {
         field: "banned",
-        headerName: "Status",
+        headerName: t('userList.status'),
         width: 100,
         type: "singleSelect",
         valueOptions: ["Banned", "Active"],
         editable: true,
       },
 
-      { field: "id", headerName: "Id", width: 220 },
+      { field: "id", headerName: t('userList.id'), width: 220 },
       {
         field: "actions",
-        headerName: "Actions",
+        headerName: t('userList.actions'),
         type: "actions",
         renderCell: (params) => (
           <UserActions {...{ params, rowId, setRowId }} />
@@ -84,7 +86,7 @@ export default function UserList() {
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Manage Users
+        {t('userList.manageUsers')}
       </Typography>
       <DataGrid
         columns={columns}

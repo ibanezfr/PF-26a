@@ -1,4 +1,14 @@
 {
+    "userList": {
+        "avatar": "Avatar",
+        "name": "Name",
+        "email": "Email address",
+        "rol": "Rol",
+        "status": "Status",
+        "id": "User ID",
+        "actions": "Actions",
+        "manageUsers": "Manage Users"
+    },
     "createCategory": {
         "placeHolder1": "Category's name",
         "create": "Create"
