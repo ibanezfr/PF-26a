@@ -19,11 +19,8 @@ function formatDescription(description) {
 }
 router.post("/api/checkout", async (req, res) => {
   const { amount, description, user, shippingInfo } = req.body;
-
-  const userComprador = await User.findByPk(user)
-
   try {
-
+    const userComprador = await User.findByPk(user)
     if (user) {
       const payment = await stripe.paymentIntents.create({
         amount: Number(amount) * 100,
