@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { answerQuestion } from "../../../redux/actions";
 import Answer from "./Answer";
 import './Answer.scss'
+import { useTranslation } from 'react-i18next';
 
-export default function Answers(){
+export default function Answers() {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
-    const qas = useSelector((state)=> state.questionToAnswer)
-    
-    useEffect(()=>{
+    const qas = useSelector((state) => state.questionToAnswer)
+
+    useEffect(() => {
         return dispatch(answerQuestion(false));
     }, [])
 
@@ -17,21 +19,21 @@ export default function Answers(){
     // console.log("prueba: ", prueba)
     // const mappedProductName = qas.map(m=>m.product)
     // console.log("qas.product[0].name", mappedProductName)
-    return(
+    return (
         <div className="qasContainer">
-            <h1>Preguntas y respuestas</h1>
+            <h1>{t('answersAdmin.h1')}</h1>
             {
-                qas.length?qas.map((question)=>{
+                qas.length ? qas.map((question) => {
                     return <Answer
-                    idQuestion={question.id}
-                    idProduct={question.products.map(m=>m.name)}
-                    title={question.title}
-                    description={question.description}
-                    image={question.products.map(m=>m.image)}
-                    name={question.products.map(m=>m.name)}
-                    answer={question.answer}
+                        idQuestion={question.id}
+                        idProduct={question.products.map(m => m.name)}
+                        title={question.title}
+                        description={question.description}
+                        image={question.products.map(m => m.image)}
+                        name={question.products.map(m => m.name)}
+                        answer={question.answer}
                     />
-                }) : <div><h2>No hay preguntas para responder</h2></div>
+                }) : <div><h2>{t('answersAdmin.h2')}</h2></div>
             }
             {/* <Answer /> */}
         </div>

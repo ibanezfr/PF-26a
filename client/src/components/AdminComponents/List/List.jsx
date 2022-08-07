@@ -2,7 +2,7 @@ import "./List.scss";
 import { useEffect, useMemo, useState } from "react";
 import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
-
+import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
 import { Link, useHistory } from "react-router-dom";
@@ -10,6 +10,7 @@ import ListActions from "./ListActions";
 
 const Lista = () => {
   // const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [pageSize, setPageSize] = useState(10);
   const history = useHistory();
   const [rowId, setRowId] = useState(null);
@@ -30,7 +31,7 @@ const Lista = () => {
     () => [
       {
         field: "image",
-        headerName: "Image",
+        headerName: t('list.headerName1'),
         width: 60,
         renderCell: (params) => (
           <Link to={`/products/${params.row.id}`}>
@@ -40,11 +41,11 @@ const Lista = () => {
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", width: 200, editable: true },
-      { field: "color", headerName: "Color", width: 150, editable: true },
+      { field: "name", headerName: t('list.headerName2'), width: 200, editable: true },
+      { field: "color", headerName: t('list.headerName3'), width: 150, editable: true },
       {
         field: "categories",
-        headerName: "Category",
+        headerName: t('list.headerName4'),
         width: 250,
         renderCell: (params) =>
           params.row.categories
@@ -54,7 +55,7 @@ const Lista = () => {
       },
       {
         field: "size",
-        headerName: "Size",
+        headerName: t('list.headerName5'),
         width: 120,
         type: "string",
         renderCell: (params) =>
@@ -66,7 +67,7 @@ const Lista = () => {
       },
       {
         field: "stock",
-        headerName: "Stock",
+        headerName: t('list.headerName6'),
         width: 120,
         type: "string",
         renderCell: (params) =>
@@ -78,24 +79,24 @@ const Lista = () => {
       },
       {
         field: "rating",
-        headerName: "Ratings",
+        headerName: t('list.headerName7'),
         width: 60,
         type: "integer",
         editable: false,
       },
       {
         field: "status",
-        headerName: "Status",
+        headerName: t('list.headerName8'),
         width: 60,
         type: "singleSelect",
         valueOptions: ["active", "inactive"],
         editable: true,
       },
 
-      { field: "id", headerName: "Id", width: 220 },
+      { field: "id", headerName: t('list.headerName10'), width: 220 },
       {
         field: "actions",
-        headerName: "Actions",
+        headerName: t('list.headerName9'),
         type: "actions",
         renderCell: (params) => (
           <ListActions {...{ params, rowId, setRowId }} />
@@ -107,7 +108,7 @@ const Lista = () => {
 
   return (
     <Box sx={{ height: 800, width: "100%" }}>
-      <Typography variant="h5">Administrar productos</Typography>
+      <Typography variant="h5">{t('list.h5Title')}</Typography>
       <DataGrid
         columns={columns}
         rows={products}

@@ -1,22 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import FileBase from "react-file-base64";
 import Carousel from "react-bootstrap/Carousel";
-import { getProductsById } from "../../../../redux/actions";
+
+import axios from "axios";
+
+export function validate(input, name, value) {
+  const validName = /^(?=.{5,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
+  const validDescription =
+    /^(?=.{5,255}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.:;!¡¿?]+(?:-[a-zA-Z]+)*$/;
+  const validPrice = /^((?!0)\d{1,4}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/;
+  const validColor =
+    /^(?=.{3,70}$)[a-zA-ZáéíóúñÑÁÉÍÓÚüÜ' ',.]+(?:-[a-zA-Z]+)*$/;
+
+  const noName = "1) Título: El nombre es obligatorio.";
+  const invalidName =
+    "1) Título: Solo letras, guión medio opcional y la longitud debe ser entre 5 y 70 caracteres.";
+  const noDescription = "2) Descripción: La descripción es obligatoria.";
+  const invalidDescription =
+    "2) Descripción: Solo letras, comas, puntos y la longitued debe ser entre 5 y 255 caracteres.";
+  const noPrice = "3) Precio: El precio es obligatorio.";
+  const invalidPrice =
+    "3) Precio: Máximo 4 dígitos y 2 decimales permitidos, utilizar punto en vez de coma.";
+  const noColor = "4) Color: El color es obligatorio.";
+  const invalidColor =
+    "4) Color: Solos letras, longitud entre 3 y 70 caracteres, comas y puntos permitidos.";
+  const noImage = "5) Imagen: Es obligatoria al menos una imagen.";
+  let errors = {};
+  input.image === "" ? (errors[name] = noImage) : delete errors.image;
+  switch (name) {
+    case "name":
+      !input[name]
+        ? (errors[name] = noName)
+        : !validName.test(input[name])
+        ? (errors[name] = invalidName)
+        : delete errors[name];
+      break;
+    case "description":
+      !input[name]
+        ? (errors[name] = noDescription)
+        : !validDescription.test(input[name])
+        ? (errors[name] = invalidDescription)
+        : delete errors[name];
+      break;
+    case "price":
+      !input[name]
+        ? (errors[name] = noPrice)
+        : !validPrice.test(input[name])
+        ? (errors[name] = invalidPrice)
+        : delete errors[name];
+      break;
+    case "color":
+      !input[name]
+        ? (errors[name] = noColor)
+        : !validColor.test(input[name])
+        ? (errors[name] = invalidColor)
+        : delete errors[name];
+      break;
+    default:
+      break;
+  }
+  return errors;
+}
 
 const UpdateProd = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
-  // let actualProduct = useSelector((state) => state.detail);
-  // console.log(actualProduct);
   const { id } = useParams();
 
-  // dispatch(getProductsById(id));
-
-  const categoriesArray1 = useSelector((state) => state.categories);
-  const categoriesArray = categoriesArray1.sort();
-  const sizesArray = ["xs", "s", "l", "m", "xl", "xxl", "xxxl", "único"];
   const [input, setInput] = useState({
     name: "",
     price: 0,
@@ -30,14 +81,15 @@ const UpdateProd = () => {
     categories: [],
     product_values: [],
   });
-  console.log(input);
-  const [productsValues, setProductsValues] = useState({});
 
+  const [productsValues, setProductsValues] = useState({});
+  const categoriesArray1 = useSelector((state) => state.categories);
+  const categoriesArray = categoriesArray1.sort();
+  const sizesArray = ["xs", "s", "l", "m", "xl", "xxl", "xxxl", "único"];
   const stockArray = [];
   for (let i = 0; i <= 100; i++) {
     stockArray.push(i);
   }
-
   const [errors, setErrors] = useState();
 
   const handleKick = async () => {
@@ -46,55 +98,133 @@ const UpdateProd = () => {
       history.push("/login");
     }
   };
+  const getProduct = async () => {
+    let { data } = await axios.get("http://localhost:3001/products/" + id);
+    let categorias = [];
+
+    // data.categories.forEach((e) => {
+    //   categorias.push(e.name);
+    // });
+    // data.categories = categorias;
+    const { categories } = data;
+    for (const cats of categories) {
+      const { name } = cats;
+      categorias.push(name);
+    }
+    data.categories = categorias;
+    console.log(data.categories);
+
+    setInput(data);
+    console.log(input.categories);
+  };
+
   useEffect(() => {
     handleKick();
+    getProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {
-    dispatch(getProductsById(id));
-  }, [dispatch, id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
+    if (
+      name === "name" ||
+      name === "description" ||
+      name === "color" ||
+      name === "price"
+    ) {
+      setErrors(validate({ ...input, [name]: value }, name));
+    }
     if (name === "size") {
       setProductsValues({ [name]: value });
     }
     if (name === "stock") {
       setProductsValues({ ...productsValues, [name]: value });
     }
-    // if (name === "categories") {
-    //   if (input.categories.length < 3) {
-    //     setInput({
-    //       ...input,
-    //       categories: [...input.categories, { name: e.target.value }],
-    //     });
-    //   }
-    // } else {
-    //   setInput({ ...input, [name]: value });
-    // }
+    if (name === "categories") {
+      if (input.categories.length < 3) {
+        if (!input.categories.includes(value)) {
+          setInput({
+            ...input,
+            categories: [...input.categories, value],
+            // categories: [...input.categories, { name: e.target.value }],
+          });
+        }
+      }
+    } else {
+      setInput({ ...input, [name]: value });
+    }
   };
 
-  const handleSubmit = () => {};
+  if (
+    productsValues.hasOwnProperty("stock") &&
+    productsValues.hasOwnProperty("size")
+  ) {
+    const obj = productsValues;
+    setInput({ ...input, product_values: [...input.product_values, obj] });
+    setProductsValues({});
+  }
 
-  const submitButtonBoolean =
-    input.name === "" ||
-    input.price === 0 ||
-    input.description === "" ||
-    input.color === "" ||
-    input.image === "" ||
-    input.categories.length === 0 ||
-    input.product_values.length === 0
-      ? true
-      : false;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const {
+      name,
+      price,
+      description,
+      color,
+      image,
+      image2,
+      image3,
+      image4,
+      rating,
+      categories,
+      product_values,
+    } = input;
+    try {
+      const { data } = await axios.put(
+        `http://localhost:3001/products/update/${id}`,
+        {
+          input,
+          // name,
+          // price,
+          // description,
+          // color,
+          // image,
+          // image2,
+          // image3,
+          // image4,
+          // rating,
+          // categories,
+          // product_values,
+        }
+      );
+      console.log(data);
+      setInput({
+        name: "",
+        price: 0,
+        description: "",
+        color: "",
+        image: "",
+        image2: "",
+        image3: "",
+        image4: "",
+        rating: 0,
+        categories: [],
+        product_values: [],
+      });
+      // history.push("/admin/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="productCreationContainer">
       <Link to="/admin/products">
-        <button id="back-button">Regresar al tablero de control</button>
+        <button id="back-button">Volver</button>
       </Link>
       <div className="productFormContainer">
         <div className="creation_form">
-          <h2 id="title">Creá un producto:</h2>
+          <h2 id="title">Edita el producto:</h2>
           <div id="error_container">
             <ul className="error">
               {errors && errors.name && (
@@ -275,7 +405,6 @@ const UpdateProd = () => {
             </fieldset>
 
             <input
-              disabled={submitButtonBoolean}
               id="submit-button"
               type="submit"
               value="Submit"
@@ -345,10 +474,10 @@ const UpdateProd = () => {
           )}
 
           <ul className="categories" id="categories-list">
-            {input.categories &&
-              input.categories.map((elm, index) => {
-                return <li key={index}>{elm.name}</li>;
-              })}
+            {input.categories.join(", ")}
+            {/* {input.categories.map((elm, index) => {
+              return <li key={index}>{elm.name}</li>;
+            })} */}
           </ul>
           <ul className="size-stock">
             {input.product_values &&

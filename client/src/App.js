@@ -27,8 +27,11 @@ import AllCategories from "./components/Categories/AllCategories";
 import EditCategories from "./components/Categories/EditCategories";
 
 import UpdateProd from "./components/AdminComponents/productsAdmin/UpdateProd/UpdateProd";
-import NewCategory from "./components/Categories/NewCategory"
+import NewCategory from "./components/Categories/NewCategory";
 import Answers from "./components/AdminComponents/Answers/Answers";
+import PurchaseInfo from "./components/PurchaseInfo/PurchaseInfo";
+import SellOrders from "./components/AdminComponents/SellOrders/SellOrders";
+import Review from "./components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +67,8 @@ function App() {
           <Route path="/admin/home" component={HomeAdmin} />
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={ProductsAdmin} />
+          <Route path="/admin/orders" component={SellOrders} />
+
           <Route path="/products/:id" component={UpdateProd} />
 
           <Route path="/admin/creation" component={ProductCreationForm} />
@@ -74,11 +79,13 @@ function App() {
             component={EditCategories}
           />
           <Route path="/admin/categorias" exact component={AllCategories} />
-          <Route path="/admin/qas" component={Answers}/>
+          <Route path="/admin/qas" component={Answers} />
 
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
+            <Route path="/purchases" component={PurchaseInfo}/>
+            <Route path="/review/:id" component={Review}/>
             <Route path="/profile" exact>
               <Profile />
             </Route>

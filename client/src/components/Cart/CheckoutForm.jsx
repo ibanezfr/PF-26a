@@ -37,7 +37,6 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     });
     setLoading(true);
     //console.log(user).
-    // console.log(error)
     if (error) {
       if (error.code === 'incomplete_number') {
         Swal.fire({

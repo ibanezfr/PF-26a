@@ -13,22 +13,22 @@ export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
-export const GET_INFO_Q_AND_A = 'GET_INFO_Q_AND_A';
-export const GET_ANSWERS = 'GET_ANSWERS';
+export const GET_INFO_Q_AND_A = "GET_INFO_Q_AND_A";
+export const GET_ANSWERS = "GET_ANSWERS";
 
 //Q and A
-export const GET_Q_AND_A = 'GET_Q_AND_A';
+export const GET_Q_AND_A = "GET_Q_AND_A";
 
 const URL_FOR_POST_PRODUCT = "http://localhost:3001/products/create";
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
 const URL_FOR_GET_PRODUCTS_BY_ID = "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
-const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
-const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
-const URL_ANSWERS = 'http://localhost:3001/products/answer/'
-const URL_GET_ANSWERS = 'http://localhost:3001/admin/all/'
-
+const URL_FOR_GET_PRODUCTS_BY_NAME =
+  "http://localhost:3001/products/search?name=";
+const URL_QUESTIONS = "http://localhost:3001/products/q&a/";
+const URL_ANSWERS = "http://localhost:3001/products/answer/";
+const URL_GET_ANSWERS = "http://localhost:3001/admin/all/";
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
@@ -38,9 +38,10 @@ export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
-export const FETCH_CATEGORY= "FETCH_CATEGORY"
+export const FETCH_CATEGORY = "FETCH_CATEGORY";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
-
+export const GET_REVIEW= "GET_REVIEW"
+export const GET_INFO_REVIEW= "GET_INFO_REVIEW"
 export const postProduct = (payload) => {
   return async function (dispatch) {
     try {
@@ -54,7 +55,7 @@ export const postProduct = (payload) => {
 };
 
 //QandA
-export function getQandA (idProduct, obj){
+export function getQandA(idProduct, obj) {
   return async (dispatch) => {
     let info = await axios.post(URL_QUESTIONS + idProduct, obj);
     // console.log("en la action: ", info.data)
@@ -65,7 +66,10 @@ export function getQandA (idProduct, obj){
   };
 }
 
-export function bringQandA (id){
+
+
+
+export function bringQandA(id) {
   return async (dispatch) => {
     let info = await axios.get(URL_QUESTIONS + id);
     // console.log("en la action: ", info.data)
@@ -76,7 +80,7 @@ export function bringQandA (id){
   };
 }
 
-export function bringAnswers (id){
+export function bringAnswers(id) {
   return async (dispatch) => {
     let info = await axios.get(URL_ANSWERS + id);
     // console.log("en la action: ", info.data)
@@ -87,7 +91,7 @@ export function bringAnswers (id){
   };
 }
 
-export function answerQuestion(resolved){
+export function answerQuestion(resolved) {
   return async (dispatch) => {
     let info = await axios.get(URL_GET_ANSWERS + resolved);
     // console.log("en la action: ", info.data)
@@ -177,10 +181,9 @@ export function fetchCategory() {
     axios
       .get(URL_FOR_FETCH_CATEGORIES)
       .then((categories) => {
-        
         dispatch({
           type: FETCH_CATEGORY,
-          payload: categories.data
+          payload: categories.data,
         });
       })
       .catch((error) => {
@@ -188,7 +191,6 @@ export function fetchCategory() {
       });
   };
 }
-
 
 export function addFilter(filter) {
   return function (dispatch) {
@@ -310,7 +312,7 @@ export function resetFilterOrder() {
       type: RESET_FILTER_ORDER,
     });
   };
-};
+}
 
 export const getFavsFromUser = (id) => {
   return async (dispatch) => {
@@ -324,20 +326,82 @@ export const getFavsFromUser = (id) => {
 
 export const removeFavsFromUser = (idUser, idProduct) => {
   return async (dispatch) => {
-    await axios.delete(URL_REMOVE_FAVORITE +`${idUser}/${idProduct}`);
+    await axios.delete(URL_REMOVE_FAVORITE + `${idUser}/${idProduct}`);
     dispatch({
       type: REMOVE_FAVORITE,
-      payload: idProduct
+      payload: idProduct,
     });
   };
 };
 
 export const addFavsToUser = (data) => {
   return async (dispatch) => {
-    let pedido = await axios.post(URL_POST_FAVORITE, data)
+    let pedido = await axios.post(URL_POST_FAVORITE, data);
     dispatch({
-      type:ADD_FAVORITE,
-      payload: pedido.data.res.products
+      type: ADD_FAVORITE,
+      payload: pedido.data.res.products,
     });
   };
 };
+
+
+//-----------------------------RUTAS PARA LOS DETALLES DE LAS COMPRAS ESPECÍFICO DE UN USUARIO------------------------
+// export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'
+// export const INFO_PURCHASE = "INFO_PURCHASE"
+
+// export const purchaseInfo = (id) => {
+//   return async (dispatch) => {
+//     let pedido = await axios.get(URL_INFO_PURCHASE + id)
+//     dispatch({
+//       type:INFO_PURCHASE,
+//       payload: pedido.data
+//     });
+//   };
+// }
+
+export const URL_SINGLE_PURCHASE = 'http://localhost:3001/auth/singlePurchase/'
+export const SINGLE_PURCHASE = "SINGLE_PURCHASE"
+
+export const singlePurchase = (id)=>{
+  return async (dispatch) => {
+    let pedido = await axios.get(URL_SINGLE_PURCHASE + id)
+    dispatch({
+      type:SINGLE_PURCHASE,
+      payload: pedido.data
+    });
+  };
+}
+
+export const getBuys = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/auth/compras/all`
+      );
+      return dispatch({ type: "GET_BUYS", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export function getReview(id, rev) {
+  return async (dispatch) => {
+    let review = await axios.post( "http://localhost:3001/products/review/" + id, rev);
+    dispatch({
+      type: GET_REVIEW,
+      payload: review.data,
+    });
+  };
+}
+
+export function reviewProduct(id) {
+  return async (dispatch) => {
+    let info = await axios.get("http://localhost:3001/products/reviews/" + id);
+
+    dispatch({
+      type: GET_INFO_REVIEW,
+      payload: info.data,
+    });
+  };
+}

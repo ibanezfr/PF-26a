@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation} from 'react-i18next';
 import Carousel from "react-bootstrap/Carousel";
 
 export function validate(input, name, value) {
@@ -157,6 +157,7 @@ export default function ProductCreationForm() {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // console.log(input);

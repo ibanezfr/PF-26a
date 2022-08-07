@@ -1,22 +1,15 @@
-// import "./UserList.scss";
+import React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
-// import { useValue } from "../../../context/ContextProvider";
-// import { getUsers } from "../../../actions/user";
-// import moment from "moment";
-// import { grey } from "@mui/material/colors";
-import UserActions from "./UserActions";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../../redux/actions";
 import { grey } from "@mui/material/colors";
 import { useHistory } from "react-router-dom";
+import OrdersActions from "./OrdersActions";
 
-export default function UserList() {
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.user);
+const OrdersList = ({ orders }) => {
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
+
   const history = useHistory();
 
   const handleKick = async () => {
@@ -25,52 +18,69 @@ export default function UserList() {
       history.push("/login");
     }
   };
+
   useEffect(() => {
     handleKick();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    return !users.length ? dispatch(fetchUsers()) : null;
-  }, [dispatch, users]);
-
-  console.log(users);
+  console.log(orders);
   const columns = useMemo(
     () => [
       {
         field: "image",
         headerName: "Avatar",
         width: 60,
-        renderCell: (params) => <Avatar src={params.row.image} />,
+        renderCell: (params) => <Avatar src={params.row.user.image} />,
         sortable: false,
         filterable: false,
       },
-      { field: "fullName", headerName: "Name", width: 170 },
-      { field: "email", headerName: "Email", width: 200 },
       {
-        field: "admin",
-        headerName: "Role",
-        width: 100,
-        type: "singleSelect",
-        valueOptions: ["User", "Admin"],
-        editable: true,
+        field: "email",
+        headerName: "Email",
+        width: 150,
+        renderCell: (params) => params.row.user.email,
       },
       {
-        field: "banned",
+        field: "userId",
+        headerName: "User ID",
+        width: 100,
+      },
+      {
+        field: "product",
+        headerName: "Products",
+        type: "string",
+        width: 250,
+      },
+      {
+        field: "amount",
+        headerName: "Amount $",
+        type: "number",
+        width: 100,
+      },
+
+      {
+        field: "date",
+        headerName: "Date",
+        width: 170,
+        type: "date",
+      },
+
+      { field: "id", headerName: "Id", width: 75 },
+      {
+        field: "orderStatus",
         headerName: "Status",
         width: 100,
         type: "singleSelect",
-        valueOptions: ["Banned", "Active"],
+        valueOptions: ["pending", "accepted", "rejected"],
         editable: true,
       },
-
-      { field: "id", headerName: "Id", width: 220 },
       {
         field: "actions",
         headerName: "Actions",
         type: "actions",
         renderCell: (params) => (
-          <UserActions {...{ params, rowId, setRowId }} />
+          <OrdersActions {...{ params, rowId, setRowId }} />
         ),
       },
     ],
@@ -78,17 +88,17 @@ export default function UserList() {
   );
 
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ height: 300, width: "100%" }}>
       <Typography
-        variant="h3"
-        component="h3"
+        variant="h4"
+        component="h4"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        Manage Users
+        All Orders
       </Typography>
       <DataGrid
         columns={columns}
-        rows={users}
+        rows={orders}
         getRowId={(row) => row.id}
         rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
@@ -99,12 +109,13 @@ export default function UserList() {
         })}
         sx={{
           [`& .${gridClasses.row}`]: {
-            bgcolor: (theme) =>
-              theme.palette.mode === "light" ? grey[200] : grey[900],
+            bgcolor: grey[200],
           },
         }}
         onCellEditCommit={(params) => setRowId(params.id)}
       />
     </Box>
   );
-}
+};
+
+export default OrdersList;

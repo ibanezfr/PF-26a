@@ -6,7 +6,6 @@ import './Detail.scss'
 import './QandA.scss'
 import { cartController, formatNumber } from "../../Utils";
 // import { formatNumber } from "../../Utils";
-
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -14,6 +13,7 @@ import QuestionForm from "./QuestionForm";
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
+import Review from "../../components/Review/Review";
 
 export default function Details() {
   const { t } = useTranslation();
@@ -23,6 +23,8 @@ export default function Details() {
   const history = useHistory();
 
   let actualProduct = useSelector(state => state.detail)
+
+  console.log(actualProduct)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   let favs = useSelector(state => state.favs);
@@ -102,13 +104,14 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
+
     var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
     if (bool === true) {
       dispatch(addToCart(newCart));
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Producto añadido al carrito',
+        title: t('details.titleSuccesCart'),
         showConfirmButton: false,
         timer: 1000
       });
@@ -191,7 +194,7 @@ export default function Details() {
                 <h4>{t('details.choseSize')}</h4>
               </div>
               <select defaultValue={t('details.choseSize')} onChange={e => handleSize(e)}>
-                <option disabled>{t('details.disabled')}</option>
+                <option value="selected" hidden>{t('details.disabled')}</option>
 
                 {
                   size[0] === "único" ? <option name={size[0]} value={0}>{size[0]}</option> : size.map((m, index) => {
@@ -219,7 +222,27 @@ export default function Details() {
       </div >
       <div>
         <QuestionForm />
+       
       </div>
+      <div className="">
+      <h2 className="">Review</h2>
+{
+  actualProduct.reviews?.map((info) => {
+    return (
+
+      <div>
+        <p>{info.rating}</p>
+        <p>{info.title}</p>
+        <p>{info.description}</p>
+      </div>
+
+
+    )
+
+  })
+}
+</div>
+
     </div >
   )
 };
