@@ -31,6 +31,7 @@ $lightestColor: #F2F2F2;
     border-radius: 20px;
     box-shadow: 0 4px 16px $primaryColor;
     margin-top: 10px !important;
+    margin-bottom: 2rem;
     width: 700px !important;
     height: 90%;
     // margin-bottom: 3%;
@@ -173,7 +174,8 @@ $lightestColor: #F2F2F2;
             border: 1px solid $middleColor;
             border-radius: 5%;
             //realizar los cambios pertinentes
-            height: 20px;
+            height: 2rem;
+            width: 10rem;
             margin: 5%;
             color: white;
             font-family: 'Raleway', sans-serif;
