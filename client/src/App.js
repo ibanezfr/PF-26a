@@ -21,6 +21,8 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 import List from "./components/AdminComponents/List/List";
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import OrderList from "./components/AdminComponents/OrderList/OrderList";
+import Buy from './components/Buy/Buy'
 function App() {
   const dispatch = useDispatch();
 
@@ -53,17 +55,19 @@ function App() {
 
           <Route path="/admin/home" component={HomeAdmin} />
           <Route path="/admin/users" component={UserList} />
+          <Route path="/admin/orders" component={OrderList}/>
           <Route path="/admin/products" component={List} />
           <Route path="/admin/creation" component={ProductCreationForm} />
-
+          
           <ProtectedRoutes>
+            
             <Route path="/purchase" component={Purchase}/>
             <Route path="/favorites" component={Favorites}/>
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
+            <Route path="/profile" exact><Profile /></Route>
+            <Route path='/buy' component={Buy}/>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
+          
         </Switch>
         <Footer />
       </BrowserRouter>

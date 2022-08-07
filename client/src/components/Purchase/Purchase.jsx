@@ -8,21 +8,26 @@ import {
     Elements,
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutForm from "../Cart/CheckoutForm"
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { formatNumber } from '../../Utils/index'
+
+import { setPaymentInfo } from "../../redux/actions";
+import Buy from "../Buy/Buy";
+import Button from "react-bootstrap/esm/Button";
 // const API_KEY = 'pk_test_51LRM01FTo7BILoUXakAa8q2EIaJlH9MDt7XKPEFjp9FjQb3vOYrWSgvcbqQZRr1koqulG4m9wpAiLTmUBMoyu8DC00dDBGg6oB'
 
 
 
-const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksAHJoCUcIdwVVJCSr5wSzYHQAH6s0GEYcWZtfKa6SnAUrpIBtAYVc00IIKUjC8f");
+//const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksAHJoCUcIdwVVJCSr5wSzYHQAH6s0GEYcWZtfKa6SnAUrpIBtAYVc00IIKUjC8f");
 
 
 export default function Purchase() {
-
+    const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart);
+    const [show, setShow] = useState(false);
 
     if (cart[0]) {
         var cantidadPrecio = []
@@ -51,6 +56,14 @@ export default function Purchase() {
         });
     }
     //console.log("Datos del form: ", info)
+    const handleClick= (e)=>{
+        dispatch(setPaymentInfo({
+            total:precioTotal,
+            products: cart,
+            shippingInfo: info
+        }))
+        console.log('purchase', precioTotal, cart, info)
+    }
 
     return (
         <div>
@@ -72,7 +85,7 @@ export default function Purchase() {
                     <input type="text" name={"phoneNumber"} value={info.phoneNumber} onChange={e => handleChange(e)}></input>
                 </form>
 
-                <Elements stripe={stripePromise}>
+                {/*                 <Elements stripe={stripePromise}>
                     <div className="containerPayment">
                         <div className="row h-100">
                             <div className="col-md-4 offset-md-4 h-100">
@@ -80,12 +93,15 @@ export default function Purchase() {
                             </div>
                         </div>
                     </div>
-                </Elements>
+                </Elements> */}
             </div>
             <div>
                 <h2>Precio total: ${precioTotal ? formatNumber(precioTotal) : 0}</h2>
                 <Link to='/cart'><button>Volver al carrito</button></Link>
-                <Link to='/buy'><button>Pagar!</button></Link>
+                <Buy setShow={setShow} show={show} total={precioTotal} products={cart} shippingInfo= {info}/>
+                <Button variant="primary" onClick={() => setShow(true)}>
+                    Pagar!
+                </Button>
             </div>
 
         </div>

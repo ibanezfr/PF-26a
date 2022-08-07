@@ -1,9 +1,9 @@
-#root {
+/* #root {
   display: flex;
   align-items: center;
 }
-
-body {
+ */
+/* body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -12,7 +12,7 @@ body {
   align-content: center;
   height: 100vh;
   width: 100vw;
-}
+} */
 
 form {
   width: 30vw;

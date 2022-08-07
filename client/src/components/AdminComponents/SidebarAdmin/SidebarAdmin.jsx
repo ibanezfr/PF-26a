@@ -65,8 +65,10 @@ const SidebarAdmin = () => {
             </Link>
           </li>
           <li>
-            <FaShoppingCart className="icons" />
-            <span>Órdenes</span>
+            <Link to='/admin/orders' className="link">
+              <FaShoppingCart className="icons" />
+              <span>Órdenes</span>
+            </Link>
           </li>
           <li>
             <MdSettings className="icons" />

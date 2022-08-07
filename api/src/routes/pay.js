@@ -8,6 +8,9 @@ const stripe = new Stripe(apiKey);
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
+const cp = require('cookie-parser');
+
+
 
 //
 function formatDescription(description) {
@@ -17,18 +20,22 @@ function formatDescription(description) {
 router.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
 
-    const { id, amount , description, user, shippingInfo} = req.body;
-
+    const { amount , description, user, shippingInfo} = req.body;
+    console.log(amount , description, user, shippingInfo)
   try {
       const userComprador = await User.findByPk(user)
 
       if(user){
       const payment = await stripe.paymentIntents.create({
-          amount:amount*100,
+          amount:Number(amount)*100,
           currency: "USD",
           description: formatDescription(description).join(',\n'),
-          payment_method: id,
-          confirm: true, //confirm the payment at the same time
+          // payment_method: id,
+          automatic_payment_methods: {
+            enabled: true
+          },
+          //confirm: true, //confirm the payment at the same time
+          //return_url: 'http://localhost:3000/'
         });
 
         
@@ -93,10 +100,14 @@ router.post("/api/checkout", async (req, res) => {
         
           
         mailPayment(userComprador.dataValues.email, id, mensaje="Pago exitoso");
+        return res.status(200).send({
+          clientSecret: payment.client_secret,
+        });
       }}     
       else return res.json({ message: "hubo un error"})
       
-      return res.status(200).json({ message: "Successful Payment" });
+      //return res.status(200).json({ message: "Successful Payment" });
+      
     } catch (error) {
       console.log(error);
       return res.json({ message: "hubo un error"/* error.raw.message */ });

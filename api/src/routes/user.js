@@ -36,6 +36,13 @@ router.get('/compras/all', async (req, res)=>{
   return res.send(allOrders)
 })
 
+router.put(('/compras/all/:id'), async (req,res)=>{
+  const {id} = req.params;
+  const {status} = req.body;
+
+  
+  Sell_order.update()
+})
 
 router.get('/compras/:id',async (req,res)=>{
   let user = req.params.id;
