@@ -1,4 +1,22 @@
 {
+    "widget": {
+        "user": {
+            "title": "USUARIOS",
+            "link": "Ver todos los usuarios"
+        },
+        "order": {
+            "title": "ÓRDENES",
+            "link": "Ver todas las órdenes"
+        },
+        "earning": {
+            "title": "GANANCIAS",
+            "link": "Ver ganancias netas"
+        },
+        "balance": {
+            "title": "BALANCE",
+            "link": "Ver detalles"
+        }
+    },
     "userList": {
         "avatar": "Imagen de perfil",
         "name": "Nombre",
