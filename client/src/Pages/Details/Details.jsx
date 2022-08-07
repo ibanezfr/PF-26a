@@ -13,6 +13,7 @@ import QuestionForm from "./QuestionForm";
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
+import Review from "../../components/Review/Review";
 
 export default function Details() {
   const { t } = useTranslation();
@@ -219,6 +220,7 @@ export default function Details() {
       </div >
       <div>
         <QuestionForm />
+        <Review/>
       </div>
     </div >
   )
