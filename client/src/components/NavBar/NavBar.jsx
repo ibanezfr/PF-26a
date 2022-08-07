@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setSearchStatus } from "../../redux/actions";
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
+import Button from "react-bootstrap/esm/Button";
 
 const lngs = {
   es: { nativeName: 'Español' },
@@ -102,7 +103,7 @@ function NavBar() {
           {// Este es el switcher para cambiar idiomas:
 
             Object.keys(lngs).map((lng) => (
-              <button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+              <Button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</Button>
             ))
           }
 

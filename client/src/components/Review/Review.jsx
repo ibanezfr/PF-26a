@@ -79,24 +79,7 @@ export default function Review() {
         </div>
       </form>
 
-      <div className="">
-
-        {
-          getInfoReview.reviews?.map((info) => {
-            return (
-
-              <div>
-                <p>{info.rating}</p>
-                <p>{info.title}</p>
-                <p>{info.description}</p>
-              </div>
-
-
-            )
-
-          })
-        }
-      </div>
+      
     </div>
 
 

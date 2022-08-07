@@ -4,7 +4,7 @@ const { User, Product, Sell_order, Product_values } = require("../db");
 const { Sequelize } = require("sequelize");
 const { Op } = require("sequelize");
 const apiKey = process.env.API_KEY_STRIPE;
-const stripe = new Stripe(apiKey);
+const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRtu012BcZsbgDoQtaLp5ADJ5usnS2kbDlUdBTda2fD0HqxN6PbBDUeQKTXFLRdxVZtntborIf00EcE31nIZ");
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
@@ -48,7 +48,7 @@ function formatObject(description) {
       p.quantity +
       ", $" +
       p.price +
-      ", subTotal " +
+      ", subTotal $" +
       p.price * p.quantity
   );
 }
@@ -62,7 +62,7 @@ router.post("/api/checkout", async (req, res) => {
 
     if (user) {
       const payment = await stripe.paymentIntents.create({
-        amount: amount * 100,
+        amount: parseInt(amount) * 100,
         currency: "USD",
         description: formatDescription(description).join(",\n"),
         payment_method: id,
