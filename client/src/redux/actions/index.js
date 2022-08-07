@@ -342,14 +342,27 @@ export const addFavsToUser = (data) => {
 
 
 //-----------------------------RUTAS PARA LOS DETALLES DE LAS COMPRAS ESPECÍFICO DE UN USUARIO------------------------
-export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'
-export const INFO_PURCHASE = "INFO_PURCHASE"
+// export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'
+// export const INFO_PURCHASE = "INFO_PURCHASE"
 
-export const purchaseInfo = (id) => {
+// export const purchaseInfo = (id) => {
+//   return async (dispatch) => {
+//     let pedido = await axios.get(URL_INFO_PURCHASE + id)
+//     dispatch({
+//       type:INFO_PURCHASE,
+//       payload: pedido.data
+//     });
+//   };
+// }
+
+export const URL_SINGLE_PURCHASE = 'http://localhost:3001/auth/singlePurchase/'
+export const SINGLE_PURCHASE = "SINGLE_PURCHASE"
+
+export const singlePurchase = (id)=>{
   return async (dispatch) => {
-    let pedido = await axios.get(URL_INFO_PURCHASE + id)
+    let pedido = await axios.get(URL_SINGLE_PURCHASE + id)
     dispatch({
-      type:INFO_PURCHASE,
+      type:SINGLE_PURCHASE,
       payload: pedido.data
     });
   };

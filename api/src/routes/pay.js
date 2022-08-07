@@ -48,7 +48,7 @@ function formatObject(description) {
       p.quantity +
       ", $" +
       p.price +
-      ", subTotal " +
+      ", subTotal $" +
       p.price * p.quantity
   );
 }
@@ -62,7 +62,7 @@ router.post("/api/checkout", async (req, res) => {
 
     if (user) {
       const payment = await stripe.paymentIntents.create({
-        amount: amount * 100,
+        amount: parseInt(amount) * 100,
         currency: "USD",
         description: formatDescription(description).join(",\n"),
         payment_method: id,
