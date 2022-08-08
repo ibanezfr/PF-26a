@@ -25,7 +25,7 @@ export default function QuestionForm() {
   const { user } = useAuth();
 
   const qState = QandA;
-
+console.log(QandA)
 
   useEffect(() => {
     dispatch(getProductsById(params.id))

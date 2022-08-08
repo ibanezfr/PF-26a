@@ -13,6 +13,7 @@ import QuestionForm from "./QuestionForm";
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
+import Review from "../../components/Review/Review";
 
 export default function Details() {
   const { t } = useTranslation();
@@ -22,6 +23,8 @@ export default function Details() {
   const history = useHistory();
 
   let actualProduct = useSelector(state => state.detail)
+
+  console.log(actualProduct)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   let favs = useSelector(state => state.favs);
@@ -220,7 +223,27 @@ export default function Details() {
       </div >
       <div>
         <QuestionForm />
+       
       </div>
+      <div className="">
+      <h2 className="">Review</h2>
+{
+  actualProduct.reviews?.map((info) => {
+    return (
+
+      <div>
+        <p>{info.rating}</p>
+        <p>{info.title}</p>
+        <p>{info.description}</p>
+      </div>
+
+
+    )
+
+  })
+}
+</div>
+
     </div >
   )
 };

@@ -31,6 +31,7 @@ import NewCategory from "./components/Categories/NewCategory";
 import Answers from "./components/AdminComponents/Answers/Answers";
 import PurchaseInfo from "./components/PurchaseInfo/PurchaseInfo";
 import SellOrders from "./components/AdminComponents/SellOrders/SellOrders";
+import Review from "./components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function App() {
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/purchases" component={PurchaseInfo}/>
+            <Route path="/review/:id" component={Review}/>
             <Route path="/profile" exact>
               <Profile />
             </Route>

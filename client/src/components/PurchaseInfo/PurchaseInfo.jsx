@@ -14,10 +14,12 @@ export default function PurchaseInfo() {
     useEffect(() => {
         dispatch(singlePurchase(user.uid));
     }, [dispatch]);
-
+  
     return (
         <div className='purchaseInfoContainer'>
+            {    console.log(purchase)}
             {
+              
                 purchase.length > 0 ? purchase.map(m => {
                     return (
                         <div className='singlePurchaseContainer'>
