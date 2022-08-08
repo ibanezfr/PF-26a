@@ -83,14 +83,12 @@ function App() {
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
-            <Route path="/purchases" component={PurchaseInfo}/>
+            <Route path="/purchases" component={PurchaseInfo} />
             <Route path="/review/:id" component={Review}/>
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
+            <Route path="/profile" exact><Profile /></Route>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
-          
+
         </Switch>
         <Footer />
       </BrowserRouter>

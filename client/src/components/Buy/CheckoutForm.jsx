@@ -20,16 +20,16 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
 
   async function showSucces(user, total, products, shippingInfo) {
     const saveOrder = await axios.post('pay/api/checkout/confirm', {
-      user:user, 
-      amount:total, 
-      description:products, 
-      shippingInfo:shippingInfo
-    }) 
+      user: user,
+      amount: total,
+      description: products,
+      shippingInfo: shippingInfo
+    })
 
     // return "http://localhost:3000/"
     if (saveOrder.data.message = 'Pago exitoso') {
       localStorage.removeItem('cart')
-       return Swal.fire({
+      return Swal.fire({
         title: 'Compra realizada con éxito!',
         text: "Te llegará la información de la misma a tu casilla de correo",
         icon: 'success',
@@ -42,8 +42,8 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
           return "http://localhost:3000/"
         }
         return setTimeout(() => "http://localhost:3000/", 5000)
-      }) 
-      
+      })
+
     }
   }
 

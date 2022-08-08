@@ -47,7 +47,7 @@ export default function Buy({ setShow, show, total, products, shippingInfo }) {
     appearance,
   };
   console.log('BUY')
-  console.log( total, products, shippingInfo, user.uid )
+  console.log(total, products, shippingInfo, user.uid)
   console.log('BUY')
   return (
     <>

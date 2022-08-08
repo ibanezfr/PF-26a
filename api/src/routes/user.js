@@ -37,39 +37,43 @@ promedio
 
 
 router.get("/compras/all", async (req, res) => {
-  let allOrders = await Sell_order.findAll({ include: [
-    {
-      model: User
-    },
-    {
-      model: Product,
-      attributes: ["id", "image", "name"],
-      through: {
-        attributes: [],
+  let allOrders = await Sell_order.findAll({
+    include: [
+      {
+        model: User
       },
-    }
-  ] });
+      {
+        model: Product,
+        attributes: ["id", "image", "name"],
+        through: {
+          attributes: [],
+        },
+      }
+    ]
+  });
   //console.log(allOrders)
   return res.send(allOrders);
 });
 
 router.get("/singlePurchase/:id", async (req, res) => {
-  const {id} = req.params;
-  let allOrders = await Sell_order.findAll( { include: [
-    {
-      model: User
-    },
-    {
-      model: Product,
-      attributes: ["id", "image", "name"],
-      through: {
-        attributes: [],
+  const { id } = req.params;
+  let allOrders = await Sell_order.findAll({
+    include: [
+      {
+        model: User
       },
-    }
-  ],
-  where: {
-    userId : id
-  },});
+      {
+        model: Product,
+        attributes: ["id", "image", "name"],
+        through: {
+          attributes: [],
+        },
+      }
+    ],
+    where: {
+      userId: id
+    },
+  });
 
   const order = allOrders.map((order) => {
     const separoProductos = order.product.split("-");
