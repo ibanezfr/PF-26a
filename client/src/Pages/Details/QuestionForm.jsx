@@ -25,7 +25,7 @@ export default function QuestionForm() {
   const { user } = useAuth();
 
   const qState = QandA;
-console.log(QandA)
+  console.log(QandA)
 
   useEffect(() => {
     dispatch(getProductsById(params.id))
@@ -33,8 +33,31 @@ console.log(QandA)
     dispatch(bringAnswers(params.id))
   }, [dispatch, params.id]);
 
+
+  const [formError, setFormError] = useState(true);
+  
+  const [isSubmit, setisSubmit] = useState(true);
+
+  // console.log("question before", question)
+  function validString(data) {
+    let errors = {}
+    if (data.title.length < 1 || data.title.length > 255) errors.title = "El título debe tener más de 1 catácter y menos de 255";
+    if (typeof data.title !== "string") errors.title = "La información enviada debe ser de tipo string";
+    if (data.description.length < 1 || data.description.length > 255) errors.description = "La descripción debe tener más de 1 catácter y menos de 255";
+    if (typeof data.description !== "string") errors.description = "La información enviada debe ser de tipo string";
+
+    if ((Object.keys(errors).length) === 0){
+      setisSubmit(false)
+    };
+  
+    return errors;
+  }
   const handleChange = (e) => {
     e.preventDefault();
+    setFormError(validString(question));
+    if ((Object.keys(formError).length) !== 0){
+      setisSubmit(true)
+    };
     setQuestion({
       ...question,
       [e.target.name]: e.target.value
@@ -42,8 +65,6 @@ console.log(QandA)
     // console.log("e.target.value", e.target.value)
 
   }
-
-  // console.log("question before", question)
 
   function mapState() {
     var mappedTitle = question.title;
@@ -70,7 +91,7 @@ console.log(QandA)
       if (result.isConfirmed) {
         history.push("/login")
       }
-    })
+    }) 
     setQuestion({
       title: "",
       description: ""
@@ -86,9 +107,15 @@ console.log(QandA)
         <Form.Group className="mb-3 formGroup" controlId="Question">
           <Form.Label className="text">{t('questionForm.title')}</Form.Label>
           <Form.Control onChange={e => handleChange(e)} name="title" value={question.title} as="textarea" rows={3} />
+          {
+            formError.title ? (<h4 className="error"><small>{formError.title}</small></h4>) : false
+          }
           <Form.Label className="text">{t('questionForm.question')}</Form.Label>
           <Form.Control onChange={e => handleChange(e)} name="description" value={question.description} as="textarea" rows={3} />
-          <Button onClick={e => handleSubmit(e)} className="btn" size="sm">
+          {
+            formError.description ? (<h4 className="error"><small>{formError.description}</small></h4>) : false
+          }
+          <Button disabled={isSubmit} onClick={e => handleSubmit(e)} className="btn" size="sm">
             {t('questionForm.makeQuestion')}
           </Button>
         </Form.Group>

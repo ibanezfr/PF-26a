@@ -69,7 +69,7 @@ export default function PurchaseInfo() {
                                         return (
 
                                             <div className='itemContainer3'>
-                                                <button className='btnPrincipal btnProducto'><Link to={`/details/${p[0]}`}>Ver producto</Link></button>
+                                                <button className='btnPrincipal btnProducto'><Link className='linkBtn' to={`/details/${p[0]}`}>Ver producto</Link></button>
                                             </div>
                                         )
                                     })}
@@ -80,7 +80,7 @@ export default function PurchaseInfo() {
                                                 return (
 
                                                     <div className='itemContainer2'>
-                                                        <button className='btnPrincipal '><Link to={`/review/${p[0]}`}>Valorar</Link></button>
+                                                        <button className='btnPrincipal '><Link className='linkBtn' to={`/review/${p[0]}`}>Valorar</Link></button>
                                                     </div>
                                                 )
                                             })}
