@@ -24,27 +24,27 @@ const Widget = ({ type, amount, ordersNumber }) => {
 
     case "order":
       data = {
-        title: t('widget.user.title'),
+        title: t('widget.order.title'),
         isMoney: false,
-        link: t('widget.user.link'),
+        link: t('widget.order.link'),
         icon: <FaShoppingCart className="icon" />,
       };
       break;
 
     case "earning":
       data = {
-        title: t('widget.user.title'),
+        title: t('widget.earning.title'),
         isMoney: true,
-        link: t('widget.user.link'),
+        link: t('widget.earning.link'),
         icon: <MdMonetizationOn className="icon" />,
       };
       break;
 
     case "balance":
       data = {
-        title: t('widget.user.title'),
+        title: t('widget.balance.title'),
         isMoney: true,
-        link: t('widget.user.link'),
+        link: t('widget.balance.link'),
         icon: <MdAccountBalance className="icon" />,
       };
       break;
