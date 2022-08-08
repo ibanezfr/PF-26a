@@ -1,9 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const {
-    
     Qa,
-   
   } = require("../db");
 
 router.put("/answer/:questionId", async (req, res) => {

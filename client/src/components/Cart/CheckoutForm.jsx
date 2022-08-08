@@ -24,6 +24,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
 
   const [loading, setLoading] = useState(false);
   console.log(products)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -44,11 +45,11 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Iniciar sesión'
-    }).then((result) => {
+      }).then((result) => {
         if (result.isConfirmed) {
-            history.push("/login")
+          history.push("/login")
         }
-    })
+      })
 
       else {
         const { id } = paymentMethod;
@@ -105,7 +106,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
   //console.log(!stripe || loading);
   //mostrar alerta de compra exitosa o fallida
   return (
-      <form className="card card-body" onSubmit={handleSubmit}>
+    <form className="card card-body" onSubmit={handleSubmit}>
 
       {/* User Card Input */}
       <div className="form-group">

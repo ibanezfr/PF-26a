@@ -4,13 +4,43 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
- 
-export default function CheckoutForm() {
+import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2'
+import axios from "axios";
+
+
+export default function CheckoutForm({ user, total, products, shippingInfo }) {
   const stripe = useStripe();
   const elements = useElements();
-
+  const history = useHistory()
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  async function showSucces() {
+    const saveOrder = await axios.post('pay/api/checkout/confirm', {
+      user, total, products, shippingInfo
+    })
+    if (saveOrder.data.message = 'Pago exitoso') {
+      localStorage.removeItem('cart')
+      window.Swal.fire({
+        title: 'Compra realizada con éxito!',
+        text: "Te llegará la información de la misma a tu casilla de correo",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Volver al inicio'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            history.push("/")
+          )
+          return "http://localhost:3000/"
+        }
+      })
+      return setTimeout(() => "http://localhost:3000/", 1)
+    }
+  }
 
   useEffect(() => {
     if (!stripe) {
@@ -58,7 +88,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/",
+        return_url: await showSucces(),
       },
     });
 

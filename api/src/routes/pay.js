@@ -17,24 +17,10 @@ const cp = require('cookie-parser');
 function formatDescription(description) {
   return description.map(p => p.name + ' ' + p.size + ' ' + p.quantity + ' price ' + p.price + ' subTotal ' + p.price * p.quantity)
 }
-router.post("/api/checkout", async (req, res) => {
+router.post("/api/checkout/confirm", async (req, res) => {
   const { amount, description, user, shippingInfo } = req.body;
   try {
-    const userComprador = await User.findByPk(user)
-    if (user) {
-      const payment = await stripe.paymentIntents.create({
-        amount: Number(amount) * 100,
-        currency: "USD",
-        description: formatDescription(description).join(',\n'),
-        automatic_payment_methods: {
-          enabled: true
-        },
-      });
-
-      res.status(200).send({
-        clientSecret: payment.client_secret,
-      });
-      if (payment.status === 'succeeded') {
+        const userComprador = await User.findByPk(user) 
         const newSellOrder = await Sell_order.create({
           amount: amount * 100,
           product: formatDescription(description).join('\n'),
@@ -43,7 +29,7 @@ router.post("/api/checkout", async (req, res) => {
           city: shippingInfo.city,
           postalCode: shippingInfo.postalCode
         })
-
+        
         let userCompra = []
         if (description.length > 1) {
           userCompra = await Promise.all(description.map(async (p) => {
@@ -99,24 +85,35 @@ router.post("/api/checkout", async (req, res) => {
         await newSellOrder.addProducts(productosComprados)
 
         await userComprador.addSell_order(newSellOrder)
-        console.log('asdfasdfasfasdfsadfasdf')
-        console.log('secret, ', payment)
+
 
         mailPayment(userComprador.dataValues.email, id, mensaje = "Pago exitoso");
-
-        return res.status(200).send({
-          clientSecret: payment.client_secret,
-        });
-      }
+        res.status(200).send({message: 'Pago exitoso'})
+  
     }
-    else return res.json({ message: "hubo un error" })
-
-    //return res.status(200).json({ message: "Successful Payment" });
-
-  } catch (error) {
+    catch (error) {
     console.log(error);
     return res.json({ message: "hubo un error"/* error.raw.message */ });
   }
 });
+
+router.post("/api/checkout", async (req, res) => {
+  const { amount, description} = req.body;   
+    if (amount && description) {
+      const payment = await stripe.paymentIntents.create({
+        amount: Number(amount) * 100,
+        currency: "USD",
+        description: formatDescription(description).join(',\n'),
+        automatic_payment_methods: {
+          enabled: true
+        },
+      });
+
+      res.status(200).send({
+        clientSecret: payment.client_secret,
+      });
+    }
+    else res.status(400).send({message:'Error en el pago'})
+})
 
 module.exports = router;
