@@ -42,7 +42,8 @@ export const SESSION = "SESSION";
 export const FETCH_ORDER_LIST= "FETCH_ORDER_LIST"
 export const FETCH_CATEGORY = "FETCH_CATEGORY";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
-
+export const GET_REVIEW= "GET_REVIEW"
+export const GET_INFO_REVIEW= "GET_INFO_REVIEW"
 export const postProduct = (payload) => {
   return async function (dispatch) {
     try {
@@ -77,6 +78,9 @@ export function getQandA(idProduct, obj) {
     });
   };
 }
+
+
+
 
 export function bringQandA(id) {
   return async (dispatch) => {
@@ -401,3 +405,24 @@ export const getBuys = () => {
     }
   };
 };
+
+export function getReview(id, rev) {
+  return async (dispatch) => {
+    let review = await axios.post( "http://localhost:3001/products/review/" + id, rev);
+    dispatch({
+      type: GET_REVIEW,
+      payload: review.data,
+    });
+  };
+}
+
+export function reviewProduct(id) {
+  return async (dispatch) => {
+    let info = await axios.get("http://localhost:3001/products/reviews/" + id);
+
+    dispatch({
+      type: GET_INFO_REVIEW,
+      payload: info.data,
+    });
+  };
+}

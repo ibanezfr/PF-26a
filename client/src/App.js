@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts, fetchCategories } from "./redux/actions/index";
 import HomePage from "./Pages/HomePage/HomePage.jsx";
-// import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import Details from "./Pages/Details/Details";
 import NavBar from "./components/NavBar/NavBar";
 import Profile from "./Pages/Account/Profile";
@@ -21,8 +20,6 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
-import OrderList from "./components/AdminComponents/OrderList/OrderList";
-import Buy from './components/Buy/Buy'
 
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 import AllCategories from "./components/Categories/AllCategories";
@@ -33,6 +30,7 @@ import NewCategory from "./components/Categories/NewCategory";
 import Answers from "./components/AdminComponents/Answers/Answers";
 import PurchaseInfo from "./components/PurchaseInfo/PurchaseInfo";
 import SellOrders from "./components/AdminComponents/SellOrders/SellOrders";
+import Review from "./components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,7 +84,10 @@ function App() {
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/purchases" component={PurchaseInfo}/>
-            <Route path="/profile" exact><Profile /></Route>
+            <Route path="/review/:id" component={Review}/>
+            <Route path="/profile" exact>
+              <Profile />
+            </Route>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
           

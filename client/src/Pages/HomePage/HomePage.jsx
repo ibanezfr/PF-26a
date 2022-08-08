@@ -73,7 +73,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="totalHomeContainer">
+    <div>
       <div className="paginationContainer">
         <button
           className={`${currentPage === 1 ? "disabled" : ""}`}
@@ -100,15 +100,14 @@ function HomePage() {
         </button>
       </div>
       <div className="homeContainer">
-        <ProductsCards allProducts={currentPosts} />
         <div className="filter-container">
-          <Filters
-            onClickFilter={onClickFilter}
-            onClickFieldset={onClickFieldset}
-            products={products}
-          />
-          <Order onSelectChange={onSelectChange} />
+            <Filters 
+                onClickFilter={onClickFilter} 
+                onClickFieldset={onClickFieldset} 
+                products={products} />
+            <Order onSelectChange={onSelectChange} />
         </div>
+        <ProductsCards allProducts={currentPosts} />
       </div>
     </div>
   );

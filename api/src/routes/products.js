@@ -530,8 +530,15 @@ router.post("/review/:idProduct", async (req, res, next) => {
     description
   } = req.body;
   try {
-    const product = await Product.findByPk(idProduct)
-    console.log("product: ", product)
+    const product = await Product.findOne({
+      where: { id: idProduct },
+      include: {
+          model: Review,
+          attributes: ["rating", "title","description"],
+          through: { attributes: [] }
+      }
+  })
+
     const review = await Review.create({
       rating,
       title,
@@ -540,6 +547,8 @@ router.post("/review/:idProduct", async (req, res, next) => {
     if (product) {
       await review.setProduct(product)
     }
+
+    product.addReview(review)
   
   res.status(200).send({msg: "ok"})
 
@@ -548,5 +557,29 @@ router.post("/review/:idProduct", async (req, res, next) => {
   }
 })
 
+router.get("/reviews/:idProduct", async (req, res) => {
+  const { idProduct} = req.params;
+   try{
+    const product = await Product.findByPk(idProduct, {
+      include: [
+        
+       
+        {
+          model: Review,
+          attributes: ["rating", "title", "description"],
+          through: {
+            attributes: [],
+          },
+        }
+      ],
+    });
+  
+    
+  
+    res.send(product);
+   }catch (err) {
+    console.log(err)
+  }
+});
 
 module.exports = router;
