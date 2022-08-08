@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { bringSize, clearCart, addToCart } from '../../redux/actions';
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
-import { cartController } from '../../Utils';
+import { cartController, formatNumber } from '../../Utils';
 import { useAuth } from '../../context/AuthContext';
 import './FastPurchase.scss'
 
@@ -95,7 +95,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                         </div>
                         <div className='bodyCont'>
                             <h2>{name}</h2>
-                            <h4>${price}</h4>
+                            <h4>${formatNumber(price)}</h4>
                         </div>
                     </div>
                     <div className='modalInteractive'>
@@ -113,7 +113,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                     }
                                 </select>
                                 {
-                                    position !== 0 && <h4>{t('fastPurchase.stock')}{size[position]}</h4>
+                                    position !== 0 && <h4>Stock {size[position]}</h4>
                                 }
                             </div>
                             <div className='quantityCont'>

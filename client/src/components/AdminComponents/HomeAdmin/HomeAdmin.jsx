@@ -126,7 +126,7 @@ const HomeAdmin = () => {
                         primary={prod?.name}
                         secondary={`${t('homeAdmin.added')} ${moment(
                           prod?.createdAt
-                        ).fromNow()}`}
+                        ).format("YYYY-MM-DD H:mm:ss")}`}
                       />
                     </ListItem>
                     {i !== 3 && <Divider variant="inset" />}

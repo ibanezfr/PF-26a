@@ -202,7 +202,7 @@ export default function Details() {
                 }
               </select>
               {
-                position !== 0 && <span>{t('details.stock')}{size[position]}</span>
+                position !== 0 && <span>Stock{size[position]}</span>
               }
             </div>
             <div className="containerMedium2">

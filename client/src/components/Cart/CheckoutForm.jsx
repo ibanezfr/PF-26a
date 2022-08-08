@@ -36,7 +36,6 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
       card: elements.getElement(CardElement),
     });
     setLoading(true);
-    //console.log(user).
     if (error) {
       if (error.code === 'incomplete_number') {
         Swal.fire({

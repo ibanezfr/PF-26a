@@ -19,7 +19,7 @@ router.get("/:userID", async (req, res) => {
             include: [
                 {
                     model: Product,
-                    attributes: [ "id", "name", "image", "price" ],
+                    attributes: [ "id", "name", "image", "price", "description" ],
                     through: { attributes: [] }
                 }
             ]
@@ -40,7 +40,7 @@ router.post("/add", async (req, res) => {
             include: [
                 {
                     model: Product,
-                    attributes: [ "id", "name", "image", "price" ],
+                    attributes: [ "id", "name", "image", "price", "description" ],
                     through: { attributes: [] }
                 }                
             ]
