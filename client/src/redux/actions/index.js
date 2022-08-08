@@ -39,7 +39,7 @@ export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
-export const FETCH_ORDER_LIST= "FETCH_ORDER_LIST"
+export const FETCH_ORDER_LIST = "FETCH_ORDER_LIST"
 export const FETCH_CATEGORY = "FETCH_CATEGORY";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
 
@@ -55,14 +55,14 @@ export const postProduct = (payload) => {
   };
 };
 //Order List from admin
-export function fetchOrderList(){
-  return async (dispatch)=>{
-    const {data} = await axios.get(URL_FOR_FETCH_ORDER_LIST);
+export function fetchOrderList() {
+  return async (dispatch) => {
+    const { data } = await axios.get(URL_FOR_FETCH_ORDER_LIST);
     dispatch({
-      type:FETCH_ORDER_LIST,
+      type: FETCH_ORDER_LIST,
       payload: data
     })
-  } 
+  }
 }
 
 
@@ -353,8 +353,8 @@ export const addFavsToUser = (data) => {
   };
 };
 
-export function setPaymentInfo(data){
-  return function (dispatch){
+export function setPaymentInfo(data) {
+  return function (dispatch) {
     dispatch({
       type: SET_PAYMENT_INFO,
       payload: data
@@ -379,11 +379,11 @@ export function setPaymentInfo(data){
 export const URL_SINGLE_PURCHASE = 'http://localhost:3001/auth/singlePurchase/'
 export const SINGLE_PURCHASE = "SINGLE_PURCHASE"
 
-export const singlePurchase = (id)=>{
+export const singlePurchase = (id) => {
   return async (dispatch) => {
     let pedido = await axios.get(URL_SINGLE_PURCHASE + id)
     dispatch({
-      type:SINGLE_PURCHASE,
+      type: SINGLE_PURCHASE,
       payload: pedido.data
     });
   };

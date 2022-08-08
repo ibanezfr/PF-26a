@@ -540,8 +540,8 @@ router.post("/review/:idProduct", async (req, res, next) => {
     if (product) {
       await review.setProduct(product)
     }
-  
-  res.status(200).send({msg: "ok"})
+
+    res.status(200).send({ msg: "ok" })
 
   } catch (err) {
     console.log(err)

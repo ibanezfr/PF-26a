@@ -70,7 +70,7 @@ const initialState = {
       ? []
       : JSON.parse(localStorage.getItem('favs')))
   ],
-  paymentInfo : {},
+  paymentInfo: {},
   category: [],
   // purchaseInfo: [],
   singlePurchaseInfo: []
@@ -174,17 +174,17 @@ function rootReducer(state = initialState, action) {
 
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: action.payload.quantity }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: action.payload.quantity }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: [...state.cart, { ...action.payload }],
-          };
+          ...state,
+          cart: [...state.cart, { ...action.payload }],
+        };
 
     case REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
@@ -193,17 +193,17 @@ function rootReducer(state = initialState, action) {
       );
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
-          };
+          ...state,
+          cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
+        };
 
     case ADD_ONE_FROM_CART:
       let productAdd = state.cart.find(
@@ -274,7 +274,7 @@ function rootReducer(state = initialState, action) {
       };
 
 
-      //PREGUNTAS Y RESPUESTAS
+    //PREGUNTAS Y RESPUESTAS
 
     case GET_Q_AND_A:
       return {
@@ -300,7 +300,7 @@ function rootReducer(state = initialState, action) {
         questionToAnswer: action.payload,
       };
 
-      //FAVORITOS
+    //FAVORITOS
 
     case GET_FAVORITES:
       return {
@@ -324,17 +324,17 @@ function rootReducer(state = initialState, action) {
       }
 
     case FETCH_ORDER_LIST:
-      return{
+      return {
         ...state,
-        
+
       }
     case SET_PAYMENT_INFO:
       return {
         ...state,
-        paymentInfo:action.payload
+        paymentInfo: action.payload
       }
 
-      // INFORMACIÓN DE LAS COMPRAS
+    // INFORMACIÓN DE LAS COMPRAS
 
     // case INFO_PURCHASE:
     //   return{
@@ -343,7 +343,7 @@ function rootReducer(state = initialState, action) {
     //   }
 
     case SINGLE_PURCHASE:
-      return{
+      return {
         ...state,
         singlePurchaseInfo: action.payload
       }
