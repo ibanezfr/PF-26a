@@ -78,7 +78,9 @@ export default function Answer({
                     {/* <span>{pending}</span> */}
                 </div>
 
-                <Form className="form">
+                {
+                    pending === "Pendiente" ? 
+                    <Form className="form">
                     <Form.Group className="mb-3 formGroup" controlId="Question">
                         <Form.Label className="text">{t('answerAdmin.labelAnswer')}</Form.Label>
                         <Form.Control onChange={e => handleChange(e)} name={"answer"} value={answerConst.answer} as="textarea" rows={3} />
@@ -89,7 +91,8 @@ export default function Answer({
                             {t('answerAdmin.btnAnswer')}
                         </Button>
                     </Form.Group>
-                </Form>
+                </Form> : null
+                }
             </div>
         </div>
     )

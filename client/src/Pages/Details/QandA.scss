@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-$font: 'Lato', sans-serif;
+$font: 'Lato',
+sans-serif;
 
 $primaryColor: #794983;
 $secondaryColor: #9C9AC0;
@@ -7,34 +8,24 @@ $backGroundColor: #DFCED5;
 $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
-.formDiv{
 
-    .questions{
-
-        .titleQuestion{
-            color: $primaryColor;
-            font-family: $font;
-        }
-    }
-
-}
-
-.questions{
-    width: 70%;
-
-
-    .question{
+.questionFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    .formDiv {
         width: 100%;
-        margin-bottom: 20px;
 
-        p{
-            margin: 0 0 10px 0;
+        .form {
+            width: 70%;
+            margin: 5%;
         }
     }
-
 }
 
-.bubble{
+
+.bubble {
     position: relative;
     background-color: $lightestColor;
     padding: 20px;
@@ -43,7 +34,7 @@ $lightestColor: #F2F2F2;
     margin-left: 20px;
 }
 
-.bubble:after{
+.bubble:after {
     content: "";
     display: block;
     position: absolute;
@@ -58,31 +49,3 @@ $lightestColor: #F2F2F2;
 
     border-right: 15px solid #fff;
 }
-// .QandAMaxContainer{
-//     display: flex;
-//     flex-direction: column;
-
-//     .titleQuestion{
-//         color: $primaryColor;
-//         font-family: $font;
-//         font-size: 2rem;
-//     }
-    
-
-//     .QandAContainer{
-
-//         .question{
-//             color: $primaryColor;
-//             background-color: $lightestColor;
-
-//             h2{
-//                 font-size: 1.5rem;
-//                 font-family: $font;
-//                 text-align: left;
-//                 background-color: $primaryColor;
-//                 color: $lightestColor;
-//                 padding: 5px;
-//             }
-//         }
-//     }
-// }

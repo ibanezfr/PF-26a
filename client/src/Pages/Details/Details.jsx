@@ -33,12 +33,15 @@ export default function Details() {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
-    dispatch(cleanProduct())
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart, dispatch, params.id]);
+
+  useEffect(()=>{
+    return () => dispatch(cleanProduct())
+  }, [])
 
   const [newCart, setNewCart] = useState({
     id: "",
@@ -221,7 +224,7 @@ export default function Details() {
           </form>
         </div>
       </div >
-      <div>
+      <div className="questionFormContainer">
         <QuestionForm />
        
       </div>

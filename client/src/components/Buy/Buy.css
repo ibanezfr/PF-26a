@@ -32,24 +32,14 @@
   padding-top: 12px;
   text-align: center;
 }
-.Buy{
-  background-color: #DFCED5;;
-}
 .modal-header{
   border-bottom: #DFCED5;;
-}
-.modal-body, .modal-header{
-  background-color: #DFCED5;;
-  
 }
 .modal-content{
   background: #DFCED5;
 }
 #payment-element {
   margin-bottom: 24px;
-}
-#payment-form{
-  background-color: #DFCED5;
 }
 /* Buttons and links */
 /* button {
