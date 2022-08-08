@@ -38,19 +38,37 @@ function formatDescription(description) {
       "</tr>"
   );
 }
+
+function formatObject(description) {
+  return description.map(
+    (p) =>
+      p.name +
+      ", " +
+      p.size +
+      ", " +
+      p.quantity +
+      ", $" +
+      p.price +
+      ", subTotal " +
+      p.price * p.quantity
+  );
+}
+
 router.post("/api/checkout/confirm", async (req, res) => {
   const { amount, description, user, shippingInfo } = req.body;
+
   try {
         const userComprador = await User.findByPk(user) 
         const newSellOrder = await Sell_order.create({
           amount: amount * 100,
-          product: formatDescription(description).join('\n'),
+          product: formatObject(description).join('\n'),
           country: shippingInfo.country,
           province: shippingInfo.province,
           city: shippingInfo.city,
+          street: shippingInfo.street,
           postalCode: shippingInfo.postalCode
         })
-        
+        console.log(newSellOrder)
         let userCompra = []
         if (description.length > 1) {
           userCompra = await Promise.all(description.map(async (p) => {
@@ -104,11 +122,13 @@ router.post("/api/checkout/confirm", async (req, res) => {
         }
 
         await newSellOrder.addProducts(productosComprados)
-
         await userComprador.addSell_order(newSellOrder)
-
-
-        mailPayment(userComprador.dataValues.email, id, mensaje = "Pago exitoso");
+        mailPayment(
+          userComprador.dataValues.email,
+          newSellOrder.id,
+          (mensaje = formatDescription(description).join("\n")),
+          (total = amount)
+        );
         res.status(200).send({message: 'Pago exitoso'})
   
     }
@@ -135,6 +155,11 @@ router.post("/api/checkout", async (req, res) => {
       });
     }
     else res.status(400).send({message:'Error en el pago'})
+})
+
+
+router.post('/puebas',async (req, res)=>{
+  
 })
 
 module.exports = router;

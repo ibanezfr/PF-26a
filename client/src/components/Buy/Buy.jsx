@@ -39,14 +39,16 @@ export default function Buy({ setShow, show, total, products, shippingInfo }) {
     theme: 'flat',
     variables: {
       colorPrimary: '#794783',
-      colorBackground: '#dfced5',
+      colorBackground: '#F2F2F2',/* DFCED5 */
     },
   };
   const options = {
     clientSecret,
     appearance,
   };
-
+  console.log('BUY')
+  console.log( total, products, shippingInfo, user.uid )
+  console.log('BUY')
   return (
     <>
       <Modal
@@ -64,7 +66,7 @@ export default function Buy({ setShow, show, total, products, shippingInfo }) {
           <div className="Buy" >
             {clientSecret && (
               <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm total={total} products={products} shippingInfo={shippingInfo} user={user} />
+                <CheckoutForm total={total} products={products} shippingInfo={shippingInfo} user={user.uid} />
               </Elements>
             )}
           </div>

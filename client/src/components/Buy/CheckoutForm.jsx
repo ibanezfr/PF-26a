@@ -11,9 +11,6 @@ import { useTranslation } from "react-i18next";
 import "./Buy.css";
 
 export default function CheckoutForm({ user, total, products, shippingInfo }) {
-
-
-
   const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
@@ -21,14 +18,18 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function showSucces() {
+  async function showSucces(user, total, products, shippingInfo) {
     const saveOrder = await axios.post('pay/api/checkout/confirm', {
-      user, total, products, shippingInfo
+      user:user, 
+      amount:total, 
+      description:products, 
+      shippingInfo:shippingInfo
     }) 
-    return "http://localhost:3000/"
-    /*if (saveOrder.data.message = 'Pago exitoso') {
+
+    // return "http://localhost:3000/"
+    if (saveOrder.data.message = 'Pago exitoso') {
       localStorage.removeItem('cart')
-       window.Swal.fire({
+       return Swal.fire({
         title: 'Compra realizada con éxito!',
         text: "Te llegará la información de la misma a tu casilla de correo",
         icon: 'success',
@@ -38,14 +39,12 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
         confirmButtonText: 'Volver al inicio'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            history.push("/")
-          )
           return "http://localhost:3000/"
         }
+        return setTimeout(() => "http://localhost:3000/", 5000)
       }) 
-      return setTimeout(() => "http://localhost:3000/", 1)
-    }*/
+      
+    }
   }
 
   useEffect(() => {
@@ -94,7 +93,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: await showSucces(),
+        return_url: await showSucces(user, total, products, shippingInfo),
       },
     });
 
@@ -115,7 +114,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button className='btnPrincipal' disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : t('checkOutForm2.payNow')}
         </span>
