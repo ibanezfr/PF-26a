@@ -48,7 +48,7 @@ function formatObject(description) {
       p.quantity +
       ", $" +
       p.price +
-      ", subTotal $" +
+      ", subTotal " +
       p.price * p.quantity
   );
 }

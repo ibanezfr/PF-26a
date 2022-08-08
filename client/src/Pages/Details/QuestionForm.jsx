@@ -7,6 +7,7 @@ import { bringAnswers, bringQandA, getProductsById, getQandA } from "../../redux
 import Swal from 'sweetalert2'
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from 'react-i18next';
+import './QandA.scss'
 
 export default function QuestionForm() {
   const { t } = useTranslation();

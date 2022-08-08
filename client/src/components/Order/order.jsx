@@ -12,9 +12,9 @@ export default function Order({ onSelectChange }) {
 
     return (
         <select name='order-by' onChange={(e) => onSelectChange(e)}>
-            <option disabled>{t('order.orderBy')}</option>
-            <option value='Name-Asc'>{t('order.orderBy')}</option>
-            <option value='Name-Des'>{t('order.ascName')}</option>
+            <option>{t('order.orderBy')}</option>
+            <option value='Name-Asc'>{t('order.ascName')}</option>
+            <option value='Name-Des'>{t('order.descName')}</option>
             <option value='Price-Asc'>{t('order.ascPrice')}</option>
             <option value='Price-Des'>{t('order.descPrice')}</option>
         </select>
