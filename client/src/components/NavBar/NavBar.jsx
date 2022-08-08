@@ -5,6 +5,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
+import heart from "../../images/heart.png";
+import historyPic from "../../images/historyPic.png"
 import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
@@ -99,16 +101,20 @@ function NavBar() {
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
-
-          {// Este es el switcher para cambiar idiomas:
-
-            Object.keys(lngs).map((lng) => (
-              <Button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</Button>
-            ))
-          }
-
-          <Nav.Link id="btnLang" className="navText" onClick={() => handleFavs()}>
-            {t('navbar.favorites')}
+          <div className="btnDiv">
+            {// Este es el switcher para cambiar idiomas:
+              Object.keys(lngs).map((lng) => (
+                <Button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</Button>
+              ))
+            }
+          </div>
+          <Nav.Link id="btnFav" className="navText" href="/purchases">
+            {/* {t('navbar.favorites')} */}
+            <img alt="none" className="favImageNav" src={historyPic}/>
+          </Nav.Link>
+          <Nav.Link id="btnFav" className="navText" onClick={() => handleFavs()}>
+            {/* {t('navbar.favorites')} */}
+            <img alt="none" className="favImageNav" src={heart}/>
           </Nav.Link>
           <SearchBar />
         </Navbar.Collapse>

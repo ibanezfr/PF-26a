@@ -33,6 +33,7 @@ export default function Details() {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
+    dispatch(cleanProduct())
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))

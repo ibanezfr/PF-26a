@@ -57,29 +57,30 @@ router.post("/api/checkout/confirm", async (req, res) => {
   const { amount, description, user, shippingInfo } = req.body;
 
   try {
-    const userComprador = await User.findByPk(user)
-    const newSellOrder = await Sell_order.create({
-      amount: amount * 100,
-      product: formatObject(description).join('\n'),
-      country: shippingInfo.country,
-      province: shippingInfo.province,
-      city: shippingInfo.city,
-      street: shippingInfo.street,
-      postalCode: shippingInfo.postalCode
-    })
-    console.log(newSellOrder)
-    let userCompra = []
-    if (description.length > 1) {
-      userCompra = await Promise.all(description.map(async (p) => {
-        return await Product.findByPk(p.id, {
-          include: [{
-            model: Product_values,
-            where: { size: p.size },
-            attributes: ["id"],
-            through: { attributes: [] }
-          }]
+        const userComprador = await User.findByPk(user) 
+        const newSellOrder = await Sell_order.create({
+          amount: amount * 100,
+          product: formatObject(description).join("-"),
+          country: shippingInfo.country,
+          province: shippingInfo.province,
+          city: shippingInfo.city,
+          street: shippingInfo.street,
+          postalCode: shippingInfo.postalCode
         })
-      }))
+        // console.log(newSellOrder)
+        let userCompra = []
+
+        if (description.length > 1) {
+          userCompra = await Promise.all(description.map(async (p) => {
+            return await Product.findByPk(p.id, {
+              include: [{
+                model: Product_values,
+                where: { size: p.size },
+                attributes: ["id"],
+                through: { attributes: [] }
+              }]
+            })
+          }))
 
       userCompra.map(async (prod, i) => {
         await Product_values.decrement(
@@ -136,7 +137,9 @@ router.post("/api/checkout/confirm", async (req, res) => {
     return res.json({ message: "hubo un error"/* error.raw.message */ });
   }
 });
+//////////////////////////////////
 
+/////////////////////////////////
 router.post("/api/checkout", async (req, res) => {
   const { amount, description } = req.body;
   if (amount && description) {
