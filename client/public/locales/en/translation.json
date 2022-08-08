@@ -294,7 +294,8 @@
         "postalCode": "Postal Code:",
         "phoneNumber": "Phone number:",
         "totalPrice": "Total price: $",
-        "goBack": "Go back to cart"
+        "goBack": "Go back to cart",
+        "payButton": "Pay!"
     },
     "profile": {
         "country": "Country:",

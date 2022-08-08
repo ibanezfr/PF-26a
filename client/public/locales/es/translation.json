@@ -296,7 +296,8 @@
         "postalCode": "Código postal:",
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
-        "goBack": "Volver al carrito"
+        "goBack": "Volver al carrito",
+        "payButton":"¡Pagar!"
     },
     "profile": {
         "country": "País:",
