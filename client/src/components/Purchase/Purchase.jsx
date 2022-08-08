@@ -1,30 +1,19 @@
-// import {
-//     Elements,
-//     CardElement,
-//     useStripe,
-//     useElements,
-// } from "@stripe/react-stripe-js";
-import {
-    Elements,
-} from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import CheckoutForm from "../Cart/CheckoutForm"
-import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { formatNumber } from '../../Utils/index'
 import { useTranslation } from 'react-i18next';
 import './FastPurchase.scss'
 // const API_KEY = 'pk_test_51LRM01FTo7BILoUXakAa8q2EIaJlH9MDt7XKPEFjp9FjQb3vOYrWSgvcbqQZRr1koqulG4m9wpAiLTmUBMoyu8DC00dDBGg6oB'
 
-
-
-const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksAHJoCUcIdwVVJCSr5wSzYHQAH6s0GEYcWZtfKa6SnAUrpIBtAYVc00IIKUjC8f");
+import Buy from "../Buy/Buy";
+import Button from "react-bootstrap/esm/Button";
 
 
 export default function Purchase() {
     const { t } = useTranslation();
     const cart = useSelector((state) => state.cart);
+    const [show, setShow] = useState(false);
 
     if (cart[0]) {
         var cantidadPrecio = []
@@ -52,7 +41,6 @@ export default function Purchase() {
             [e.target.name]: e.target.value
         });
     }
-    //console.log("Datos del form: ", info)
 
     return (
         <div>
@@ -73,22 +61,18 @@ export default function Purchase() {
                     <label>{t('purchase.phoneNumber')}</label>
                     <input type="text" name={"phoneNumber"} value={info.phoneNumber} onChange={e => handleChange(e)}></input>
                 </form>
-
-                <Elements stripe={stripePromise}>
-                    <div className="containerPayment">
-                        <div className="row h-100">
-                            <div className="col-md-4 offset-md-4 h-100">
-                                <CheckoutForm total={formatNumber(precioTotal)} products={cart} shippingInfo={info} />
-                            </div>
-                        </div>
-                    </div>
-                </Elements>
             </div>
             <div>
                 <h2>{t('purchase.totalPrice')}{precioTotal ? formatNumber(precioTotal) : 0}</h2>
                 <Link to='/cart'><button>{t('purchase.goBack')}</button></Link>
-            </div>
 
+                <Buy setShow={setShow} show={show} total={precioTotal} products={cart} shippingInfo= {info}/>
+                <Button variant="primary" onClick={() => setShow(true)}>
+                    Pagar!
+                </Button>
+                
+                
+            </div>
         </div>
     )
 }

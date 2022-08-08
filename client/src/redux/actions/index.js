@@ -13,8 +13,9 @@ export const REMOVE_ONE_FROM_CART = "REMOVE_ONE_FROM_CART";
 export const ADD_ONE_FROM_CART = "ADD_ONE_FROM_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
-export const GET_INFO_Q_AND_A = "GET_INFO_Q_AND_A";
-export const GET_ANSWERS = "GET_ANSWERS";
+export const GET_INFO_Q_AND_A = 'GET_INFO_Q_AND_A';
+export const GET_ANSWERS = 'GET_ANSWERS';
+export const SET_PAYMENT_INFO = "SET_PAYMENT_INFO"
 
 //Q and A
 export const GET_Q_AND_A = "GET_Q_AND_A";
@@ -24,10 +25,10 @@ const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
 const URL_FOR_FETCH_CATEGORIES = "http://localhost:3001/categories";
 const URL_FOR_GET_PRODUCTS_BY_ID = "http://localhost:3001/products/";
 const URL_FOR_BRING_SIZE = "http://localhost:3001/products/size/";
-const URL_FOR_GET_PRODUCTS_BY_NAME =
-  "http://localhost:3001/products/search?name=";
-const URL_QUESTIONS = "http://localhost:3001/products/q&a/";
-const URL_ANSWERS = "http://localhost:3001/products/answer/";
+const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name="
+const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
+const URL_ANSWERS = 'http://localhost:3001/products/answer/'
+const URL_FOR_FETCH_ORDER_LIST = 'http://localhost:3001/auth/compras/all'
 const URL_GET_ANSWERS = "http://localhost:3001/admin/all/";
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
@@ -38,6 +39,7 @@ export const SET_ORDER = "SET_ORDER";
 export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
+export const FETCH_ORDER_LIST= "FETCH_ORDER_LIST"
 export const FETCH_CATEGORY = "FETCH_CATEGORY";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
 export const GET_REVIEW= "GET_REVIEW"
@@ -53,6 +55,17 @@ export const postProduct = (payload) => {
     }
   };
 };
+//Order List from admin
+export function fetchOrderList(){
+  return async (dispatch)=>{
+    const {data} = await axios.get(URL_FOR_FETCH_ORDER_LIST);
+    dispatch({
+      type:FETCH_ORDER_LIST,
+      payload: data
+    })
+  } 
+}
+
 
 //QandA
 export function getQandA(idProduct, obj) {
@@ -344,6 +357,14 @@ export const addFavsToUser = (data) => {
   };
 };
 
+export function setPaymentInfo(data){
+  return function (dispatch){
+    dispatch({
+      type: SET_PAYMENT_INFO,
+      payload: data
+    })
+  }
+}
 
 //-----------------------------RUTAS PARA LOS DETALLES DE LAS COMPRAS ESPECÍFICO DE UN USUARIO------------------------
 // export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'

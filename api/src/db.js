@@ -90,6 +90,8 @@ Sell_order.belongsTo(User); //sell order pertenece a 1 user
 Product.belongsToMany(Sell_order, {through: 'product-orders'});
 Sell_order.belongsToMany(Product, {through: 'product-orders'});
 
+Sell_order.belongsToMany(Product_values, {through: 'produtcValues-orders'})
+Product_values.belongsToMany(Sell_order, {through: 'produtcValues-orders'})
 
 
 module.exports = {

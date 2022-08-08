@@ -24,6 +24,8 @@ import {
   GET_FAVORITES,
   REMOVE_FAVORITE,
   ADD_FAVORITE,
+  FETCH_ORDER_LIST,
+  SET_PAYMENT_INFO,
   FETCH_CATEGORY,
   ANSWER_QUESTION,
 
@@ -72,8 +74,9 @@ const initialState = {
   favs: [
     ...(JSON.parse(localStorage.getItem("favs") === null)
       ? []
-      : JSON.parse(localStorage.getItem("favs"))),
+      : JSON.parse(localStorage.getItem('favs')))
   ],
+  paymentInfo : {},
   category: [],
 
   purchaseInfo: [],
@@ -332,6 +335,16 @@ function rootReducer(state = initialState, action) {
         favs: [...action.payload]
       }
 
+    case FETCH_ORDER_LIST:
+      return{
+        ...state,
+        
+      }
+    case SET_PAYMENT_INFO:
+      return {
+        ...state,
+        paymentInfo:action.payload
+      }
 
       // INFORMACIÓN DE LAS COMPRAS
 

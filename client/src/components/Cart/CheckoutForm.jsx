@@ -29,6 +29,7 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
 
   const [loading, setLoading] = useState(false);
   console.log(products)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -55,7 +56,8 @@ export default function CheckoutForm({ total, products, shippingInfo }) {
     if (!error) {
       //console.log(elements.getElement(CardElement))
       console.log('no error')
-      if (!user) Swal.fire({
+      if (!user) 
+      window.Swal.fire({
         title: t('checkOutForm.loginAlert.title'),
         text: t('checkOutForm.loginAlert.text'),
         icon: 'warning',

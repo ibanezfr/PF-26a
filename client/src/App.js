@@ -21,6 +21,8 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import OrderList from "./components/AdminComponents/OrderList/OrderList";
+import Buy from './components/Buy/Buy'
 
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 import AllCategories from "./components/Categories/AllCategories";
@@ -80,17 +82,16 @@ function App() {
           />
           <Route path="/admin/categorias" exact component={AllCategories} />
           <Route path="/admin/qas" component={Answers} />
-
+ 
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/purchases" component={PurchaseInfo}/>
             <Route path="/review/:id" component={Review}/>
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
+            <Route path="/profile" exact><Profile /></Route>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
+          
         </Switch>
         <Footer />
       </BrowserRouter>

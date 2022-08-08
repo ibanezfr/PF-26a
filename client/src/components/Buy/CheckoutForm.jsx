@@ -1,22 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2'
+import axios from "axios";
 import { useTranslation } from "react-i18next";
-import "./App.css";
+import "./Buy.css";
 
-
-export default function CheckoutForm() {
+export default function CheckoutForm({ user, total, products, shippingInfo }) {
   const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory()
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [message, setMessage] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  async function showSucces(user, total, products, shippingInfo) {
+    const saveOrder = await axios.post('pay/api/checkout/confirm', {
+      user:user, 
+      amount:total, 
+      description:products, 
+      shippingInfo:shippingInfo
+    }) 
 
-  React.useEffect(() => {
+    // return "http://localhost:3000/"
+    if (saveOrder.data.message = 'Pago exitoso') {
+      localStorage.removeItem('cart')
+       return Swal.fire({
+        title: 'Compra realizada con éxito!',
+        text: "Te llegará la información de la misma a tu casilla de correo",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Volver al inicio'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return "http://localhost:3000/"
+        }
+        return setTimeout(() => "http://localhost:3000/", 5000)
+      }) 
+      
+    }
+  }
+
+  useEffect(() => {
     if (!stripe) {
       return;
     }
@@ -62,7 +93,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: await showSucces(user, total, products, shippingInfo),
       },
     });
 
@@ -83,7 +114,7 @@ export default function CheckoutForm() {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button className='btnPrincipal' disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : t('checkOutForm2.payNow')}
         </span>
