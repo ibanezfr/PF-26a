@@ -61,7 +61,42 @@ const SidebarAdmin = () => {
               <span>{t('sidebarAdmin.spanProducts')}</span>
             </Link>
           </li>
-
+          <li>
+          <Link to="/admin/categorias" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Formulario de categorias</span>
+          </Link>
+        </li>
+        <li>
+          <FaShoppingCart className="icons" />
+          <span>Órdenes</span>
+        </li>
+        <li>
+          <MdSettings className="icons" />
+          <span>Configuración</span>
+        </li>
+        <p className="title">Útiles</p>
+        <li>
+          <Link to="/admin/creation" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Formulario de creación</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/admin/qas" className="link">
+            <AiOutlineForm className="icons" />
+            <span>Preguntas y respuestas</span>
+          </Link>
+        </li>
+        <li>
+          <MdQueryStats className="icons" />
+          <span>Estadísticas</span>
+        </li>
+        <li>
+          <MdNotifications className="icons" />
+          <span>Notificaciones</span>
+        </li>
+        <p className="title">SERVICIO</p>
           <li>
             <Link to="/admin/orders" className="link">
 

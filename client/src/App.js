@@ -21,6 +21,8 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import OrderList from "./components/AdminComponents/OrderList/OrderList";
+import Buy from './components/Buy/Buy'
 
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 import AllCategories from "./components/Categories/AllCategories";
@@ -29,6 +31,7 @@ import EditCategories from "./components/Categories/EditCategories";
 import UpdateProd from "./components/AdminComponents/productsAdmin/UpdateProd/UpdateProd";
 import NewCategory from "./components/Categories/NewCategory";
 import Answers from "./components/AdminComponents/Answers/Answers";
+import PurchaseInfo from "./components/PurchaseInfo/PurchaseInfo";
 import SellOrders from "./components/AdminComponents/SellOrders/SellOrders";
 
 function App() {
@@ -82,11 +85,11 @@ function App() {
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
-            <Route path="/profile" exact>
-              <Profile />
-            </Route>
+            <Route path="/purchases" component={PurchaseInfo}/>
+            <Route path="/profile" exact><Profile /></Route>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
+          
         </Switch>
         <Footer />
       </BrowserRouter>

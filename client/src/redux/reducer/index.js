@@ -24,8 +24,12 @@ import {
   GET_FAVORITES,
   REMOVE_FAVORITE,
   ADD_FAVORITE,
+  FETCH_ORDER_LIST,
+  SET_PAYMENT_INFO,
   FETCH_CATEGORY,
   ANSWER_QUESTION,
+  // INFO_PURCHASE,
+  SINGLE_PURCHASE
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -64,9 +68,12 @@ const initialState = {
   favs: [
     ...(JSON.parse(localStorage.getItem("favs") === null)
       ? []
-      : JSON.parse(localStorage.getItem("favs"))),
+      : JSON.parse(localStorage.getItem('favs')))
   ],
+  paymentInfo : {},
   category: [],
+  // purchaseInfo: [],
+  singlePurchaseInfo: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -266,6 +273,9 @@ function rootReducer(state = initialState, action) {
         orderBy: "",
       };
 
+
+      //PREGUNTAS Y RESPUESTAS
+
     case GET_Q_AND_A:
       return {
         ...state,
@@ -290,6 +300,8 @@ function rootReducer(state = initialState, action) {
         questionToAnswer: action.payload,
       };
 
+      //FAVORITOS
+
     case GET_FAVORITES:
       return {
         ...state,
@@ -308,8 +320,35 @@ function rootReducer(state = initialState, action) {
       localStorage.setItem("favs", JSON.stringify([...action.payload]));
       return {
         ...state,
-        favs: [...action.payload],
-      };
+        favs: [...action.payload]
+      }
+
+    case FETCH_ORDER_LIST:
+      return{
+        ...state,
+        
+      }
+    case SET_PAYMENT_INFO:
+      return {
+        ...state,
+        paymentInfo:action.payload
+      }
+
+      // INFORMACIÓN DE LAS COMPRAS
+
+    // case INFO_PURCHASE:
+    //   return{
+    //     ...state,
+    //     purchaseInfo: action.payload
+    //   }
+
+    case SINGLE_PURCHASE:
+      return{
+        ...state,
+        singlePurchaseInfo: action.payload
+      }
+
+
     default:
       return state;
   }

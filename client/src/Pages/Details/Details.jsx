@@ -6,7 +6,6 @@ import './Detail.scss'
 import './QandA.scss'
 import { cartController, formatNumber } from "../../Utils";
 // import { formatNumber } from "../../Utils";
-
 import heartA from '../../images/heartAdd.png';
 import heartR from "../../images/heartRemove.png";
 import Carousel from 'react-bootstrap/Carousel';
@@ -102,6 +101,7 @@ export default function Details() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
+
     var bool = cartController(Swal, newCart.size, newCart.stock, newCart.quantity);
     if (bool === true) {
       dispatch(addToCart(newCart));

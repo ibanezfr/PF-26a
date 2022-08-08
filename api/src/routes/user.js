@@ -1,5 +1,11 @@
-const { Router } = require("express");
-const { User, Sell_order, Product } = require("../db");
+const {
+  Router
+} = require("express");
+const {
+  User,
+  Sell_order,
+  Product
+} = require("../db");
 
 const router = Router();
 // Users controller ->
@@ -29,12 +35,57 @@ promedio
 //rutas para levantar datos de
 //compras desde el front
 
+
 router.get("/compras/all", async (req, res) => {
-  let allOrders = await Sell_order.findAll({ include: User });
+  let allOrders = await Sell_order.findAll({ include: [
+    {
+      model: User
+    },
+    {
+      model: Product,
+      attributes: ["id", "image", "name"],
+      through: {
+        attributes: [],
+      },
+    }
+  ] });
   //console.log(allOrders)
   return res.send(allOrders);
 });
 
+router.get("/singlePurchase/:id", async (req, res) => {
+  const {id} = req.params;
+  let allOrders = await Sell_order.findAll( { include: [
+    {
+      model: User
+    },
+    {
+      model: Product,
+      attributes: ["id", "image", "name"],
+      through: {
+        attributes: [],
+      },
+    }
+  ],
+  where: {
+    userId : id
+  },});
+
+  const order = allOrders.map((order) => {
+    return {
+      id: order.id,
+      product: order.product.split(","),
+      amount: order.amount,
+      orderStatus: order.orderStatus,
+      date: order.date,
+      image: order.products.map(m=>m.image)
+    };
+  });
+  //console.log(allOrders)
+  return res.send(order);
+});
+ //--------------------------ME TRAIGO LA INFORMACIÓN DE LAS COMPRAS--------------------------------- 
+ 
 router.put("/compras/:id", async (req, res) => {
   const { id } = req.params;
   const { orderStatus } = req.body;
@@ -60,12 +111,14 @@ router.put("/compras/:id", async (req, res) => {
 router.get("/compras/:id", async (req, res) => {
   let user = req.params.id;
   user = await User.findByPk(user, { include: Sell_order });
-  //console.log(user)
+
+  console.log(user.sell_orders)
   user = user.dataValues.sell_orders.map((order) => {
     return {
       id: order.id,
       product: order.product.split(","),
       amount: order.amount,
+      orderStatus: order.orderStatus
     };
   });
 

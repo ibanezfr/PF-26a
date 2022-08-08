@@ -2,9 +2,9 @@
     color: #794983;
 }
 
-#btnLang {
+/* #btnLang {
     height: 20px;
-    /* margin: 1%; */
+    margin: 1%;
     margin-top: 0%;
     margin-bottom: 0%;
     margin-left: 0.5%;
@@ -13,7 +13,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    /* padding: 1%; */
+    padding: 1%;
     padding-bottom: 1.5%;
     width: auto;
     background: #794983;
@@ -22,17 +22,17 @@
     border-color: #794983;
     text-align: center;
 
-}
+} */
 
-#btnLang:hover {
+/* #btnLang:hover {
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 3px 12px #794983;
     transition: all 0.2s ease;
-}
-
+} */
+/* 
 #btnHome {
     height: 30px;
-    /* margin: 1%; */
+    margin: 1%;
     margin-top: 6%;
     margin-bottom: 1%;
     margin-left: 0.5%;
@@ -43,7 +43,7 @@
     font-weight: 600;
     padding: 1%;
     padding-bottom: 3%;
-    /* width: ; */
+    width: ;
     background: #794983;
     border: 2px solid;
     border-radius: 5%;
@@ -56,4 +56,4 @@
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 3px 12px #794983;
     transition: all 0.2s ease;
-}
+} */

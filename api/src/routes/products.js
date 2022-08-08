@@ -269,8 +269,8 @@ router.put("/delete/:id", async (req, res) => {
         status: "inactive",
       });
       return res.status(200).send({
-        msg: "Producto deshabilitado",
-      });
+        msg: "Producto deshabilitado"
+      })
     } else {
       const newState = Product.update({
         status: "active",
@@ -487,20 +487,66 @@ router.post("/q&a/:idProduct", async (req, res) => {
       answer,
       resolved,
     });
-
     const productUpdate = await Product.findOne({
       where: {
-        id: idProduct,
-      },
-    });
-
+        id: idProduct
+      }
+    })
     if (newQuestion) {
       await productUpdate.addQa(newQuestion);
     }
 
-    res.send(productUpdate);
+    res.send(productUpdate)
   } catch (err) {
     console.log(err);
   }
-});
+})
+
+//------------------------------------RUTAS PARA REVEWS---------------------------------
+router.get("/review/:idReview", async (req, res) => {
+  const {
+    idReview
+  } = req.params;
+  try {
+    const review = await Review.findOne({
+      where: {
+        id: idReview
+      }
+    })
+
+    res.send(review)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.post("/review/:idProduct", async (req, res, next) => {
+  const {
+    idProduct
+  } = req.params;
+  const {
+    rating,
+    title,
+    description
+  } = req.body;
+  try {
+    const product = await Product.findByPk(idProduct)
+    console.log("product: ", product)
+    const review = await Review.create({
+      rating,
+      title,
+      description
+    })
+    if (product) {
+      await review.setProduct(product)
+    }
+  
+  res.status(200).send({msg: "ok"})
+
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+
 module.exports = router;
