@@ -81,7 +81,7 @@ export default function PurchaseInfo() {
                                                 return (
 
                                                     <div className='itemContainer2'>
-                                                        <button className='btnPrincipal '><Link to={`/${p[0]}`}>Valorar</Link></button>
+                                                        <button className='btnPrincipal '><Link to={`/review/${p[0]}`}>Valorar</Link></button>
                                                     </div>
                                                 )
                                             })}
