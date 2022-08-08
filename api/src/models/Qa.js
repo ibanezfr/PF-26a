@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4  } = require('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('qa', {
         id: {
@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             defaultValue: "",
         },
-        description:{
+        description: {
             type: DataTypes.TEXT,
             defaultValue: "",
         },
-        answer:{
+        answer: {
             type: DataTypes.TEXT,
             defaultValue: "",
         },
@@ -25,5 +25,5 @@ module.exports = (sequelize) => {
             defaultValue: false,
         }
     }),
-        {timestamps: false}
+        { timestamps: false }
 };

@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const { Product, Category, Product_values } = require("../db");
 const nodemailer = require("nodemailer");
 
- 
+
 async function getProducts() {
   const findCreated = await Product.findAll({ where: { created: true } });
   let count = await Product.count();
@@ -28,7 +28,7 @@ async function getProducts() {
 
       var obj = [];
 
-      for(j=0; j<products[i].product_values.length; j++){
+      for (j = 0; j < products[i].product_values.length; j++) {
         // const valueStock= products[i].product_values[j]
         // const mappedStock = valueStock.map(m => m.stock)
         // const mappedSize = valueStock.map(m => m.size)
@@ -36,11 +36,11 @@ async function getProducts() {
           stock: products[i].product_values[j].stock,
           size: products[i].product_values[j].size
         });
-  
+
         // console.log("obj en el for: ", obj)
         await newProduct.addProduct_values(obj)
       }
-      
+
       for (let j = 0; j < products[i].categories.length; j++) {
         let cat = await Category.findOne({
           where: { name: { [Op.iLike]: `%${products[i].categories[j].name}%` } },
@@ -48,7 +48,7 @@ async function getProducts() {
 
         if (cat) {
           await newProduct.addCategory(cat);
-        } if(!cat) {
+        } if (!cat) {
           let created = await Category.create({
             name: products[i].categories[j].name,
           });
@@ -60,13 +60,13 @@ async function getProducts() {
     }
   } else return { msg: "Failed" };
 
-  
+
 
   return { msg: "Ok" };
 }
 
-async function mailPayment(recipient, id,mensaje, total) {
- 
+async function mailPayment(recipient, id, mensaje, total) {
+
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -109,7 +109,7 @@ async function mailPayment(recipient, id,mensaje, total) {
             </div>
           </center>`
   });
- 
+
 }
 
 module.exports = {

@@ -21,6 +21,8 @@ import UserList from "./components/AdminComponents/UserList/UserList";
 
 import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
+import OrderList from "./components/AdminComponents/OrderList/OrderList";
+import Buy from './components/Buy/Buy'
 
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
 import AllCategories from "./components/Categories/AllCategories";
@@ -91,6 +93,7 @@ function App() {
             </Route>
             <Route path="/profile/form" component={ProfileForm} />
           </ProtectedRoutes>
+
         </Switch>
         <Footer />
       </BrowserRouter>

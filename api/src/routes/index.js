@@ -3,8 +3,8 @@ const products = require("./products.js");
 const categories = require("./categories");
 const functionalities = require('./functionalities');
 const usersHandlers = require('./users.js')
-const pay= require("./pay")
-const admin= require("./admin")
+const pay = require("./pay")
+const admin = require("./admin")
 const favorites = require("./favorites")
 const purchase = require("./purchase")
 
@@ -24,7 +24,7 @@ router.use("/auth", user);
 const {
   getAllUsers,
   setAdmin,
-  disableAccount, 
+  disableAccount,
   updateStatus,
 } = require("../controllers/admin.js");
 router.get("/admin/users", getAllUsers);
@@ -34,5 +34,5 @@ router.put("/admin/status/:id", updateStatus);
 
 router.use("/function", functionalities);
 router.use("/users", usersHandlers);
- 
+
 module.exports = router;

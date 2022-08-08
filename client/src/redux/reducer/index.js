@@ -24,6 +24,8 @@ import {
   GET_FAVORITES,
   REMOVE_FAVORITE,
   ADD_FAVORITE,
+  FETCH_ORDER_LIST,
+  SET_PAYMENT_INFO,
   FETCH_CATEGORY,
   ANSWER_QUESTION,
 
@@ -72,8 +74,9 @@ const initialState = {
   favs: [
     ...(JSON.parse(localStorage.getItem("favs") === null)
       ? []
-      : JSON.parse(localStorage.getItem("favs"))),
+      : JSON.parse(localStorage.getItem('favs')))
   ],
+  paymentInfo: {},
   category: [],
 
   purchaseInfo: [],
@@ -183,17 +186,17 @@ function rootReducer(state = initialState, action) {
 
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: action.payload.quantity }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: action.payload.quantity }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: [...state.cart, { ...action.payload }],
-          };
+          ...state,
+          cart: [...state.cart, { ...action.payload }],
+        };
 
     case REMOVE_ONE_FROM_CART:
       let itemToDelete = state.cart.find(
@@ -202,17 +205,17 @@ function rootReducer(state = initialState, action) {
       );
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
-          };
+          ...state,
+          cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
+        };
 
     case ADD_ONE_FROM_CART:
       let productAdd = state.cart.find(
@@ -283,7 +286,7 @@ function rootReducer(state = initialState, action) {
       };
 
 
-      //PREGUNTAS Y RESPUESTAS
+    //PREGUNTAS Y RESPUESTAS
 
     case GET_Q_AND_A:
       return {
@@ -309,7 +312,7 @@ function rootReducer(state = initialState, action) {
         questionToAnswer: action.payload,
       };
 
-      //FAVORITOS
+    //FAVORITOS
 
     case GET_FAVORITES:
       return {
@@ -332,8 +335,18 @@ function rootReducer(state = initialState, action) {
         favs: [...action.payload]
       }
 
+    case FETCH_ORDER_LIST:
+      return {
+        ...state,
 
-      // INFORMACIÓN DE LAS COMPRAS
+      }
+    case SET_PAYMENT_INFO:
+      return {
+        ...state,
+        paymentInfo: action.payload
+      }
+
+    // INFORMACIÓN DE LAS COMPRAS
 
     // case INFO_PURCHASE:
     //   return{
@@ -342,7 +355,7 @@ function rootReducer(state = initialState, action) {
     //   }
 
     case SINGLE_PURCHASE:
-      return{
+      return {
         ...state,
         singlePurchaseInfo: action.payload
       }
