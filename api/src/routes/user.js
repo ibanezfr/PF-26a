@@ -71,20 +71,24 @@ router.get("/singlePurchase/:id", async (req, res) => {
     userId : id
   },});
 
-  // const prueba = allOrders.map(m=>{
-  //   return{
-  //   product: m.product.split("-"),
-  // }
-  // })
-
-  // console.log("prueba: ", prueba)
-
   const order = allOrders.map((order) => {
     const separoProductos = order.product.split("-");
     const productosSeparados = separoProductos.map(m=>{
       const prueba = m.split(",");
       return prueba
     })
+    const array = []
+    const productId = order.products.map(m => [m.id])
+    for(let i=0; i<productId.length; i++){
+      array.push(productId[i])
+    }
+
+    const array2 = []
+    const productName = order.products.map(m => [m.name])
+    for(let i=0; i<productId.length; i++){
+      array2.push(productName[i])
+    }
+    console.log("prueba: ", array)
     // console.log("prueba: ", productosSeparados)
 
     return {
@@ -93,7 +97,9 @@ router.get("/singlePurchase/:id", async (req, res) => {
       amount: order.amount,
       orderStatus: order.orderStatus,
       date: order.date,
-      image: order.products.map(m=>m.image)
+      image: order.products.map(m=>m.image),
+      idProducts: array,
+      nameProducts: array2
     };
   });
   //console.log(allOrders)
