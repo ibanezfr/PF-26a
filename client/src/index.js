@@ -10,6 +10,7 @@ import { AuthProvider } from "./context/AuthContext";
 import dotenv from "dotenv";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './i18n.js';
 dotenv.config();
 
 axios.defaults.baseURL = /* process.env.REACT_APP_API || */ "http://localhost:3001";
@@ -21,7 +22,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
         <AuthProvider>
-          <App />
+          <React.Suspense fallback="loading">
+            <App />
+          </React.Suspense>
         </AuthProvider>
       </Provider>
     </BrowserRouter>

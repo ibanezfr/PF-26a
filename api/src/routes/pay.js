@@ -1,21 +1,42 @@
 const { Router } = require("express");
 const Stripe = require("stripe");
 const { User, Product, Sell_order, Product_values } = require("../db");
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
 const { Op } = require("sequelize");
-const apiKey = process.env.API_KEY_STRIPE
+const apiKey = process.env.API_KEY_STRIPE;
 const stripe = new Stripe(apiKey);
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
 const cp = require('cookie-parser');
 
-
-
-
 //
 function formatDescription(description) {
-  return description.map(p => p.name + ' ' + p.size + ' ' + p.quantity + ' price ' + p.price + ' subTotal ' + p.price * p.quantity)
+  return description.map(
+    (p) =>
+      "<tr>" +
+      '<td style= "text-align: center">' +
+      p.name +
+      "</td>" +
+      "<td> </td>" +
+      '<td style= "text-align: center">' +
+      p.size +
+      "</td>" +
+      "<td> </td>" +
+      '<td style= "text-align: center">' +
+      p.quantity +
+      "</td>" +
+      "<td> </td>" +
+      '<td style= "text-align: center">' +
+      p.price +
+      "</td>" +
+      "<td> </td>" +
+      "<td> </td>" +
+      '<td style= "text-align: center">' +
+      p.price * p.quantity +
+      "</td>" +
+      "</tr>"
+  );
 }
 router.post("/api/checkout/confirm", async (req, res) => {
   const { amount, description, user, shippingInfo } = req.body;

@@ -18,7 +18,7 @@ export const GET_ANSWERS = 'GET_ANSWERS';
 export const SET_PAYMENT_INFO = "SET_PAYMENT_INFO"
 
 //Q and A
-export const GET_Q_AND_A = 'GET_Q_AND_A';
+export const GET_Q_AND_A = "GET_Q_AND_A";
 
 const URL_FOR_POST_PRODUCT = "http://localhost:3001/products/create";
 const URL_FOR_FETCH_PRODUCTS = "http://localhost:3001/products";
@@ -29,6 +29,7 @@ const URL_FOR_GET_PRODUCTS_BY_NAME = "http://localhost:3001/products/search?name
 const URL_QUESTIONS = 'http://localhost:3001/products/q&a/'
 const URL_ANSWERS = 'http://localhost:3001/products/answer/'
 const URL_FOR_FETCH_ORDER_LIST = 'http://localhost:3001/auth/compras/all'
+const URL_GET_ANSWERS = "http://localhost:3001/admin/all/";
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const ADD_FILTER = "ADD_FILTER";
@@ -39,6 +40,8 @@ export const SET_SEARCH_STATUS = "SET_SEARCH_STatus";
 export const RESET_FILTER_ORDER = "RESET_FILTER_ORDER";
 export const SESSION = "SESSION";
 export const FETCH_ORDER_LIST= "FETCH_ORDER_LIST"
+export const FETCH_CATEGORY = "FETCH_CATEGORY";
+export const ANSWER_QUESTION = "ANSWER_QUESTION";
 
 export const postProduct = (payload) => {
   return async function (dispatch) {
@@ -64,7 +67,7 @@ export function fetchOrderList(){
 
 
 //QandA
-export function getQandA (idProduct, obj){
+export function getQandA(idProduct, obj) {
   return async (dispatch) => {
     let info = await axios.post(URL_QUESTIONS + idProduct, obj);
     // console.log("en la action: ", info.data)
@@ -75,7 +78,7 @@ export function getQandA (idProduct, obj){
   };
 }
 
-export function bringQandA (id){
+export function bringQandA(id) {
   return async (dispatch) => {
     let info = await axios.get(URL_QUESTIONS + id);
     // console.log("en la action: ", info.data)
@@ -86,12 +89,23 @@ export function bringQandA (id){
   };
 }
 
-export function bringAnswers (id){
+export function bringAnswers(id) {
   return async (dispatch) => {
     let info = await axios.get(URL_ANSWERS + id);
     // console.log("en la action: ", info.data)
     dispatch({
       type: GET_ANSWERS,
+      payload: info.data,
+    });
+  };
+}
+
+export function answerQuestion(resolved) {
+  return async (dispatch) => {
+    let info = await axios.get(URL_GET_ANSWERS + resolved);
+    // console.log("en la action: ", info.data)
+    dispatch({
+      type: ANSWER_QUESTION,
       payload: info.data,
     });
   };
@@ -163,6 +177,22 @@ export function fetchCategories() {
         dispatch({
           type: FETCH_CATEGORIES,
           payload: formattedCategories,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function fetchCategory() {
+  return function (dispatch) {
+    axios
+      .get(URL_FOR_FETCH_CATEGORIES)
+      .then((categories) => {
+        dispatch({
+          type: FETCH_CATEGORY,
+          payload: categories.data,
         });
       })
       .catch((error) => {
@@ -291,7 +321,7 @@ export function resetFilterOrder() {
       type: RESET_FILTER_ORDER,
     });
   };
-};
+}
 
 export const getFavsFromUser = (id) => {
   return async (dispatch) => {
@@ -305,20 +335,20 @@ export const getFavsFromUser = (id) => {
 
 export const removeFavsFromUser = (idUser, idProduct) => {
   return async (dispatch) => {
-    await axios.delete(URL_REMOVE_FAVORITE +`${idUser}/${idProduct}`);
+    await axios.delete(URL_REMOVE_FAVORITE + `${idUser}/${idProduct}`);
     dispatch({
       type: REMOVE_FAVORITE,
-      payload: idProduct
+      payload: idProduct,
     });
   };
 };
 
 export const addFavsToUser = (data) => {
   return async (dispatch) => {
-    let pedido = await axios.post(URL_POST_FAVORITE, data)
+    let pedido = await axios.post(URL_POST_FAVORITE, data);
     dispatch({
-      type:ADD_FAVORITE,
-      payload: pedido.data.res.products
+      type: ADD_FAVORITE,
+      payload: pedido.data.res.products,
     });
   };
 };
@@ -331,3 +361,43 @@ export function setPaymentInfo(data){
     })
   }
 }
+
+//-----------------------------RUTAS PARA LOS DETALLES DE LAS COMPRAS ESPECÍFICO DE UN USUARIO------------------------
+// export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'
+// export const INFO_PURCHASE = "INFO_PURCHASE"
+
+// export const purchaseInfo = (id) => {
+//   return async (dispatch) => {
+//     let pedido = await axios.get(URL_INFO_PURCHASE + id)
+//     dispatch({
+//       type:INFO_PURCHASE,
+//       payload: pedido.data
+//     });
+//   };
+// }
+
+export const URL_SINGLE_PURCHASE = 'http://localhost:3001/auth/singlePurchase/'
+export const SINGLE_PURCHASE = "SINGLE_PURCHASE"
+
+export const singlePurchase = (id)=>{
+  return async (dispatch) => {
+    let pedido = await axios.get(URL_SINGLE_PURCHASE + id)
+    dispatch({
+      type:SINGLE_PURCHASE,
+      payload: pedido.data
+    });
+  };
+}
+
+export const getBuys = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/auth/compras/all`
+      );
+      return dispatch({ type: "GET_BUYS", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

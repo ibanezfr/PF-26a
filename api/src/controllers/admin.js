@@ -36,6 +36,7 @@ const getAllUsers = async (req, res) => {
         email: e.email,
         banned: e.banned === false ? "Active" : "Banned",
         admin: e.isAdmin === false ? "User" : "Admin",
+        createdAt: e.createdAt
       };
       return format;
     });

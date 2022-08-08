@@ -7,9 +7,14 @@ import {
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2'
 import axios from "axios";
-
+import { useTranslation } from "react-i18next";
+import "./Buy.css";
 
 export default function CheckoutForm({ user, total, products, shippingInfo }) {
+
+
+
+  const { t } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
   const history = useHistory()
@@ -19,10 +24,11 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
   async function showSucces() {
     const saveOrder = await axios.post('pay/api/checkout/confirm', {
       user, total, products, shippingInfo
-    })
-    if (saveOrder.data.message = 'Pago exitoso') {
+    }) 
+    return "http://localhost:3000/"
+    /*if (saveOrder.data.message = 'Pago exitoso') {
       localStorage.removeItem('cart')
-      window.Swal.fire({
+       window.Swal.fire({
         title: 'Compra realizada con éxito!',
         text: "Te llegará la información de la misma a tu casilla de correo",
         icon: 'success',
@@ -37,9 +43,9 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
           )
           return "http://localhost:3000/"
         }
-      })
+      }) 
       return setTimeout(() => "http://localhost:3000/", 1)
-    }
+    }*/
   }
 
   useEffect(() => {
@@ -58,16 +64,16 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
-          setMessage("Payment succeeded!");
+          setMessage(t('checkOutForm2.succeeded'));
           break;
         case "processing":
-          setMessage("Your payment is processing.");
+          setMessage(t('checkOutForm2.processing'));
           break;
         case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
+          setMessage(t('checkOutForm2.requires_payment_method'));
           break;
         default:
-          setMessage("Something went wrong.");
+          setMessage(t('checkOutForm2.wentWrong'));
           break;
       }
     });
@@ -100,7 +106,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
-      setMessage("An unexpected error occurred.");
+      setMessage(t('checkOutForm2.unexpectedError'));
     }
 
     setIsLoading(false);
@@ -111,7 +117,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
       <PaymentElement id="payment-element" />
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pagar"}
+          {isLoading ? <div className="spinner" id="spinner"></div> : t('checkOutForm2.payNow')}
         </span>
       </button>
       {/* Show any error or success messages */}

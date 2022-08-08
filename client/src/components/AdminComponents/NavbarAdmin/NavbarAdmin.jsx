@@ -1,7 +1,9 @@
 import React from "react";
+import { useTranslate } from 'react-i18next';
 
 const NavbarAdmin = () => {
-  return <div>Herramientas de administrador</div>;
+  const { t } = useTranslate();
+  return <div>{t('navbarAdmin')}</div>;
 };
 
 export default NavbarAdmin;

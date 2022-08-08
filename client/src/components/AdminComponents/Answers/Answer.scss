@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+.qasContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.qasAllContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: $lightestColor;
+    margin: 10px;
+    padding: 10px;
+    width: 90%;
+    border-radius: 20px;
+}
+
+.productInfo{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    // background-color: $lightestColor;
+    align-items: center;
+    width: 40%;
+
+
+    h2{
+        padding: 5px;
+        font-family: $font;
+        font-size: 1.5rem;
+        color: $primaryColor;
+    }
+
+    img{
+        padding: 5px;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+}
+
+.question{
+    width: 60%;
+    .questionInfo{
+        color: $primaryColor;
+        font-family: $font;
+
+        .pending{
+            color: red;
+        }
+
+        .done{
+            color: green;
+
+        }
+    }
+}

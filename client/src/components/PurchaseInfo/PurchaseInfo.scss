@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato',
+sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+
+.purchaseInfoContainer {
+    display: flex;
+    flex-direction: column;
+    ;
+
+    .singlePurchaseContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: $lightestColor;
+        border-radius: 10px;
+        margin: 10px;
+
+        .purchaseCard {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+
+            .purchaseHeader {
+                display: flex;
+                flex-direction: column;
+                align-content: flex-start;
+                margin: 1%;
+                width: 20%;
+
+                h3 {
+                    font-size: 1rem;
+                    text-align: left;
+                    font-family: $font;
+                }
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                }
+            }
+
+            .purchaseInfo{
+                text-align: left;
+                color: $primaryColor;
+                font-family: $font;
+
+                h5{
+                    font-size: 0.8rem;
+                }
+
+                span{
+                    font-size: 0.7rem;
+                }
+            }
+
+            h4{
+                color: $primaryColor;
+                font-size: 1.5rem;
+                font-family: $font;
+            }
+        }
+
+        .purchaseFooter{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+
+            .valorationContainer{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+    }
+
+
+}

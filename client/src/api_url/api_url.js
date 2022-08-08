@@ -1,5 +1,6 @@
 // URL Ulises
-export const login_post = `http://localhost:3001/auth/login`;
+export const BASE_URL = "http://localhost:3001";
+export const login_post = `${BASE_URL}/auth/login`;
 export const register_post = `http://localhost:3001/auth/register`;
 export const get_one_user = `http://localhost:3001/auth/`;
 export const update_status = "http://localhost:3001/admin/status/";

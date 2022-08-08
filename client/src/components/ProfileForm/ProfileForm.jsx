@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
 
 import "./ProfileForm.scss";
@@ -9,10 +9,11 @@ import FileBase from "react-file-base64";
 import { update_user } from "../../api_url/api_url";
 
 export default function ProfileForm() {
+  const { t } = useTranslation();
   const history = useHistory();
 
   const [error, setError] = useState({
-    allFields: "All fields are required",
+    allFields: t('profileForm.errorAllFields'),
   });
   const [values, setValues] = useState({
     fullName: "",
@@ -65,7 +66,7 @@ export default function ProfileForm() {
                 <img src={values.image} alt="" />
               </div>
             ) : (
-              <label htmlFor="inputImage">Image:</label>
+              <label htmlFor="inputImage">{t('profileForm.inputImage')}</label>
             )}
             <FileBase
               type="image"
@@ -74,14 +75,14 @@ export default function ProfileForm() {
             />
           </div>
           <div className="container-input">
-            <label htmlFor="inputFullName">Name:</label>
+            <label htmlFor="inputFullName">{t('profileForm.inputFullName')}</label>
             <input
               className="form-input"
               type="text"
               id="inputFullName"
               value={values.fullName}
               name="fullName"
-              placeholder="Name..."
+              placeholder={t('profileForm.inputFullNamePlaceHolder')}
               onChange={onChange}
             />
           </div>
@@ -92,14 +93,14 @@ export default function ProfileForm() {
           )}
 
           <div className="container-input">
-            <label htmlFor="inputCountry">Country:</label>
+            <label htmlFor="inputCountry">{t('profileForm.inputCountry.label')}</label>
             <input
               className="form-input"
               type="text"
               id="inputCountry"
               value={values.country}
               name="country"
-              placeholder="Country"
+              placeholder={t('profileForm.inputCountry.placeHolder')}
               onChange={onChange}
             />
           </div>
@@ -109,14 +110,14 @@ export default function ProfileForm() {
           )}
 
           <div className="container-input">
-            <label htmlFor="inputProvince">Province:</label>
+            <label htmlFor="inputProvince">{t('profileForm.inputProvince.label')}</label>
             <input
               className="form-input"
               type="text"
               id="inputProvince"
               value={values.province}
               name="province"
-              placeholder="Province or State"
+              placeholder={t('profileForm.inputProvince.placeHolder')}
               onChange={onChange}
             />
           </div>
@@ -126,14 +127,14 @@ export default function ProfileForm() {
           )}
 
           <div className="container-input">
-            <label htmlFor="inputCity">City:</label>
+            <label htmlFor="inputCity">{t('profileForm.inputCity.label')}</label>
             <input
               className="form-input"
               type="text"
               id="inputCity"
               value={values.city}
               name="city"
-              placeholder="City"
+              placeholder={t('profileForm.inputCity.placeHolder')}
               onChange={onChange}
             />
           </div>
@@ -142,14 +143,14 @@ export default function ProfileForm() {
             <small className="errors">{error.city_length}</small>
           )}
           <div className="container-input">
-            <label htmlFor="inputStreet">Street:</label>
+            <label htmlFor="inputStreet">{t('profileForm.inputStreet.label')}</label>
             <input
               className="form-input"
               type="text"
               id="inputStreet"
               value={values.street}
               name="street"
-              placeholder="Street"
+              placeholder={t('profileForm.inputStreet.placeHolder')}
               onChange={onChange}
             />
           </div>
@@ -158,14 +159,14 @@ export default function ProfileForm() {
             <small className="errors">{error.street_length}</small>
           )}
           <div className="container-input">
-            <label htmlFor="inputPostalCode">Postal Code:</label>
+            <label htmlFor="inputPostalCode">{t('profileForm.postalCode.label')}</label>
             <input
               className="form-input"
               type="text"
               id="inputPostalCode"
               value={values.postalCode}
               name="postalCode"
-              placeholder="Postal Code:"
+              placeholder={t('profileForm.postalCode.placeHolder')}
               onChange={onChange}
             />
           </div>
@@ -178,11 +179,11 @@ export default function ProfileForm() {
           )}
           {Object.keys(error).length ? (
             <button className="btn-submit" type="submit" disabled={true}>
-              Upload Changes
+              {t('profileForm.uploadChanges')}
             </button>
           ) : (
             <button className="btn-submit" type="submit">
-              Upload Changes
+              {t('profileForm.uploadChanges')}
             </button>
           )}
           {error.allFields && (

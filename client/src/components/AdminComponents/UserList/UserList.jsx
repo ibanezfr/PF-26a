@@ -27,6 +27,7 @@ export default function UserList() {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

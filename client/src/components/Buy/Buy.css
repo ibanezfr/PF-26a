@@ -33,17 +33,17 @@
   text-align: center;
 }
 .Buy{
-  background-color: black;
+  background-color: #DFCED5;;
 }
 .modal-header{
-  border-bottom: black;
+  border-bottom: #DFCED5;;
 }
 .modal-body, .modal-header{
-  background-color: black;
+  background-color: #DFCED5;;
   
 }
 .modal-content{
-  background: black
+  background: #DFCED5;
 }
 #payment-element {
   margin-bottom: 24px;

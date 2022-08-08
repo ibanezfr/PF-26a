@@ -1,0 +1,332 @@
+{
+    "createCategory": {
+        "placeHolder1": "Category's name",
+        "create": "Create"
+    },
+    "categoryList": {
+        "headerName1": "Name",
+        "headerName2": "Modify",
+        "headerName3": "Category ID",
+        "headerName4": "Select",
+        "headerName5": "Delete"
+    },
+    "productsAdmin": "All categories",
+    "list": {
+        "headerName1": "Image",
+        "headerName2": "Name",
+        "headerName3": "Color",
+        "headerName4": "Category",
+        "headerName5": "Size",
+        "headerName6": "Stock",
+        "headerName7": "Rating",
+        "headerName8": "Status",
+        "headerName9": "Actions",
+        "headerName10": "Product ID",
+        "h5Title": "Manage products"
+    },
+    "homeAdmin": {
+        "totalUsers": "Total users",
+        "totalProducts": "Total products",
+        "recentAdded": "Recently added users",
+        "recentProducts": "Recently added products",
+        "created": "It was created:",
+        "added": "Added:"
+    },
+    "graphicsAdmin": {
+        "less1": "Less than $888",
+        "less2": "Less than $1600",
+        "major1": "Greater than or equal to  $2400",
+        "major2": "Greater than $3500"
+    },
+    "featuredAdmin": {
+        "spanComparison": "Last month comparison.",
+        "spanIncome": "Income",
+        "spanSells": "Sells",
+        "spanCosts": "Costs"
+    },
+    "answersAdmin": {
+        "h1": "Questions & Answers",
+        "h2": "There is not questions to anwswer."
+    },
+    "answerAdmin": {
+        "labelAnswer": "Response",
+        "btnAnswer": "Answer"
+    },
+    "sidebarAdmin": {
+        "spanLogo": "Admin Dashboard",
+        "pTitle": "Main",
+        "linkDashboard": "Dashboard",
+        "pLists": "LISTS",
+        "spanUsers": "Users",
+        "spanProducts": "Products",
+        "spanOrders": "Orders",
+        "spanSettings": "Settings",
+        "pUtils": "Tools",
+        "spanCreationForm": "Creation form",
+        "spanStats": "Statistics",
+        "spanNotis": "Notifications",
+        "pService": "SERVICE",
+        "spanSystem": "System",
+        "pUser": "USER",
+        "spanQuit": "Quit"
+    },
+    "navbarAdmin": "Herramientas de administrador",
+    "productCreationForm": {
+        "backButton": "Back to dashboard",
+        "h1Title": "Post your product:",
+        "legend1": "Enter title:",
+        "placeHolderLegend1": "Title...",
+        "legend2": "Enter price",
+        "placeHolderLegend2": "Price...",
+        "legend3": "Enter description:",
+        "placeHolderLegend3": "Description...",
+        "legend4": "Enter color:",
+        "placeHolderLegend4": "Color...",
+        "legend5": "Image 1:",
+        "legend6": "Image 2:",
+        "legend7": "Image 3:",
+        "legend8": "Image 4:",
+        "legend9": "Categories:",
+        "categorySelect": "--Choose categories--",
+        "legend10": "Size & Stock:",
+        "sizeSelect": "--Choose a size--",
+        "labelStock": "Stock:",
+        "preview": "Preview:",
+        "notFound": "Image not found",
+        "label1": "Categories:",
+        "sizeStock": "There are {{stock}} size {{size}} items."
+    },
+    "newCategory": {
+        "name": "Name...",
+        "submit": "Submit"
+    },
+    "cardCategory": {
+        "edit": "Modify"
+    },
+    "allCategories": {
+        "myCategories": "My categories",
+        "create": "Create category"
+    },
+    "favs": {
+        "noFavs": "There is no favorites."
+    },
+    "navbar": {
+        "home": "Home",
+        "login": "Login",
+        "profile": "Profile",
+        "admin-dashboard": "Admin Dashboard",
+        "favorites": "Favorites",
+        "logout": "Logout",
+        "navdropdown": "User",
+        "alert": {
+            "title": "You're not logged in",
+            "text": "To acces  your favorites list you must log in first!",
+            "confirmButtonText": "Log in",
+            "cancelButtonText": "Cancel"
+        }
+    },
+    "homepage": {
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "searchproducts": {
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "carrousel": {
+        "bestoutfits": "Best outfits!",
+        "bestdescription": "Find them on our website or in person on our store from monday until friday from 8:00AM to 6:00PM.",
+        "bestquality": "Best quality clothes!",
+        "bestOffer": "We carefully chose our products to make you the best offer.",
+        "missIt": "Are you going to miss this chance?",
+        "waiting": "We will waiting for you this week to enjoy awesome discounts."
+    },
+    "cart": {
+        "alert": {
+            "title": "You need to log in first",
+            "text": "In order to buy our products you need to login first!",
+            "confirmButtonText": "Log in"
+        },
+        "shoppingCartText": "Your shopping cart",
+        "upps": "Oops...",
+        "carritoVacio": "Your shopping cart is empty",
+        "seeProducts": "See products",
+        "totalPrice": "TOTAL PRICE $",
+        "continueShopping": "Continue shopping",
+        "clearCart": "Clear cart"
+    },
+    "checkOutForm": {
+        "cardAlert": {
+            "title1": "You must enter you card number.",
+            "title2": "Invalid card number."
+        },
+        "loginAlert": {
+            "title": "Your not logged in",
+            "text": "You must be logged in first to perfom this action",
+            "confirmButtonText": "Log in",
+            "cancelButtonText": "Cancelar"
+        },
+        "confirmationAlert": {
+            "title": "Purchase made succesfully!",
+            "text": "You will receive this information on your inbox",
+            "confirmButtonText": "Return homepage",
+            "cancelButtonText": "Cancel"
+        },
+        "errorAlert": {
+            "title": "<strong>HTML <u>Hubo un error</u></strong>",
+            "html": "<b>No se ha podido realizar el pago</b>"
+        },
+        "buy": "Buy"
+    },
+    "checkOutForm2": {
+        "succeeded": "Payment succeeded!",
+        "processing": "Your payment is processing.",
+        "requires_payment_method": "Your payment was not successful, please try again.",
+        "wentWrong": "Something went wrong.",
+        "unexpectedError": "An unexpected error occurred.",
+        "payNow": "Pay now"
+    },
+    "productItem": {
+        "size": "Size: ",
+        "stock": "Stock: ",
+        "add": "Add",
+        "remove": "Remove"
+    },
+    "search": {
+        "errorAlert": {
+            "title": "Oops...",
+            "text": "You must enter a keyword to perform the search!"
+        },
+        "placeHolder": "🔍 Search!"
+    },
+    "filters": {
+        "activeFilters": "Active Filters",
+        "lookingFor": "Find what you're looking for"
+    },
+    "footer": {
+        "p": "Group-08 Cohort-26A Henry Bootcamp 2022 All Rights Reserved"
+    },
+    "order": {
+        "orderBy": "Order by...",
+        "ascName": "Letters: A-Z",
+        "descName": "Letters: Z-A",
+        "ascPrice": "Most cheap ones",
+        "descPrice": "Most expensive ones"
+    },
+    "productCard": {
+        "details": "Details",
+        "fastPurchase": "Fast purchase"
+    },
+    "profileForm": {
+        "inputImage": "Profile picture:",
+        "inputFullName": "User name:",
+        "inputFullNamePlaceHolder": "Name...",
+        "inputCountry": {
+            "label": "Country: ",
+            "placeHolder": "Country..."
+        },
+        "inputProvince": {
+            "label": "Province: ",
+            "placeHolder": "Province or State..."
+        },
+        "inputCity": {
+            "label": "City: ",
+            "placeHolder": "City..."
+        },
+        "inputStreet": {
+            "label": "Street: ",
+            "placeHolder": "Street..."
+        },
+        "postalCode": {
+            "label": "Postal code: ",
+            "placeHolder": "Postal code..."
+        },
+        "uploadChanges": "Submit changes",
+        "errorAllFields": "All fields are required.",
+        "validate": {
+            "allFields": "All fields are required.",
+            "fullName": "Only number, letters and spaces are accepted"
+        }
+    },
+    "fastPurchase": {
+        "titleNotLoggedIn": "Your are not logged in yet",
+        "textNotLoggedIn": "To buy our products you must log in first!",
+        "size": "Choose a size",
+        "stock": "Stock:",
+        "enterQuantity": "Enter how many units you are searching for",
+        "continue": "Continue purchase"
+    },
+    "purchase": {
+        "data": "Data",
+        "question": "Where do you want your purchase to be sent?",
+        "country": "Country:",
+        "province": "Province or State:",
+        "city": "City:",
+        "street": "Street:",
+        "postalCode": "Postal Code:",
+        "phoneNumber": "Phone number:",
+        "totalPrice": "Total price: $",
+        "goBack": "Go back to cart"
+    },
+    "profile": {
+        "country": "Country:",
+        "province": "Province:",
+        "city": "City:",
+        "street": "Street:",
+        "postalCode": "Postal code:",
+        "editeProfile": "Modify profile",
+        "logOut": "Log out"
+    },
+    "login": {
+        "suspesion": "Your account have been suspended.",
+        "invalidCred": "Invalid credentials",
+        "reset": {
+            "email": "Write an email to reset your Password",
+            "sentEmail": "We sent you an email. Check your inbox"
+        },
+        "h1": "Log in",
+        "emailInput": "Email..",
+        "passwordInput": "Password...",
+        "login": "Log in",
+        "forgotPass": "Has you forgot your password?",
+        "notMember": "You're not member yet?",
+        "signUp": "Sing Up"
+    },
+    "register": {
+        "register": "Register",
+        "placeHolderEmail": "Your email...",
+        "placeHolderPassword": "Your password...",
+        "placeHolder2Password": "Repeat your password...",
+        "placeHolderName": "Your name...",
+        "notMatching": "The given passowords doesn't match with each other.",
+        "signUp": "Sign Up",
+        "already": "Do you already have an account?",
+        "signIn": "Log In"
+    },
+    "details": {
+        "titleSuccesCart": "Item added to cart",
+        "title": "Your not logged in",
+        "text": "To be able to save items on the cart you must log in first!",
+        "cancelButtonText": "Cancel",
+        "confirmButtonText": "Log In",
+        "title2": "Choose a size and quantity to continue",
+        "choseSize": "Choose a size",
+        "defaultValue": "Sizes",
+        "stock": "Stock:",
+        "labelStock": "Enter how many units you want",
+        "addToCart": "Add to cart"
+    },
+    "questionForm": {
+        "alert": {
+            "title": "You're not logged in",
+            "text": "To make a question you must be logged in first!",
+            "cancelButtonText": "Cancel",
+            "confirmButtonText": "Log In"
+        },
+        "title": "Title",
+        "question": "Question",
+        "makeQuestion": "Make a question",
+        "alsoAsked": "Also was asked:",
+        "noQuestion": "There is no questions."
+    }
+}
