@@ -138,8 +138,9 @@ router.put("/compras/:id", async (req, res) => {
 router.get("/compras/:id", async (req, res) => {
   let user = req.params.id;
   user = await User.findByPk(user, { include: Sell_order });
-
+//
   console.log(user.sell_orders)
+
   user = user.dataValues.sell_orders.map((order) => {
     return {
       id: order.id,
@@ -147,7 +148,7 @@ router.get("/compras/:id", async (req, res) => {
       amount: order.amount,
       orderStatus: order.orderStatus
     };
-  });
+  }); 
 
   return res.send(user);
 });
