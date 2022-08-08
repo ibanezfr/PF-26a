@@ -3,6 +3,7 @@ import { Box, CircularProgress, Fab } from "@mui/material";
 import { Check, Save } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 import axios from "axios";
+import { BASE_URL } from "../../../../api_url/api_url";
 
 const OrdersActions = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
@@ -13,12 +14,9 @@ const OrdersActions = ({ params, rowId, setRowId }) => {
     try {
       const { orderStatus, id } = params.row;
 
-      const result = await axios.put(
-        `http://localhost:3001/auth/compras/${id}`,
-        {
-          orderStatus,
-        }
-      );
+      const result = await axios.put(`${BASE_URL}/auth/compras/${id}`, {
+        orderStatus,
+      });
       if (result) {
         setSuccess(true);
         setRowId(null);
