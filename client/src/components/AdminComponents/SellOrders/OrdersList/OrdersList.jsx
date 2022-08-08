@@ -24,7 +24,6 @@ const OrdersList = ({ orders }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(orders);
   const columns = useMemo(
     () => [
       {
@@ -50,7 +49,7 @@ const OrdersList = ({ orders }) => {
         field: "product",
         headerName: "Products",
         type: "string",
-        width: 250,
+        width: 350,
       },
       {
         field: "amount",

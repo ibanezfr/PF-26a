@@ -14,7 +14,7 @@ import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const SidebarAdmin = () => {
   const history = useHistory();
@@ -35,120 +35,97 @@ const SidebarAdmin = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">{t('sidebarAdmin.spanLogo')}</span>
+        <span className="logo">{t("sidebarAdmin.spanLogo")}</span>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">{t('sidebarAdmin.pTitle')}</p>
+          <p className="title">{t("sidebarAdmin.pTitle")}</p>
           <li>
             <Link to="/admin/home" className="link">
               <MdDashboardCustomize className="icons" />
-              <span>{t('sidebarAdmin.linkDashboard')}</span>
+              <span>{t("sidebarAdmin.linkDashboard")}</span>
             </Link>
           </li>
-          <p className="title">{t('sidebarAdmin.pLists')}</p>
+          <p className="title">{t("sidebarAdmin.pLists")}</p>
 
           <li>
             <Link to="/admin/users" className="link">
               <FaUserCircle className="icons" />
-              <span>{t('sidebarAdmin.spanUsers')}</span>
+              <span>{t("sidebarAdmin.spanUsers")}</span>
             </Link>
           </li>
           <li>
             <Link to="/admin/products" className="link">
               <SiProducthunt className="icons" />
-              <span>{t('sidebarAdmin.spanProducts')}</span>
+              <span>{t("sidebarAdmin.spanProducts")}</span>
             </Link>
           </li>
           <li>
-          <Link to="/admin/categorias" className="link">
-            <AiOutlineForm className="icons" />
-            <span>Formulario de categorias</span>
-          </Link>
-        </li>
-        <li>
-          <FaShoppingCart className="icons" />
-          <span>Órdenes</span>
-        </li>
-        <li>
-          <MdSettings className="icons" />
-          <span>Configuración</span>
-        </li>
-        <p className="title">Útiles</p>
-        <li>
-          <Link to="/admin/creation" className="link">
-            <AiOutlineForm className="icons" />
-            <span>Formulario de creación</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/admin/qas" className="link">
-            <AiOutlineForm className="icons" />
-            <span>Preguntas y respuestas</span>
-          </Link>
-        </li>
-        <li>
-          <MdQueryStats className="icons" />
-          <span>Estadísticas</span>
-        </li>
-        <li>
-          <MdNotifications className="icons" />
-          <span>Notificaciones</span>
-        </li>
-        <p className="title">SERVICIO</p>
+            <Link to="/admin/categorias" className="link">
+              <AiOutlineForm className="icons" />
+              <span>Categorias</span>
+            </Link>
+          </li>
+
           <li>
             <Link to="/admin/orders" className="link">
-
               <FaShoppingCart className="icons" />
-              <span>{t('sidebarAdmin.spanOrders')}</span>
+              <span>{t("sidebarAdmin.spanOrders")}</span>
             </Link>
-
-          </li >
-          <li>
-            <MdSettings className="icons" />
-            <span>{t('sidebarAdmin.spanSettings')}</span>
           </li>
-          <p className="title">{t('sidebarAdmin.pUtils')}</p>
+
+          <p className="title">{t("sidebarAdmin.pUtils")}</p>
+          <li>
+            <Link to="/admin/qas" className="link">
+              <AiOutlineForm className="icons" />
+              <span>Preguntas y respuestas</span>
+            </Link>
+          </li>
+
           <li>
             <Link to="/admin/creation" className="link">
               <AiOutlineForm className="icons" />
-              <span>{t('sidebarAdmin.spanCreationForm')}</span>
+              <span>{t("sidebarAdmin.spanCreationForm")}</span>
             </Link>
           </li>
           <li>
             <MdQueryStats className="icons" />
-            <span>{t('sidebarAdmin.spanStats')}</span>
+            <span>{t("sidebarAdmin.spanStats")}</span>
           </li>
           <li>
             <MdNotifications className="icons" />
-            <span>{t('sidebarAdmin.spanNotis')}</span>
+            <span>{t("sidebarAdmin.spanNotis")}</span>
           </li>
-          <p className="title">{t('sidebarAdmin.pService')}</p>
+          <p className="title">{t("sidebarAdmin.pService")}</p>
 
           <li>
             <MdSettingsSystemDaydream className="icons" />
-            <span>{t('sidebarAdmin.spanSystem')}</span>
+            <span>{t("sidebarAdmin.spanSystem")}</span>
           </li>
-          <p className="title">{t('sidebarAdmin.pUser')}</p>
+          <li>
+            <MdSettings className="icons" />
+            <span>{t("sidebarAdmin.spanSettings")}</span>
+          </li>
+          <p className="title">{t("sidebarAdmin.pUser")}</p>
 
           <li>
             <Link to="/profile" className="link">
               <ImProfile className="icons" />
-              <span>{t('sidebarAdmin.spanProfile')}</span>
+              <span>{t("sidebarAdmin.spanProfile")}</span>
             </Link>
           </li>
           <li onClick={handleLogout}>
             <RiLogoutBoxFill className="icons" />
-            <span>{t('sidebarAdmin.spanQuit')}</span>
+            <span>{t("sidebarAdmin.spanQuit")}</span>
           </li>
-        </ul >
-      </div >
+        </ul>
+      </div>
       <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
       </div>
-    </div >
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../redux/actions";
 import { grey } from "@mui/material/colors";
 import { useHistory } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function UserList() {
   const dispatch = useDispatch();
@@ -36,22 +36,21 @@ export default function UserList() {
     return !users.length ? dispatch(fetchUsers()) : null;
   }, [dispatch, users]);
 
-  console.log(users);
   const columns = useMemo(
     () => [
       {
         field: "image",
-        headerName: t('userList.avatar'),
+        headerName: t("userList.avatar"),
         width: 60,
         renderCell: (params) => <Avatar src={params.row.image} />,
         sortable: false,
         filterable: false,
       },
-      { field: "fullName", headerName: t('userList.name'), width: 170 },
-      { field: "email", headerName: t('userList.email'), width: 200 },
+      { field: "fullName", headerName: t("userList.name"), width: 170 },
+      { field: "email", headerName: t("userList.email"), width: 200 },
       {
         field: "admin",
-        headerName: t('userList.rol'),
+        headerName: t("userList.rol"),
         width: 100,
         type: "singleSelect",
         valueOptions: ["User", "Admin"],
@@ -59,23 +58,24 @@ export default function UserList() {
       },
       {
         field: "banned",
-        headerName: t('userList.status'),
+        headerName: t("userList.status"),
         width: 100,
         type: "singleSelect",
         valueOptions: ["Banned", "Active"],
         editable: true,
       },
 
-      { field: "id", headerName: t('userList.id'), width: 220 },
+      { field: "id", headerName: t("userList.id"), width: 220 },
       {
         field: "actions",
-        headerName: t('userList.actions'),
+        headerName: t("userList.actions"),
         type: "actions",
         renderCell: (params) => (
           <UserActions {...{ params, rowId, setRowId }} />
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [rowId]
   );
 
@@ -86,7 +86,7 @@ export default function UserList() {
         component="h3"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        {t('userList.manageUsers')}
+        {t("userList.manageUsers")}
       </Typography>
       <DataGrid
         columns={columns}
