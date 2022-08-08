@@ -20,19 +20,27 @@ const CreateCategory = () => {
         name,
       });
       setCategories({ name: "" });
+      alert("Categoria creada con Exito!");
     } catch (error) {
       console.log(error);
     }
   };
   const handleChange = (e) => {
     setCategories({ ...categories, [e.target.name]: e.target.value });
+    if (categories.length) {
+      return setErrors("Nombre demasiado corto");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Paper>
         <Grid item xs={true}>
-          <Typography variant="h6">Crear Categoria:</Typography>
+          {errors ? (
+            <Typography variant="h6">{errors}</Typography>
+          ) : (
+            <Typography variant="h6">Crear Categoria:</Typography>
+          )}
           <TextField
             type="text"
             placeholder="Nombre de la categoria"

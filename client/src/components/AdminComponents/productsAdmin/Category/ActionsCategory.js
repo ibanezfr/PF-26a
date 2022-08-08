@@ -24,6 +24,7 @@ export const ActionsUpdate = ({ params, rowId, setRowId }) => {
         setRowId(null);
       }
       setLoading(false);
+      alert("Categoria editada con exito");
     } catch (err) {
       console.log(err);
     }
@@ -96,6 +97,7 @@ export const ActionsDelete = ({ params, rowId, setRowId }) => {
         setRowId(null);
       }
       setLoading(false);
+      alert("Categoria eliminada con exito");
     } catch (err) {
       console.log(err);
     }

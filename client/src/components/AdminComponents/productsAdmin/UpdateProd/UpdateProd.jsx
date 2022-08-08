@@ -167,22 +167,25 @@ const UpdateProd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      name,
-      price,
-      description,
-      color,
-      image,
-      image2,
-      image3,
-      image4,
-      rating,
-      categories,
-      product_values,
-    } = input;
+    // const {
+    //   name,
+    //   price,
+    //   description,
+    //   color,
+    //   image,
+    //   image2,
+    //   image3,
+    //   image4,
+    //   rating,
+    //   categories,
+    //   product_values,
+    // } = input;
+    // console.log("HOLASD", input.product_values, input.categories);
+    console.log(input);
     try {
-      const { data } = await axios.put(`${BASE_URL}/products/update/${id}`, {
-        input,
+      const { data } = await axios.patch(
+        `${BASE_URL}/products/update/${id}`,
+        input
         // name,
         // price,
         // description,
@@ -194,7 +197,8 @@ const UpdateProd = () => {
         // rating,
         // categories,
         // product_values,
-      });
+      );
+
       console.log(data);
       setInput({
         name: "",
@@ -213,6 +217,28 @@ const UpdateProd = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      categories: input.categories.filter((g) => g !== e.target.name),
+    });
+  };
+
+  const handleDeleteProd_Values = (e) => {
+    e.preventDefault();
+
+    let size = e.target.name;
+    console.log(size);
+
+    setInput({
+      ...input,
+      product_values: input.product_values.filter(
+        (p) => p.size !== e.target.name
+      ),
+    });
   };
 
   return (
@@ -472,18 +498,29 @@ const UpdateProd = () => {
           )}
 
           <ul className="categories" id="categories-list">
-            {input.categories.join(", ")}
-            {/* {input.categories.map((elm, index) => {
-              return <li key={index}>{elm.name}</li>;
-            })} */}
+            {/* {input.categories.join(", ")} */}
+            {input.categories.map((elm, index) => (
+              <li key={index}>
+                {elm}{" "}
+                <button name={elm} onClick={(e) => handleDelete(e)}>
+                  x
+                </button>
+              </li>
+            ))}
           </ul>
           <ul className="size-stock">
             {input.product_values &&
               input.product_values.map((elm, index) => {
                 return (
                   <li key={index}>
-                    Hay <mark>{elm.stock}</mark> unidades del talle{" "}
-                    <mark>{elm.size}</mark>{" "}
+                    Hay <mark>{elm.stock}</mark> unidades del talle
+                    <mark>{elm.size}</mark>
+                    <button
+                      name={elm.size}
+                      onClick={(e) => handleDeleteProd_Values(e)}
+                    >
+                      x
+                    </button>
                   </li>
                 );
               })}

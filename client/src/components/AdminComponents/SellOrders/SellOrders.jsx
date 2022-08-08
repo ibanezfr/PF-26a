@@ -13,7 +13,7 @@ const SellOrders = () => {
 
   useEffect(() => {
     return !orders.length ? dispatch(getBuys()) : null;
-  }, [dispatch, orders]);
+  }, []);
 
   const amount = orders
     .map((e) => Number(e.amount))
