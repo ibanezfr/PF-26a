@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
 import heart from "../../images/heart.png";
+import historyPic from "../../images/historyPic.png"
 import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
@@ -107,7 +108,10 @@ function NavBar() {
               ))
             }
           </div>
-
+          <Nav.Link id="btnFav" className="navText" href="/purchases">
+            {/* {t('navbar.favorites')} */}
+            <img alt="none" className="favImageNav" src={historyPic}/>
+          </Nav.Link>
           <Nav.Link id="btnFav" className="navText" onClick={() => handleFavs()}>
             {/* {t('navbar.favorites')} */}
             <img alt="none" className="favImageNav" src={heart}/>
