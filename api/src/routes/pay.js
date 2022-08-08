@@ -72,7 +72,7 @@ router.post("/api/checkout", async (req, res) => {
       if (payment.status === "succeeded") {
         const newSellOrder = await Sell_order.create({
           amount: amount * 100,
-          product: formatObject(description).join("\n"),
+          product: formatObject(description).join("-"),
           country: shippingInfo.country,
           province: shippingInfo.province,
           city: shippingInfo.city,
