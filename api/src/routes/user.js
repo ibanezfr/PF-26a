@@ -71,10 +71,25 @@ router.get("/singlePurchase/:id", async (req, res) => {
     userId : id
   },});
 
+  // const prueba = allOrders.map(m=>{
+  //   return{
+  //   product: m.product.split("-"),
+  // }
+  // })
+
+  // console.log("prueba: ", prueba)
+
   const order = allOrders.map((order) => {
+    const separoProductos = order.product.split("-");
+    const productosSeparados = separoProductos.map(m=>{
+      const prueba = m.split(",");
+      return prueba
+    })
+    // console.log("prueba: ", productosSeparados)
+
     return {
       id: order.id,
-      product: order.product.split(","),
+      product: productosSeparados,
       amount: order.amount,
       orderStatus: order.orderStatus,
       date: order.date,
@@ -84,6 +99,8 @@ router.get("/singlePurchase/:id", async (req, res) => {
   //console.log(allOrders)
   return res.send(order);
 });
+
+
  //--------------------------ME TRAIGO LA INFORMACIÓN DE LAS COMPRAS--------------------------------- 
  
 router.put("/compras/:id", async (req, res) => {

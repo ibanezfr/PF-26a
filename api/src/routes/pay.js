@@ -61,15 +61,16 @@ router.post("/api/checkout/confirm", async (req, res) => {
         const userComprador = await User.findByPk(user) 
         const newSellOrder = await Sell_order.create({
           amount: amount * 100,
-          product: formatObject(description).join('\n'),
+          product: formatObject(description).join("-"),
           country: shippingInfo.country,
           province: shippingInfo.province,
           city: shippingInfo.city,
           street: shippingInfo.street,
           postalCode: shippingInfo.postalCode
         })
-        console.log(newSellOrder)
+        // console.log(newSellOrder)
         let userCompra = []
+
         if (description.length > 1) {
           userCompra = await Promise.all(description.map(async (p) => {
             return await Product.findByPk(p.id, {

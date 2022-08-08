@@ -99,15 +99,15 @@ function NavBar() {
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>
           </Nav>
+          <div className="btnDiv">
+            {// Este es el switcher para cambiar idiomas:
+              Object.keys(lngs).map((lng) => (
+                <Button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</Button>
+              ))
+            }
+          </div>
 
-          {// Este es el switcher para cambiar idiomas:
-
-            Object.keys(lngs).map((lng) => (
-              <Button id="btnLang" type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</Button>
-            ))
-          }
-
-          <Nav.Link id="btnLang" className="navText" onClick={() => handleFavs()}>
+          <Nav.Link id="btnFav" className="navText" onClick={() => handleFavs()}>
             {t('navbar.favorites')}
           </Nav.Link>
           <SearchBar />
