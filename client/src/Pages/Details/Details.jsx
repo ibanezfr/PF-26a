@@ -24,7 +24,7 @@ export default function Details() {
 
   let actualProduct = useSelector(state => state.detail)
 
-  console.log(actualProduct)
+  // console.log(actualProduct)
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   let favs = useSelector(state => state.favs);
@@ -39,6 +39,10 @@ export default function Details() {
     dispatch(bringSize(params.id))
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart, dispatch, params.id]);
+
+  useEffect(() => {
+    return () => dispatch(cleanProduct());
+  },[]);
 
   const [newCart, setNewCart] = useState({
     id: "",
