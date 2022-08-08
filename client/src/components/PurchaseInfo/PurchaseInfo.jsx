@@ -10,6 +10,7 @@ export default function PurchaseInfo() {
     const dispatch = useDispatch();
     const purchase = useSelector(state => state.singlePurchaseInfo)
 
+
     useEffect(() => {
         dispatch(singlePurchase(user.uid));
     }, [dispatch]);
@@ -62,16 +63,25 @@ export default function PurchaseInfo() {
                                         )
                                     })}
                                     </div>
+                                    <div className='mapContainer'>{m.idProducts.map(p => {
+                                            return (
+                                                <button className='btnPrincipal'><Link to={`/details/${p[0]}`}>Ver producto</Link></button>
+                                            )
+                                        })}
+                                        </div>
+                                    {
+                                        m.orderStatus === 'pending' ? <div>{null}</div> : 
+                                        <div className='mapContainer'>{m.idProducts.map(p => {
+                                            return (
+                                                <button className='btnPrincipal'><Link to={`/${p[0]}`}>Valorar</Link></button>
+                                            )
+                                        })}
+                                        </div>
+                                    }
                                 </div>
                                 <div className='dateContainer'>
                                     <span>Fecha de compra: {m.date}</span>
                                 </div>
-                            </div>
-                            <div className='purchaseFooter'>
-                                {
-                                    m.orderStatus === 'pending' ? <div><span>Ya podés pasar a retirar tu producto</span></div> :
-                                        <div className='valorationContainer'><span>Danos tu valoración</span><button><Link>Valorar Producto</Link></button></div>
-                                }
                             </div>
                         </div>
                     )

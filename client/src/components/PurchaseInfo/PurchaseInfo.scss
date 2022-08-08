@@ -41,6 +41,7 @@ $lightestColor: #F2F2F2;
                 }
             }
 
+
             .purchaseHeader {
                 display: flex;
                 flex-direction: row;
@@ -136,6 +137,16 @@ $lightestColor: #F2F2F2;
             .valorationContainer {
                 display: flex;
                 flex-direction: column;
+
+                .buttonsContainer{
+                    display: flex;
+                    flex-direction: row;
+
+                    .buttonTitleContainer{
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
             }
         }
 

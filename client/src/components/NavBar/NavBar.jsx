@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import carrito from "../../images/carrito.png";
+import heart from "../../images/heart.png";
 import SearchBar from "../Search/Search";
 import "./NavBar.css";
 import { useDispatch } from "react-redux";
@@ -108,7 +109,8 @@ function NavBar() {
           </div>
 
           <Nav.Link id="btnFav" className="navText" onClick={() => handleFavs()}>
-            {t('navbar.favorites')}
+            {/* {t('navbar.favorites')} */}
+            <img alt="none" className="favImageNav" src={heart}/>
           </Nav.Link>
           <SearchBar />
         </Navbar.Collapse>

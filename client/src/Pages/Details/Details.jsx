@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { addFavsToUser, addToCart, bringSize, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
+import { addFavsToUser, addToCart, bringSize, cleanProduct, getFavsFromUser, getProductsById, removeFavsFromUser } from "../../redux/actions";
 import './Detail.scss'
 import './QandA.scss'
 import { cartController, formatNumber } from "../../Utils";
@@ -30,6 +30,7 @@ export default function Details() {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
+    dispatch(cleanProduct())
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
