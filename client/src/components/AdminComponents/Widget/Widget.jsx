@@ -3,7 +3,7 @@ import "./Widget.scss";
 import { RiArrowUpCircleFill } from "react-icons/ri";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { MdMonetizationOn, MdAccountBalance } from "react-icons/md";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const Widget = ({ type, amount, ordersNumber }) => {
   let data;
@@ -15,36 +15,36 @@ const Widget = ({ type, amount, ordersNumber }) => {
   switch (type) {
     case "user":
       data = {
-        title: t('widget.user.title'),
+        title: t("widget.user.title"),
         isMoney: false,
-        link: t('widget.user.link'),
+        link: t("widget.user.link"),
         icon: <FaUserCircle className="icon" />,
       };
       break;
 
     case "order":
       data = {
-        title: t('widget.order.title'),
+        title: t("widget.order.title"),
         isMoney: false,
-        link: t('widget.order.link'),
+        link: t("widget.order.link"),
         icon: <FaShoppingCart className="icon" />,
       };
       break;
 
     case "earning":
       data = {
-        title: t('widget.earning.title'),
+        title: t("widget.earning.title"),
         isMoney: true,
-        link: t('widget.earning.link'),
+        link: t("widget.earning.link"),
         icon: <MdMonetizationOn className="icon" />,
       };
       break;
 
     case "balance":
       data = {
-        title: t('widget.balance.title'),
+        title: t("widget.user.title"),
         isMoney: true,
-        link: t('widget.balance.link'),
+        link: t("widget.user.link"),
         icon: <MdAccountBalance className="icon" />,
       };
       break;
