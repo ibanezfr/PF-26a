@@ -25,7 +25,7 @@ export default function PurchaseInfo() {
                         <div className='singlePurchaseContainer'>
                             <div className='purchaseCard'>
                                 <div className='purchaseHeader'>
-                                    <div>{m.product.map(p => {
+                                    <div >{m.product.map(p => {
                                         return (
                                             <div className='itemContainer'>
                                                 <h3>{p[0]}</h3><br />
@@ -67,7 +67,11 @@ export default function PurchaseInfo() {
                                     </div>
                                     <div className='mapContainer'>{m.idProducts.map(p => {
                                         return (
-                                            <button className='btnPrincipal'><Link to={`/details/${p[0]}`}>Ver producto</Link></button>
+
+
+                                            <div className='itemContainer3'>
+                                                <button className='btnPrincipal btnProducto'><Link to={`/details/${p[0]}`}>Ver producto</Link></button>
+                                            </div>
                                         )
                                     })}
                                     </div>
@@ -75,7 +79,10 @@ export default function PurchaseInfo() {
                                         m.orderStatus === 'pending' ? <div>{null}</div> :
                                             <div className='mapContainer'>{m.idProducts.map(p => {
                                                 return (
-                                                    <button className='btnPrincipal'><Link to={`/review/${p[0]}`}>Valorar</Link></button>
+
+                                                    <div className='itemContainer2'>
+                                                        <button className='btnPrincipal '><Link to={`/${p[0]}`}>Valorar</Link></button>
+                                                    </div>
                                                 )
                                             })}
                                             </div>
