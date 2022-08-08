@@ -8,7 +8,6 @@ const stripe = new Stripe(apiKey);
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
-const cp = require('cookie-parser');
 
 //
 function formatDescription(description) {
