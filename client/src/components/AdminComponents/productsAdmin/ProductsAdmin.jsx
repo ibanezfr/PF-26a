@@ -1,11 +1,12 @@
 import { Paper, Box, Typography } from "@mui/material";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import React from "react";
 import Lista from "../List/List";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
 import CategoryList from "./Category/CategoryList";
 import CreateCategory from "./Category/CreateCategory";
 import "./ProductsAdmin.scss";
+import { useEffect } from "react";
 const ProductsAdmin = () => {
   const { t } = useTranslation();
   return (
@@ -27,7 +28,7 @@ const ProductsAdmin = () => {
           <CreateCategory />
 
           <Paper elevation={3} sx={{ p: 3, gridColumn: "1/3", width: 1 }}>
-            <Typography variant="h6">{t('productsAdmin')}</Typography>
+            <Typography variant="h6">{t("productsAdmin")}</Typography>
             {/* <Box
               sx={{
                 display: "flex",

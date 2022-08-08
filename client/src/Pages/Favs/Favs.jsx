@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getFavsFromUser, removeFavsFromUser } from '../../redux/actions';
 import FavItem from './FavItem';
 import { useTranslation } from 'react-i18next';
+import "./Favs.scss";
 
 export default function Favs() {
     const { user } = useAuth();
@@ -21,7 +22,7 @@ export default function Favs() {
     };
 
     return (
-        <>
+        <div className='div-f'>
             {
                 favs[0] ?
                     favs.map((p, i) => {
@@ -33,12 +34,13 @@ export default function Favs() {
                                 name={p.name}
                                 image={p.image}
                                 price={p.price}
+                                description={p.description}
                                 handleRemoveFav={handleRemoveFav}
                             />
                         )
                     })
                     : <h2>{t('favs.noFavs')}</h2>
             }
-        </>
+        </div>
     );
 };

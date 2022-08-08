@@ -24,24 +24,21 @@ for (let i = 0; i < months; i++) {
     rooms: 0,
   });
 }
-const AreaOrdersUsers = ({ orders }) => {
+const AreaOrdersUsers = ({ orders, users }) => {
   const [data, setData] = useState();
-
-  // console.log(orders.user);
-  console.log(orders);
 
   useEffect(() => {
     for (let i = 0; i < months; i++) {
       tempData[i].users = 0;
     }
-    orders.forEach((e) => {
+    users.forEach((e) => {
       for (let i = 0; i < months; i++) {
-        if (moment(tempData[i].date).isSame(e.user?.createdAt, "month"))
+        if (moment(tempData[i].date).isSame(e?.createdAt, "month"))
           return tempData[i].users++;
       }
     });
     setData([...tempData]);
-  }, [orders]);
+  }, [users]);
 
   useEffect(() => {
     for (let i = 0; i < months; i++) {

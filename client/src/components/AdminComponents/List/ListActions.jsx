@@ -13,7 +13,7 @@ const ListActions = ({ params, rowId, setRowId }) => {
     setLoading(true);
     const { name, color, status, id } = params.row;
     // console.log({ status });
-    const result = await axios.put(
+    const result = await axios.patch(
       `http://localhost:3001/products/update/${id}`,
       {
         status,

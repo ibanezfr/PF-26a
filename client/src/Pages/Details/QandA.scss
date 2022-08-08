@@ -7,13 +7,21 @@ $backGroundColor: #DFCED5;
 $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
+.formDiv{
 
-body{
-    background-color: #f0f0f0;
+    .questions{
+
+        .titleQuestion{
+            color: $primaryColor;
+            font-family: $font;
+        }
+    }
+
 }
 
 .questions{
-    width: 600px;
+    width: 70%;
+
 
     .question{
         width: 100%;

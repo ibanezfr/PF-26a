@@ -28,8 +28,14 @@ import {
   SET_PAYMENT_INFO,
   FETCH_CATEGORY,
   ANSWER_QUESTION,
+
+  INFO_PURCHASE,
+  GET_REVIEW,
+  GET_INFO_REVIEW,
+
   // INFO_PURCHASE,
   SINGLE_PURCHASE
+
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
@@ -72,8 +78,14 @@ const initialState = {
   ],
   paymentInfo: {},
   category: [],
+
+  purchaseInfo: [],
+  review:[],
+  infoReview:[],
+
   // purchaseInfo: [],
   singlePurchaseInfo: []
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -347,7 +359,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         singlePurchaseInfo: action.payload
       }
+     
 
+      case  GET_REVIEW:
+        return{
+          ...state,
+          review: action.payload
+        }
+      case GET_INFO_REVIEW:
+        return{
+          ...state,
+          infoReview: action.payload
+        }
 
     default:
       return state;
