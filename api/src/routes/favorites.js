@@ -6,9 +6,9 @@ const router = Router();
 router.get("/users", async (req, res) => {
     try {
         const users = await User.findAll();
-        return res.status(200).send(users);        
+        return res.status(200).send(users);
     } catch (error) {
-        return res.status(400).send({ msg: error.message });        
+        return res.status(400).send({ msg: error.message });
     }
 }); //ruta de prueba(despues se borra) Mica
 
@@ -42,10 +42,10 @@ router.post("/add", async (req, res) => {
                     model: Product,
                     attributes: [ "id", "name", "image", "price", "description" ],
                     through: { attributes: [] }
-                }                
+                }
             ]
         })
-        return res.status(200).send({ msg: "Producto añadido a Favoritos", res: userFavs});        
+        return res.status(200).send({ msg: "Producto añadido a Favoritos", res: userFavs });
     } catch (error) {
         return res.status(400).send({ msg: error.message });
     }
@@ -57,7 +57,7 @@ router.delete("/remove/:userID/:productID", async (req, res) => {
         const favsUser = await User.findByPk(userID);
 
         await favsUser.removeProduct(productID);
-        return res.status(200).send({msg: "Producto eliminado de Favoritos"});
+        return res.status(200).send({ msg: "Producto eliminado de Favoritos" });
 
     } catch (error) {
         return res.status(400).send({ msg: error.message });

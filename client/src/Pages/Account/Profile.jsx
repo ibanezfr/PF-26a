@@ -92,14 +92,15 @@ const Profile = () => {
                 {userDb?.postalCode}
               </p>
 
-              <ul>
+              <p className="details">
                 <h4>Compras: </h4>
                 {userDb?.sell_orders?.map((e) => (
-                  <li key={e.id}>
-                    <span>{e.product}</span>
-                  </li>
+                  <span key={e.id}>
+                    {e.product}.
+                    <br />
+                  </span>
                 ))}
-              </ul>
+              </p>
             </div>
           </div>
         </div>

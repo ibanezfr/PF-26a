@@ -286,7 +286,7 @@ router.put("/delete/:id", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -298,12 +298,50 @@ router.put("/update/:id", async (req, res) => {
     image2,
     image3,
     image4,
-    stock,
-    size,
+    product_values,
     categories,
     status,
   } = req.body;
+  console.log(product_values);
   try {
+    const findProd = await Product.findByPk(id, {
+      include: [
+        {
+          model: Category,
+          attributes: ["name", "id"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: Product_values,
+          attributes: ["size", "stock", "id"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+    findProd.categories.map(async (e) => {
+      await findProd.removeCategory(e.id);
+    });
+    console.log(findProd.product_values);
+    findProd.product_values.map(async (e) => {
+      await Product_values.destroy({ where: { id: e.id } });
+    });
+    // for (let i = 0; i < findProd.product_values.length; i++) {
+    //   let idProd = findProd.product_values[i].id;
+    //   await Product_values.update(
+    //     {
+    //       stock: stock,
+    //       size: size,
+    //     },
+    //     {
+    //       where: { id: idProd },
+    //     }
+    //   );
+    // }
+
     const newProduct = await Product.update(
       {
         name: name?.toUpperCase(),
@@ -315,9 +353,7 @@ router.put("/update/:id", async (req, res) => {
         image2,
         image3,
         image4,
-        stock,
         created: true,
-        size,
         status,
       },
       {
@@ -327,34 +363,38 @@ router.put("/update/:id", async (req, res) => {
       }
     );
 
+    if (product_values) {
+      console.log("VALUES");
+      for (let i = 0; i < product_values.length; i++) {
+        let pval = await Product_values.create({
+          size: product_values[i].size,
+          stock: product_values[i].stock,
+        });
+
+        await findProd.addProduct_values(pval);
+      }
+    }
+
     if (categories) {
-      const productUpdate = await Product.findOne({
-        where: {
-          id: id,
-        },
-      });
+      console.log("ENTRO");
       for (let i = 0; i < categories.length; i++) {
         let cat = await Category.findOne({
           where: {
             name: {
-              [Op.iLike]: `%${categories[i].name}%`,
+              [Op.iLike]: `%${categories[i]}%`,
             },
           },
         });
-
         if (cat) {
-          await productUpdate.addCategory(cat);
+          console.log("ENTRO222222222");
+          await findProd.addCategory(cat);
         }
       }
     }
 
-    return res.status(200).send({
-      msg: "Producto actualizado",
-    });
+    return res.status(200).send("prod");
   } catch (error) {
-    return res.status(400).send({
-      msg: error.message,
-    });
+    return res.status(500).send(error);
   }
 });
 

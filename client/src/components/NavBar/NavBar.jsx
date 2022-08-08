@@ -61,6 +61,23 @@ function NavBar() {
     })
   }
 
+  function handleHistory(){
+    user ? history.push("/purchases") : Swal.fire({
+      title: t('navbar.alert.title'),
+      text: t('navbar.alert.text'),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: t('navbar.alert.cancelButtonText'),
+      confirmButtonText: t('navbar.alert.confirmButtonText')
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/login")
+      }
+    })
+  }
+
   return (
     <Navbar className="NavBar" bg="light" expand="lg">
       <Container fluid>
@@ -108,7 +125,7 @@ function NavBar() {
               ))
             }
           </div>
-          <Nav.Link id="btnFav" className="navText" href="/purchases">
+          <Nav.Link id="btnFav" className="navText" onClick={() => handleHistory()}>
             {/* {t('navbar.favorites')} */}
             <img alt="none" className="favImageNav" src={historyPic}/>
           </Nav.Link>

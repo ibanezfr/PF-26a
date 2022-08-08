@@ -160,7 +160,29 @@ export default function ProductCreationForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // console.log(input);
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      categories: input.categories.filter((g) => g.name !== e.target.name),
+    });
+  };
+
+  const handleDeleteProd_Values = (e) => {
+    e.preventDefault();
+
+    let size = e.target.name;
+    console.log(size);
+
+    setInput({
+      ...input,
+      product_values: input.product_values.filter(
+        (p) => p.size !== e.target.name
+      ),
+    });
+  };
+
+  console.log(input);
   const submitButtonBoolean =
     input.name === "" ||
       input.price === 0 ||
@@ -260,6 +282,14 @@ export default function ProductCreationForm() {
                   multiple={false}
                   onDone={({ base64 }) => setInput({ ...input, image: base64 })}
                 />
+                {input.image && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
 
               <fieldset id="image2" className="fieldset">
@@ -272,6 +302,14 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image2: base64 })
                   }
                 />
+                {input.image2 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image2: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
             </div>
 
@@ -286,6 +324,15 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image3: base64 })
                   }
                 />
+
+                {input.image3 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image3: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
 
               <fieldset id="image4" className="fieldset">
@@ -298,6 +345,14 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image4: base64 })
                   }
                 />
+                {input.image4 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image4: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
             </div>
 
@@ -422,7 +477,6 @@ export default function ProductCreationForm() {
           {input.color.length !== 0 && <span>Color: {input.color}</span>}
 
           <br />
-
           {input.categories.length !== 0 && (
             <label htmlFor="categories-list" id="categories-list-label">
               {t('productCreationForm.label1')}
@@ -432,7 +486,14 @@ export default function ProductCreationForm() {
           <ul className="categories" id="categories-list">
             {input.categories &&
               input.categories.map((elm, index) => {
-                return <li key={index}>{elm.name}</li>;
+                return (
+                  <li key={index}>
+                    {elm.name}{" "}
+                    <button name={elm.name} onClick={(e) => handleDelete(e)}>
+                      x
+                    </button>
+                  </li>
+                );
               })}
           </ul>
           <ul className="size-stock">
@@ -441,6 +502,12 @@ export default function ProductCreationForm() {
                 return (
                   <li key={index}>
                     {t('productCreationForm.sizeStock', { stock: `${elm.stock}`, size: `${elm.size}` })}
+                    <button
+                      name={elm.size}
+                      onClick={(e) => handleDeleteProd_Values(e)}
+                    >
+                      x
+                    </button>
                   </li>
                 );
               })}

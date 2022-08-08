@@ -53,6 +53,11 @@ export function AuthProvider({ children }) {
   const resetPass = async (email) => {
     return await sendPasswordResetEmail(auth, email);
   };
+  //   const configurePassword = async(currentUser)=>{
+  //     const user
+  //  const newPassword = getASecureRandomPassword();
+
+  //   }
 
   useEffect(() => {
     const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {

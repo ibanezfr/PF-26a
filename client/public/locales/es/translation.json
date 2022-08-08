@@ -1,4 +1,32 @@
 {
+    "widget": {
+        "user": {
+            "title": "USUARIOS",
+            "link": "Ver todos los usuarios"
+        },
+        "order": {
+            "title": "ÓRDENES",
+            "link": "Ver todas las órdenes"
+        },
+        "earning": {
+            "title": "GANANCIAS",
+            "link": "Ver ganancias netas"
+        },
+        "balance": {
+            "title": "BALANCE",
+            "link": "Ver detalles"
+        }
+    },
+    "userList": {
+        "avatar": "Imagen de perfil",
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "rol": "Tipo de cuenta",
+        "status": "Estado de la cuenta",
+        "id": "ID del usuario",
+        "actions": "Acciones",
+        "manageUsers": "Administrar usuarios"
+    },
     "createCategory": {
         "placeHolder1": "Nombre de la categoría",
         "create": "Crear"
@@ -110,7 +138,7 @@
         "create": "Crear catgoría"
     },
     "favs": {
-        "noFavs": "No hay favoritos."
+        "noFavs": "Aún no seleccionaste ningún producto"
     },
     "navbar": {
         "home": "Inicio",
@@ -268,7 +296,8 @@
         "postalCode": "Código postal:",
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
-        "goBack": "Volver al carrito"
+        "goBack": "Volver al carrito",
+        "payButton":"¡Pagar!"
     },
     "profile": {
         "country": "País:",
