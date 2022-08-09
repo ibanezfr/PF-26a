@@ -15,6 +15,22 @@ export default function EditCategories() {
     fetchCategory(dispatch);
   }, []);
 
+  const [formError, setFormError] = useState(true);
+
+  const [isSubmit, setisSubmit] = useState(true);
+
+  function validString(data) {
+    let errors = {}
+    if (data.name.length < 1 || data.name.length > 255) errors.name = "El título debe tener más de 1 catácter y menos de 255";
+    if (typeof data.name !== "string") errors.name = "La información enviada debe ser de tipo string";
+
+    if ((Object.keys(errors).length) === 0) {
+      setisSubmit(false)
+    };
+
+    return errors;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name } = categories;
@@ -28,9 +44,14 @@ export default function EditCategories() {
     }
   };
   const handleChange = (e) => {
-
+    e.preventDefault();
+    setFormError(validString(categories));
+    if ((Object.keys(formError).length) !== 0) {
+      setisSubmit(true)
+    };
     setCategories({ ...categories, [e.target.name]: e.target.value });
   };
+
   const handleDelete = async () => {
     try {
       await axios.delete(`/categories/${id}`);
@@ -57,10 +78,14 @@ export default function EditCategories() {
             onChange={handleChange}
             required
           />
+          {
+            formError.name ? (<h4 className="error"><small>{formError.name}</small></h4>) : false
+          }
           <input
             type="submit"
             name="edit"
             className="buttonInput"
+            disabled={isSubmit}
           />
         </div>
       </form>
