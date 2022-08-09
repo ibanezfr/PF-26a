@@ -192,10 +192,7 @@ $lightestColor: #F2F2F2;
 }
 
 @media (max-width: 700px){
-    .father{
-        width: 400px;
-        margin-left: 5%;
-    }
+
     .containerDetail{
         width: 400px;
         .containerInfoDetail {
@@ -271,10 +268,10 @@ $lightestColor: #F2F2F2;
 }
 
 @media (max-width: 400px){
-    .father{
-        width: 250px;
-        margin-left: 5%;
-    }
+    // .father{
+    //     width: 250px;
+    //     margin-left: 5%;
+    // }
     .containerDetail{
         width: 250px;
         .containerInfoDetail {
