@@ -103,11 +103,15 @@ const Profile = () => {
               </p>
             </div>
           </div>
+          <Link to="/purchases">
+            <button className="btnProfile">Purchase history</button>
+          </Link>
         </div>
       </div>
       <Link to="/profile/form">
         <button className="btnProfile">{t("profile.editeProfile")}</button>
       </Link>
+
       <button className="btnProfile" onClick={handleLogout}>
         {t("profile.logOut")}
       </button>

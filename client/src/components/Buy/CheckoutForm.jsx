@@ -12,6 +12,7 @@ import "./Buy.css";
 import { async } from "@firebase/util";
 import { clearCart } from "../../redux/actions";
 import { useDispatch } from 'react-redux';
+import { BASE_URL } from "../../api_url/api_url";
 
 export default function CheckoutForm({ user, total, products, shippingInfo }) {
   const { t } = useTranslation();
@@ -57,7 +58,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/"
+        return_url: `${BASE_URL}`
       },
       redirect: "if_required"
     })
@@ -78,7 +79,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
         setIsLoading(false);
       }
     }
-    else{
+    else {
       await showSucces(user, total, products, shippingInfo)
     }
 
@@ -87,7 +88,7 @@ export default function CheckoutForm({ user, total, products, shippingInfo }) {
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-    
+
   };
 
   return (

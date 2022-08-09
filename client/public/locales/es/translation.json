@@ -1,4 +1,16 @@
 {
+    "ordersList": {
+        "avatarHeader": "Imagen de perfil",
+        "emailHeader": "Correo electrónico",
+        "userHeader": "ID del usuario",
+        "productsHeader": "Productos",
+        "amountHeader": "Precio $",
+        "dateHeader": "Fecha",
+        "idHeader": "ID de la orden",
+        "statusHeader": "Estado",
+        "actionsHeader": "Acciones",
+        "allOrders": "Todas las órdenes"
+    },
     "widget": {
         "user": {
             "title": "USUARIOS",
@@ -87,7 +99,9 @@
         "pLists": "LISTAS",
         "spanUsers": "Usuarios",
         "spanProducts": "Productos",
+        "spanCategories": "Categorías",
         "spanOrders": "Órdenes",
+        "spanQuestions": "Preguntas",
         "spanSettings": "Configuración",
         "pUtils": "Útiles",
         "spanCreationForm": "Formulario de creación",
@@ -297,7 +311,7 @@
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
         "goBack": "Volver al carrito",
-        "payButton":"¡Pagar!"
+        "payButton": "¡Pagar!"
     },
     "profile": {
         "country": "País:",
