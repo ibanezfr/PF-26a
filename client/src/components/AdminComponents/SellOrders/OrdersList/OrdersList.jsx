@@ -100,7 +100,7 @@ const OrdersList = ({ orders }) => {
         component="h4"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        All Orders
+        {t('ordersList.allOrders')}
       </Typography>
       <DataGrid
         columns={columns}

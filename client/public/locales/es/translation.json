@@ -8,7 +8,8 @@
         "dateHeader": "Fecha",
         "idHeader": "ID de la orden",
         "statusHeader": "Estado",
-        "actionsHeader": "Acciones"
+        "actionsHeader": "Acciones",
+        "allOrders": "Todas las órdenes"
     },
     "widget": {
         "user": {

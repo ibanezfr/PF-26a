@@ -2,13 +2,14 @@
     "ordersList": {
         "avatarHeader": "Avatar",
         "emailHeader": "Email address",
-        "userHeader":"User ID",
+        "userHeader": "User ID",
         "productsHeader": "Products",
         "amountHeader": "Amount $",
         "dateHeader": "Date",
         "idHeader": "Order ID",
         "statusHeader": "Status",
-        "actionsHeader": "Actions"
+        "actionsHeader": "Actions",
+        "allOrders": "All Orders"
     },
     "widget": {
         "user": {
