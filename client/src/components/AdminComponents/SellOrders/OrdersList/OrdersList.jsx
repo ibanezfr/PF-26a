@@ -30,7 +30,12 @@ const OrdersList = ({ orders }) => {
         field: "image",
         headerName: "Avatar",
         width: 60,
-        renderCell: (params) => <Avatar src={params.row.user.image} />,
+
+        renderCell: (params) => (
+          <Avatar src={params.row.user.image} />
+          // <Link to={`admin/order/${params.row.id}`}>
+          // </Link>
+        ),
         sortable: false,
         filterable: false,
       },
@@ -49,6 +54,11 @@ const OrdersList = ({ orders }) => {
         field: "product",
         headerName: "Products",
         type: "string",
+        renderCell: (params) =>
+          params.row.products
+            .map((e) => e.name)
+            .join(", ")
+            .trim(),
         width: 350,
       },
       {
