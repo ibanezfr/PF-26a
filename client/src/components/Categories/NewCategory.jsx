@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { fetchCategories } from "../../redux/actions/index.js"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'; 
+import './Categories.scss'
 
 
 export default function NewCategory() {
@@ -35,9 +36,13 @@ export default function NewCategory() {
 
 
   return (
-    <div className="container">
+    <div className="createCategoryContainer">
+      <div className="catTitleCont">
+        <h3>Creá una nueva categoría</h3>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="">
+        <div className="formCatCont">
+          <span>Ingresá el nombre:</span>
           <input
             type="text"
             name="name"
@@ -50,7 +55,7 @@ export default function NewCategory() {
             type="submit"
             name="create"
             value={t('newCategory.submit')}
-            className="" />
+            className="buttonInput" />
         </div>
       </form>
     </div>
