@@ -84,12 +84,7 @@ User.belongsToMany(Qa, { through: "user-qa" });
 Qa.belongsToMany(User, { through: "user-qa" });
 
 Product.belongsToMany(Review, { through: 'product-reviews' });
-=======
-User.belongsToMany(Qa, { through: "user-qa" });
-Qa.belongsToMany(User, { through: "user-qa" });
 
-Product.belongsToMany(Review, { through: "product-reviews" });
->>>>>>> 7aae648e5bea07ecc3cfae7fff848fa3fae8c6a9
 Review.belongsTo(Product);
 
 User.belongsToMany(Review, { through: "user-reviews" });
