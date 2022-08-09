@@ -29,6 +29,7 @@ export default function SearchBar() {
                 text: t('search.errorAlert.text')
             })
         } else {
+            localStorage.setItem('page', JSON.stringify(1));
             dispatch(getProductsByName(name));
             setRedirect(true);            //original
             dispatch(setSearchStatus(true)) //agregado-agus

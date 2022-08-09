@@ -33,6 +33,7 @@ function HomePage() {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCurrentPage(JSON.parse(localStorage.getItem("page")));
     //products = dispProds
   }, [cart, isSearchActive]);
 
@@ -77,10 +78,12 @@ function HomePage() {
       <div className="paginationContainer">
         <button
           className={`${currentPage === 1 ? "disabled" : ""}`}
+          disabled={currentPage === 1 ? true : false}
           id="btnPagination"
-          onClick={() =>
-            setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1))
-          }
+          onClick={() => {
+            setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1));
+            localStorage.setItem('page', JSON.stringify(currentPage-1));
+          }}
         >
           {t("homepage.prev")}
         </button>
@@ -89,12 +92,14 @@ function HomePage() {
           className={`${
             currentPage === numberOfPages.length ? "disabled" : ""
           }`}
+          disabled={currentPage === numberOfPages.length ? true : false}
           id="btnPagination"
-          onClick={() =>
-            setCurrentPage((prev) =>
+          onClick={() => {
+            setCurrentPage((prev) => 
               prev >= numberOfPages.length ? prev : prev + 1
-            )
-          }
+            );
+            localStorage.setItem('page', JSON.stringify(currentPage+1));
+          }}
         >
           {t("homepage.next")}
         </button>
