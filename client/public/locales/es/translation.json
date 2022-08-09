@@ -87,7 +87,9 @@
         "pLists": "LISTAS",
         "spanUsers": "Usuarios",
         "spanProducts": "Productos",
+        "spanCategories": "Categorías",
         "spanOrders": "Órdenes",
+        "spanQuestions": "Preguntas",
         "spanSettings": "Configuración",
         "pUtils": "Útiles",
         "spanCreationForm": "Formulario de creación",
@@ -297,7 +299,7 @@
         "phoneNumber": "Número de teléfono:",
         "totalPrice": "Precio total: $",
         "goBack": "Volver al carrito",
-        "payButton":"¡Pagar!"
+        "payButton": "¡Pagar!"
     },
     "profile": {
         "country": "País:",

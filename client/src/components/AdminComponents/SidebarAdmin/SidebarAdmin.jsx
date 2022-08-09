@@ -64,7 +64,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/admin/categorias" className="link">
               <AiOutlineForm className="icons" />
-              <span>Categorias</span>
+              <span>{t('sidebarAdmin.spanCategories')}</span>
             </Link>
           </li>
 
@@ -79,7 +79,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/admin/qas" className="link">
               <AiOutlineForm className="icons" />
-              <span>Preguntas</span>
+              <span>{t('sidebarAdmin.spanQuestions')}</span>
             </Link>
           </li>
 
