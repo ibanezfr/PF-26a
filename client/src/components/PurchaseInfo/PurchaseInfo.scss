@@ -23,6 +23,12 @@ $lightestColor: #F2F2F2;
     background: #794983;
     border: 2px solid;
     border-color: #794983;
+
+    .linkBtn{
+        text-decoration: none;
+        color: $lightestColor;
+        font-size: 0.9rem;
+    }
 }
 
 .btnPrincipal:hover {
@@ -139,6 +145,8 @@ $lightestColor: #F2F2F2;
                     font-family: $font;
                     height: 40px;
                     margin-top: 5px;
+                    color: $primaryColor;
+                    font-weight: 600;
                 }
 
                 img {

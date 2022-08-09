@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-$font: 'Lato', sans-serif;
+$font: 'Lato',
+sans-serif;
 
 $primaryColor: #794983;
 $secondaryColor: #9C9AC0;
@@ -7,40 +8,66 @@ $backGroundColor: #DFCED5;
 $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
-.qasContainer{
+.noQuestion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+    h2 {
+        color: $primaryColor;
+        font-family: $font;
+    }
+}
+
+.qasContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    h1 {
+        color: $primaryColor;
+        font-family: $font;
+        font-weight: 600;
+        margin-top: 20px;
+    }
 }
 
-.qasAllContainer{
+.qasAllContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: $lightestColor;
     margin: 10px;
     padding: 10px;
     width: 90%;
     border-radius: 20px;
+
 }
 
-.productInfo{
+.productInfo {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     // background-color: $lightestColor;
     align-items: center;
-    width: 40%;
+    width: 30%;
 
 
-    h2{
+    h2 {
         padding: 5px;
         font-family: $font;
         font-size: 1.5rem;
         color: $primaryColor;
     }
 
-    img{
+    img {
         padding: 5px;
         width: 200px;
         height: 200px;
@@ -50,19 +77,59 @@ $lightestColor: #F2F2F2;
 
 }
 
-.question{
+.question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 60%;
-    .questionInfo{
+
+    .questionInfo {
         color: $primaryColor;
         font-family: $font;
 
-        .pending{
+        .pending {
             color: red;
         }
 
-        .done{
+        .done {
             color: green;
 
         }
     }
+
+    form {
+        width: 80%;
+
+        .btn{
+            background-color: $primaryColor;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .qasContainer {
+        display: flex;
+        flex-direction: column;
+
+        .qasAllContainer {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            align-items: center;
+
+            .productInfo{
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: center;
+                width: 90%;
+
+                img{
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
 }

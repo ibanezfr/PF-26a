@@ -4,6 +4,7 @@ import { fetchCategory } from "../../redux/actions/index.js"
 import { Link } from "react-router-dom"
 import CardCategory from "./CardCategory.jsx";
 import { useTranslation } from 'react-i18next';
+import './Categories.scss'
 
 export default function AllCategories() {
     const dispatch = useDispatch();
@@ -15,13 +16,18 @@ export default function AllCategories() {
     }, [])
 
     return (
-        <div>
-            <h3>{t('allCategories.myCategories')}</h3>
+        <div className="allCategoriesContainer">
+            <div className="categoryTitleContainer">
+                <h3>{t('allCategories.myCategories')}</h3>
+            </div>
 
-            <Link to={"/admin/categoria/nueva"}>
-                {t('allCategories.create')}
-            </Link>
-            <div className="cardCategires">
+            <div className="CreateNewCategoryContainer">
+                <Link to={"/admin/categoria/nueva"}>
+                    <button>{t('allCategories.create')}</button>
+                </Link>
+            </div>
+
+            <div className="cardCategories">
 
                 {
                     allCategories?.map((cat) => {

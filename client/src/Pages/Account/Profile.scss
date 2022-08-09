@@ -19,6 +19,17 @@ $lightestColor: #F2F2F2;
 .user-info {
   justify-content: center;
   text-align: left;
+  background-color: $lightestColor;
+  box-shadow: 0 5px 10px $primaryColor;
+  border-radius: 20px;
+  padding: 3%;
+  padding-top: 1px;
+  margin-top: 1px;
+  margin: 4%;
+
+  img{
+    margin: 2%;
+  }
 }
 
 .profile {
@@ -31,9 +42,12 @@ $lightestColor: #F2F2F2;
 }
 
 .title {
+  background-color: $primaryColor;
   font-size: 1.5rem;
   font-weight: 700;
-  color: $primaryColor;
+  color: $lightestColor;
+  padding: 1%;
+  border-radius: 5px;
 }
 
 .details {
@@ -47,17 +61,16 @@ $lightestColor: #F2F2F2;
   flex-direction: column;
   text-align: center;
   // width: 60%;
-  background-color: $lightestColor;
+  // background-color: $lightestColor;
   margin: 2rem 20%;
-  box-shadow: 0 5px 10px $primaryColor;
   margin-top: 5%;
 
-  .user-info{
-    img{
-      position: absolute;
-      left: 10%;
-    }
-  }
+  // .user-info{
+  //   img{
+  //     position: absolute;
+  //     left: 10%;
+  //   }
+  // }
 }
 
 .div-details {

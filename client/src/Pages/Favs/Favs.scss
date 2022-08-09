@@ -14,6 +14,18 @@ $lightestColor: #F2F2F2;
     align-content: center;
     min-height: 80vh;
 
+    .noFav{
+        h2{
+            color: $primaryColor;
+            margin-top: 30px;
+            font-family: $font;
+        }
+
+        img{
+            width: 50%;
+        }
+    }
+
 
     .div-container {
         display: flex;

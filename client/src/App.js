@@ -79,11 +79,11 @@ function App() {
           />
           <Route path="/admin/categorias" exact component={AllCategories} />
           <Route path="/admin/qas" component={Answers} />
-
+ 
           <ProtectedRoutes>
             <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
-            <Route path="/purchases" component={PurchaseInfo} />
+            <Route path="/purchases" component={PurchaseInfo}/>
             <Route path="/review/:id" component={Review}/>
             <Route path="/profile" exact><Profile /></Route>
             <Route path="/profile/form" component={ProfileForm} />

@@ -21,14 +21,36 @@ export default function Answer({
         answer: ""
     })
 
-  const [pending, setPending] = useState("Pendiente");
+    const [pending, setPending] = useState("Pendiente")
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setAnswerConst({
-      [e.target.name]: e.target.value,
-    });
-  };
+    const [formError, setFormError] = useState(true);
+
+    const [isSubmit, setisSubmit] = useState(true);
+
+
+    function validString(data) {
+        let errors = {}
+        if (data.answer.length < 1 || data.answer.length > 255) errors.answer = "La respuesta debe tener más de 1 catácter y menos de 255";
+        if (typeof data.answer !== "string") errors.answer = "La información enviada debe ser de tipo string";
+
+        if ((Object.keys(errors).length) === 0) {
+            setisSubmit(false)
+        };
+
+        return errors;
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault();
+
+        setFormError(validString(answerConst));
+        if ((Object.keys(formError).length) !== 0) {
+            setisSubmit(true)
+        };
+        setAnswerConst({
+            [e.target.name]: e.target.value
+        })
+    }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,15 +79,21 @@ export default function Answer({
           {/* <span>{pending}</span> */}
         </div>
 
-                <Form className="form">
+                {
+                    pending === "Pendiente" ? 
+                    <Form className="form">
                     <Form.Group className="mb-3 formGroup" controlId="Question">
                         <Form.Label className="text">{t('answerAdmin.labelAnswer')}</Form.Label>
                         <Form.Control onChange={e => handleChange(e)} name={"answer"} value={answerConst.answer} as="textarea" rows={3} />
-                        <Button onClick={e => handleSubmit(e)} className="btn" size="sm">
+                        {
+                            formError.answer ? (<h4 className="error"><small>{formError.answer}</small></h4>) : false
+                        }
+                        <Button disabled={isSubmit} onClick={e => handleSubmit(e)} className="btn" size="sm">
                             {t('answerAdmin.btnAnswer')}
                         </Button>
                     </Form.Group>
-                </Form>
+                </Form> : null
+                }
             </div>
         </div>
     )
