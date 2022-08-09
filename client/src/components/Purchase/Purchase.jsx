@@ -64,7 +64,7 @@ export default function Purchase() {
             </div>
             <div>
                 <h2>{t('purchase.totalPrice')}{precioTotal ? formatNumber(precioTotal) : 0}</h2>
-                <Link to='/cart'><button>{t('purchase.goBack')}</button></Link>
+                <Link to='/cart'><Button>{t('purchase.goBack')}</Button></Link>
 
                 <Buy setShow={setShow} show={show} total={precioTotal} products={cart} shippingInfo={info} />
                 <Button variant="primary" onClick={() => setShow(true)}>

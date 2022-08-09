@@ -144,7 +144,9 @@ router.post("/api/checkout/confirm", async (req, res) => {
     return res.json({ message: "hubo un error" /* error.raw.message */ });
   }
 });
+//////////////////////////////////
 
+/////////////////////////////////
 router.post("/api/checkout", async (req, res) => {
   const { amount, description } = req.body;
   if (amount && description) {
