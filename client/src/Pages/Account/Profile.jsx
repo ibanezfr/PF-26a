@@ -54,9 +54,9 @@ const Profile = () => {
     <div className="wrapper">
       <div className="container">
         <div className="user-info">
-          <p className="title">
+          <h3 className="title">
             {userDb?.email} {userDb === null ? "Debes loguearte" : null}{" "}
-          </p>
+          </h3>
           {userDb?.image ? (
             <img src={userDb?.image} alt="" className="profile" />
           ) : (
