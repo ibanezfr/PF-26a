@@ -67,7 +67,6 @@ function App() {
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={ProductsAdmin} />
           <Route path="/admin/orders" component={SellOrders} />
-
           <Route path="/products/:id" component={UpdateProd} />
 
           <Route path="/admin/creation" component={ProductCreationForm} />

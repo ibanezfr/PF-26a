@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
-import { useTranslation} from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import Carousel from "react-bootstrap/Carousel";
 
 export function validate(input, name, value) {
@@ -35,29 +35,29 @@ export function validate(input, name, value) {
       !input[name]
         ? (errors[name] = noName)
         : !validName.test(input[name])
-          ? (errors[name] = invalidName)
-          : delete errors[name];
+        ? (errors[name] = invalidName)
+        : delete errors[name];
       break;
     case "description":
       !input[name]
         ? (errors[name] = noDescription)
         : !validDescription.test(input[name])
-          ? (errors[name] = invalidDescription)
-          : delete errors[name];
+        ? (errors[name] = invalidDescription)
+        : delete errors[name];
       break;
     case "price":
       !input[name]
         ? (errors[name] = noPrice)
         : !validPrice.test(input[name])
-          ? (errors[name] = invalidPrice)
-          : delete errors[name];
+        ? (errors[name] = invalidPrice)
+        : delete errors[name];
       break;
     case "color":
       !input[name]
         ? (errors[name] = noColor)
         : !validColor.test(input[name])
-          ? (errors[name] = invalidColor)
-          : delete errors[name];
+        ? (errors[name] = invalidColor)
+        : delete errors[name];
       break;
     default:
       break;
@@ -132,6 +132,13 @@ export default function ProductCreationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input.categories.length) {
+      return alert("Al menos 1 categoria");
+    }
+    if (!input.product_values.length) {
+      return alert("Size y stock son requeridos");
+    }
+
     dispatch(postProduct(input));
     setInput({
       name: "",
@@ -185,23 +192,23 @@ export default function ProductCreationForm() {
   console.log(input);
   const submitButtonBoolean =
     input.name === "" ||
-      input.price === 0 ||
-      input.description === "" ||
-      input.color === "" ||
-      input.image === "" ||
-      input.categories.length === 0 ||
-      input.product_values.length === 0
+    input.price === 0 ||
+    input.description === "" ||
+    input.color === "" ||
+    input.image === "" ||
+    input.categories.length === 0 ||
+    input.product_values.length === 0
       ? true
       : false;
 
   return (
     <div className="productCreationContainer">
       <Link to="/admin/home">
-        <button id="back-button">{t('productCreationForm.backButton')}</button>
+        <button id="back-button">{t("productCreationForm.backButton")}</button>
       </Link>
       <div className="productFormContainer">
         <div className="creation_form">
-          <h2 id="title">{t('productCreationForm.h1Title')}</h2>
+          <h2 id="title">{t("productCreationForm.h1Title")}</h2>
           <div id="error_container">
             <ul className="error">
               {errors && errors.name && (
@@ -221,11 +228,11 @@ export default function ProductCreationForm() {
           <form className="formContainer" onSubmit={(e) => handleSubmit(e)}>
             <div className="sepatarionContainer">
               <fieldset className="fieldset rowItems">
-                <legend>{t('productCreationForm.legend1')}</legend>
+                <legend>{t("productCreationForm.legend1")}</legend>
                 <input
                   className=""
                   type="text"
-                  placeholder={t('productCreationForm.placeHolderLegend1')}
+                  placeholder={t("productCreationForm.placeHolderLegend1")}
                   name="name"
                   id="name-input"
                   onChange={(e) => handleInputChange(e)}
@@ -233,11 +240,11 @@ export default function ProductCreationForm() {
               </fieldset>
 
               <fieldset className="fieldset rowItems">
-                <legend>{t('productCreationForm.legend2')}</legend>
+                <legend>{t("productCreationForm.legend2")}</legend>
                 <input
                   id="price-input"
                   type="number"
-                  placeholder={t('productCreationForm.placeHolderLegend2')}
+                  placeholder={t("productCreationForm.placeHolderLegend2")}
                   name="price"
                   min="0"
                   max="9999.99"
@@ -248,11 +255,11 @@ export default function ProductCreationForm() {
             </div>
 
             <fieldset className="fieldset">
-              <legend>{t('productCreationForm.legend3')}</legend>
+              <legend>{t("productCreationForm.legend3")}</legend>
               <textarea
                 id="textarea"
                 className=""
-                placeholder={t('productCreationForm.placeHolderLegend3')}
+                placeholder={t("productCreationForm.placeHolderLegend3")}
                 name="description"
                 rows="2"
                 cols="50"
@@ -261,12 +268,12 @@ export default function ProductCreationForm() {
             </fieldset>
 
             <fieldset className="fieldset">
-              <legend>{t('productCreationForm.legend4')}</legend>
+              <legend>{t("productCreationForm.legend4")}</legend>
               <input
                 id="color-input"
                 className=""
                 type="text"
-                placeholder={t('productCreationForm.placeHolderLegend4')}
+                placeholder={t("productCreationForm.placeHolderLegend4")}
                 name="color"
                 onChange={(e) => handleInputChange(e)}
               ></input>
@@ -274,7 +281,9 @@ export default function ProductCreationForm() {
 
             <div className="sepatarionContainer">
               <fieldset id="image1" className="fieldset">
-                <legend htmlFor="image1">{t('productCreationForm.legend5')}</legend>
+                <legend htmlFor="image1">
+                  {t("productCreationForm.legend5")}
+                </legend>
                 <FileBase
                   id="image1"
                   name="image1"
@@ -293,7 +302,9 @@ export default function ProductCreationForm() {
               </fieldset>
 
               <fieldset id="image2" className="fieldset">
-                <legend htmlFor="image2">{t('productCreationForm.legend6')}</legend>
+                <legend htmlFor="image2">
+                  {t("productCreationForm.legend6")}
+                </legend>
                 <FileBase
                   name="image2"
                   type="image"
@@ -315,7 +326,9 @@ export default function ProductCreationForm() {
 
             <div className="sepatarionContainer">
               <fieldset id="image3" className="fieldset">
-                <legend htmlFor="image3">{t('productCreationForm.legend7')}</legend>
+                <legend htmlFor="image3">
+                  {t("productCreationForm.legend7")}
+                </legend>
                 <FileBase
                   name="image3"
                   type="image"
@@ -336,7 +349,9 @@ export default function ProductCreationForm() {
               </fieldset>
 
               <fieldset id="image4" className="fieldset">
-                <legend htmlFor="image4">{t('productCreationForm.legend8')}</legend>
+                <legend htmlFor="image4">
+                  {t("productCreationForm.legend8")}
+                </legend>
                 <FileBase
                   name="image4"
                   type="image"
@@ -357,13 +372,17 @@ export default function ProductCreationForm() {
             </div>
 
             <fieldset id="categories" className="fieldset">
-              <legend htmlFor="categories">{t('productCreationForm.legend9')}</legend>
+              <legend htmlFor="categories">
+                {t("productCreationForm.legend9")}
+              </legend>
               <select
                 className=""
                 name="categories"
                 onChange={(e) => handleInputChange(e)}
               >
-                <option key={"21a"}>{t('productCreationForm.categorySelect')}</option>
+                <option key={"21a"}>
+                  {t("productCreationForm.categorySelect")}
+                </option>
                 {categoriesArray &&
                   categoriesArray?.map((elm, index) => {
                     return (
@@ -380,13 +399,17 @@ export default function ProductCreationForm() {
             <fieldset id="size_stock" className="fieldset">
               <div className="sepatarionContainer">
                 <div className="fieldset rowItems">
-                  <legend htmlFor="size_stock">{t('productCreationForm.legend10')}</legend>
+                  <legend htmlFor="size_stock">
+                    {t("productCreationForm.legend10")}
+                  </legend>
                   <select
                     className=""
                     name="size"
                     onChange={(e) => handleInputChange(e)}
                   >
-                    <option key={"22a"}>{t('productCreationForm.sizeSelect')}</option>
+                    <option key={"22a"}>
+                      {t("productCreationForm.sizeSelect")}
+                    </option>
                     {sizesArray &&
                       sizesArray?.map((elm, index) => {
                         return (
@@ -399,7 +422,7 @@ export default function ProductCreationForm() {
                 </div>
 
                 <div className="fieldset rowItems">
-                  <label>{t('productCreationForm.labelStock')}</label>
+                  <label>{t("productCreationForm.labelStock")}</label>
                   <select
                     className=""
                     name="stock"
@@ -418,14 +441,14 @@ export default function ProductCreationForm() {
               disabled={submitButtonBoolean}
               id="submit-button"
               type="submit"
-              value={t('productCreationForm.submit')}
+              value={t("productCreationForm.submit")}
               className="submitBtn"
             />
           </form>
         </div>
       </div>
       <div className="productView">
-        <h2 id="title">{t('productCreationForm.preview')}</h2>
+        <h2 id="title">{t("productCreationForm.preview")}</h2>
         <div className="background">
           <div className="imagesCreate">
             <Carousel fade>
@@ -434,7 +457,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image}
-                    alt={t('productCreationForm.notFound')}
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -443,7 +466,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image2}
-                    alt={t('productCreationForm.notFound')}
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -452,7 +475,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image3}
-                    alt={t('productCreationForm.notFound')}
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -461,7 +484,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image4}
-                    alt={t('productCreationForm.notFound')}
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -479,7 +502,7 @@ export default function ProductCreationForm() {
           <br />
           {input.categories.length !== 0 && (
             <label htmlFor="categories-list" id="categories-list-label">
-              {t('productCreationForm.label1')}
+              {t("productCreationForm.label1")}
             </label>
           )}
 
@@ -501,7 +524,10 @@ export default function ProductCreationForm() {
               input.product_values.map((elm, index) => {
                 return (
                   <li key={index}>
-                    {t('productCreationForm.sizeStock', { stock: `${elm.stock}`, size: `${elm.size}` })}
+                    {t("productCreationForm.sizeStock", {
+                      stock: `${elm.stock}`,
+                      size: `${elm.size}`,
+                    })}
                     <button
                       name={elm.size}
                       onClick={(e) => handleDeleteProd_Values(e)}

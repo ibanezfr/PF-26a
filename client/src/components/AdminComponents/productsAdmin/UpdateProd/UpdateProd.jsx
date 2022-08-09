@@ -167,6 +167,14 @@ const UpdateProd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!input.categories.length) {
+      return alert("Al menos 1 categoria");
+    }
+    if (!input.product_values.length) {
+      return alert("Size y stock son requeridos");
+    }
+
     // const {
     //   name,
     //   price,
@@ -213,7 +221,7 @@ const UpdateProd = () => {
         categories: [],
         product_values: [],
       });
-      // history.push("/admin/home");
+      history.push("/admin/home");
     } catch (error) {
       console.log(error);
     }

@@ -79,7 +79,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/admin/qas" className="link">
               <AiOutlineForm className="icons" />
-              <span>Preguntas y respuestas</span>
+              <span>Preguntas</span>
             </Link>
           </li>
 

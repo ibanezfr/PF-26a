@@ -49,6 +49,11 @@ const OrdersList = ({ orders }) => {
         field: "product",
         headerName: "Products",
         type: "string",
+        renderCell: (params) =>
+          params.row.products
+            .map((e) => e.name)
+            .join(", ")
+            .trim(),
         width: 350,
       },
       {
