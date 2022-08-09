@@ -138,7 +138,7 @@
         "create": "Crear catgoría"
     },
     "favs": {
-        "noFavs": "No hay favoritos."
+        "noFavs": "Aún no seleccionaste ningún producto"
     },
     "navbar": {
         "home": "Inicio",

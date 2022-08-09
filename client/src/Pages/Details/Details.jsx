@@ -14,6 +14,11 @@ import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
 import Review from "../../components/Review/Review";
+import fiveStars from '../../images/5Stars.png'
+import fourStars from '../../images/4Stars.png'
+import threeStars from '../../images/3Stars.png'
+import twoStars from '../../images/2Stars.png'
+import oneStars from '../../images/1Star.png'
 
 export default function Details() {
   const { t } = useTranslation();
@@ -33,7 +38,6 @@ export default function Details() {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
-    dispatch(cleanProduct())
     handleFavs();
     dispatch(getProductsById(params.id))
     dispatch(bringSize(params.id))
@@ -41,8 +45,8 @@ export default function Details() {
   }, [cart, dispatch, params.id]);
 
   useEffect(() => {
-    return () => dispatch(cleanProduct());
-  },[]);
+    return () => dispatch(cleanProduct())
+  }, [])
 
   const [newCart, setNewCart] = useState({
     id: "",
@@ -225,29 +229,42 @@ export default function Details() {
           </form>
         </div>
       </div >
-      <div>
-        <QuestionForm />
-       
+      <div className="scrollMaxContainer">
+        <div className="questionFormContainer">
+          <QuestionForm />
+
+        </div>
+        <div className="revewContainer scroll-container">
+          <div className="reviewContainer2">
+            <h2>Review</h2>
+            {
+              actualProduct.reviews?.map((info) => {
+                return (
+                  <div className="ratingInfo">
+                    {
+                      info.rating === 1 ? <div className="starsImageDiv"><img src={oneStars} alt='none' /></div> : null
+                    }
+                    {
+                      info.rating === 2 ? <div className="starsImageDiv"><img src={twoStars} alt='none' /></div> : null
+                    }
+                    {
+                      info.rating === 3 ? <div className="starsImageDiv"><img src={threeStars} alt='none' /></div> : null
+                    }
+                    {
+                      info.rating === 4 ? <div className="starsImageDiv"><img src={fourStars} alt='none' /></div> : null
+                    }
+                    {
+                      info.rating === 5 ? <div className="starsImageDiv"><img src={fiveStars} alt='none' /></div> : null
+                    }
+                    <h3>{info.title}</h3>
+                    <p>{info.description}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </div>
       </div>
-      <div className="">
-      <h2 className="">Review</h2>
-{
-  actualProduct.reviews?.map((info) => {
-    return (
-
-      <div>
-        <p>{info.rating}</p>
-        <p>{info.title}</p>
-        <p>{info.description}</p>
-      </div>
-
-
-    )
-
-  })
-}
-</div>
-
     </div >
   )
 };

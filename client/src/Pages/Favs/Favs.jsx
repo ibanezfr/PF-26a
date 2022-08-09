@@ -5,6 +5,7 @@ import { getFavsFromUser, removeFavsFromUser } from '../../redux/actions';
 import FavItem from './FavItem';
 import { useTranslation } from 'react-i18next';
 import "./Favs.scss";
+import fav from '../../images/fav.gif'
 
 export default function Favs() {
     const { user } = useAuth();
@@ -39,7 +40,11 @@ export default function Favs() {
                             />
                         )
                     })
-                    : <h2>{t('favs.noFavs')}</h2>
+                    : 
+                    <div className='noFav'>
+                        <h2>{t('favs.noFavs')}</h2>
+                        <img src={fav} alt='none'  />
+                    </div>
             }
         </div>
     );

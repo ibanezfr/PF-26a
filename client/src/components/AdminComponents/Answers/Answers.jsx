@@ -4,6 +4,7 @@ import { answerQuestion } from "../../../redux/actions";
 import Answer from "./Answer";
 import './Answer.scss'
 import { useTranslation } from 'react-i18next';
+import question from '../../../images/question.png'
 
 export default function Answers() {
     const { t } = useTranslation();
@@ -33,7 +34,11 @@ export default function Answers() {
                         name={question.products.map(m => m.name)}
                         answer={question.answer}
                     />
-                }) : <div><h2>{t('answersAdmin.h2')}</h2></div>
+                }) : 
+                <div className="noQuestion">
+                    <h2>{t('answersAdmin.h2')}</h2>
+                    <img src={question} alt='none' />
+                </div>
             }
             {/* <Answer /> */}
         </div>
