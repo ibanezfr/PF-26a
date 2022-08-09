@@ -1,4 +1,15 @@
 {
+    "ordersList": {
+        "avatarHeader": "Avatar",
+        "emailHeader": "Email address",
+        "userHeader":"User ID",
+        "productsHeader": "Products",
+        "amountHeader": "Amount $",
+        "dateHeader": "Date",
+        "idHeader": "Order ID",
+        "statusHeader": "Status",
+        "actionsHeader": "Actions"
+    },
     "widget": {
         "user": {
             "title": "USERS",
@@ -87,9 +98,9 @@
         "pLists": "LISTS",
         "spanUsers": "Users",
         "spanProducts": "Products",
-        "spanCategories":"Categories",
+        "spanCategories": "Categories",
         "spanOrders": "Orders",
-        "spanQuestions":"Questions",
+        "spanQuestions": "Questions",
         "spanSettings": "Settings",
         "pUtils": "Tools",
         "spanCreationForm": "Creation form",

@@ -1,4 +1,15 @@
 {
+    "ordersList": {
+        "avatarHeader": "Imagen de perfil",
+        "emailHeader": "Correo electrónico",
+        "userHeader": "ID del usuario",
+        "productsHeader": "Productos",
+        "amountHeader": "Precio $",
+        "dateHeader": "Fecha",
+        "idHeader": "ID de la orden",
+        "statusHeader": "Estado",
+        "actionsHeader": "Acciones"
+    },
     "widget": {
         "user": {
             "title": "USUARIOS",

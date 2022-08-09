@@ -10,7 +10,7 @@
 //   const getOrder = async () => {
 //     try {
 //       const orders = await axios.get(
-//         `http://localhost:3001/auth/compras/${id}`
+//         `${BASE_URL}/auth/compras/${id}`
 //       );
 //       setData(orders.data);
 //       console.log(orders.data);
