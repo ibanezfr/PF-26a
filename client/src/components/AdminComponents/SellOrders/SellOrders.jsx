@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Paper, Box, Typography } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
 import OrdersList from "./OrdersList/OrdersList";
 import "../productsAdmin/ProductsAdmin.scss";
