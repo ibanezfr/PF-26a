@@ -92,7 +92,7 @@ const Profile = () => {
                 {userDb?.postalCode}
               </p>
 
-              <p className="details">
+              {/* <p className="details">
                 <h4>Compras: </h4>
                 {userDb?.sell_orders?.map((e) => (
                   <span key={e.id}>
@@ -100,7 +100,7 @@ const Profile = () => {
                     <br />
                   </span>
                 ))}
-              </p>
+              </p> */}
             </div>
           </div>
           <Link to="/purchases">
