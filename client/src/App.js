@@ -18,7 +18,6 @@ import HomeAdmin from "./components/AdminComponents/HomeAdmin/HomeAdmin";
 import ProductCreationForm from "./components/ProductCreationForm/ProductCreationForm";
 import UserList from "./components/AdminComponents/UserList/UserList";
 
-import Purchase from "./components/Purchase/Purchase";
 import Favorites from "./Pages/Favs/Favs";
 
 import ProductsAdmin from "./components/AdminComponents/productsAdmin/ProductsAdmin";
@@ -67,7 +66,6 @@ function App() {
           <Route path="/admin/users" component={UserList} />
           <Route path="/admin/products" component={ProductsAdmin} />
           <Route path="/admin/orders" component={SellOrders} />
-
           <Route path="/products/:id" component={UpdateProd} />
 
           <Route path="/admin/creation" component={ProductCreationForm} />
@@ -81,7 +79,6 @@ function App() {
           <Route path="/admin/qas" component={Answers} />
  
           <ProtectedRoutes>
-            <Route path="/purchase" component={Purchase} />
             <Route path="/favorites" component={Favorites} />
             <Route path="/purchases" component={PurchaseInfo}/>
             <Route path="/review/:id" component={Review}/>

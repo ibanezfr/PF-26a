@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { useAuth } from "../../context/AuthContext";
 import { useTranslation } from 'react-i18next';
 import './QandA.scss'
+import gifEnvio from "../../images/giftEnvio.gif";
 
 export default function QuestionForm() {
   const { t } = useTranslation();
@@ -95,7 +96,18 @@ export default function QuestionForm() {
       title: "",
       description: ""
     })
-    dispatch(mapState)
+    dispatch(mapState);
+    Swal.fire({
+      position: 'center',
+      title: 'Envio exitoso',
+      text: "Pronto estaremos respondiendo",
+      imageUrl: gifEnvio,
+      imageWidth: 200,
+      imageHeight: 100,
+      imageAlt: 'Custom image',
+      showConfirmButton: false,
+      timer: 2000
+    })
   }
 
   // console.log("question after", question)
@@ -124,12 +136,28 @@ export default function QuestionForm() {
       <div className="questions">
         <h2 className="titleQuestion">{t('questionForm.alsoAsked')}</h2>
         {
-          QandA ? QandA.map((m, index) => {
-            return (
-              (index % 2) === 0 ? <div className="QandAContainer" key={index}><div className="question bubble"><h2>{m}</h2><p>{QandA[index + 1]}</p></div>
-                <div className="answer"><p>{answers[index]}</p></div> </div> : null
-            )
-          }) : <div className="questionNull">{t('questionForm.noQuestion')}</div>
+          QandA 
+            ? 
+              QandA.map((m, index) => {
+                return (
+                  (index % 2) === 0 
+                    ?
+                      <div className="QandAContainer" key={index}>
+                        <div className="question bubble">
+                          <h2>{m}</h2>
+                          <p>{QandA[index + 1]}</p>
+                        </div>
+                        <div className="answer">
+                          {
+                            answers[index] && <p>{answers[index]}</p>
+                          }
+                        </div>
+                      </div> 
+                    : null
+                )
+              })
+            : 
+              <div className="questionNull">{t('questionForm.noQuestion')}</div>
         }
       </div>
     </div>

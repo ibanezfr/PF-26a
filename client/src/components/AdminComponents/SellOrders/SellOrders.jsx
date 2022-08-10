@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Paper, Box, Typography } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
 import OrdersList from "./OrdersList/OrdersList";
 import "../productsAdmin/ProductsAdmin.scss";
@@ -41,7 +41,7 @@ const SellOrders = () => {
         >
           <Paper elevation={3} sx={{ p: 2, gridColumn: 3, gridRow: "1/4" }}>
             <Box>
-              <Widget amount={amount} type="earning" />
+              <Widget amount={amount/100} type="earning" />
               <Widget ordersNumber={orders.length} type="order" />
             </Box>
           </Paper>

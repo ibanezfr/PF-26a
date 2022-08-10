@@ -116,6 +116,7 @@ const Lista = () => {
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [rowId]
   );
 

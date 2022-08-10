@@ -4,6 +4,7 @@ import { Check, Save } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 
 import axios from "axios";
+import { BASE_URL } from "../../../api_url/api_url";
 
 const ListActions = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ const ListActions = ({ params, rowId, setRowId }) => {
     const { name, color, status, id } = params.row;
     // console.log({ status });
     const result = await axios.patch(
-      `http://localhost:3001/products/update/${id}`,
+      `${BASE_URL}/products/update/${id}`,
       {
         status,
         name,

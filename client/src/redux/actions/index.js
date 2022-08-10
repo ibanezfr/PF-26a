@@ -367,7 +367,7 @@ export function setPaymentInfo(data) {
 }
 
 //-----------------------------RUTAS PARA LOS DETALLES DE LAS COMPRAS ESPECÍFICO DE UN USUARIO------------------------
-// export const URL_INFO_PURCHASE = 'http://localhost:3001/auth/compras/'
+// export const URL_INFO_PURCHASE = `${BASE_URL}/auth/compras/`
 // export const INFO_PURCHASE = "INFO_PURCHASE"
 
 // export const purchaseInfo = (id) => {
@@ -380,7 +380,7 @@ export function setPaymentInfo(data) {
 //   };
 // }
 
-export const URL_SINGLE_PURCHASE = 'http://localhost:3001/auth/singlePurchase/'
+export const URL_SINGLE_PURCHASE = `${BASE_URL}/auth/singlePurchase/`
 export const SINGLE_PURCHASE = "SINGLE_PURCHASE"
 
 export const singlePurchase = (id) => {
@@ -406,7 +406,7 @@ export const getBuys = () => {
 
 export function getReview(id, rev) {
   return async (dispatch) => {
-    let review = await axios.post("http://localhost:3001/products/review/" + id, rev);
+    let review = await axios.post(`${BASE_URL}/products/review/` + id, rev);
     dispatch({
       type: GET_REVIEW,
       payload: review.data,
@@ -416,7 +416,7 @@ export function getReview(id, rev) {
 
 export function reviewProduct(id) {
   return async (dispatch) => {
-    let info = await axios.get("http://localhost:3001/products/reviews/" + id);
+    let info = await axios.get(`${BASE_URL}/products/reviews/` + id);
 
     dispatch({
       type: GET_INFO_REVIEW,

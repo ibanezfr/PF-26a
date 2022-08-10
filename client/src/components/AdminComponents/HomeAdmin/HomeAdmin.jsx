@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { fetchUsers } from "../../../redux/actions";
 import SidebarAdmin from "../SidebarAdmin/SidebarAdmin";
 import { Group, Checkroom } from "@mui/icons-material";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import {
   Avatar,
@@ -59,7 +59,7 @@ const HomeAdmin = () => {
           }}
         >
           <Paper elevation={3} sx={{ p: 3 }}>
-            <Typography variant="h4">{t('homeAdmin.totalUsers')}</Typography>
+            <Typography variant="h4">{t("homeAdmin.totalUsers")}</Typography>
             <Box
               sx={{
                 display: "flex",
@@ -72,7 +72,7 @@ const HomeAdmin = () => {
             </Box>
           </Paper>
           <Paper elevation={3} sx={{ p: 3 }}>
-            <Typography variant="h4">{t('homeAdmin.totalProducts')}</Typography>
+            <Typography variant="h4">{t("homeAdmin.totalProducts")}</Typography>
             <Box
               sx={{
                 display: "flex",
@@ -88,7 +88,7 @@ const HomeAdmin = () => {
           </Paper>
           <Paper elevation={3} sx={{ p: 2, gridColumn: 3, gridRow: "1/4" }}>
             <Box>
-              <Typography>{t('homeAdmin.recentAdded')}</Typography>
+              <Typography>{t("homeAdmin.recentAdded")}</Typography>
               <List>
                 {users.slice(0, 4).map((user, i) => (
                   <Box key={user.id}>
@@ -98,7 +98,7 @@ const HomeAdmin = () => {
                       </ListItemAvatar>
                       <ListItemText
                         primary={user?.name}
-                        secondary={`${t('homeAdmin.created')} ${moment(
+                        secondary={`${t("homeAdmin.created")} ${moment(
                           user?.createdAt
                         ).format("YYYY-MM-DD H:mm:ss")}`}
                       />
@@ -110,7 +110,7 @@ const HomeAdmin = () => {
             </Box>
             <Divider sx={{ mt: 3, mb: 3, opacity: 0.7 }} />
             <Box>
-              <Typography>{t('homeAdmin.recentProducts')}</Typography>
+              <Typography>{t("homeAdmin.recentProducts")}</Typography>
               <List>
                 {products.slice(0, 4).map((prod, i) => (
                   <Box key={prod.id}>
@@ -124,7 +124,7 @@ const HomeAdmin = () => {
                       </ListItemAvatar>
                       <ListItemText
                         primary={prod?.name}
-                        secondary={`${t('homeAdmin.added')} ${moment(
+                        secondary={`${t("homeAdmin.added")} ${moment(
                           prod?.createdAt
                         ).format("YYYY-MM-DD H:mm:ss")}`}
                       />

@@ -1,16 +1,16 @@
 const { Router } = require("express");
 const Stripe = require("stripe");
 const { User, Product, Sell_order, Product_values } = require("../db");
-const { Sequelize } = require("sequelize");
-const { Op } = require("sequelize");
 const apiKey = process.env.API_KEY_STRIPE;
 const stripe = new Stripe("sk_test_51LDapSLLyNiW7nbRzvLKhzYqa7ObQ26Ug4YVZ1ES4W2yNhfO1Uc6b7MGzdhvj2DS3f25ThZA3KJIDApWJRuBheXS004VSMOjp3");
 const router = Router();
 const { mailPayment } = require("../middlewares/middlewares.js");
 //const Product_values = require("../models/Product_values");
+const cp = require("cookie-parser");
 
 //
 function formatDescription(description) {
+
   return description.map(
     (p) =>
       "<tr>" +
@@ -39,6 +39,7 @@ function formatDescription(description) {
 }
 
 function formatObject(description) {
+
   return description.map(
     (p) =>
       p.name +
@@ -54,33 +55,31 @@ function formatObject(description) {
 }
 
 router.post("/api/checkout/confirm", async (req, res) => {
-  const { amount, description, user, shippingInfo } = req.body;
-
+  let { amount, description, user } = req.body;
+ 
   try {
-        const userComprador = await User.findByPk(user) 
-        const newSellOrder = await Sell_order.create({
-          amount: amount * 100,
-          product: formatObject(description).join("-"),
-          country: shippingInfo.country,
-          province: shippingInfo.province,
-          city: shippingInfo.city,
-          street: shippingInfo.street,
-          postalCode: shippingInfo.postalCode
-        })
-        // console.log(newSellOrder)
-        let userCompra = []
+    const userComprador = await User.findByPk(user);
+    const newSellOrder = await Sell_order.create({
+      amount: amount * 100,
+      product: formatObject(description).join("-"),
+    });
+    let userCompra = [];
 
-        if (description.length > 1) {
-          userCompra = await Promise.all(description.map(async (p) => {
-            return await Product.findByPk(p.id, {
-              include: [{
+    if (description.length > 1) {
+      userCompra = await Promise.all(
+        description.map(async (p) => {
+          return await Product.findByPk(p.id, {
+            include: [
+              {
                 model: Product_values,
                 where: { size: p.size },
                 attributes: ["id"],
-                through: { attributes: [] }
-              }]
-            })
-          }))
+                through: { attributes: [] },
+              },
+            ],
+          });
+        })
+      );
 
       userCompra.map(async (prod, i) => {
         await Product_values.decrement(
@@ -134,22 +133,24 @@ router.post("/api/checkout/confirm", async (req, res) => {
   }
   catch (error) {
     console.log(error);
-    return res.json({ message: "hubo un error"/* error.raw.message */ });
+    return res.json({ message: "hubo un error" /* error.raw.message */ });
   }
 });
+//////////////////////////////////
 
+/////////////////////////////////
 router.post("/api/checkout", async (req, res) => {
   const { amount, description } = req.body;
+
   if (amount && description) {
     const payment = await stripe.paymentIntents.create({
       amount: Number(amount) * 100,
       currency: "USD",
-      description: formatDescription(description).join(',\n'),
+      // description: formatDescription(description).join(',\n'),
       automatic_payment_methods: {
         enabled: true
       },
     });
-
     res.status(200).send({
       clientSecret: payment.client_secret,
     });

@@ -66,6 +66,8 @@ button:disabled {
   opacity: 0.5;
   cursor: default;
 } */
+
+
 .btnPrincipal {
   /* margin: 10%; */
   margin: 3%;
@@ -83,6 +85,8 @@ button:disabled {
   box-shadow: 0 4px 16px #794983;
   transition: all 0.2s ease;
 }
+
+
 /* spinner/processing state, errors */
 .spinner,
 .spinner:before,

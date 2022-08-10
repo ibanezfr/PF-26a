@@ -11,9 +11,10 @@ import dotenv from "dotenv";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './i18n.js';
+import { BASE_URL } from "./api_url/api_url";
 dotenv.config();
 
-axios.defaults.baseURL = /* process.env.REACT_APP_API || */ "http://localhost:3001";
+axios.defaults.baseURL = `${BASE_URL}`;
 
 
 

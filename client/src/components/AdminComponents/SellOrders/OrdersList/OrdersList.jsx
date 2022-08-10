@@ -5,8 +5,10 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import { grey } from "@mui/material/colors";
 import { useHistory } from "react-router-dom";
 import OrdersActions from "./OrdersActions";
+import { useTranslation } from 'react-i18next';
 
 const OrdersList = ({ orders }) => {
+  const { t } = useTranslation();
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
 
@@ -28,7 +30,7 @@ const OrdersList = ({ orders }) => {
     () => [
       {
         field: "image",
-        headerName: "Avatar",
+        headerName: t('ordersList.avatarHeader'),
         width: 60,
         renderCell: (params) => <Avatar src={params?.row?.user?.image} />,
         sortable: false,
@@ -36,39 +38,45 @@ const OrdersList = ({ orders }) => {
       },
       {
         field: "email",
-        headerName: "Email",
+        headerName: t('ordersList.emailHeader'),
         width: 150,
         renderCell: (params) => params.row.user.email,
       },
       {
         field: "userId",
-        headerName: "User ID",
+        headerName: t('ordersList.userHeader'),
         width: 100,
       },
       {
         field: "product",
-        headerName: "Products",
+        headerName: t('ordersList.productsHeader'),
         type: "string",
+        renderCell: (params) =>
+          params.row.products
+            .map((e) => e.name)
+            .join(", ")
+            .trim(),
         width: 350,
       },
       {
         field: "amount",
-        headerName: "Amount $",
+        headerName: t('ordersList.amountHeader'),
         type: "number",
+        renderCell: (params) => `$${params.row.amount / 100}`,
         width: 100,
       },
 
       {
         field: "date",
-        headerName: "Date",
+        headerName: t('ordersList.dateHeader'),
         width: 170,
         type: "date",
       },
 
-      { field: "id", headerName: "Id", width: 75 },
+      { field: "id", headerName: t('ordersList.idHeader'), width: 75 },
       {
         field: "orderStatus",
-        headerName: "Status",
+        headerName: t('ordersList.statusHeader'),
         width: 100,
         type: "singleSelect",
         valueOptions: ["pending", "accepted", "rejected"],
@@ -76,7 +84,7 @@ const OrdersList = ({ orders }) => {
       },
       {
         field: "actions",
-        headerName: "Actions",
+        headerName: t('ordersList.actionsHeader'),
         type: "actions",
         renderCell: (params) => (
           <OrdersActions {...{ params, rowId, setRowId }} />
@@ -87,13 +95,13 @@ const OrdersList = ({ orders }) => {
   );
 
   return (
-    <Box sx={{ height: 300, width: "100%" }}>
+    <Box sx={{ height: 400, width: "100%" }}>
       <Typography
         variant="h4"
         component="h4"
         sx={{ textAlign: "center", mt: 3, mb: 3 }}
       >
-        All Orders
+        {t('ordersList.allOrders')}
       </Typography>
       <DataGrid
         columns={columns}
