@@ -62,6 +62,7 @@ const OrdersList = ({ orders }) => {
         field: "amount",
         headerName: t('ordersList.amountHeader'),
         type: "number",
+        renderCell: (params) => `$${params.row.amount / 100}`,
         width: 100,
       },
 
@@ -94,7 +95,7 @@ const OrdersList = ({ orders }) => {
   );
 
   return (
-    <Box sx={{ height: 300, width: "100%" }}>
+    <Box sx={{ height: 400, width: "100%" }}>
       <Typography
         variant="h4"
         component="h4"

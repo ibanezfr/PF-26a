@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const COLORS = ["#00C49F", "#0088FE", "#FFBB28", "#FF8042"];
 
@@ -42,17 +42,18 @@ export default function Graphics({ products }) {
       between2400 = 0,
       morethan3500 = 0;
     products.forEach((prod) => {
-      if (prod.price > 800) return lessthan800++;
-      if (prod.price < 1500) return lessThan1600++;
-      if (prod.price <= 5000) return between2400++;
+      if (prod.price <= 800) return lessthan800++;
+      if (prod.price <= 1500) return lessThan1600++;
+      if (prod.price <= 4000) return between2400++;
       morethan3500++;
     });
     setCostGroups([
-      { name: t('graphicsAdmin.less1'), qty: lessthan800 },
-      { name: t('graphicsAdmin.less2'), qty: lessThan1600 },
-      { name: t('graphicsAdmin.major1'), qty: between2400 },
-      { name: t('graphicsAdmin.major2'), qty: morethan3500 },
+      { name: t("graphicsAdmin.less1"), qty: lessthan800 },
+      { name: t("graphicsAdmin.less2"), qty: lessThan1600 },
+      { name: t("graphicsAdmin.major1"), qty: between2400 },
+      { name: t("graphicsAdmin.major2"), qty: morethan3500 },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
   return (
     <Box

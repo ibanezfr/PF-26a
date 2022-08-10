@@ -46,6 +46,7 @@ export default function Details() {
   }, [cart, dispatch, params.id]);
 
   useEffect(() => {
+    window.scrollTo(0,0);
     return () => dispatch(cleanProduct())
   }, [])
 

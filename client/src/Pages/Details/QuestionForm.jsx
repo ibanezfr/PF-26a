@@ -149,7 +149,7 @@ export default function QuestionForm() {
                         </div>
                         <div className="answer">
                           {
-                            answers[index] === '' ? <p>pregunta pendiente</p> : <p>{answers[index]}</p>
+                            answers[index] && <p>{answers[index]}</p>
                           }
                         </div>
                       </div> 
