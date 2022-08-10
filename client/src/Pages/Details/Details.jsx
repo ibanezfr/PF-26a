@@ -19,6 +19,7 @@ import fourStars from '../../images/4Stars.png'
 import threeStars from '../../images/3Stars.png'
 import twoStars from '../../images/2Stars.png'
 import oneStars from '../../images/1Star.png'
+import sinStock from "../../images/sinStock.png"
 
 export default function Details() {
   const { t } = useTranslation();
@@ -192,6 +193,7 @@ export default function Details() {
           <div className="container2">
             <h2>{actualProduct.name}</h2>
             <p>{actualProduct.description}</p>
+            <h2>${formatNumber(actualProduct.price)}</h2>
           </div>
 
         </div>
@@ -213,16 +215,21 @@ export default function Details() {
                   })
                 }
               </select>
-              {
-                position !== 0 && <span>Stock{size[position]}</span>
-              }
+              <div className="condicional">
+                {
+                  position !== 0 && size[position] !== 0 && <span>Stock  {size[position]}</span>
+                }
+                {
+                  position !== 0 && size[position] === 0 && <img src={sinStock} alt= "Sin Stock"/>
+                }
+              </div>
             </div>
             <div className="containerMedium2">
               <label className="label">{t('details.labelStock')}</label>
               <input type="number" min={1} max={size[position]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
             </div>
             <div className="btnContainer">
-              <button onClick={(e) => hanldeSubmit(e)}>
+              <button  disabled={size[position] === 0 ? true : false} onClick={(e) => hanldeSubmit(e)}>
                 {t('details.addToCart')}
               </button>
             </div>

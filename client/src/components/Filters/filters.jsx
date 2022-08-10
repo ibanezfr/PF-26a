@@ -46,7 +46,7 @@ export default function Filters({ onClickFilter, onClickFieldset, products }) {
                                         ►{cat}
                                     </li>
                                 )
-                            } else return <></> //este tira el warning(ver de ponerle una key)
+                            } else return null 
                         })
                     }
                 </ul>

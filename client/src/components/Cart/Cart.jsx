@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeQuantity, clearCart, deleteFromCart } from "../../redux/actions";
 import ProductItem from "./ProductItem";
@@ -8,6 +8,8 @@ import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Swal from 'sweetalert2'
 import { useTranslation } from "react-i18next";
+import Buy from "../Buy/Buy";
+import Button from "react-bootstrap/esm/Button";
 
 export default function Cart() {
     const { t } = useTranslation();
@@ -17,6 +19,7 @@ export default function Cart() {
 
     const { user } = useAuth();
     const history = useHistory();
+    const [show, setShow] = useState(false);
     // JSON.parse(localStorage.getItem('cart'));
 
     useEffect(() => {
@@ -45,7 +48,7 @@ export default function Cart() {
         }
     };
 
-    const hanleSubmit = (e) => {
+    const handleSubmit = (e) => {
         if (!user) return Swal.fire({
             title: t('cart.alert.title'),
             text: t('cart.alert.text'),
@@ -60,8 +63,8 @@ export default function Cart() {
             }
         })
         e.preventDefault();
-        history.push("/purchase")
-    }
+        setShow(true);
+    };
 
 
     return (
@@ -95,9 +98,12 @@ export default function Cart() {
                     cart[0] &&
                     <div className="btnContainer">
                         <div className="totalText">{t('cart.totalPrice')}{formatNumber(precioTotal)}</div>
-                        <button className="btnPrincipal" onClick={e => hanleSubmit(e)}>
-                            {t('cart.continueShopping')}
+                        <button className="btnPrincipal" onClick={e => handleSubmit(e)}>
+                            {t('purchase.payButton')}
                         </button>
+                        {
+                            show && <Buy setShowPay={setShow} showPay={show} total={precioTotal} products={cart} user={user}/>
+                        }
                         <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>{t('cart.clearCart')}</button>
                     </div>
                 }
