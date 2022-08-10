@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRKQmdtT1X4QZdNLvQeiksAHJoCUcIdwVVJCSr5wSzYHQAH6s0GEYcWZtfKa6SnAUrpIBtAYVc00IIKUjC8f");
+const stripePromise = loadStripe("pk_test_51LDapSLLyNiW7nbRucG9MtXf0G01RRfTBW8RHjkXTwO6UBDEgtkygoEQ0SAEPB5ddULJrFagskqLSmVBqwD2yBSS00TM9tDGku");
 
 export default function Buy({ setShowPay, showPay, total, products, user, setShow }) {
   const [clientSecret, setClientSecret] = useState("");
