@@ -239,7 +239,6 @@ export default function Details() {
       <div className="scrollMaxContainer">
         <div className="questionFormContainer">
           <QuestionForm />
-
         </div>
         <div className="revewContainer scroll-container">
           <div className="reviewContainer2">

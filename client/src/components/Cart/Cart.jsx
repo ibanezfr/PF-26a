@@ -49,6 +49,7 @@ export default function Cart() {
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (!user) return Swal.fire({
             title: t('cart.alert.title'),
             text: t('cart.alert.text'),
@@ -62,9 +63,31 @@ export default function Cart() {
                 history.push("/login")
             }
         })
-        e.preventDefault();
         setShow(true);
     };
+
+    const handleConfirm = (e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "Tu carrito quedara vacio",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Cancelar",
+            confirmButtonText: 'Confirmar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(clearCart());
+                Swal.fire(
+                    'Eliminado',
+                    'Se eliminaron los productos del carrito',
+                    'success'
+                );
+            };
+          });
+    }
 
 
     return (
@@ -104,7 +127,7 @@ export default function Cart() {
                         {
                             show && <Buy setShowPay={setShow} showPay={show} total={precioTotal} products={cart} user={user}/>
                         }
-                        <button className="secondaryBtn" onClick={() => dispatch(clearCart())}>{t('cart.clearCart')}</button>
+                        <button className="secondaryBtn" onClick={(e) => handleConfirm(e)}>{t('cart.clearCart')}</button>
                     </div>
                 }
             </div>

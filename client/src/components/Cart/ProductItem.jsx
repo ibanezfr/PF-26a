@@ -16,7 +16,7 @@ export default function ProductItem({ data, changeQuantity, deleteAllFromCart })
             <div className="textContainer">
                 <h4>{name}</h4>
                 <h5>${formatNumber(price)} x {quantity} = ${formatNumber(price * quantity)}</h5>
-                <span>{t('productItem.size')}{size} <br /> {t('productItem.stock')}{stock}</span>
+                <span>{t('productItem.size')}{size} <br /> Stock {stock}</span>
             </div>
             <div className="buttonContainer">
                 <button className="actionBtn" onClick={(e) => changeQuantity(e, data, true)}>{t('productItem.add')}</button>
