@@ -8,14 +8,19 @@ import { useTranslation } from 'react-i18next';
 import { cartController, formatNumber } from '../../Utils';
 import { useAuth } from '../../context/AuthContext';
 import './FastPurchase.scss'
+import Buy from "../Buy/Buy"; 
+import sinStock from "../../images/sinStock.png";
 
 export default function FastPurchase({ setShow, show, image, name, price, id }) {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const history = useHistory();
     const { user } = useAuth();
-    let size = useSelector(state => state.size)
+    const size = useSelector(state => state.size);
+    const cart = useSelector(state => state.cart);
     const [position, setPosition] = useState(0);
+    const [showPay, setShowPay] = useState(false);
+
 
     useEffect(() => {
         if (show) {
@@ -66,7 +71,7 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
         if (bool === true) {
             dispatch(clearCart());
             dispatch(addToCart(newCart));
-            history.push('/purchase');
+            setShowPay(true);
         };
     };
 
@@ -83,8 +88,9 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
             <Modal
                 show={show}
                 onHide={() => setShow(false)}
-                dialogClassName="modal-90w"
+                dialogClassName="modal-90w modal-dialog-centered"
                 aria-labelledby="example-custom-modal-styling-title"
+                className={showPay && 'hidden'}
             >
                 <Modal.Header closeButton>
                 </Modal.Header>
@@ -112,19 +118,27 @@ export default function FastPurchase({ setShow, show, image, name, price, id }) 
                                         })
                                     }
                                 </select>
-                                {
-                                    position !== 0 && <h4>Stock {size[position]}</h4>
-                                }
+                                <div className="condicional">
+                                    {
+                                        position !== 0 && size[position] !== 0 &&<h4>Stock {size[position]}</h4>
+                                    }
+                                    {
+                                        position !== 0 && size[position] === 0 && <img src={sinStock} alt= "Sin Stock"/>
+                                    }
+                                </div>
                             </div>
-                            <div className='quantityCont'>
+                            <div className='quantityCont2'>
                                 <label>{t('fastPurchase.enterQuantity')}</label>
                                 <input type="number" min={1} max={size[1]} onChange={e => handleChange(e)} value={newCart.quantity}></input>
                             </div>
                         </form >
                     </div >
                     <div className='buttonModalContainer'>
-                        <button onClick={e => handleSubmit(e)}>{t('fastPurchase.continue')}</button>
+                        <button onClick={e => handleSubmit(e)}>{t('purchase.payButton')}</button>
                     </div>
+                    {
+                        showPay && <Buy setShowPay={setShowPay} showPay={showPay} total={newCart.quantity*price} products={cart} user={user} setShow={setShow}/>
+                    }
                 </Modal.Body >
             </Modal >
         </>
