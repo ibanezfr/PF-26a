@@ -1,6 +1,6 @@
 const { Category } = require("../db");
 const { Router } = require("express");
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 
 const router = Router();
 
@@ -15,13 +15,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const { name } = req.body;
-    const aux = await Category.findOne({ where: { name: name } });
+    const aux = await Category.findOne({ where: {name: {[Op.iLike]: name}} });
     if (aux) {
-        return res.status(400).send("La categoria ya existe");
+        return res.status(400).send({msg: "La categoria ya existe"});
     }
     try {
         await Category.create({ name: name });
-        return res.status(201).send("Categoria creada");
+        return res.status(201).send({msg: "Categoria creada"});
     } catch (error) {
         return res.status(400).send({ msg: error.message });
     }

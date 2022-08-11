@@ -40,7 +40,11 @@ $lightestColor: #F2F2F2;
 
 .purchaseInfoContainer {
     display: flex;
+    align-content: center;
+    justify-content: center;
     flex-direction: column;
+    min-height: 76vh;
+    
 
     .singlePurchaseContainer {
         display: flex;
@@ -78,13 +82,13 @@ $lightestColor: #F2F2F2;
                 flex-direction: row;
                 align-content: flex-start;
                 margin: 1%;
-                padding-left: 2%;
-                padding-right: 2%;
+                // padding-left: 2%;
+                // padding-right: 2%;
                 width: 100%;
 
                 div {
-                    padding-left: 2%;
-                    padding-right: 2%;
+                    // padding-left: 2%;
+                    // padding-right: 2%;
                     width: 100%;
                 }
 
@@ -100,7 +104,7 @@ $lightestColor: #F2F2F2;
                     flex-direction: row;
                     padding-bottom: 0;
                     height: 40px;
-                    width: 130px;
+                    width: 300px;
 
                 }
 

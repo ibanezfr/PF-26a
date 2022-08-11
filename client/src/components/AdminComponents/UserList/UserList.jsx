@@ -80,7 +80,7 @@ export default function UserList() {
   );
 
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ height: 400, width: "100%", minHeight: "73.5vh" }}>
       <Typography
         variant="h3"
         component="h3"

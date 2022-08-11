@@ -7,17 +7,18 @@ import { fetchCategory } from "../../../../redux/actions";
 import { ActionsUpdate, ActionsDelete } from "./ActionsCategory";
 import { useTranslation } from 'react-i18next';
 
-const CategoryList = () => {
+const CategoryList = ({render}) => {
   const { t } = useTranslation();
   const [pageSize, setPageSize] = useState(3);
   const [rowId, setRowId] = useState(null);
   const allCategories = useSelector((state) => state.category);
   const dispatch = useDispatch();
   console.log("hola", allCategories);
+
   useEffect(() => {
     dispatch(fetchCategory());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [render, rowId]);
 
   const columns = useMemo(
     () => [

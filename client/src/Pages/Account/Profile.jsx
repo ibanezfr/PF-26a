@@ -93,13 +93,13 @@ const Profile = () => {
               </p>
 
               <p className="details">
-                <h4>Compras: </h4>
-                {userDb?.sell_orders?.map((e) => (
+                <span>Compras: </span>
+                {/* {userDb?.sell_orders?.map((e) => (
                   <span key={e.id}>
                     {e.product}.
                     <br />
                   </span>
-                ))}
+                ))} */}
               </p>
             </div>
           </div>
