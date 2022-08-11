@@ -46,6 +46,10 @@ $lightestColor: #F2F2F2;
     background: #794983;
     border: 2px solid;
     border-color: #794983;
+
+    .linkBtn{
+        text-decoration: none;
+    }
   }
   .btnPrincipal:hover {
     color: rgba(255, 255, 255, 1);

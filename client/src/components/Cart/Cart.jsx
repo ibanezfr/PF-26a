@@ -113,7 +113,7 @@ export default function Cart() {
                                 <h3>{t('cart.carritoVacio')}</h3>
                             </div>
                             <div className="btnContainer">
-                                <button className="btnPrincipal"><Link to="/">{t('cart.seeProducts')}</Link></button>
+                                <button className="btnPrincipal"><Link className="linkBtn" to="/">{t('cart.seeProducts')}</Link></button>
                             </div>
                         </div>
                 }
