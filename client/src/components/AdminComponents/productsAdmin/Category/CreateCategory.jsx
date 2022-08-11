@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
 import axios from "axios";
 import { BASE_URL } from "../../../../api_url/api_url";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-const CreateCategory = () => {
+const CreateCategory = ({ render, setRender }) => {
   // const history = useHistory();
   const [errors, setErrors] = useState();
   const { t } = useTranslation();
@@ -16,20 +16,20 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name } = categories;
-
     try {
       await axios.post(`${BASE_URL}/categories`, {
         name,
       });
       setCategories({ name: "" });
       alert("Categoria creada con Exito!");
+      setRender(!render);
     } catch (error) {
       console.log(error);
     }
   };
   const handleChange = (e) => {
     setCategories({ ...categories, [e.target.name]: e.target.value });
-    if (categories.length) {
+    if (categories.length < 4) {
       return setErrors("Nombre demasiado corto");
     }
   };
@@ -45,16 +45,16 @@ const CreateCategory = () => {
           )}
           <TextField
             type="text"
-            placeholder={t('createCategory.placeHolder1')}
-            label="Name"
+            placeholder={t("createCategory.placeHolder1")}
+            label={errors || "Name"}
             name="name"
             variant="outlined"
             fullWidth
             onChange={handleChange}
             required
           />
-          <Button type="submit" variant="contained" color="info" fullWidth>
-            {t('createCategory.create')}
+          <Button type="submit" variant="contained" color="info" size="large">
+            {t("createCategory.create")}
           </Button>
         </Grid>
       </Paper>

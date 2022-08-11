@@ -33,9 +33,10 @@ function HomePage() {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    
-    setCurrentPage(JSON.parse(localStorage.getItem("page")));
-    //products = dispProds
+    localStorage.getItem("page") ?
+      setCurrentPage(JSON.parse(localStorage.getItem("page")))
+      :
+      setCurrentPage(1);
   }, [cart, isSearchActive]);
 
   
@@ -80,26 +81,28 @@ function HomePage() {
     <div>
       <div className="paginationContainer">
         <button
-          className={currentPage === 1 ? "disabled" : ""}
+          // Este es el botón PREV
+          className={currentPage === 1 ? "disabled" : ""} // `"disbled"`
           disabled={currentPage === 1 ? true : false}
           id="btnPagination"
           onClick={() => {
             setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1));
-            localStorage.setItem('page', JSON.stringify(currentPage-1));
+            localStorage.setItem('page', JSON.stringify(currentPage - 1));
           }}
         >
           {t("homepage.prev")}
         </button>
         <button id="btnPagination">{currentPage}</button>
         <button
+          // Este es el botón NEXT
           className={currentPage === numberOfPages.length ? "disabled" : ""}
           disabled={currentPage === numberOfPages.length ? true : false}
           id="btnPagination"
           onClick={() => {
-            setCurrentPage((prev) => 
+            setCurrentPage((prev) =>
               prev >= numberOfPages.length ? prev : prev + 1
             );
-            localStorage.setItem('page', JSON.stringify(currentPage+1));
+            localStorage.setItem('page', JSON.stringify(currentPage + 1));
           }}
         >
           {t("homepage.next")}
@@ -107,11 +110,11 @@ function HomePage() {
       </div>
       <div className="homeContainer">
         <div className="filter-container">
-            <Filters 
-                onClickFilter={onClickFilter} 
-                onClickFieldset={onClickFieldset} 
-                products={products} />
-            <Order onSelectChange={onSelectChange} />
+          <Filters
+            onClickFilter={onClickFilter}
+            onClickFieldset={onClickFieldset}
+            products={products} />
+          <Order onSelectChange={onSelectChange} />
         </div>
         <ProductsCards allProducts={currentPosts} />
       </div>

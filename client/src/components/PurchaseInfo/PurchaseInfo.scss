@@ -202,3 +202,15 @@ $lightestColor: #F2F2F2;
 
 
 }
+
+.purchaseEmpty{
+    h2{
+        color: $primaryColor;
+        font-family: $font;
+    }
+
+    img{
+        width: 300px;
+        height: 300px;
+    }
+}

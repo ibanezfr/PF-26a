@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { singlePurchase } from '../../redux/actions';
 import { Link } from "react-router-dom";
 import './PurchaseInfo.scss'
+import purchases from '../../images/purchase.png'
 
 export default function PurchaseInfo() {
     const { user } = useAuth();
@@ -94,7 +95,11 @@ export default function PurchaseInfo() {
                             </div>
                         </div>
                     )
-                }) : <div><h2>No se ha realizado ninguna compra</h2></div>
+                }) : 
+                <div className='purchaseEmpty'>
+                    <h2>No se ha realizado ninguna compra</h2>
+                    <img src={purchases} alt='none' className='imgPurchase'/>
+                </div>
             }
         </div>
     )

@@ -64,7 +64,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/admin/categorias" className="link">
               <AiOutlineForm className="icons" />
-              <span>Categorias</span>
+              <span>{t('sidebarAdmin.spanCategories')}</span>
             </Link>
           </li>
 
@@ -79,7 +79,7 @@ const SidebarAdmin = () => {
           <li>
             <Link to="/admin/qas" className="link">
               <AiOutlineForm className="icons" />
-              <span>Preguntas</span>
+              <span>{t('sidebarAdmin.spanQuestions')}</span>
             </Link>
           </li>
 
@@ -89,14 +89,14 @@ const SidebarAdmin = () => {
               <span>{t("sidebarAdmin.spanCreationForm")}</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <MdQueryStats className="icons" />
             <span>{t("sidebarAdmin.spanStats")}</span>
           </li>
           <li>
             <MdNotifications className="icons" />
             <span>{t("sidebarAdmin.spanNotis")}</span>
-          </li>
+          </li> */}
           <p className="title">{t("sidebarAdmin.pService")}</p>
 
           <li>
@@ -121,10 +121,10 @@ const SidebarAdmin = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom">
+      {/* <div className="bottom">
         <div className="colorOption"></div>
         <div className="colorOption"></div>
-      </div>
+      </div> */}
     </div>
   );
 };

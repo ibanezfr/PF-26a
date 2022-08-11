@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { grey } from "@mui/material/colors";
 import { fetchCategory } from "../../../../redux/actions";
 import { ActionsUpdate, ActionsDelete } from "./ActionsCategory";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-const CategoryList = () => {
+const CategoryList = ({ render }) => {
   const { t } = useTranslation();
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(4);
   const [rowId, setRowId] = useState(null);
   const allCategories = useSelector((state) => state.category);
   const dispatch = useDispatch();
@@ -17,23 +17,23 @@ const CategoryList = () => {
   useEffect(() => {
     dispatch(fetchCategory());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [render, rowId]);
 
   const columns = useMemo(
     () => [
       {
         field: "name",
-        headerName: t('categoryList.headerName1'),
+        headerName: t("categoryList.headerName1"),
         width: 200,
         renderCell: (params) => params.row.name,
 
         editable: true,
       },
 
-      { field: "id", headerName: t('categoryList.headerName3'), width: 300 },
+      { field: "id", headerName: t("categoryList.headerName3"), width: 300 },
       {
         field: "actionUpdate",
-        headerName: t('categoryList.headerName2'),
+        headerName: t("categoryList.headerName2"),
         type: "actions",
         renderCell: (params) => (
           <ActionsUpdate {...{ params, rowId, setRowId }} />
@@ -41,24 +41,26 @@ const CategoryList = () => {
       },
       {
         field: "select",
-        headerName: t('categoryList.headerName4'),
+        headerName: t("categoryList.headerName4"),
         type: "boolean",
+
         editable: true,
       },
       {
         field: "actionDelete",
-        headerName: t('categoryList.headerName5'),
+        headerName: t("categoryList.headerName5"),
         type: "actions",
         renderCell: (params) => (
           <ActionsDelete {...{ params, rowId, setRowId }} />
         ),
       },
     ],
-    [rowId,t]
+    [rowId, t]
   );
 
   return (
-    <Box sx={{ height: 300, width: 1 }}>
+    <Box sx={{ height: 400, width: 1, paddingTop: "2rem" }}>
+      <Typography variant="h6">{t("productsAdmin")}</Typography>
       <DataGrid
         columns={columns}
         rows={allCategories}

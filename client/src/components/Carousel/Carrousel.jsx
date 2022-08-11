@@ -22,8 +22,8 @@ function Carrousel() {
             object-fit='cover'
           />
           <Carousel.Caption>
-            <h3>{t('carrousel.bestoutfits')}</h3>
-            <p>{t('carrousel.bestdescription')}</p>
+            <h3 className="carrouselText">{t('carrousel.bestoutfits')}</h3>
+            <p className="carrouselText">{t('carrousel.bestdescription')}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="carrouselItem">
@@ -37,8 +37,8 @@ function Carrousel() {
           />
 
           <Carousel.Caption>
-            <h3>{t('carrousel.bestquality')}</h3>
-            <p>{t('carrousel.bestOffer')}</p>
+            <h3 className="carrouselText">{t('carrousel.bestquality')}</h3>
+            <p className="carrouselText">{t('carrousel.bestOffer')}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="carrouselItem">
@@ -52,8 +52,8 @@ function Carrousel() {
           />
 
           <Carousel.Caption>
-            <h3>{t('carrousel.missIt')}</h3>
-            <p>
+            <h3 className="carrouselText">{t('carrousel.missIt')}</h3>
+            <p className="carrouselText">
               {t('carrousel.waiting')}
             </p>
           </Carousel.Caption>

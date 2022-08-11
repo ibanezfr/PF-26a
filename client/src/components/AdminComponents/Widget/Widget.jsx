@@ -56,7 +56,7 @@ const Widget = ({ type, amount, ordersNumber }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && <b>$</b>} {amount ? amount : ordersNumber}
+          {data.isMoney && <b>$</b>} {amount ? amount / 100 : ordersNumber}
         </span>
         <span className="link">{data.link}</span>
       </div>

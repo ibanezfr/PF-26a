@@ -53,13 +53,13 @@ const Lista = () => {
       {
         field: "color",
         headerName: t("list.headerName3"),
-        width: 150,
+        width: 100,
         editable: true,
       },
       {
         field: "categories",
         headerName: t("list.headerName4"),
-        width: 250,
+        width: 175,
         renderCell: (params) =>
           params.row.categories
             .map((e) => e.name)
@@ -69,7 +69,7 @@ const Lista = () => {
       {
         field: "size",
         headerName: t("list.headerName5"),
-        width: 120,
+        width: 100,
         type: "string",
         renderCell: (params) =>
           params.row.product_values
@@ -81,7 +81,7 @@ const Lista = () => {
       {
         field: "stock",
         headerName: t("list.headerName6"),
-        width: 120,
+        width: 100,
         type: "string",
         renderCell: (params) =>
           params.row.product_values
@@ -121,7 +121,7 @@ const Lista = () => {
   );
 
   return (
-    <Box sx={{ height: 800, width: "100%" }}>
+    <Box sx={{ height: 800, width: 1 }}>
       <Typography variant="h5">{t("list.h5Title")}</Typography>
       <DataGrid
         columns={columns}
