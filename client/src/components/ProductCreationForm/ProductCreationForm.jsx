@@ -103,17 +103,27 @@ export default function ProductCreationForm() {
       setErrors(validate({ ...input, [name]: value }, name));
     }
     if (name === "size") {
-      setProductsValues({ [name]: value });
+      let sizes = input.product_values.map(prod =>prod.size)
+      if(!sizes.includes(value))
+        setProductsValues({ [name]: value });
     }
     if (name === "stock") {
       setProductsValues({ ...productsValues, [name]: value });
     }
     if (name === "categories") {
       if (input.categories.length < 3) {
-        setInput({
-          ...input,
-          categories: [...input.categories, { name: e.target.value }],
-        });
+        var aux = true
+        for (let i = 0; i < input.categories.length; i++) {
+          if ( input.categories[i].name === value) {
+            aux = false;
+          }          
+        }
+        if (aux) {
+          setInput({
+            ...input,
+            categories: [...input.categories, { name: e.target.value }],
+          });
+        }
       }
     } else {
       setInput({ ...input, [name]: value });
@@ -125,6 +135,8 @@ export default function ProductCreationForm() {
     productsValues.hasOwnProperty("size")
   ) {
     const obj = productsValues;
+    // console.log("INPUT",input.product_values)
+    // let a = input.product_values.map(e => e.size )
     setInput({ ...input, product_values: [...input.product_values, obj] });
     setProductsValues({});
   }

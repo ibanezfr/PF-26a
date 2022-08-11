@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { BASE_URL } from "../../../../api_url/api_url";
+import Swal from "sweetalert2";
 
 export const ActionsUpdate = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,13 @@ export const ActionsUpdate = ({ params, rowId, setRowId }) => {
         setRowId(null);
       }
       setLoading(false);
-      alert("Categoria editada con exito");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Categoria editada con exito",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (err) {
       console.log(err);
     }
@@ -86,18 +93,47 @@ export const ActionsDelete = ({ params, rowId, setRowId }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const handleDelete = async () => {
+    const { id } = params.row;
+    const result = await axios.delete(`${BASE_URL}/categories/${id}`);
+    if (result) {
+      setSuccess(true);
+      setRowId(null);
+    }
+    setLoading(false);
+  }
+
   const handleSubmit = async () => {
     setLoading(true);
 
-    const { id } = params.row;
     try {
-      const result = await axios.delete(`${BASE_URL}/categories/${id}`);
-      if (result) {
-        setSuccess(true);
-        setRowId(null);
-      }
+      Swal.fire({
+        title: '¿Estas seguro?',
+        text: "Esta accion no se puede revertir",
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleDelete();
+          Swal.fire(
+            'Eliminado',
+            'La categoria se elimino',
+            'success'
+          )
+        }
+      })
       setLoading(false);
-      alert("Categoria eliminada con exito");
+      // const result = await axios.delete(`${BASE_URL}/categories/${id}`);
+      // if (result) {
+      //   setSuccess(true);
+      //   setRowId(null);
+      // }
+      // setLoading(false);
+      // alert("Categoria eliminada con exito");
     } catch (err) {
       console.log(err);
     }

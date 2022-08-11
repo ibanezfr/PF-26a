@@ -18,7 +18,7 @@ export default function PurchaseInfo() {
 
     return (
         <div className='purchaseInfoContainer'>
-            {console.log(purchase)}
+            {/* {console.log(purchase)} */}
             {
 
                 purchase.length > 0 ? purchase.map(m => {
@@ -77,16 +77,18 @@ export default function PurchaseInfo() {
                                     })}
                                     </div>
                                     {
-                                        m.orderStatus === 'pending' ? <div>{null}</div> :
-                                            <div className='mapContainer'>{m.idProducts.map(p => {
-                                                return (
+                                        m.orderStatus === "accepted" 
+                                            ?
+                                                <div className='mapContainer'>{m.idProducts.map(p => {
+                                                    return (
 
-                                                    <div className='itemContainer2'>
-                                                        <button className='btnPrincipal '><Link className='linkBtn' to={`/review/${p[0]}`}>Valorar</Link></button>
-                                                    </div>
-                                                )
-                                            })}
-                                            </div>
+                                                        <div className='itemContainer2'>
+                                                            <button className='btnPrincipal '><Link className='linkBtn' to={`/review/${p[0]}`}>Valorar</Link></button>
+                                                        </div>
+                                                    )
+                                                })}
+                                                </div>
+                                            : <div>{null}</div>
                                     }
                                 </div>
                                 <div className='dateContainer'>

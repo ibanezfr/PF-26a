@@ -74,6 +74,11 @@ export default function CheckoutForm({ user, total, products, setShow, setShowPa
         });
         setIsLoading(false);
       }
+      Swal.fire({
+        icon: 'warning',
+        title: "Faltan datos de la tarjeta"
+      });
+      setIsLoading(false);
     }
     else {
       await showSucces(user, total, products)
@@ -85,7 +90,7 @@ export default function CheckoutForm({ user, total, products, setShow, setShowPa
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
   };
-
+ 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />

@@ -14,6 +14,7 @@ const CategoryList = ({ render }) => {
   const allCategories = useSelector((state) => state.category);
   const dispatch = useDispatch();
   console.log("hola", allCategories);
+
   useEffect(() => {
     dispatch(fetchCategory());
     // eslint-disable-next-line react-hooks/exhaustive-deps

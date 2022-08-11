@@ -15,18 +15,37 @@ import { ImProfile } from "react-icons/im";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
 
 const SidebarAdmin = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const { logout } = useAuth();
 
+  const handleOut = async () => {
+    await logout();
+    localStorage.clear();
+    history.push("/");
+    
+  }
+
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      await logout();
-      localStorage.clear();
-      history.push("/");
+      Swal.fire({
+        title: '¿Estas seguro?',
+        text: "Vas a ser redirijido al Home",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "Cancelar",
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+         handleOut();
+        }
+      })
     } catch (error) {
       console.log(error);
     }
@@ -61,12 +80,12 @@ const SidebarAdmin = () => {
               <span>{t("sidebarAdmin.spanProducts")}</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/admin/categorias" className="link">
               <AiOutlineForm className="icons" />
               <span>{t('sidebarAdmin.spanCategories')}</span>
             </Link>
-          </li>
+          </li> */}
 
           <li>
             <Link to="/admin/orders" className="link">
@@ -97,7 +116,7 @@ const SidebarAdmin = () => {
             <MdNotifications className="icons" />
             <span>{t("sidebarAdmin.spanNotis")}</span>
           </li> */}
-          <p className="title">{t("sidebarAdmin.pService")}</p>
+          {/* <p className="title">{t("sidebarAdmin.pService")}</p>
 
           <li>
             <MdSettingsSystemDaydream className="icons" />
@@ -106,7 +125,7 @@ const SidebarAdmin = () => {
           <li>
             <MdSettings className="icons" />
             <span>{t("sidebarAdmin.spanSettings")}</span>
-          </li>
+          </li> */}
           <p className="title">{t("sidebarAdmin.pUser")}</p>
 
           <li>
