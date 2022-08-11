@@ -64,3 +64,39 @@ export function filterCart (item, product) {
     }
     return true;
 };
+
+export function cartController (Swal, size, stock, quantity) {
+    if (size === "" || quantity === 0) {
+        return Swal.fire({
+            title: 'Seleccioná un talle y una cantidad para continuar',
+            showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
+    } else if (quantity > stock) {
+        return Swal.fire({
+          title: 'La cantidad excede el limite del producto',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
+    } else if (quantity < 0) {
+        return Swal.fire({
+          title: 'Cantidad invalida',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });      
+    } else {
+       return true
+    }
+};

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-$font: 'Lato', sans-serif;
+$font: 'Lato',
+sans-serif;
 
 $primaryColor: #794983;
 $secondaryColor: #9C9AC0;
@@ -7,74 +8,154 @@ $backGroundColor: #DFCED5;
 $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
+.scrollMaxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
 
-body{
-    background-color: #f0f0f0;
-}
-
-.questions{
-    width: 600px;
-
-    .question{
+    .questionFormContainer {
         width: 100%;
-        margin-bottom: 20px;
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        p{
-            margin: 0 0 10px 0;
+        h2{
+            color: $primaryColor;
+            font-family: $font;
         }
     }
 
+    .revewContainer {
+        width: 100%;
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .reviewContainer2 {
+            margin: 5%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2{
+                color: $primaryColor;
+                font-family: $font;
+                margin-top: 2%;
+            }
+
+            .ratingInfo{
+                background-color: $lightestColor;
+                border-radius: 20px;
+                width: 80%;
+                margin: 3%;
+
+                .starsImageDiv{
+                    img{
+                        width: 40%;
+                    }
+
+                    h3{
+
+                    }
+                }
+            }
+        }
+    }
+
+    .questions {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2{
+            margin-top: 20px;
+            color: $primaryColor;
+            font-family: $font;
+            margin-bottom: 10px;
+        }
+
+        .QandAContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 2%;
+            .question {
+                background-color: $lightestColor;
+                border-radius: 20px;
+                margin: 1%;
+
+                p{
+                    font-family: $font;
+                }
+            }
+
+            .answer{
+                background-color: $primaryColor;
+                border-radius: 20px;
+                margin: 1%;
+                padding: 3%;
+
+                p{
+                    font-family: $font;
+                    color: $lightestColor;
+                }
+            }
+        }
+    }
 }
 
-.bubble{
-    position: relative;
-    background-color: $lightestColor;
-    padding: 20px;
-    color: $primaryColor;
-    border-radius: 3px;
-    margin-left: 20px;
-}
-
-.bubble:after{
-    content: "";
+.scroll-container {
     display: block;
-    position: absolute;
-
-    top: 15px;
-    margin-left: -35px;
-
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-
-    border-right: 15px solid #fff;
+    width: 40%;
+    height: 400px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
-// .QandAMaxContainer{
-//     display: flex;
-//     flex-direction: column;
 
-//     .titleQuestion{
-//         color: $primaryColor;
-//         font-family: $font;
-//         font-size: 2rem;
-//     }
-    
+.formDiv {
+    width: 90%;
+}
 
-//     .QandAContainer{
+//-------RESPONSIVE---------
+@media (max-width: 700px){
+    .father{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .scrollMaxContainer {
+        display: flex;
+        flex-direction: column;
+    }
 
-//         .question{
-//             color: $primaryColor;
-//             background-color: $lightestColor;
+    .scroll-container {
+        width: 90%;
+    }
 
-//             h2{
-//                 font-size: 1.5rem;
-//                 font-family: $font;
-//                 text-align: left;
-//                 background-color: $primaryColor;
-//                 color: $lightestColor;
-//                 padding: 5px;
-//             }
-//         }
-//     }
-// }
+    .formDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+
+        h2{
+            width: 80%;
+        }
+        .form{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .formGroup{
+                width: 80%;
+            }
+        }
+    }
+}

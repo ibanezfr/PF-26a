@@ -8,15 +8,40 @@ $middleColor: #C39EC3;
 $lightestColor: #F2F2F2;
 
 
-.totalHomeContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    align-content: center;
-    width: 100%;
-    height: 150vh;
-    
+#btnPagination {
+    height: 40px;
+    margin: 3%;
+    margin-top: 1%;
+    margin-bottom: 0%;
+    margin-left: 1%;
+    margin-right: 1%;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1%;
+    width: auto;
+    background: #794983;
+    border: 2px solid;
+    border-radius: 5%;
+    border-color: #794983;
+    text-align: center;
+
 }
+
+#btnPagination:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 12px #794983;
+    transition: all 0.2s ease;
+}
+
+// .totalHomeContainer {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: stretch;
+//     align-content: center;
+//     width: 100%;
+// }
 
 .paginationContainer {
     display: flex;
@@ -60,9 +85,7 @@ $lightestColor: #F2F2F2;
 
 .homeContainer {
     display: flex;
-    flex-direction: row-reverse;
-    margin-right: 20px;
-    justify-content: flex-end;
+    align-items: center;
 
     h2 {
         font-family: $font;
@@ -79,12 +102,16 @@ $lightestColor: #F2F2F2;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+
+        div {
+            width: 11rem;
+        }
+
 
         img {
             width: 15px;
             height: 15px;
-
+            cursor: pointer;
         }
     }
 
@@ -95,7 +122,9 @@ $lightestColor: #F2F2F2;
         flex-direction: column;
         justify-content: right;
         position: left;
-        
+        height: 100%;
+        width: 14rem;
+        margin-left: 2rem;
 
         select {
             border: 1px solid $secondaryColor;
@@ -103,8 +132,7 @@ $lightestColor: #F2F2F2;
             color: $lightestColor;
             width: 150px;
             display: flex;
-
-
+            margin-left: 1.2rem;
         }
 
         ul {
@@ -116,8 +144,9 @@ $lightestColor: #F2F2F2;
                 list-style: none;
                 cursor: pointer;
                 color: $secondaryColor;
-
-
+            }
+            li:hover {
+                color: rgb(35, 6, 4);
             }
         }
     }

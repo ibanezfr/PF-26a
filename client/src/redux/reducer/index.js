@@ -20,10 +20,26 @@ import {
   POST_PRDUCT,
   GET_Q_AND_A,
   GET_INFO_Q_AND_A,
-  GET_ANSWERS
+  GET_ANSWERS,
+  GET_FAVORITES,
+  REMOVE_FAVORITE,
+  ADD_FAVORITE,
+  FETCH_ORDER_LIST,
+  SET_PAYMENT_INFO,
+  FETCH_CATEGORY,
+  ANSWER_QUESTION,
+
+  INFO_PURCHASE,
+  GET_REVIEW,
+  GET_INFO_REVIEW,
+
+  // INFO_PURCHASE,
+  SINGLE_PURCHASE
+
 } from "../actions/index";
 import { filterCart, filterProducts } from "../../Utils";
 import { orderProducts } from "../../Utils";
+import Swal from "sweetalert2";
 
 const initialState = {
   products: [],
@@ -37,9 +53,10 @@ const initialState = {
       : JSON.parse(localStorage.getItem("filter"))),
   ],
   categories: [],
-  orderBy: (JSON.parse(localStorage.getItem("order")) === null
-    ? ''
-    : JSON.parse(localStorage.getItem("order"))),
+  orderBy:
+    JSON.parse(localStorage.getItem("order")) === null
+      ? ""
+      : JSON.parse(localStorage.getItem("order")),
   user: [],
   userInfo: [],
   session: false,
@@ -51,9 +68,25 @@ const initialState = {
   question: [],
   infoQuestion: [],
   infoAnswer: [],
+  questionToAnswer: [],
   isSearchActive: false,
-};
+  buys: [],
+  favs: [
+    ...(JSON.parse(localStorage.getItem("favs") === null)
+      ? []
+      : JSON.parse(localStorage.getItem('favs')))
+  ],
+  paymentInfo: {},
+  category: [],
 
+  purchaseInfo: [],
+  review:[],
+  infoReview:[],
+
+  // purchaseInfo: [],
+  singlePurchaseInfo: []
+
+};
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -80,13 +113,18 @@ function rootReducer(state = initialState, action) {
         filters: aux,
         displayedProducts: producto,
       };
+    case FETCH_CATEGORY:
+      return {
+        ...state,
+        category: action.payload,
+      };
     case REMOVE_FILTER:
       var auxs = state.filters.filter((fil) => fil !== action.payload);
-      var producto2 = filterProducts(state.products, auxs)
+      var producto2 = filterProducts(state.products, auxs);
       return {
         ...state,
         filters: auxs,
-        displayedProducts: producto2
+        displayedProducts: producto2,
       };
     case SET_PRODUCTS_TO_DISPLAY:
       return {
@@ -99,6 +137,7 @@ function rootReducer(state = initialState, action) {
         searchProducts: action.payload,
         displayedProducts: action.payload, //edite agus
       };
+
     case GET_BY_ID:
       return {
         ...state,
@@ -125,6 +164,12 @@ function rootReducer(state = initialState, action) {
         user: action.payload,
       };
     }
+    case "GET_BUYS": {
+      return {
+        ...state,
+        buys: action.payload,
+      };
+    }
 
     case "SESSION":
       return {
@@ -134,61 +179,80 @@ function rootReducer(state = initialState, action) {
       };
 
     case ADD_TO_CART:
-      let itemInCart = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
-      
-    
+      let itemInCart = state.cart.find(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+
       return itemInCart
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              (item.id === action.payload.id && item.size === action.payload.size)
-                ?  {...item, quantity: action.payload.quantity}
-                : item
-            )
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: action.payload.quantity }
+              : item
+          ),
+        }
         : {
           ...state,
           cart: [...state.cart, { ...action.payload }],
         };
 
     case REMOVE_ONE_FROM_CART:
-      let itemToDelete = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+      let itemToDelete = state.cart.find(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
       return itemToDelete.quantity > 1
         ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload.id && item.size === action.payload.size
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            )
-          }
+          ...state,
+          cart: state.cart.map((item) =>
+            item.id === action.payload.id && item.size === action.payload.size
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        }
         : {
-            ...state,
-            cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
-          };
+          ...state,
+          cart: state.cart.filter((item) => filterCart(item, itemToDelete)),
+        };
 
     case ADD_ONE_FROM_CART:
-      let productAdd = state.cart.find((item) => item.id === action.payload.id && item.size === action.payload.size);
-      if  (productAdd.quantity === productAdd.stock) {
-        alert("limite alcanzado")
-        return {...state}
+      let productAdd = state.cart.find(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+      if (productAdd.quantity === productAdd.stock) {
+        Swal.fire({
+          title: "La cantidad excede el limite del producto",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        return { ...state };
       }
       return {
         ...state,
         cart: state.cart.map((item) =>
-        item.id === action.payload.id && item.size === action.payload.size
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-      }
+          item.id === action.payload.id && item.size === action.payload.size
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
 
     case REMOVE_FROM_CART:
-      let indexRemove = state.cart.findIndex((item) => item.id === action.payload.id && item.size === action.payload.size);
-      state.cart.splice(indexRemove,1);
-      
+      let indexRemove = state.cart.findIndex(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+      state.cart.splice(indexRemove, 1);
+
       return {
         ...state,
-        cart: [...state.cart]
+        cart: [...state.cart],
       };
     case CLEAR_CART:
       return {
@@ -218,26 +282,96 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         filters: [],
-        orderBy: ''
-      }
+        orderBy: "",
+      };
 
-    case GET_Q_AND_A: 
-    return{
-      ...state,
-      question: action.payload
-    }
+
+    //PREGUNTAS Y RESPUESTAS
+
+    case GET_Q_AND_A:
+      return {
+        ...state,
+        question: action.payload,
+      };
 
     case GET_INFO_Q_AND_A:
-      return{
+      return {
         ...state,
-        infoQuestion: action.payload
-      }
-    
+        infoQuestion: action.payload,
+      };
+
     case GET_ANSWERS:
-      return{
+      return {
         ...state,
-        infoAnswer: action.payload
+        infoAnswer: action.payload,
+      };
+
+    case ANSWER_QUESTION:
+      return {
+        ...state,
+        questionToAnswer: action.payload,
+      };
+
+    //FAVORITOS
+
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favs: action.payload,
+      };
+    case REMOVE_FAVORITE:
+      localStorage.setItem(
+        "favs",
+        JSON.stringify(state.favs.filter((f) => f.id !== action.payload))
+      );
+      return {
+        ...state,
+        favs: state.favs.filter((f) => f.id !== action.payload),
+      };
+    case ADD_FAVORITE:
+      localStorage.setItem("favs", JSON.stringify([...action.payload]));
+      return {
+        ...state,
+        favs: [...action.payload]
       }
+
+    case FETCH_ORDER_LIST:
+      return {
+        ...state,
+
+      }
+    case SET_PAYMENT_INFO:
+      return {
+        ...state,
+        paymentInfo: action.payload
+      }
+
+    // INFORMACIÓN DE LAS COMPRAS
+
+    // case INFO_PURCHASE:
+    //   return{
+    //     ...state,
+    //     purchaseInfo: action.payload
+    //   }
+
+    case SINGLE_PURCHASE:
+      return {
+        ...state,
+        singlePurchaseInfo: action.payload
+      }
+     
+
+      case  GET_REVIEW:
+        return{
+          ...state,
+          review: action.payload
+        }
+      case GET_INFO_REVIEW:
+        return{
+          ...state,
+          infoReview: action.payload
+        }
+
     default:
       return state;
   }

@@ -3,47 +3,48 @@ import "./Widget.scss";
 import { RiArrowUpCircleFill } from "react-icons/ri";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { MdMonetizationOn, MdAccountBalance } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
-const Widget = ({ type }) => {
+const Widget = ({ type, amount, ordersNumber }) => {
   let data;
-
+  const { t } = useTranslation();
   // Valores temporales hasta que traiga los datos de la db
-  const amount = 100;
+
   const porcentage = 20;
 
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
+        title: t("widget.user.title"),
         isMoney: false,
-        link: "See all Users",
+        link: t("widget.user.link"),
         icon: <FaUserCircle className="icon" />,
       };
       break;
 
     case "order":
       data = {
-        title: "ORDERS",
+        title: t("widget.order.title"),
         isMoney: false,
-        link: "View all Orders",
+        link: t("widget.order.link"),
         icon: <FaShoppingCart className="icon" />,
       };
       break;
 
     case "earning":
       data = {
-        title: "EARNINGS",
+        title: t("widget.earning.title"),
         isMoney: true,
-        link: "View net earnings",
+        link: t("widget.earning.link"),
         icon: <MdMonetizationOn className="icon" />,
       };
       break;
 
     case "balance":
       data = {
-        title: "BALANCE",
+        title: t("widget.user.title"),
         isMoney: true,
-        link: "See details",
+        link: t("widget.user.link"),
         icon: <MdAccountBalance className="icon" />,
       };
       break;
@@ -55,7 +56,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && <b>$</b>} {amount ? amount / 100 : ordersNumber}
         </span>
         <span className="link">{data.link}</span>
       </div>

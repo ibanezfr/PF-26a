@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         size: {
-            type: DataTypes.ENUM("xs", "s", "m", "l", "xl", "xxl", "xxxl", "único"), 
+            type: DataTypes.ENUM("xs", "s", "m", "l", "xl", "xxl", "xxxl", "único"),
         },
         stock: {
             type: DataTypes.FLOAT,
