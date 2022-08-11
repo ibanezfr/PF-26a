@@ -41,7 +41,7 @@ const SellOrders = () => {
         >
           <Paper elevation={3} sx={{ p: 2, gridColumn: 3, gridRow: "1/4" }}>
             <Box>
-              <Widget amount={amount} type="earning" />
+              <Widget amount={amount/100} type="earning" />
               <Widget ordersNumber={orders.length} type="order" />
             </Box>
           </Paper>

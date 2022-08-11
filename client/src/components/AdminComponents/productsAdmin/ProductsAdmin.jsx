@@ -7,6 +7,7 @@ import CategoryList from "./Category/CategoryList";
 import CreateCategory from "./Category/CreateCategory";
 import "./ProductsAdmin.scss";
 import { useEffect } from "react";
+
 const ProductsAdmin = () => {
   const { t } = useTranslation();
   return (

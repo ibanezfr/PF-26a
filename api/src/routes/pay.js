@@ -153,7 +153,7 @@ router.post("/api/checkout", async (req, res) => {
     const payment = await stripe.paymentIntents.create({
       amount: Number(amount) * 100,
       currency: "USD",
-      description: formatDescription(description).join(',\n'),
+      //description: formatDescription(description).join(',\n'),
       automatic_payment_methods: {
         enabled: true
       },

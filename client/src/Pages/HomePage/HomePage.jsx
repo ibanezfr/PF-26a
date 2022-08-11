@@ -33,9 +33,12 @@ function HomePage() {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    
     setCurrentPage(JSON.parse(localStorage.getItem("page")));
     //products = dispProds
   }, [cart, isSearchActive]);
+
+  
 
   if (filters.length) {
     products = filterProducts(products, filters);
@@ -72,12 +75,12 @@ function HomePage() {
     dispatch(fetchCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(currentPage)
   return (
     <div>
       <div className="paginationContainer">
         <button
-          className={`${currentPage === 1 ? "disabled" : ""}`}
+          className={currentPage === 1 ? "disabled" : ""}
           disabled={currentPage === 1 ? true : false}
           id="btnPagination"
           onClick={() => {
@@ -89,9 +92,7 @@ function HomePage() {
         </button>
         <button id="btnPagination">{currentPage}</button>
         <button
-          className={`${
-            currentPage === numberOfPages.length ? "disabled" : ""
-          }`}
+          className={currentPage === numberOfPages.length ? "disabled" : ""}
           disabled={currentPage === numberOfPages.length ? true : false}
           id="btnPagination"
           onClick={() => {

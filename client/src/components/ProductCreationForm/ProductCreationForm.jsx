@@ -103,7 +103,9 @@ export default function ProductCreationForm() {
       setErrors(validate({ ...input, [name]: value }, name));
     }
     if (name === "size") {
-      setProductsValues({ [name]: value });
+      let sizes = input.product_values.map(prod =>prod.size)
+      if(!sizes.includes(value))
+        setProductsValues({ [name]: value });
     }
     if (name === "stock") {
       setProductsValues({ ...productsValues, [name]: value });
