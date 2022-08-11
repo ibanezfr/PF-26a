@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FileBase from "react-file-base64";
 import { postProduct } from "../../redux/actions";
-
+import { useTranslation } from "react-i18next";
 import Carousel from "react-bootstrap/Carousel";
 
 export function validate(input, name, value) {
@@ -66,6 +66,7 @@ export function validate(input, name, value) {
 }
 
 export default function ProductCreationForm() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
   const stockArray = [];
@@ -102,17 +103,27 @@ export default function ProductCreationForm() {
       setErrors(validate({ ...input, [name]: value }, name));
     }
     if (name === "size") {
-      setProductsValues({ [name]: value });
+      let sizes = input.product_values.map(prod =>prod.size)
+      if(!sizes.includes(value))
+        setProductsValues({ [name]: value });
     }
     if (name === "stock") {
       setProductsValues({ ...productsValues, [name]: value });
     }
     if (name === "categories") {
       if (input.categories.length < 3) {
-        setInput({
-          ...input,
-          categories: [...input.categories, { name: e.target.value }],
-        });
+        var aux = true
+        for (let i = 0; i < input.categories.length; i++) {
+          if ( input.categories[i].name === value) {
+            aux = false;
+          }          
+        }
+        if (aux) {
+          setInput({
+            ...input,
+            categories: [...input.categories, { name: e.target.value }],
+          });
+        }
       }
     } else {
       setInput({ ...input, [name]: value });
@@ -124,6 +135,8 @@ export default function ProductCreationForm() {
     productsValues.hasOwnProperty("size")
   ) {
     const obj = productsValues;
+    // console.log("INPUT",input.product_values)
+    // let a = input.product_values.map(e => e.size )
     setInput({ ...input, product_values: [...input.product_values, obj] });
     setProductsValues({});
   }
@@ -131,6 +144,13 @@ export default function ProductCreationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input.categories.length) {
+      return alert("Al menos 1 categoria");
+    }
+    if (!input.product_values.length) {
+      return alert("Size y stock son requeridos");
+    }
+
     dispatch(postProduct(input));
     setInput({
       name: "",
@@ -156,7 +176,30 @@ export default function ProductCreationForm() {
   };
   useEffect(() => {
     handleKick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      categories: input.categories.filter((g) => g.name !== e.target.name),
+    });
+  };
+
+  const handleDeleteProd_Values = (e) => {
+    e.preventDefault();
+
+    let size = e.target.name;
+    console.log(size);
+
+    setInput({
+      ...input,
+      product_values: input.product_values.filter(
+        (p) => p.size !== e.target.name
+      ),
+    });
+  };
 
   console.log(input);
   const submitButtonBoolean =
@@ -173,11 +216,11 @@ export default function ProductCreationForm() {
   return (
     <div className="productCreationContainer">
       <Link to="/admin/home">
-        <button id="back-button">Regresar al tablero de control</button>
+        <button id="back-button">{t("productCreationForm.backButton")}</button>
       </Link>
       <div className="productFormContainer">
         <div className="creation_form">
-          <h2 id="title">Creá un producto:</h2>
+          <h2 id="title">{t("productCreationForm.h1Title")}</h2>
           <div id="error_container">
             <ul className="error">
               {errors && errors.name && (
@@ -197,11 +240,11 @@ export default function ProductCreationForm() {
           <form className="formContainer" onSubmit={(e) => handleSubmit(e)}>
             <div className="sepatarionContainer">
               <fieldset className="fieldset rowItems">
-                <legend>Ingresá un título:</legend>
+                <legend>{t("productCreationForm.legend1")}</legend>
                 <input
                   className=""
                   type="text"
-                  placeholder="Título..."
+                  placeholder={t("productCreationForm.placeHolderLegend1")}
                   name="name"
                   id="name-input"
                   onChange={(e) => handleInputChange(e)}
@@ -209,11 +252,11 @@ export default function ProductCreationForm() {
               </fieldset>
 
               <fieldset className="fieldset rowItems">
-                <legend>Ingresá el precio:</legend>
+                <legend>{t("productCreationForm.legend2")}</legend>
                 <input
                   id="price-input"
                   type="number"
-                  placeholder="Precio..."
+                  placeholder={t("productCreationForm.placeHolderLegend2")}
                   name="price"
                   min="0"
                   max="9999.99"
@@ -224,11 +267,11 @@ export default function ProductCreationForm() {
             </div>
 
             <fieldset className="fieldset">
-              <legend>Ingresá la descripción:</legend>
+              <legend>{t("productCreationForm.legend3")}</legend>
               <textarea
                 id="textarea"
                 className=""
-                placeholder="Descripción..."
+                placeholder={t("productCreationForm.placeHolderLegend3")}
                 name="description"
                 rows="2"
                 cols="50"
@@ -237,12 +280,12 @@ export default function ProductCreationForm() {
             </fieldset>
 
             <fieldset className="fieldset">
-              <legend>Ingresá los colores:</legend>
+              <legend>{t("productCreationForm.legend4")}</legend>
               <input
                 id="color-input"
                 className=""
                 type="text"
-                placeholder="Color..."
+                placeholder={t("productCreationForm.placeHolderLegend4")}
                 name="color"
                 onChange={(e) => handleInputChange(e)}
               ></input>
@@ -250,7 +293,9 @@ export default function ProductCreationForm() {
 
             <div className="sepatarionContainer">
               <fieldset id="image1" className="fieldset">
-                <legend htmlFor="image1">Imagen 1: </legend>
+                <legend htmlFor="image1">
+                  {t("productCreationForm.legend5")}
+                </legend>
                 <FileBase
                   id="image1"
                   name="image1"
@@ -258,10 +303,20 @@ export default function ProductCreationForm() {
                   multiple={false}
                   onDone={({ base64 }) => setInput({ ...input, image: base64 })}
                 />
+                {input.image && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
 
               <fieldset id="image2" className="fieldset">
-                <legend htmlFor="image2">Imagen 2: </legend>
+                <legend htmlFor="image2">
+                  {t("productCreationForm.legend6")}
+                </legend>
                 <FileBase
                   name="image2"
                   type="image"
@@ -270,12 +325,22 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image2: base64 })
                   }
                 />
+                {input.image2 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image2: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
             </div>
 
             <div className="sepatarionContainer">
               <fieldset id="image3" className="fieldset">
-                <legend htmlFor="image3">Imagen 3: </legend>
+                <legend htmlFor="image3">
+                  {t("productCreationForm.legend7")}
+                </legend>
                 <FileBase
                   name="image3"
                   type="image"
@@ -284,10 +349,21 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image3: base64 })
                   }
                 />
+
+                {input.image3 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image3: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
 
               <fieldset id="image4" className="fieldset">
-                <legend htmlFor="image4">Imagen 4: </legend>
+                <legend htmlFor="image4">
+                  {t("productCreationForm.legend8")}
+                </legend>
                 <FileBase
                   name="image4"
                   type="image"
@@ -296,17 +372,29 @@ export default function ProductCreationForm() {
                     setInput({ ...input, image4: base64 })
                   }
                 />
+                {input.image4 && (
+                  <button
+                    type="button"
+                    onClick={(e) => setInput({ ...input, image4: "" })}
+                  >
+                    Eliminar
+                  </button>
+                )}
               </fieldset>
             </div>
 
             <fieldset id="categories" className="fieldset">
-              <legend htmlFor="categories">Categorías:</legend>
+              <legend htmlFor="categories">
+                {t("productCreationForm.legend9")}
+              </legend>
               <select
                 className=""
                 name="categories"
                 onChange={(e) => handleInputChange(e)}
               >
-                <option key={"21a"}>--Elegí las categorías--</option>
+                <option key={"21a"}>
+                  {t("productCreationForm.categorySelect")}
+                </option>
                 {categoriesArray &&
                   categoriesArray?.map((elm, index) => {
                     return (
@@ -323,13 +411,17 @@ export default function ProductCreationForm() {
             <fieldset id="size_stock" className="fieldset">
               <div className="sepatarionContainer">
                 <div className="fieldset rowItems">
-                  <legend htmlFor="size_stock">Talle y stock:</legend>
+                  <legend htmlFor="size_stock">
+                    {t("productCreationForm.legend10")}
+                  </legend>
                   <select
                     className=""
                     name="size"
                     onChange={(e) => handleInputChange(e)}
                   >
-                    <option key={"22a"}>--Seleccioná un talle--</option>
+                    <option key={"22a"}>
+                      {t("productCreationForm.sizeSelect")}
+                    </option>
                     {sizesArray &&
                       sizesArray?.map((elm, index) => {
                         return (
@@ -342,7 +434,7 @@ export default function ProductCreationForm() {
                 </div>
 
                 <div className="fieldset rowItems">
-                  <label>Stock:</label>
+                  <label>{t("productCreationForm.labelStock")}</label>
                   <select
                     className=""
                     name="stock"
@@ -361,14 +453,14 @@ export default function ProductCreationForm() {
               disabled={submitButtonBoolean}
               id="submit-button"
               type="submit"
-              value="Submit"
+              value={t("productCreationForm.submit")}
               className="submitBtn"
             />
           </form>
         </div>
       </div>
       <div className="productView">
-        <h2 id="title">Previsualización:</h2>
+        <h2 id="title">{t("productCreationForm.preview")}</h2>
         <div className="background">
           <div className="imagesCreate">
             <Carousel fade>
@@ -377,7 +469,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image}
-                    alt="not found"
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -386,7 +478,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image2}
-                    alt="not found"
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -395,7 +487,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image3}
-                    alt="not found"
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -404,7 +496,7 @@ export default function ProductCreationForm() {
                   <img
                     className="d-block w-100"
                     src={input.image4}
-                    alt="not found"
+                    alt={t("productCreationForm.notFound")}
                   />
                 </Carousel.Item>
               )}
@@ -420,17 +512,23 @@ export default function ProductCreationForm() {
           {input.color.length !== 0 && <span>Color: {input.color}</span>}
 
           <br />
-
           {input.categories.length !== 0 && (
             <label htmlFor="categories-list" id="categories-list-label">
-              Categorías:
+              {t("productCreationForm.label1")}
             </label>
           )}
 
           <ul className="categories" id="categories-list">
             {input.categories &&
               input.categories.map((elm, index) => {
-                return <li key={index}>{elm.name}</li>;
+                return (
+                  <li key={index}>
+                    {elm.name}{" "}
+                    <button name={elm.name} onClick={(e) => handleDelete(e)}>
+                      x
+                    </button>
+                  </li>
+                );
               })}
           </ul>
           <ul className="size-stock">
@@ -438,8 +536,16 @@ export default function ProductCreationForm() {
               input.product_values.map((elm, index) => {
                 return (
                   <li key={index}>
-                    Hay <mark>{elm.stock}</mark> unidades del talle{" "}
-                    <mark>{elm.size}</mark>{" "}
+                    {t("productCreationForm.sizeStock", {
+                      stock: `${elm.stock}`,
+                      size: `${elm.size}`,
+                    })}
+                    <button
+                      name={elm.size}
+                      onClick={(e) => handleDeleteProd_Values(e)}
+                    >
+                      x
+                    </button>
                   </li>
                 );
               })}
@@ -449,35 +555,3 @@ export default function ProductCreationForm() {
     </div>
   );
 }
-/*
-name: "",
-        price: 0,
-        description: "",
-        color: "",
-        image: "",
-        image2: "",
-        image3: "",
-        image4: "",
-        status: "",
-        categories: [],
-        product_values: [],
-*/
-//   {
-//         "name": "Bochas",
-//         "description": "Encontrá estas bochas en nuestro local o compralas por nuestra tienda virtual para poder potenciar tu entrenamiento al máximo",
-//         "price": 500,
-//         "rating": 5,
-//         "color": "rosa",
-//         "image": "https://i.pinimg.com/originals/8c/64/12/8c64122297b0ea576b1d9fdbf0673875.jpg",
-//         "categories": [
-//             {
-//                 "name": "Equipamento deportivo"
-//             }
-//         ],
-//         "product_values": [
-//             {
-//                 "size": "único",
-//                 "stock": 40
-//             }
-//         ]
-//     }

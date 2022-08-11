@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+$font: 'Lato', sans-serif;
+
+$primaryColor: #794983;
+$secondaryColor: #9C9AC0;
+$backGroundColor: #DFCED5;
+$middleColor: #C39EC3;
+$lightestColor: #F2F2F2;
+
+.div-f {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    min-height: 80vh;
+
+    .noFav{
+        h2{
+            color: $primaryColor;
+            margin-top: 30px;
+            font-family: $font;
+        }
+
+        img{
+            width: 40%;
+        }
+    }
+
+
+    .div-container {
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        // flex-direction: row;
+        // flex-wrap: nowrap !important;
+        // justify-content: space-around;
+        width: 440px;
+        border-top: 0.5px solid #794983;
+        border-bottom: 0.5px solid  #794983;
+        margin: 20px;
+        height: 13rem;
+        // margin-left: 5%;
+        // margin-right: 5%;
+        // margin-top: 1%;
+        // margin-bottom: 1%;
+        background-color: $lightestColor;
+
+        .button-box {
+            display: flex;
+            justify-content: flex-end;
+            // margin-right: 3%;
+            width: 100%;
+
+
+            .button-x {
+                margin: 3px;
+                background: rgba(0,0,0,0);
+                transition: all 1s ease;
+                border-color: transparent;
+            }
+        }
+        .box-fav {
+            
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 4px;
+
+            .image-f {
+                width: 9rem;
+                height: 8rem;
+                object-fit: cover;
+                border-radius: 10%;
+            }
+            
+            .text-box {
+                width: 16rem;
+                height: 10rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-family: 'Raleway', sans-serif;
+                justify-content: space-around;
+    
+                h4 {
+                    font-family: 'Raleway', sans-serif;
+                    font-size: 1.2rem;
+                    margin-top: 5%;
+                }
+    
+                h5 {
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 12px;
+                    margin: 1%;
+                }
+            }
+        }
+    }
+}

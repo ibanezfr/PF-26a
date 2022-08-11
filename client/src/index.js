@@ -7,15 +7,25 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store/index.js";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/AuthContext";
-
+import dotenv from "dotenv";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './i18n.js';
+import { BASE_URL } from "./api_url/api_url";
+dotenv.config();
+
+axios.defaults.baseURL = `${BASE_URL}`;
+
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <AuthProvider>
-          <App />
+          <React.Suspense fallback="loading">
+            <App />
+          </React.Suspense>
         </AuthProvider>
       </Provider>
     </BrowserRouter>

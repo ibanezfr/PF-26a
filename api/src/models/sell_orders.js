@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         },
         country: {
             type: DataTypes.STRING,
-            defaultValue: ""         
+            defaultValue: ""
         },
         province: {
             type: DataTypes.STRING,
@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             defaultValue: ''
         },
-        phoneNumber:{
+        phoneNumber: {
             type: DataTypes.STRING,
             defaultValue: ''
         },
@@ -63,6 +63,6 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM("pending", "accepted", "rejected"),
             defaultValue: "pending"
         }
-    },{timestamps: false}
+    }, { timestamps: false }
     )
 };

@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-$font: 'Lato', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+$font: "Lato", sans-serif;
 
 $primaryColor: #794983;
-$secondaryColor: #9C9AC0;
-$backGroundColor: #DFCED5;
-$middleColor: #C39EC3;
-$lightestColor: #F2F2F2;
+$secondaryColor: #9c9ac0;
+$backGroundColor: #dfced5;
+$middleColor: #c39ec3;
+$lightestColor: #f2f2f2;
 
 .container {
   display: flex;
@@ -29,6 +29,15 @@ $lightestColor: #F2F2F2;
   justify-content: space-between;
   @media only screen and (max-width: 850px) {
     display: unset;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border: 2px solid $primaryColor;
+    border-radius: 50px;
   }
 }
 
@@ -64,7 +73,7 @@ $lightestColor: #F2F2F2;
 .btn-submit {
   margin: 3%;
   margin-top: 1%;
-  color: #794983 ;
+  color: #794983;
   font-size: 1rem;
   font-weight: 300;
   /* padding: 0.5em 1.2em; */
@@ -77,13 +86,13 @@ $lightestColor: #F2F2F2;
   }
 }
 .btn-submit:hover {
-  color: #794983 ;
+  color: #794983;
   box-shadow: 0 4px 16px #794983;
   transition: all 0.2s ease;
 }
 
-.container-input{
-  label{
+.container-input {
+  label {
     font-family: $font;
     color: $primaryColor;
   }
