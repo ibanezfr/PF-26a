@@ -4,7 +4,7 @@
 
 # Our group project	
 
-This is a student group project done as a final big assigment, in wich join all the technologies learned at SoyHenry bootcamp, in addition the academy gathered the best developers of the *26 cohort* to make the first delivery of this app for a future deployment.
+This is a student group project done as a final big assigment, in wich join all the technologies learned at SoyHenry bootcamp, in addition the academy gathered the best developers of the *26A cohort* to make the first delivery of this app for a future deployment.
 
 *Graduation project at soyHenry.com bootcamp.*
 
