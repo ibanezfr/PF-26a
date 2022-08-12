@@ -2,7 +2,7 @@
 ## Final Project, Group 08-26a
 
 
-# Our group project	# Our group project
+# Our group project	
 
 This is a student group project done as a final big assigment, in wich join all the technologies learned at SoyHenry bootcamp, in addition the academy gathered the best developers of the *26 cohort* to make the first delivery of this app for a future deployment.
 
