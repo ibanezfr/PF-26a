@@ -18,7 +18,7 @@ This project allows users to view, search, save and buy diferent products. Also,
 - <a href="https://github.com/franco-ibanez-dev">@franco-ibanez-dev</a>
 - <a href="https://github.com/Micaias7">@Micaias7</a>
 - <a href="https://github.com/Naicolqui">@Naicolqui</a>
-- <a href="https://github.com/tathapachon"@tathapachon</a>
+- <a href="https://github.com/tathapachon">@tathapachon</a>
 - <a href="https://github.com/Uli-mgh">@Uli-mgh</a>
 
 ## Project Objetives
