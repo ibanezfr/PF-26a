@@ -1,6 +1,5 @@
-
-@@ -1,3 +1,79 @@
-## PF-26a	## Final Project, Group 08-26a
+## PF-26a
+## Final Project, Group 08-26a
 
 
 # Our group project	# Our group project
