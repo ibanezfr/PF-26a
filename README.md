@@ -79,3 +79,20 @@ You have to replace `postgresuser`, `postgrespassword` and `postgresport` with y
     + Inside `api` folder, run the command line, `npm run seed` / `yarn run seed` to fill the database, while the back is running.
 
     + Inside `client` folder, run the command line, `npm start` (go to http://localhost:3000/). 
+
+
+<h2>Here are some screenshots:</h2>
+
+<h5>Home page</h5>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.30%20PM%20(1).jpeg"/>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.30%20PM%20(2).jpeg"/>
+
+<h5>Some alerts</h5>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.30%20PM.jpeg"/>
+
+<h5>Product details</h5>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.31%20PM%20(2).jpeg"/>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.31%20PM%20(1).jpeg"/>
+
+<h5>Admin panel</h5>
+<img src="assets/WhatsApp%20Image%202022-08-10%20at%2011.13.31%20PM%20(3).jpeg"/>
