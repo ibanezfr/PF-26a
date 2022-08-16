@@ -34,7 +34,7 @@ export default function Details() {
   let size = useSelector(state => state.size)
   let cart = useSelector(state => state.cart)
   let favs = useSelector(state => state.favs);
-  var isFavorite = favs.find((f) => f.id === params.id);
+  var isFavorite = favs && favs.find((f) => f.id === params.id);
 
   const [position, setPosition] = useState(0);
 

@@ -25,7 +25,7 @@ export default function Favs() {
     return (
         <div className='div-f'>
             {
-                favs[0] ?
+                favs ?
                     favs.map((p, i) => {
                         return (
                             <FavItem
