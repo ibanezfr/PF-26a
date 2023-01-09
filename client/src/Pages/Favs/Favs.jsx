@@ -10,7 +10,7 @@ import fav from '../../images/fav.gif'
 export default function Favs() {
     const { user } = useAuth();
     const dispatch = useDispatch();
-    const favs = useSelector(state => state.favs);
+    var favs = useSelector(state => state.favs);
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -22,10 +22,12 @@ export default function Favs() {
         dispatch(removeFavsFromUser(user.uid, id));
     };
 
+    // if (favs === undefined) favs = [];
+
     return (
         <div className='div-f'>
             {
-                favs ?
+                favs.length ?
                     favs.map((p, i) => {
                         return (
                             <FavItem
